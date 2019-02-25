@@ -1,0 +1,48 @@
+/*
+ * Regnum - A Discord bot clustering system made for Hawk
+ *
+ * Copyright (C) 2019  Michael Rittmeister
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see https://www.gnu.org/licenses/.
+ */
+
+package cc.hawkbot.regnum.server.io.config
+
+import cc.hawkbot.regnum.io.config.GenericConfig
+
+class Config(source: String) : GenericConfig(source) {
+
+    companion object {
+        // Socket
+        const val SOCKET_PORT = "socket.port"
+        const val SOCKET_TOKEN = "socket.token"
+        const val SOCKET_HEARTBEAT = "socket.heartbeat"
+        const val SOCKET_IDENTIFY = "socket.identify_timeout"
+
+        // Discord
+        const val DISCORD_TOKEN = "discord.token"
+        const val DISCORD_PREFIX = "discord.prefix"
+        const val DISCORD_OWNERS = "discord.owners"
+    }
+
+    override fun defaults() {
+        applyDefault(SOCKET_PORT, 7000)
+        applyDefault(SOCKET_TOKEN, "SUPER-SECRET-SOCKET_TOKEN")
+        applyDefault(SOCKET_HEARTBEAT, 30)
+        applyDefault(SOCKET_IDENTIFY, 30)
+        applyDefault(DISCORD_TOKEN, "WUMPUS IS LOVE BRA")
+        applyDefault(DISCORD_PREFIX, "hc!")
+        applyDefault(DISCORD_OWNERS, listOf(416902379598774273L, 240797338430341120L))
+    }
+}
