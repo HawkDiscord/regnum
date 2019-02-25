@@ -60,10 +60,10 @@ client_build:
       - build
       - .gradle
       - out
-    artifacts:
-      paths:
-        - build/libs/*.jar
-      expire_in: 1 week
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 week
 client_docs:
   stage: pages
   script:
