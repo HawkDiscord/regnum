@@ -46,10 +46,10 @@ server_build:
       - build
       - .gradle
       - out
-    artifacts:
-      paths:
-        - build/libs/*.jar
-      expire_in: 1 week
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 week
 client_build:
   stage: build
   script: gradle :client:jar
