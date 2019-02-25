@@ -17,17 +17,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
+import com.jfrog.bintray.gradle.BintrayExtension
+import org.jetbrains.dokka.DokkaConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.LinkMapping
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    java
+    id("org.jetbrains.dokka").version("0.9.17")
+    id("com.jfrog.bintray").version("1.8.4")
     kotlin("jvm") version "1.3.21"
+    java
+    `maven-publish`
 }
 
 group = "cc.hawkbot"
 version = "1.0-SNAPSHOT"
-group = "cc.hawkbot"
-version = "1.0-SNAPSHOT"
+val archivesBasename = "regnum.client"
 
 repositories {
     mavenCentral()
@@ -52,6 +58,62 @@ dependencies {
 
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
+}
+
+val sourcesJar by tasks.creating(Jar::class) {
+    classifier = "sources"
+    from(sourceSets["main"].allSource)
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+            artifact(sourcesJar)
+        }
+    }
+}
+
+
+tasks {
+    "dokka"(DokkaTask::class) {
+        outputFormat = "html"
+        outputDirectory = "$buildDir/javadoc"
+        jdkVersion = 8
+        reportUndocumented = true
+        impliedPlatforms = mutableListOf("JVM")
+        sourceDirs = files("src/main/kotlin", "src/main/java")
+        sourceDirs.forEach {
+            val relativePath = rootDir.toPath().relativize(it.toPath()).toString()
+            linkMapping(delegateClosureOf<LinkMapping> {
+                dir = it.absolutePath
+                url = "https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/$relativePath"
+                suffix = "#L"
+            })
+        }
+        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+            url = uri("https://www.slf4j.org/api/").toURL()
+        })
+        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+            url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
+        })
+    }
+}
+
+bintray {
+    user = System.getenv("BINTRAY_USER")
+    key = System.getenv("BINTRAY_KEY")
+    setPublications("mavenJava")
+    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+        repo = "maven"
+        name = archivesBasename
+        userOrg = "drschlaubi"
+        setLicenses("GPL-3.0")
+        vcsUrl = "https://github.com/DRSchlaubi/regnum.git"
+        version(delegateClosureOf<BintrayExtension.VersionConfig> {
+            name = project.version as String
+        })
+    })
 }
 
 configure<JavaPluginConvention> {

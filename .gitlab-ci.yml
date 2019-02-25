@@ -1,0 +1,81 @@
+image: gradle:jdk11
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+stages:
+  - build
+  - pages
+  - deploy
+
+shared_build:
+  stage: build
+  script: gradle :shared:jar
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+      - out
+  artifacts:
+    paths:
+      - build/libs/*.jar
+    expire_in: 1 week
+
+shared_docs:
+  stage: pages
+  script:
+    - "gradle dokka"
+    - "mv build/javadoc public/shared"
+  artifacts:
+    paths:
+      - "public"
+  only:
+    - master
+server_build:
+  stage: build
+  script: gradle :server:shaddow
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+      - out
+    artifacts:
+      paths:
+        - build/libs/*.jar
+      expire_in: 1 week
+client_build:
+  stage: build
+  script: gradle :client:jar
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+      - out
+    artifacts:
+      paths:
+        - build/libs/*.jar
+      expire_in: 1 week
+client_docs:
+  stage: pages
+  script:
+    - "gradle dokka"
+    - "mv build/javadoc public/client"
+  artifacts:
+    paths:
+      - "public"
+  only:
+    - master
+#bintray:
+#  stage: deploy
+#  script: gradle bintrayUpload
+#  only:
+#    - master

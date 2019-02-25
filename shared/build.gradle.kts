@@ -17,11 +17,15 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
+import org.jetbrains.dokka.DokkaConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.LinkMapping
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    id("org.jetbrains.dokka").version("0.9.17")
     java
-    kotlin("jvm") version "1.3.21"
+    kotlin("jvm").version("1.3.21")
 }
 
 group = "cc.hawkbot"
@@ -38,7 +42,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.25")
 
     // Util
-    implementation("com.github.Carleslc:Simple-YAML:1.3")
+    compile("com.github.Carleslc:Simple-YAML:1.3")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.9.7")
 
     // Kotlin
@@ -46,6 +50,31 @@ dependencies {
 
     // Tests
     testCompile("junit", "junit", "4.12")
+}
+
+tasks {
+    "dokka"(DokkaTask::class) {
+        outputFormat = "html"
+        outputDirectory = "$buildDir/javadoc"
+        jdkVersion = 8
+        reportUndocumented = true
+        impliedPlatforms = mutableListOf("JVM")
+        sourceDirs = files("src/main/kotlin", "src/main/java")
+        sourceDirs.forEach {
+            val relativePath = rootDir.toPath().relativize(it.toPath()).toString()
+            linkMapping(delegateClosureOf<LinkMapping> {
+                dir = it.absolutePath
+                url = "https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/$relativePath"
+                suffix = "#L"
+            })
+        }
+        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+            url = uri("https://www.slf4j.org/api/").toURL()
+        })
+        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+            url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
+        })
+    }
 }
 
 configure<JavaPluginConvention> {
