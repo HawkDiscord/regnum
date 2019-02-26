@@ -25,17 +25,6 @@ shared_build:
     paths:
       - shared/build/libs/*.jar
     expire_in: 1 week
-
-shared_docs:
-  stage: pages
-  script:
-    - "gradle dokka"
-    - "mv shared/build/javadoc public/shared"
-  artifacts:
-    paths:
-      - "public"
-  only:
-    - master
 server_build:
   stage: build
   script: gradle :server:shadowJar
@@ -64,11 +53,12 @@ client_build:
     paths:
       - client/build/libs/*.jar
     expire_in: 1 week
-client_docs:
+pages:
   stage: pages
   script:
     - "gradle dokka"
-    - "mv shared/build/javadoc public/client"
+    - "mv shared/build/javadoc public/shared"
+    - "mv client/build/javadoc public/client"
   artifacts:
     paths:
       - "public"
