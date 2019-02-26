@@ -19,13 +19,25 @@
 
 package cc.hawkbot.regnum.entites.packets;
 
+
+/**
+ * Websocket IDENTIFY packet.
+ * Used to authenticate nodes after connecting.
+ */
 @SuppressWarnings("unused")
 public class IdentifyPacket implements Packet {
 
+    /**
+     * Type identifier
+     */
     public static final String IDENTIFIER = "IDENTIFY";
 
     private String token;
 
+    /**
+     * Constructs a IdentifyPacket
+     * @param token the authentication token
+     */
     public IdentifyPacket(String token) {
         this.token = token;
     }
@@ -33,9 +45,14 @@ public class IdentifyPacket implements Packet {
     /**
      * Used for serialization
      */
+    @SuppressWarnings("WeakerAccess")
     public IdentifyPacket() {
     }
 
+    /**
+     * Returns the token for identification.
+     * @return the token
+     */
     public String getToken() {
         return token;
     }

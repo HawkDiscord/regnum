@@ -19,7 +19,15 @@
 
 package cc.hawkbot.regnum.entites.packets;
 
+/**
+ * Websocket HEARTBEAT_ACK packet.
+ * Used to acknowledge websocket heartbeat.
+ * Sent by client
+ */
 public class HeartBeatAckPacket implements Packet {
 
+    /**
+     * Type identifier
+     */
     public static final String IDENTIFIER = "HEARTBEAT_ACK";
 }

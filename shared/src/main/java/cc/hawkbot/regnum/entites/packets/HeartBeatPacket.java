@@ -19,7 +19,14 @@
 
 package cc.hawkbot.regnum.entites.packets;
 
+/**
+ * Websocket heartbeat packet.
+ * Sent by server
+ */
 public class HeartBeatPacket implements Packet {
 
+    /**
+     * Type identifier
+     */
     public static final String IDENTIFIER = "HEARTBEAT";
 }

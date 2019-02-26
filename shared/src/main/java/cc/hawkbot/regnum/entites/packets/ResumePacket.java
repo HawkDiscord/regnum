@@ -19,6 +19,9 @@
 
 package cc.hawkbot.regnum.entites.packets;
 
+/**
+ * Currently unused
+ */
 public class ResumePacket extends IdentifyPacket {
 
     public static final String IDENTIFIER = "RESUME";

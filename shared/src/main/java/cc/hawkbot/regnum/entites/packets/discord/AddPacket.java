@@ -19,17 +19,32 @@
 
 package cc.hawkbot.regnum.entites.packets.discord;
 
+/**
+ * Discord ADD packet.
+ * Packet that is used to add another Discord shard to a node
+ */
 @SuppressWarnings("unused")
 public class AddPacket {
 
+    /**
+     * Type identifier
+     */
     public static final String IDENTIFIER = "ADD_SHARD";
 
     private final Integer[] shards;
 
+    /**
+     * Constructs a new add packet
+     * @param shards the null-based shard ids
+     */
     public AddPacket(Integer[] shards) {
         this.shards = shards;
     }
 
+    /**
+     * Returns the shard ids
+     * @return the shard ids
+     */
     public Integer[] getShards() {
         return shards;
     }

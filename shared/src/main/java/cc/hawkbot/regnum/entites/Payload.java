@@ -24,13 +24,27 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Nonnull;
 
+/**
+ * Entity that represents any kind of payload sent by the server or client.
+ */
 @SuppressWarnings("unused")
 public class Payload {
 
+    /**
+     * Creates a {@link Payload} from a json object.
+     * @param json the json object
+     * @return a new payload
+     */
     public static Payload fromJson(String json) {
         return Json.fromJson(Payload.class, json);
     }
 
+    /**
+     * Creates a payload.
+     * @param packet the packet
+     * @param identifier the packets identifier
+     * @return a new payload
+     */
     public static Payload of(Packet packet, String identifier) {
         return new Payload(identifier, packet);
     }
@@ -41,7 +55,7 @@ public class Payload {
     @JsonProperty("d")
     private Packet packet;
 
-    public Payload(@Nonnull String type, @Nonnull Packet packet) {
+    private Payload(@Nonnull String type, @Nonnull Packet packet) {
         this.type = type;
         this.packet = packet;
     }
@@ -53,14 +67,26 @@ public class Payload {
 
     }
 
+    /**
+     * Converts a payload into json.
+     * @return the json object as a string
+     */
     public String toJson() {
         return Json.toJson(this);
     }
 
+    /**
+     * Returns the type of the payload.
+     * @return the type
+     */
     public String getType() {
         return type;
     }
 
+    /**
+     * Returns the packet of the payload.
+     * @return the packet
+     */
     public Packet getPacket() {
         return packet;
     }

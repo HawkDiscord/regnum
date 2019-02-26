@@ -21,12 +21,18 @@ package cc.hawkbot.regnum.io.config
 
 import org.simpleyaml.configuration.file.YamlFile
 
+/**
+ * Generic config yml config loader based on [YamlFile].
+ */
 open class GenericConfig(source: String): YamlFile(source) {
 
     init {
         load()
     }
 
+    /**
+     * Reads the config
+     */
     final override fun load() {
         createNewFile(false)
         super.load()
@@ -34,11 +40,19 @@ open class GenericConfig(source: String): YamlFile(source) {
         super.save()
     }
 
+    /**
+     * Method to apply defaults
+     */
     @Suppress("MemberVisibilityCanBePrivate", "UNUSED_PARAMETER")
     protected open fun defaults() {
 
     }
 
+    /**
+     * Sets a default to the config if it doesn't exist.
+     * @param path the path of the option
+     * @param value the value
+     */
     protected fun applyDefault(path: String, value: Any) {
         if (!super.isSet(path))
             super.set(path, value)

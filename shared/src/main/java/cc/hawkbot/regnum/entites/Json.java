@@ -20,13 +20,20 @@
 package cc.hawkbot.regnum.entites;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
+/**
+ * Class with some useful Json helper methods
+ */
 @SuppressWarnings("WeakerAccess")
 public class Json {
 
+    /**
+     * Jackson mapper used for serialization
+     */
     @SuppressWarnings("WeakerAccess")
     public static ObjectMapper JACKSON;
 
@@ -34,6 +41,11 @@ public class Json {
         JACKSON = new ObjectMapper();
     }
 
+    /**
+     * Converts a object into json.
+     * @param obj the object
+     * @return the json object as a string
+     */
     public static String toJson(Object obj) {
         try {
             return JACKSON.writeValueAsString(obj);
@@ -43,6 +55,13 @@ public class Json {
         return null;
     }
 
+    /**
+     * Converts a json object into it's entity object.
+     * @param type the class of the object
+     * @param json the json object
+     * @param <T> the object type
+     * @return the generated object
+     */
     public static <T> T fromJson(Class<T> type, String json) {
         try {
             return JACKSON.readValue(json, type);
@@ -51,4 +70,22 @@ public class Json {
         }
         return null;
     }
+
+    /**
+     * Parses a json string into a {@link JsonNode}.
+     * @param json the json object
+     * @return the json node
+     */
+    public static JsonNode parseJson(String json) {
+        try {
+            return JACKSON.readTree(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+
 }

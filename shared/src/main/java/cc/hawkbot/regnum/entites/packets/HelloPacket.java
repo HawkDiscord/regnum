@@ -21,14 +21,25 @@ package cc.hawkbot.regnum.entites.packets;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Websocket HELLO packet.
+ * Packet that is sent after a successful authentication
+ */
 @SuppressWarnings("unused")
 public class HelloPacket implements Packet {
 
+    /**
+     * Type identifier
+     */
     public static String IDENTIFIER = "HELLO";
 
     @JsonProperty("s")
     private int heartbeatInterval;
 
+    /**
+     * Constructs a hello packet.
+     * @param heartbeatInterval the heartbeat interval
+     */
     public HelloPacket(int heartbeatInterval) {
         this.heartbeatInterval = heartbeatInterval;
     }
@@ -40,6 +51,10 @@ public class HelloPacket implements Packet {
 
     }
 
+    /**
+     * Returns the heartbeat interval.
+     * @return the heartbeat interval
+     */
     public int getHeartbeatInterval() {
         return heartbeatInterval;
     }

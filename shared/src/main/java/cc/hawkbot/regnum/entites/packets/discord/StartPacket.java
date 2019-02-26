@@ -21,15 +21,28 @@ package cc.hawkbot.regnum.entites.packets.discord;
 
 import cc.hawkbot.regnum.entites.packets.Packet;
 
+/**
+ * Discord START packet.
+ * Packet that is used to start Discord shards
+ */
 @SuppressWarnings("unused")
 public class StartPacket implements Packet {
 
+    /**
+     * Type identifier
+     */
     public static final String IDENTIFIER = "START";
 
     private String token;
     private Integer[] shards;
     private int shardsTotal;
 
+    /**
+     * Constructs a new StartPacket
+     * @param token the Discord token
+     * @param shards the null-based shard ids
+     * @param shardsTotal the total count of shards
+     */
     public StartPacket(String token, Integer[] shards, int shardsTotal) {
         this.token = token;
         this.shards = shards;
@@ -43,14 +56,26 @@ public class StartPacket implements Packet {
 
     }
 
+    /**
+     * Returns the Discord token
+     * @return the Discord token
+     */
     public String getToken() {
         return token;
     }
 
+    /**
+     * Returns the shard ids
+     * @return the shard ids
+     */
     public Integer[] getShards() {
         return shards;
     }
 
+    /**
+     * Returns the total shard count
+     * @return the total shard count
+     */
     public int getShardsTotal() {
         return shardsTotal;
     }
