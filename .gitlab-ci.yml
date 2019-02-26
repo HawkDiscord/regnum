@@ -11,6 +11,12 @@ stages:
   - pages
   - deploy
 
+cache:
+  paths:
+    - "build"
+    - "out"
+    - ".gradle"
+
 shared_build:
   stage: build
   script: gradle :shared:jar
@@ -58,7 +64,9 @@ pages:
   script:
     - "gradle dokka"
     - "mv shared/build/javadoc public/shared"
+    - "ls public/shared"
     - "mv client/build/javadoc public/client"
+    - "ls public/client"
   artifacts:
     paths:
       - "public"
