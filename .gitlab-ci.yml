@@ -23,7 +23,7 @@ shared_build:
       - out
   artifacts:
     paths:
-      - build/libs/*.jar
+      - shared/build/libs/*.jar
     expire_in: 1 week
 
 shared_docs:
@@ -48,7 +48,7 @@ server_build:
       - out
   artifacts:
     paths:
-      - build/libs/*.jar
+      - server/build/libs/*.jar
     expire_in: 1 week
 client_build:
   stage: build
@@ -62,13 +62,13 @@ client_build:
       - out
   artifacts:
     paths:
-      - build/libs/*.jar
+      - client/build/libs/*.jar
     expire_in: 1 week
 client_docs:
   stage: pages
   script:
     - "gradle dokka"
-    - "mv build/javadoc public/client"
+    - "mv shared/build/javadoc public/client"
   artifacts:
     paths:
       - "public"
