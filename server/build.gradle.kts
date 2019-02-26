@@ -1,5 +1,5 @@
 /*
- * Regnum - A Discord bot clustering system made for Hawk
+ * Regnum - A Discord bot clustering system made for Hawk 
  *
  * Copyright (C) 2019  Michael Rittmeister
  *

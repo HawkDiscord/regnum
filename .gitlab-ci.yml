@@ -30,7 +30,7 @@ shared_docs:
   stage: pages
   script:
     - "gradle dokka"
-    - "mv build/javadoc public/shared"
+    - "mv shared/build/javadoc public/shared"
   artifacts:
     paths:
       - "public"
