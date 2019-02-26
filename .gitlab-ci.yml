@@ -38,7 +38,7 @@ shared_docs:
     - master
 server_build:
   stage: build
-  script: gradle :server:shaddow
+  script: gradle :server:shadowJar
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
