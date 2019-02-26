@@ -74,6 +74,9 @@ client_docs:
       - "public"
   only:
     - master
+deploy:
+  stage: deploy
+  script: echo Automatic bintray deploy is coming soon just want to have a deploy job
 #bintray:
 #  stage: deploy
 #  script: gradle bintrayUpload

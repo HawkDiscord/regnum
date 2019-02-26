@@ -60,6 +60,12 @@ dependencies {
     testCompile("junit", "junit", "4.12")
 }
 
+val dokkaJar by tasks.creating(Jar::class) {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    classifier = "javadoc"
+    from(tasks["dokka"])
+}
+
 val sourcesJar by tasks.creating(Jar::class) {
     classifier = "sources"
     from(sourceSets["main"].allSource)
