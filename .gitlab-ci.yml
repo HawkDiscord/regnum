@@ -38,8 +38,6 @@ shared_docs:
     - master
 server_build:
   stage: build
-  dependencies:
-    - shared_build
   script: gradle :server:shadowJar
   cache:
     key: "$CI_COMMIT_REF_NAME"
@@ -55,8 +53,6 @@ server_build:
 client_build:
   stage: build
   script: gradle :client:jar
-  dependencies:
-    - shared_build
   cache:
     key: "$CI_COMMIT_REF_NAME"
     policy: push
@@ -71,7 +67,7 @@ client_build:
 client_docs:
   stage: pages
   dependencies:
-    - shared_docs
+    - "pages:shared_docs"
   script:
     - "gradle dokka"
     - "mv build/javadoc public/client"
