@@ -23,8 +23,6 @@ import cc.hawkbot.regnum.client.Regnum;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.events.GenericEvent;
 
-import javax.annotation.Nullable;
-
 /**
  * Generic event for Regnum.
  */

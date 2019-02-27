@@ -21,7 +21,6 @@ package cc.hawkbot.regnum.client
 
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
-import cc.hawkbot.regnum.client.core.discord.GameAnimator
 import net.dv8tion.jda.api.hooks.IEventManager
 
 /**

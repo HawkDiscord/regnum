@@ -62,6 +62,7 @@ class GameAnimator(
      * @property status the [OnlineStatus] that will be activated when the game is shown
      * @property content the text that is displayed in the Discord client
      */
+    @Suppress("unused")
     class Game(
             private val type: Activity.ActivityType,
             private val status: OnlineStatus,

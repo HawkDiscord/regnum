@@ -34,7 +34,7 @@ public class Json {
     /**
      * Jackson mapper used for serialization
      */
-    @SuppressWarnings("WeakerAccess")
+    @SuppressWarnings({"WeakerAccess", "CanBeFinal"})
     public static ObjectMapper JACKSON;
 
     static {

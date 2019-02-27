@@ -31,7 +31,7 @@ public class HelloPacket implements Packet {
     /**
      * Type identifier
      */
-    public static String IDENTIFIER = "HELLO";
+    public static final String IDENTIFIER = "HELLO";
 
     @JsonProperty("s")
     private int heartbeatInterval;

@@ -28,6 +28,7 @@ import java.util.Map;
 /**
  * LoggerFactory with fallback implementation
  */
+@SuppressWarnings("CanBeFinal")
 public class Logger {
 
     /**
@@ -57,6 +58,7 @@ public class Logger {
      *
      * @return the logger
      */
+    @SuppressWarnings("UnusedReturnValue")
     public static org.slf4j.Logger getLogger() {
         var callerClazz = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
         if (SLF4J_FOUND)

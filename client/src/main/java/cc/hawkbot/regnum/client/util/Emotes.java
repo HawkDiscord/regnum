@@ -17,14 +17,24 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.client.util;
 
 /**
- * Currently unused
+ * Useful collection of Discord emotes.
+ * Bot needs to be on <a href="https://discord.gg/8phqcej">https://discord.gg/8phqcej</a>
  */
-@SuppressWarnings("WeakerAccess")
-public class ResumePacket extends IdentifyPacket {
+@SuppressWarnings({"unused", "WeakerAccess"})
+public class Emotes {
 
-    public static final String IDENTIFIER = "RESUME";
+    public static final String LOADING = "<a:loading:547513249835384833>";
+
+    public static final String ERROR = "<:error:535827110489620500>";
+
+    public static final String WARN = "<:warn:535832532365737987>";
+
+    public static final String INFO = "<:info:535828529573789696>";
+
+    public static final String SUCCESS = "<:success:535827110552666112>";
 
 }
+

@@ -31,7 +31,7 @@ group = "cc.hawkbot"
 version = "1.0-SNAPSHOT"
 
 val log4jVersion = "2.11.2"
-val CLIVersion = "1.4"
+val cliVersion = "1.4"
 
 repositories {
     mavenCentral()
@@ -54,7 +54,7 @@ dependencies {
     implementation(log4j("slf4j-impl"))
 
     // Util
-    implementation("commons-cli:commons-cli:$CLIVersion")
+    implementation("commons-cli:commons-cli:$cliVersion")
 
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")

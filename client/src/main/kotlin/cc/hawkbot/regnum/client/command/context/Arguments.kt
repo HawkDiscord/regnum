@@ -17,14 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.client.command.context
 
-/**
- * Currently unused
- */
-@SuppressWarnings("WeakerAccess")
-public class ResumePacket extends IdentifyPacket {
-
-    public static final String IDENTIFIER = "RESUME";
-
+interface Arguments {
 }

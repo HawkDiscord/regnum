@@ -19,6 +19,7 @@
 
 import cc.hawkbot.regnum.client.RegnumBuilder;
 
+@SuppressWarnings("WeakerAccess")
 public class ClientLauncher {
 
     public static void main(String[] args) {

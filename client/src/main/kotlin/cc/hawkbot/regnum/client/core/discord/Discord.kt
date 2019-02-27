@@ -24,6 +24,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
 /**
  * Class that represents the connection to the Discord API.
  */
+@Suppress("unused")
 interface Discord {
 
     /**

@@ -43,7 +43,7 @@ dependencies {
 
     // Util
     compile("com.github.Carleslc:Simple-YAML:1.3")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.7")
+    compile("com.fasterxml.jackson.core:jackson-databind:2.9.7")
 
     // Kotlin
     implementation(kotlin("stdlib-jdk8"))
