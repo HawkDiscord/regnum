@@ -22,16 +22,32 @@ package cc.hawkbot.regnum.client.events.websocket;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 
+/**
+ * Event that is fired when an error with the websocket occurred.
+ */
 @SuppressWarnings("unused")
 public class WebSocketErrorEvent extends WebSocketEvent {
 
     private final Throwable throwable;
 
+    /**
+     * Constructs a new websocket error event.
+     *
+     * @param regnum    the regnum instance
+     * @param websocket the websocket instance
+     * @param throwable the error
+     * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
+     */
     public WebSocketErrorEvent(Regnum regnum, Websocket websocket, Throwable throwable) {
         super(regnum, websocket);
         this.throwable = throwable;
     }
 
+    /**
+     * Returns the error.
+     *
+     * @return the error.
+     */
     public Throwable getThrowable() {
         return throwable;
     }

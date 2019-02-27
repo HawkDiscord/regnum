@@ -36,6 +36,7 @@ public class IdentifyPacket implements Packet {
 
     /**
      * Constructs a IdentifyPacket
+     *
      * @param token the authentication token
      */
     public IdentifyPacket(String token) {
@@ -51,6 +52,7 @@ public class IdentifyPacket implements Packet {
 
     /**
      * Returns the token for identification.
+     *
      * @return the token
      */
     public String getToken() {

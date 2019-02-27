@@ -21,15 +21,31 @@ package cc.hawkbot.regnum.client.core.discord
 
 import net.dv8tion.jda.api.sharding.ShardManager
 
+/**
+ * Class that represents the connection to the Discord API.
+ */
 interface Discord {
 
+    /**
+     * The [ShardManager].
+     */
     val shardManager: ShardManager
 
+    /**
+     * The [GameAnimator]
+     */
     val gameAnimator: GameAnimator
 
+    /**
+     * Forces all shards to shutdown
+     */
     fun shutdown() {
         shardManager.shutdown()
     }
 
+    /**
+     * Starts all new shards in the array
+     * @param shards the id of shards
+     */
     fun addShards(shards: Array<out Int>)
 }

@@ -21,12 +21,26 @@ package cc.hawkbot.regnum.client.core
 
 import cc.hawkbot.regnum.entites.Payload
 
+/**
+ * Class to represent websocket connection.
+ */
 interface Websocket {
 
+    /**
+     * Connects to the websocket.
+     */
     fun start()
 
+    /**
+     * Sends a message to the server.
+     * @param message the message
+     */
     fun sendMessage(message: String)
 
+    /**
+     * Sends a payload to the server.
+     * @param payload the payload
+     */
     fun send(payload: Payload) {
         sendMessage(payload.toJson())
     }

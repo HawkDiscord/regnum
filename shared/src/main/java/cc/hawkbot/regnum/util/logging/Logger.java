@@ -54,6 +54,7 @@ public class Logger {
 
     /**
      * Gets a logger instance for the class where the method got invoked
+     *
      * @return the logger
      */
     public static org.slf4j.Logger getLogger() {

@@ -22,6 +22,9 @@ package cc.hawkbot.regnum.client.events.websocket;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 
+/**
+ * Event that is fired when the websocket closes.
+ */
 @SuppressWarnings("unused")
 public class WebSocketCloseEvent extends WebSocketEvent {
 
@@ -29,6 +32,16 @@ public class WebSocketCloseEvent extends WebSocketEvent {
     private final String reason;
     private final boolean remote;
 
+    /**
+     * Constructs a new Websocket close event.
+     *
+     * @param regnum    the Regnum instance
+     * @param websocket the websocket instance
+     * @param code      the response code
+     * @param reason    the close reason
+     * @param remote    the remote thing
+     * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
+     */
     public WebSocketCloseEvent(Regnum regnum, Websocket websocket, int code, String reason, boolean remote) {
         super(regnum, websocket);
         this.code = code;
@@ -36,14 +49,29 @@ public class WebSocketCloseEvent extends WebSocketEvent {
         this.remote = remote;
     }
 
+    /**
+     * Returns the close code.
+     *
+     * @return the close code
+     */
     public int getCode() {
         return code;
     }
 
+    /**
+     * Returns the close reason.
+     *
+     * @return the close reason
+     */
     public String getReason() {
         return reason;
     }
 
+    /**
+     * Returns whether the close was forced remotely or not.
+     *
+     * @return whether the close was forced remotely or not
+     */
     public boolean isRemote() {
         return remote;
     }

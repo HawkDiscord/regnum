@@ -26,6 +26,16 @@ import cc.hawkbot.regnum.client.core.discord.GameAnimator
 import net.dv8tion.jda.api.hooks.IEventManager
 import java.util.function.Function
 
+/**
+ * Implementation of [Regnum]
+ * @param host the host of the Regnum server
+ * @property eventManager the event manager
+ * @property token the Regnum token
+ * @property games a list of games for the [GameAnimator]
+ * @property gameAnimatorInterval the interval for the [GameAnimator]
+ * @see cc.hawkbot.regnum.client.RegnumBuilder
+ * @constructor Constructs a new Regnum instance
+ */
 class RegnumImpl(
         host: String,
         override val eventManager: IEventManager,

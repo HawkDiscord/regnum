@@ -134,7 +134,8 @@ import java.util.Date;
  * @author Robert Burrell Donkin
  * @author C&eacute;drik LIME
  */
-@SuppressWarnings("all") //Because it's a class skidded from slf4j simple
+@SuppressWarnings("all")
+        //Because it's a class skidded from slf4j simple
 class SimpleLogger extends MarkerIgnoringBase {
 
     /**
@@ -200,9 +201,9 @@ class SimpleLogger extends MarkerIgnoringBase {
     /**
      * This is our internal implementation for logging regular (non-parameterized) log messages.
      *
-     * @param level One of the LOG_LEVEL_XXX constants defining the log level
+     * @param level   One of the LOG_LEVEL_XXX constants defining the log level
      * @param message The message itself
-     * @param t The exception whose stack trace should be logged
+     * @param t       The exception whose stack trace should be logged
      */
     private void log(int level, String message, Throwable t) {
         if (!isLevelEnabled(level)) {

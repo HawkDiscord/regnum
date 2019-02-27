@@ -24,6 +24,9 @@ import net.dv8tion.jda.api.events.DisconnectEvent
 import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
+/**
+ * Listener that watches shards to fire [cc.hawkbot.regnum.client.events.discord.ReadyEvent]
+ */
 class ShardWatcher(private val regnum: Regnum, private val shardsTotal: Int) {
 
     private var shardsConnected = 0
@@ -32,7 +35,7 @@ class ShardWatcher(private val regnum: Regnum, private val shardsTotal: Int) {
 
     @Suppress("unused")
     @SubscribeEvent
-    fun shardReady(event: ReadyEvent) {
+    private fun shardReady(event: ReadyEvent) {
         shardsConnected++
         availableGuilds += event.guildAvailableCount
         unavailableGuilds += event.guildUnavailableCount
@@ -46,7 +49,10 @@ class ShardWatcher(private val regnum: Regnum, private val shardsTotal: Int) {
 
     @Suppress("unused")
     @SubscribeEvent
-    fun shardDisconnected(@Suppress("UNUSED_PARAMETER") event: DisconnectEvent) {
+    private fun shardDisconnected(@Suppress("UNUSED_PARAMETER") event: DisconnectEvent) {
         shardsConnected--
+        availableGuilds -= event.jda.guilds.size
+        // Why is there no way to fetch unavailable guilds @Minn?
+        //unavailableGuilds -= event.jda.
     }
 }

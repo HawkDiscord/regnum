@@ -26,13 +26,16 @@ import cc.hawkbot.regnum.entites.packets.HeartBeatPacket
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
+/**
+ * Task for sending heartbeat
+ */
 class HeartBeater {
 
     private val log = Logger.getLogger()
 
     @SubscribeEvent
     @Suppress("unused")
-    fun onMessage(event: WebSocketMessageEvent) {
+    private fun onMessage(event: WebSocketMessageEvent) {
         val payload = Payload.fromJson(event.message)
         if (payload.type == HeartBeatPacket.IDENTIFIER) {
             log.info("[WS] Sending heartbeat")

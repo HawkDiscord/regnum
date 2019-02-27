@@ -39,8 +39,9 @@ public class StartPacket implements Packet {
 
     /**
      * Constructs a new StartPacket
-     * @param token the Discord token
-     * @param shards the null-based shard ids
+     *
+     * @param token       the Discord token
+     * @param shards      the null-based shard ids
      * @param shardsTotal the total count of shards
      */
     public StartPacket(String token, Integer[] shards, int shardsTotal) {
@@ -58,6 +59,7 @@ public class StartPacket implements Packet {
 
     /**
      * Returns the Discord token
+     *
      * @return the Discord token
      */
     public String getToken() {
@@ -66,6 +68,7 @@ public class StartPacket implements Packet {
 
     /**
      * Returns the shard ids
+     *
      * @return the shard ids
      */
     public Integer[] getShards() {
@@ -74,6 +77,7 @@ public class StartPacket implements Packet {
 
     /**
      * Returns the total shard count
+     *
      * @return the total shard count
      */
     public int getShardsTotal() {

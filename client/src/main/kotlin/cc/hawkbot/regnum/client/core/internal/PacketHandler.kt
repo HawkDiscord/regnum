@@ -26,11 +26,16 @@ import cc.hawkbot.regnum.entites.packets.discord.AddPacket
 import cc.hawkbot.regnum.entites.packets.discord.StartPacket
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
+/**
+ * Listener for websocket packets
+ * @property regnum the regnum implementation
+ * @constructor Constructs a new packet handler
+ */
 class PacketHandler(val regnum: RegnumImpl) {
 
     @Suppress("unused")
     @SubscribeEvent
-    fun onMessage(event: WebSocketMessageEvent) {
+    private fun onMessage(event: WebSocketMessageEvent) {
         val payload = Payload.fromJson(event.message)
         when (payload.type) {
             StartPacket.IDENTIFIER -> {

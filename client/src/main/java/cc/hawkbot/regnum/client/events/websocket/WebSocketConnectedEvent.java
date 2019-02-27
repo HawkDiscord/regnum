@@ -23,16 +23,32 @@ import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 import org.java_websocket.handshake.ServerHandshake;
 
+/**
+ * Event that is fired when a websocket connection got established.
+ */
 @SuppressWarnings("unused")
-public class WebSocketConnctedEvent extends WebSocketEvent {
+public class WebSocketConnectedEvent extends WebSocketEvent {
 
     private final ServerHandshake handshake;
 
-    public WebSocketConnctedEvent(Regnum regnum, Websocket websocket, ServerHandshake handshake) {
+    /**
+     * Constructs a new websocket connected event.
+     *
+     * @param regnum    the regnum instance
+     * @param websocket the websocket instance
+     * @param handshake the handshake {@link ServerHandshake}
+     * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
+     */
+    public WebSocketConnectedEvent(Regnum regnum, Websocket websocket, ServerHandshake handshake) {
         super(regnum, websocket);
         this.handshake = handshake;
     }
 
+    /**
+     * Returns the handshake {@link ServerHandshake}.
+     *
+     * @return the handshake {@link ServerHandshake}
+     */
     public ServerHandshake getHandshake() {
         return handshake;
     }

@@ -32,6 +32,7 @@ public class Payload {
 
     /**
      * Creates a {@link Payload} from a json object.
+     *
      * @param json the json object
      * @return a new payload
      */
@@ -41,7 +42,8 @@ public class Payload {
 
     /**
      * Creates a payload.
-     * @param packet the packet
+     *
+     * @param packet     the packet
      * @param identifier the packets identifier
      * @return a new payload
      */
@@ -69,6 +71,7 @@ public class Payload {
 
     /**
      * Converts a payload into json.
+     *
      * @return the json object as a string
      */
     public String toJson() {
@@ -77,6 +80,7 @@ public class Payload {
 
     /**
      * Returns the type of the payload.
+     *
      * @return the type
      */
     public String getType() {
@@ -85,6 +89,7 @@ public class Payload {
 
     /**
      * Returns the packet of the payload.
+     *
      * @return the packet
      */
     public Packet getPacket() {

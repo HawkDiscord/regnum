@@ -24,7 +24,7 @@ import org.simpleyaml.configuration.file.YamlFile
 /**
  * Generic config yml config loader based on [YamlFile].
  */
-open class GenericConfig(source: String): YamlFile(source) {
+open class GenericConfig(source: String) : YamlFile(source) {
 
     init {
         load()

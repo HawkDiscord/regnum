@@ -35,6 +35,7 @@ public class AddPacket {
 
     /**
      * Constructs a new add packet
+     *
      * @param shards the null-based shard ids
      */
     public AddPacket(Integer[] shards) {
@@ -43,6 +44,7 @@ public class AddPacket {
 
     /**
      * Returns the shard ids
+     *
      * @return the shard ids
      */
     public Integer[] getShards() {

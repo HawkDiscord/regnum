@@ -25,27 +25,39 @@ import net.dv8tion.jda.api.events.GenericEvent;
 
 import javax.annotation.Nullable;
 
+/**
+ * Generic event for Regnum.
+ */
 @SuppressWarnings("unused")
 public class Event implements GenericEvent {
 
     private final Regnum regnum;
 
+    /**
+     * Constructs a new Regnum event.
+     *
+     * @param regnum the Regnum instance
+     */
     public Event(Regnum regnum) {
         this.regnum = regnum;
     }
 
+    /**
+     * Returns the {@link Regnum} instance.
+     *
+     * @return the {@link Regnum} instance
+     */
     public Regnum getRegnum() {
         return regnum;
     }
 
     @Override
-    @Nullable
     public JDA getJDA() {
-        return null;
+        throw new UnsupportedOperationException("Regnum events does not support JDA getter");
     }
 
     @Override
     public long getResponseNumber() {
-        return 0;
+        throw new UnsupportedOperationException("Regnum events does not support response number");
     }
 }

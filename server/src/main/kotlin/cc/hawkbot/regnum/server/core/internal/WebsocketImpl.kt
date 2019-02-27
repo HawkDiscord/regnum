@@ -35,7 +35,7 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
 
-class WebsocketImpl(ws: WsHandler, private val config: Config, server: Server) : Websocket {
+class WebsocketImpl(ws: WsHandler, config: Config, server: Server) : Websocket {
 
     private val log = Logger.getLogger()
     private val token = config.getString(Config.SOCKET_TOKEN)

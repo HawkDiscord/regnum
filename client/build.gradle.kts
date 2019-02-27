@@ -103,6 +103,12 @@ tasks {
         externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
         })
+        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+            url = uri("https://schlaubi.discordlist.de/regnum/shared/javadoc/shared/").toURL()
+        })
+        /*externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+            url = uri("https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/").toURL()
+        })*/
     }
 }
 

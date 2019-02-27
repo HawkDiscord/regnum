@@ -38,6 +38,7 @@ public class HelloPacket implements Packet {
 
     /**
      * Constructs a hello packet.
+     *
      * @param heartbeatInterval the heartbeat interval
      */
     public HelloPacket(int heartbeatInterval) {
@@ -53,6 +54,7 @@ public class HelloPacket implements Packet {
 
     /**
      * Returns the heartbeat interval.
+     *
      * @return the heartbeat interval
      */
     public int getHeartbeatInterval() {

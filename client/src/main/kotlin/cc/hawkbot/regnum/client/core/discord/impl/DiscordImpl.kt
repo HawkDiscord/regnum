@@ -32,6 +32,15 @@ import net.dv8tion.jda.api.hooks.SubscribeEvent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
 
+/**
+ * Implementation of [Discord].
+ * @property regnum the Regnum instance
+ * @param token the Discord bot token
+ * @param shards the ids of shards this instance should start
+ * @param shardsTotal the total count of shards
+ *
+ * @constructor Constructs a new Discord client
+ */
 class DiscordImpl(
         val regnum: Regnum,
         token: String,
@@ -61,6 +70,9 @@ class DiscordImpl(
         gameAnimator = GameAnimator(regnum)
     }
 
+    /**
+     * @see Discord.addShards
+     */
     override fun addShards(shards: Array<out Int>) {
         log.info("[Discord] Adding $shards because a other node needs to be replaced")
         shards.forEach {
@@ -70,14 +82,14 @@ class DiscordImpl(
 
     @SubscribeEvent
     @Suppress("unused")
-    fun whenReady(event: cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
+    private fun whenReady(event: cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
         log.info("[Discord] Connected to discord with ${event.guildAvailableCount}/${event.guildUnavailableCount} available/unavailable guilds.")
         gameAnimator.start()
     }
 
     @SubscribeEvent
     @Suppress("unused")
-    fun whenShardReady(event: ReadyEvent) {
+    private fun whenShardReady(event: ReadyEvent) {
         if (event is cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
             return
         }

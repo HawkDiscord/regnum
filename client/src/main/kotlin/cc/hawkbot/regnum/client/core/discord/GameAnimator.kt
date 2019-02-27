@@ -27,15 +27,27 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ThreadLocalRandom
 import java.util.concurrent.TimeUnit
 
+/**
+ * Repeating task that changes the bot presence every x seconds
+ * @property regnum the Regnum instance
+ * @constructor Constructs a new GameAnimator
+ */
 class GameAnimator(
         val regnum: Regnum
 ) {
     private val scheduler = Executors.newSingleThreadScheduledExecutor()
     private val shardManager = regnum.discord.shardManager
     private val games = (regnum as RegnumImpl).games
+    /**
+     * The translator that is used to translate variables
+     * @see cc.hawkbot.regnum.client.RegnumBuilder.gameTranslator
+     */
     val translator = (regnum as RegnumImpl).gameTranslator
     private val interval = (regnum as RegnumImpl).gameAnimatorInterval
 
+    /**
+     * Starts the game animator
+     */
     fun start() {
         scheduler.scheduleAtFixedRate(this::change, 0, interval, TimeUnit.SECONDS)
     }
@@ -44,12 +56,24 @@ class GameAnimator(
         games[ThreadLocalRandom.current().nextInt(games.size)].apply(this)
     }
 
+    /**
+     * Class that represents a game for the game animator
+     * @property type the [Activity.ActivityType] of the game
+     * @property status the [OnlineStatus] that will be activated when the game is shown
+     * @property content the text that is displayed in the Discord client
+     */
     class Game(
             private val type: Activity.ActivityType,
             private val status: OnlineStatus,
             private val content: String
     ) {
         companion object {
+
+            /**
+             * Compiles a game from a string in the following format TYPE:ACTIVITY:CONTENT e.g ONLINE:0:playing
+             * @param game the string
+             * @return the compiled game
+             */
             fun compile(game: String): Game {
                 val args = game.split(":")
                 val type = Activity.ActivityType.fromKey(args[1].toInt())
@@ -59,6 +83,10 @@ class GameAnimator(
             }
         }
 
+        /**
+         * Apply a game to with the game animator
+         * @param gameAnimator the game animator instance
+         */
         fun apply(gameAnimator: GameAnimator) {
             gameAnimator.shardManager.setGame(toActivity(gameAnimator))
             gameAnimator.shardManager.setStatus(status)

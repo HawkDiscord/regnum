@@ -23,7 +23,7 @@ import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.events.Event
 import cc.hawkbot.regnum.client.events.websocket.WebSocketCloseEvent
-import cc.hawkbot.regnum.client.events.websocket.WebSocketConnctedEvent
+import cc.hawkbot.regnum.client.events.websocket.WebSocketConnectedEvent
 import cc.hawkbot.regnum.client.events.websocket.WebSocketErrorEvent
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.entites.Payload
@@ -34,19 +34,31 @@ import org.java_websocket.handshake.ServerHandshake
 import java.net.ConnectException
 import java.net.URI
 
+/**
+ * Websocket client
+ * @param location the host of the server
+ * @property regnum the regnum instance
+ * @constructor constructs a new websocket client
+ */
 class WebsocketImpl(
         location: URI,
         val regnum: Regnum
 ) : WebSocketClient(location), Websocket {
 
     private val log = Logger.getLogger()
-    
-    constructor(location: String, regnum: Regnum): this(URI(location), regnum)
+
+    /**
+     * Websocket client
+     * @param location the host of the server
+     * @property regnum the regnum instance
+     * @constructor constructs a new websocket client
+     */
+    constructor(location: String, regnum: Regnum) : this(URI(location), regnum)
 
     override fun onOpen(handshakedata: ServerHandshake) {
         log.info("[WS] Websocket connection opened with message {}: \"{}\"", handshakedata.httpStatus, handshakedata.httpStatusMessage)
         authorize()
-        callEvent(WebSocketConnctedEvent(regnum, this, handshakedata))
+        callEvent(WebSocketConnectedEvent(regnum, this, handshakedata))
     }
 
     override fun onClose(code: Int, reason: String, remote: Boolean) {

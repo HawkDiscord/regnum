@@ -23,16 +23,32 @@ import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 import cc.hawkbot.regnum.client.events.Event;
 
+/**
+ * Generic event for {@link Websocket}.
+ */
 @SuppressWarnings("unused")
 public class WebSocketEvent extends Event {
 
     private final Websocket websocket;
 
+    /**
+     * Constructs a new websocket event.
+     *
+     * @param regnum    the regnum instance
+     * @param websocket the websocket instance
+     * @see Event#Event(Regnum)
+     */
+    @SuppressWarnings("WeakerAccess")
     public WebSocketEvent(Regnum regnum, Websocket websocket) {
         super(regnum);
         this.websocket = websocket;
     }
 
+    /**
+     * Returns the {@link Websocket} instance
+     *
+     * @return the {@link Websocket} instance
+     */
     public Websocket getWebsocket() {
         return websocket;
     }

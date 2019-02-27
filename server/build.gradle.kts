@@ -76,7 +76,7 @@ tasks {
     "shadowJar"(ShadowJar::class) {
         baseName = project.name
         version = version
-        archiveName ="$baseName.$extension"
+        archiveName = "$baseName.$extension"
     }
 }
 

@@ -24,14 +24,29 @@ import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
 import net.dv8tion.jda.api.hooks.IEventManager
 
+/**
+ * Main class of Regnum client instance.
+ */
 interface Regnum {
 
+    /**
+     * The websocket instance.
+     */
     val websocket: Websocket
 
+    /**
+     * The discord instance.
+     */
     val discord: Discord
 
+    /**
+     * The event manager.
+     */
     val eventManager: IEventManager
 
+    /**
+     * The token used for authentication.
+     */
     val token: String
 
 }

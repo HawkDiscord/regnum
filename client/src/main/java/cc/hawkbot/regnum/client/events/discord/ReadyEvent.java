@@ -19,13 +19,25 @@
 
 package cc.hawkbot.regnum.client.events.discord;
 
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.sharding.ShardManager;
 
+/**
+ * Event that is fired when all Discord shards are connected and received READY event.
+ */
 public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
 
     private final int availableGuilds;
     private final int unavailableGuilds;
 
+    /**
+     * Constructs a new ready event.
+     *
+     * @param shardManager      the shard manager
+     * @param availableGuilds   the count of available guilds
+     * @param unavailableGuilds the count of unavailable guilds
+     * @see net.dv8tion.jda.api.events.ReadyEvent#ReadyEvent(JDA, long)
+     */
     public ReadyEvent(ShardManager shardManager, int availableGuilds, int unavailableGuilds) {
         super(shardManager.getShards().get(0), 200);
         this.availableGuilds = availableGuilds;
@@ -33,11 +45,23 @@ public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
     }
 
 
+    /**
+     * Returns the count of available guilds.
+     *
+     * @return the count of available guilds
+     * @see net.dv8tion.jda.api.events.ReadyEvent#getGuildAvailableCount()
+     */
     @Override
     public int getGuildAvailableCount() {
         return availableGuilds;
     }
 
+    /**
+     * Returns the count of unavailable guilds.
+     *
+     * @return the count of unavailable guilds
+     * @see net.dv8tion.jda.api.events.ReadyEvent#getGuildUnavailableCount()
+     */
     @Override
     public int getGuildUnavailableCount() {
         return unavailableGuilds;

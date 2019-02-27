@@ -22,16 +22,32 @@ package cc.hawkbot.regnum.client.events.websocket;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 
+/**
+ * Event that is fired when a websocket message got received.
+ */
 @SuppressWarnings("unused")
 public class WebSocketMessageEvent extends WebSocketEvent {
 
     private final String message;
 
+    /**
+     * Constructs a new websocket message event.
+     *
+     * @param regnum    the regnum instance
+     * @param websocket the websocket instance
+     * @param message   the message
+     * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
+     */
     public WebSocketMessageEvent(Regnum regnum, Websocket websocket, String message) {
         super(regnum, websocket);
         this.message = message;
     }
 
+    /**
+     * Returns the message.
+     *
+     * @return the message
+     */
     public String getMessage() {
         return message;
     }
