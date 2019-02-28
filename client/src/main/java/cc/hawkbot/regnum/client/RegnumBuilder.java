@@ -19,6 +19,9 @@
 
 package cc.hawkbot.regnum.client;
 
+import cc.hawkbot.regnum.client.command.ICommand;
+import cc.hawkbot.regnum.client.command.impl.PermissionProviderImpl;
+import cc.hawkbot.regnum.client.command.permission.IPermissionProvider;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
 import com.google.common.base.Preconditions;
@@ -36,7 +39,7 @@ import java.util.function.Function;
 /**
  * Builder for {@link Regnum} instances
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class RegnumBuilder {
 
     private String host;
@@ -46,6 +49,10 @@ public class RegnumBuilder {
     private IEventManager eventManager = new AnnotatedEventManager();
     private List<Object> eventListeners = new ArrayList<>();
     private List<GameAnimator.Game> games = new ArrayList<>();
+    private IPermissionProvider permissionProvider = new PermissionProviderImpl();
+    private String defaultPrefix;
+    private List<ICommand> commands = new ArrayList<>();
+    private List<Long> owners = new ArrayList<>();
 
     /**
      * Returns the current host of the Regnum server.
@@ -233,6 +240,120 @@ public class RegnumBuilder {
     }
 
     /**
+     * Returns the {@link IPermissionProvider}.
+     * @return the {@link IPermissionProvider}
+     */
+    public IPermissionProvider getPermissionProvider() {
+        return permissionProvider;
+    }
+
+    /**
+     * Sets the {@link IPermissionProvider}.
+     *
+     * @param permissionProvider the provider
+     * @return the current builder
+     */
+    public RegnumBuilder setPermissionProvider(IPermissionProvider permissionProvider) {
+        this.permissionProvider = permissionProvider;
+        return this;
+    }
+
+
+    /**
+     * Returns the default prefix used by the {@link cc.hawkbot.regnum.client.command.CommandParser}.
+     * @return the default prefix used by the {@link cc.hawkbot.regnum.client.command.CommandParser}
+     */
+    public String getDefaultPrefix() {
+        return defaultPrefix;
+    }
+
+    /**
+     * Sets the default prefix used by the {@link cc.hawkbot.regnum.client.command.CommandParser}.
+     * @param defaultPrefix the prefix
+     * @return the builder
+     */
+    public RegnumBuilder setDefaultPrefix(String defaultPrefix) {
+        this.defaultPrefix = defaultPrefix;
+        return this;
+    }
+
+    /**
+     * Returns the list of registered commands.
+     * @return the list of registered commands
+     */
+    public List<ICommand> getCommands() {
+        return commands;
+    }
+
+    /**
+     * Sets the list of registered commands.
+     * @param commands the list
+     * @return the builder
+     */
+    public RegnumBuilder setCommands(List<ICommand> commands) {
+        this.commands = commands;
+        return this;
+    }
+
+    /**
+     * Registers a command.
+     * @param commands the command
+     * @return the builder
+     */
+    public RegnumBuilder registerCommands(ICommand... commands) {
+        Collections.addAll(this.commands, commands);
+        return this;
+    }
+
+    /**
+     * Registers a command.
+     * @param commands the command
+     * @return the builder
+     */
+    public RegnumBuilder registerCommands(Collection<ICommand> commands) {
+        this.commands.addAll(commands);
+        return this;
+    }
+
+    /**
+     * Returns a list of all ids with owner permissions.
+     * @return a list of all ids with owner permissions
+     */
+    public List<Long> getOwners() {
+        return owners;
+    }
+
+    /**
+     * Sets the list for all ids with owner permissions used by the {@link cc.hawkbot.regnum.client.command.CommandParser}
+     * @param owners the list
+     * @return the builder
+     */
+    public RegnumBuilder setOwners(List<Long> owners) {
+        this.owners = owners;
+        return this;
+    }
+
+    /**
+     * Assigns an user owner permissions
+     * @param ownerIds the id of the user
+     * @return the builder
+     */
+    public RegnumBuilder addOwners(Long... ownerIds) {
+        Collections.addAll(owners, ownerIds);
+        return this;
+    }
+
+    /**
+     * Assigns an user owner permissions
+     * @param ownerIds the id of the user
+     * @return the builder
+     */
+    public RegnumBuilder addOwners(Collection<Long> ownerIds) {
+        owners.addAll(ownerIds);
+        return this;
+    }
+
+    /**
      * Build a new {@link Regnum} instance and connects to the server
      *
      * @return the instance
@@ -245,6 +366,8 @@ public class RegnumBuilder {
         Preconditions.checkNotNull(eventListeners, "Event listeners may not be null");
         Preconditions.checkNotNull(games, "Games may not be null");
         Preconditions.checkNotNull(gameTranslator, "Game translator may not be null");
+        Preconditions.checkNotNull(permissionProvider, "Permission provider may not be null");
+        Preconditions.checkNotNull(defaultPrefix, "Prefix may not be null");
 
         // Register events
         eventListeners.forEach(eventManager::register);
@@ -256,7 +379,11 @@ public class RegnumBuilder {
                 token,
                 games,
                 gameTranslator,
-                gameAnimatorInterval
+                gameAnimatorInterval,
+                permissionProvider,
+                defaultPrefix,
+                commands,
+                owners
         );
     }
 }

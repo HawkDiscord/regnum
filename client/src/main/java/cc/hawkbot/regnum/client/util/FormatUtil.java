@@ -19,16 +19,25 @@
 
 package cc.hawkbot.regnum.client.util;
 
+import cc.hawkbot.regnum.client.Regnum;
+import cc.hawkbot.regnum.client.command.CommandParser;
+import cc.hawkbot.regnum.client.command.Group;
+import cc.hawkbot.regnum.client.command.ICommand;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Collection;
 
 /**
  * Some useful formatters.
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"unused","WeakerAccess"})
 public class FormatUtil {
 
     /**
-     * Converts an {@link net.dv8tion.jda.api.entities.MessageEmbed} into plain text.
+     * Converts an {@link MessageEmbed} into plain text.
      *
      * @param embed The embed
      * @return The embed as plain text
@@ -53,5 +62,86 @@ public class FormatUtil {
         }
         return string;
     }
+
+    /**
+     * Formats a list of commands in a group.
+     *
+     * @param group the group that needs to be formatted
+     * @see FormatUtil#generateCommandList(Collection)
+     * @return the formatted group
+     */
+    public static String generateCommandList(Group group, CommandParser parser) {
+        return generateCommandList(group.commands(parser));
+    }
+
+    /**
+     * Formats a list of commands for help message.
+     *
+     * @param commands a collection of commands
+     * @return the formatted collection
+     */
+    public static String generateCommandList(Collection<ICommand> commands) {
+        if (commands.isEmpty()) {
+            return "";
+        }
+        StringBuilder builder = new StringBuilder();
+        commands.forEach(command ->
+                builder.append("`")
+                        .append(command.name())
+                        .append("`")
+                        .append(", "));
+        // Replace last ,
+        builder.replace(builder.lastIndexOf(", "), builder.lastIndexOf(", ") + 1, "");
+        return builder.toString();
+    }
+
+    /**
+     * Formats the help message of a command.
+     * @param command the command
+     * @return the formatted embed
+     */
+    @NotNull
+    public static EmbedBuilder formatCommand(@NotNull ICommand command, @NotNull Object guild,
+                                             @NotNull Regnum regnum) {
+        var embedBuilder = new EmbedBuilder()
+                .setTitle(command.getDisplayName() + " - Help")
+                .setDescription(command.getDescription());
+        embedBuilder = embedBuilder.addField("Usage", formatUsage(command.getUsage(),
+                command, guild, regnum), false);
+        embedBuilder = embedBuilder.addField("Example usage", formatUsage(command.getExampleUsage(),
+                command, guild, regnum), false);
+        return embedBuilder;
+    }
+
+    /**
+     * Formats the usage of a command in prefixcommand usage.
+     * @param usage the usage
+     * @param command the command
+     * @param guild the guild the command gets executed on
+     * @param regnum the Regnum instance
+     * @return the formatted usage
+     */
+    @SuppressWarnings("SpellCheckingInspection")
+    public static String formatUsage(@NotNull String usage, @NotNull ICommand command, @NotNull Object guild,
+                                     @NotNull Regnum regnum) {
+        return "prefix" + command.name() + " " + usage;
+    }
+
+    /**
+     * Formats a list of channels.
+     *
+     * @param channels the list of channels
+     * @return the formatted list
+     */
+    @NotNull
+    public static String formatChannelList(
+            @NotNull Collection<GuildChannel> channels) {
+        var builder = new StringBuilder();
+        channels.forEach(channel -> builder.append("`").append(channel.getName()).append("`")
+                .append(", "));
+        builder.replace(builder.lastIndexOf(", "), builder.lastIndexOf(", ") + 1, "");
+        return builder.toString();
+    }
+
 
 }

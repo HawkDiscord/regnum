@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.client
 
+import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import net.dv8tion.jda.api.hooks.IEventManager
@@ -47,5 +48,15 @@ interface Regnum {
      * The token used for authentication.
      */
     val token: String
+
+    /**
+     * The command parser.
+     */
+    val commandParser: CommandParser
+
+    /**
+     * Ids of users with owner permissions
+     */
+    val owners: List<Long>
 
 }

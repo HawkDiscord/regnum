@@ -19,5 +19,110 @@
 
 package cc.hawkbot.regnum.client.command.context
 
+/**
+ * Represents the parsed [Arguments] of a command.
+ */
+@Suppress("unused")
 interface Arguments {
+
+    /**
+     * Returns the element at the specified [index].
+     * @param index the index
+     * @see Array.get
+     * @return the element
+     */
+    operator fun get(index: Int): String
+
+    /**
+     * Returns the amounts of arguments.
+     * @return the amounts of arguments
+     */
+    fun size(): Int {
+        return array().size
+    }
+
+    /**
+     * Returns whether there are arguments or not.
+     * @return whether there are arguments or not
+     */
+    fun isEmpty(): Boolean {
+        return array().isEmpty()
+    }
+
+    /**
+     * Converts the arguments into an array.
+     * @return the arguments as an array
+     */
+    fun array(): Array<String>
+
+    /**
+     * Converts to arguments from the [start] to the [end] into an array.
+     * @param start the start parameter
+     * @param end the end parameter
+     * @see Array.sliceArray
+     * @return the array
+     */
+    fun array(start: Int, end: Int): Array<String> {
+        return array().sliceArray(start until end)
+    }
+
+    /**
+     * Converts all arguments from the begin of the arguments to the [end] in an array.
+     * @param end the end parameter
+     * @see Arguments.array
+     * @return the array
+     */
+    fun arrayTo(end: Int): Array<String> {
+        return array(0, end)
+    }
+
+    /**
+     * Converts all arguments from the [start] to the end of the arguments.
+     * @param start the start parameter
+     * @see Arguments.array
+     * @return the array
+     */
+    fun arrayFrom(start: Int): Array<String> {
+        return array(start, size())
+    }
+
+    /**
+     * Creates a string from all the elements separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     *
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    fun <T> string(separator: CharSequence = " ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
+        return array().joinToString(separator, prefix, postfix, limit, truncated)
+    }
+
+    /**
+     * Creates a string from all the elements from the [start] to the [end] separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     *
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    fun <T> string(start: Int, end: Int, separator: CharSequence = " ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
+        return array(start, end).joinToString(separator, prefix, postfix, limit, truncated)
+    }
+
+    /**
+     * Creates a string from all the elements from the start to the [end] separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     *
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    fun <T> stringTo(end: Int, separator: CharSequence = " ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
+        return arrayTo(end).joinToString(separator, prefix, postfix, limit, truncated)
+    }
+
+    /**
+     * Creates a string from all the elements from the [start] to the end separated using [separator] and using the given [prefix] and [postfix] if supplied.
+     *
+     * If the collection could be huge, you can specify a non-negative value of [limit], in which case only the first [limit]
+     * elements will be appended, followed by the [truncated] string (which defaults to "...").
+     */
+    fun <T> stringFrom(start: Int, separator: CharSequence = " ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
+        return arrayTo(start).joinToString(separator, prefix, postfix, limit, truncated)
+    }
 }

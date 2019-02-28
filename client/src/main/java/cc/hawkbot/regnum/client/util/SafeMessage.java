@@ -74,7 +74,7 @@ public class SafeMessage {
 
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message
@@ -90,7 +90,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -101,7 +101,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -115,7 +115,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -127,7 +127,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -141,7 +141,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -152,7 +152,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -166,7 +166,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -178,7 +178,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -192,7 +192,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before editing a {@link Message}.
+     * Util method that checks permission before editing a {@link Message}.
      *
      * @param previousMessage the message that should be edited
      * @param newMessage      the new content of the message the message
@@ -203,7 +203,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending a message {@link Message}.
+     * Util method that checks permission before sending a message {@link Message}.
      *
      * @param content      the message {@link Message} that should be send
      * @param channel      the channel in which the message should be send
@@ -223,7 +223,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending a message {@link Message} with default error
+     * Util method that checks permission before sending a message {@link Message} with default error
      * handler.
      *
      * @param content    the message {@link Message} that should be send
@@ -241,7 +241,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending a message {@link Message} with default error
+     * Util method that checks permission before sending a message {@link Message} with default error
      * handler.
      *
      * @param content the message {@link Message} that should be send
@@ -254,7 +254,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending a message builder {@link MessageBuilder}.
+     * Util method that checks permission before sending a message builder {@link MessageBuilder}.
      *
      * @param content      the message builder {@link MessageBuilder} that should be send
      * @param channel      the channel in which the message should be send
@@ -274,7 +274,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending a message builder {@link MessageBuilder}
+     * Util method that checks permission before sending a message builder {@link MessageBuilder}
      * using default error handler.
      *
      * @param content    the message builder {@link MessageBuilder} that should be send
@@ -293,7 +293,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending a message builder {@link MessageBuilder}
+     * Util method that checks permission before sending a message builder {@link MessageBuilder}
      * using default error handler without deleting.
      *
      * @param content the message builder {@link MessageBuilder} that should be send
@@ -307,7 +307,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending an MessageEmbed {@link MessageEmbed}.
+     * Util method that checks permission before sending an MessageEmbed {@link MessageEmbed}.
      *
      * @param content      the MessageEmbed {@link MessageEmbed} that should be send
      * @param channel      the channel in which the message should be send
@@ -327,7 +327,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending an MessageEmbed {@link MessageEmbed} with default error
+     * Util method that checks permission before sending an MessageEmbed {@link MessageEmbed} with default error
      * handler.
      *
      * @param content    the MessageEmbed {@link MessageEmbed} that should be send
@@ -351,7 +351,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending an MessageEmbed {@link MessageEmbed} with default error
+     * Util method that checks permission before sending an MessageEmbed {@link MessageEmbed} with default error
      * handler without deleting.
      *
      * @param content the MessageEmbed {@link MessageEmbed} that should be send
@@ -370,7 +370,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending an MessageEmbed builder {@link EmbedBuilder}.
+     * Util method that checks permission before sending an MessageEmbed builder {@link EmbedBuilder}.
      *
      * @param content      the MessageEmbed builder {@link EmbedBuilder} that should be send
      * @param channel      the channel in which the message should be send
@@ -390,7 +390,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending an MessageEmbed builder {@link EmbedBuilder} using
+     * Util method that checks permission before sending an MessageEmbed builder {@link EmbedBuilder} using
      * default error handler.
      *
      * @param content    the MessageEmbed builder {@link EmbedBuilder} that should be send
@@ -409,7 +409,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending an MessageEmbed builder {@link EmbedBuilder} using
+     * Util method that checks permission before sending an MessageEmbed builder {@link EmbedBuilder} using
      * default error handler without deleting.
      *
      * @param content the MessageEmbed builder {@link EmbedBuilder} that should be send
@@ -429,7 +429,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending plain text {@link String}.
+     * Util method that checks permission before sending plain text {@link String}.
      *
      * @param content      the plain text {@link String} that should be send
      * @param channel      the channel in which the message should be send
@@ -454,7 +454,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending plain text {@link String} using default
+     * Util method that checks permission before sending plain text {@link String} using default
      * error handler.
      *
      * @param content    the plain text {@link String} that should be send
@@ -473,7 +473,7 @@ public class SafeMessage {
     }
 
     /**
-     * Util method that checks permissions before sending plain text {@link String} using default
+     * Util method that checks permission before sending plain text {@link String} using default
      * error handler without deleting.
      *
      * @param content the plain text {@link String} that should be send

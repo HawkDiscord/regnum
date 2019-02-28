@@ -45,10 +45,10 @@ dependencies {
 
     // Discord
     @Suppress("SpellCheckingInspection")
-    implementation("net.dv8tion:JDA:4.ALPHA.0_50")
+    compile("net.dv8tion:JDA:4.ALPHA.0_54")
 
     // Regnum
-    implementation(project(":shared"))
+    compile(project(":shared"))
 
     // Server
     implementation("org.java-websocket:Java-WebSocket:1.4.0")

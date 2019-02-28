@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.util;
 
 import cc.hawkbot.regnum.entites.Json;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -128,6 +129,7 @@ public class Misc {
      * @param <T>        The type of the collections content
      * @return The first element or {@code null} if the collection is empty
      */
+    @Nullable
     public static <T> T first(Collection<T> collection) {
         if (collection.isEmpty()) {
             return null;

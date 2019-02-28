@@ -21,5 +21,5 @@ package cc.hawkbot.regnum.client.command.impl
 
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 
-class Permissions : IPermissions {
-}
+@Suppress("unused")
+open class Permissions(override val botOwnerExclusive: Boolean = false, override val serverAdminExclusive: Boolean = true, override val public: Boolean = false, override val node: String) : IPermissions

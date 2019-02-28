@@ -20,6 +20,10 @@
 package cc.hawkbot.regnum.client.core.internal
 
 import cc.hawkbot.regnum.client.Regnum
+import cc.hawkbot.regnum.client.command.CommandParser
+import cc.hawkbot.regnum.client.command.ICommand
+import cc.hawkbot.regnum.client.command.impl.CommandParserImpl
+import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
@@ -42,15 +46,28 @@ class RegnumImpl(
         override val token: String,
         val games: MutableList<GameAnimator.Game>,
         val gameTranslator: Function<String, String>,
-        val gameAnimatorInterval: Long
+        val gameAnimatorInterval: Long,
+        permissionProvider: IPermissionProvider,
+        defaultPrefix: String,
+        commands: List<ICommand>,
+        override val owners: List<Long>
 ) : Regnum {
 
     override val websocket: Websocket
     override lateinit var discord: Discord
+    override val commandParser: CommandParser
 
     init {
+        permissionProvider.regnum = this
+        commandParser = CommandParserImpl(
+                defaultPrefix,
+                permissionProvider,
+                this
+        )
+        commandParser.registerCommands(*commands.toTypedArray())
         eventManager.register(HeartBeater())
         eventManager.register(PacketHandler(this))
+        eventManager.register(commandParser)
         websocket = WebsocketImpl(host, this)
         try {
             websocket.start()

@@ -17,7 +17,37 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permissions
+package cc.hawkbot.regnum.client.command.permission
 
+/**
+ * Interface for permissions
+ */
 interface IPermissions {
+    
+    /**
+     * If the entity is usable by bot owners only.
+     */
+    val botOwnerExclusive: Boolean
+
+    /**
+     * If the entity is usable by server admins only.
+     */
+    val serverAdminExclusive: Boolean
+
+    /**
+     * If the entity is usable by everyone.
+     */
+    val public: Boolean
+
+    /**
+     * The permission node.
+     */
+    val node: String
+
+    /**
+     * Whether the permission is passed by the [permissionHolder] or not.
+     */
+    fun isPassedBy(permissionHolder: IPermissionHolder): Boolean {
+        return permissionHolder.hasPermission(this)
+    }
 }
