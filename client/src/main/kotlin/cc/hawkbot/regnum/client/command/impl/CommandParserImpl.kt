@@ -17,7 +17,5 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command;
+package cc.hawkbot.regnum.client.command.impl
 
-public interface ICommand {
-}
