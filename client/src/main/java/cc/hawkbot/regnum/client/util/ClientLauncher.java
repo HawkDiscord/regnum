@@ -17,28 +17,36 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-import cc.hawkbot.regnum.client.RegnumBuilder;
+package cc.hawkbot.regnum.client.util;import cc.hawkbot.regnum.client.RegnumBuilder;
 import cc.hawkbot.regnum.client.command.Group;
 import cc.hawkbot.regnum.client.command.context.Arguments;
 import cc.hawkbot.regnum.client.command.context.Context;
 import cc.hawkbot.regnum.client.command.permission.CommandPermissions;
+import cc.hawkbot.regnum.client.command.translation.defaults.PropertyLanguage;
 import org.jetbrains.annotations.NotNull;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Locale;
 
 @SuppressWarnings("WeakerAccess")
 public class ClientLauncher {
 
     public static void main(String[] args) {
         var builder = new RegnumBuilder()
-                .setHost("ws://localhost:7000/ws")
+                .setHost("ws://localhost:7001/ws")
                 .setToken("SUPER-SECRET-TOKEN");
         builder.registerCommands(new Command());
         builder.setDefaultPrefix("hw!");
+        builder.setCassandraKeyspace("test");
+        builder.addCassandraContactPoints("127.0.0.1");
+        builder.authCassandra();
+        builder.setDefaultLanguageManager(new PropertyLanguage(Locale.ENGLISH, "locales/en_US.properties", StandardCharsets.UTF_8));
         var regnum = builder.build();
     }
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {
         public Command() {
-            super(Group.Companion.empty(), "test", new String[] {"test"}, new CommandPermissions(false, false, false, "test"), "", "", "");
+            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, false, "test"), "", "", "");
         }
 
         @Override

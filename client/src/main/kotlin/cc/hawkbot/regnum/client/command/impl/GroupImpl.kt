@@ -20,6 +20,26 @@
 package cc.hawkbot.regnum.client.command.impl
 
 import cc.hawkbot.regnum.client.command.Group
+import cc.hawkbot.regnum.client.command.groups
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 
-class GroupImpl(override val public: Boolean, override val name: String, override val description: String, override val permissions: IPermissions) : Group
+class GroupImpl(override val public: Boolean, override val name: String, override val description: String, override val permissions: IPermissions) : Group {
+
+    init {
+        if (this !in groups) {
+            groups.add(this)
+        }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        return other != null && other is Group && other.name == this.name
+    }
+
+    override fun hashCode(): Int {
+        var result = public.hashCode()
+        result = 31 * result + name.hashCode()
+        result = 31 * result + description.hashCode()
+        result = 31 * result + permissions.hashCode()
+        return result
+    }
+}

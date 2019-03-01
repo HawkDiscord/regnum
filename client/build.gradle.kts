@@ -53,10 +53,16 @@ dependencies {
     // Server
     implementation("org.java-websocket:Java-WebSocket:1.4.0")
 
+    // Database
+    compile("com.datastax.cassandra:cassandra-driver-core:3.6.0")
+    compile("com.datastax.cassandra:cassandra-driver-mapping:3.6.0")
+    compile("com.datastax.cassandra:cassandra-driver-extras:3.6.0")
+
     // Util
-    implementation("com.google.guava:guava:27.0.1-jre")
+    compile("com.google.guava:guava:27.0.1-jre")
 
     implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("reflect"))
     testCompile("junit", "junit", "4.12")
 }
 

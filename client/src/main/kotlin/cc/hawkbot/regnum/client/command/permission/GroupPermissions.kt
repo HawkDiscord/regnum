@@ -22,4 +22,4 @@ package cc.hawkbot.regnum.client.command.permission
 import cc.hawkbot.regnum.client.command.impl.Permissions
 
 @Suppress("unused")
-open class GroupPermissions(botOwnerExclusive: Boolean, serverAdminExclusive: Boolean, public: Boolean, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "group.$node")
+open class GroupPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = true, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "group.$node")

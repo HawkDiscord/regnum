@@ -23,6 +23,11 @@ import cc.hawkbot.regnum.client.command.permission.GroupPermissions
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 
 /**
+ * List of all groups
+ */
+val groups = mutableListOf<Group>()
+
+/**
  * Interface for commands groups.
  */
 @Suppress("unused")
@@ -57,6 +62,16 @@ interface Group {
     }
 
     companion object {
+
+        /**
+         * Settings group
+         */
+        val SETTINGS = GroupBuilder()
+                .setDescription("Commands to configure your server")
+                .setName("Settings")
+                .setPermissions(GroupPermissions(node = "settings", serverAdminExclusive = true))
+                .build()
+
         /**
          * Returns an empty group.
          * @return an empty group

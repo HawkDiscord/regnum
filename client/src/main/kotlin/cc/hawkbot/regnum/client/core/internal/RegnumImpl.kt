@@ -20,13 +20,23 @@
 package cc.hawkbot.regnum.client.core.internal
 
 import cc.hawkbot.regnum.client.Regnum
+import cc.hawkbot.regnum.client.RegnumBuilder
 import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.command.ICommand
 import cc.hawkbot.regnum.client.command.impl.CommandParserImpl
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
+import cc.hawkbot.regnum.client.command.translation.LanguageManager
+import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
+import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.entities.cache.CassandraCache
+import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
+import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
+import cc.hawkbot.regnum.client.io.database.CassandraSource
+import cc.hawkbot.regnum.util.logging.Logger
+import com.datastax.driver.core.CodecRegistry
 import net.dv8tion.jda.api.hooks.IEventManager
 import java.util.function.Function
 
@@ -50,12 +60,21 @@ class RegnumImpl(
         permissionProvider: IPermissionProvider,
         defaultPrefix: String,
         commands: List<ICommand>,
-        override val owners: List<Long>
+        override val owners: List<Long>,
+        override val languageManager: LanguageManager,
+        codecRegistry: CodecRegistry,
+        cassandraKeyspace: String,
+        cassandraAuthenticator: RegnumBuilder.CassandraAuthenticator,
+        contactPoints: Collection<String>,
+        defaultDatabases: Collection<String>
 ) : Regnum {
 
+    private val log = Logger.getLogger()
     override val websocket: Websocket
     override lateinit var discord: Discord
     override val commandParser: CommandParser
+    override val cassandra: CassandraSource
+    override lateinit var guildCache: CassandraCache<RegnumGuild>
 
     init {
         permissionProvider.regnum = this
@@ -69,10 +88,40 @@ class RegnumImpl(
         eventManager.register(PacketHandler(this))
         eventManager.register(commandParser)
         websocket = WebsocketImpl(host, this)
-        try {
-            websocket.start()
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        // Default databases
+        val generators = defaultDatabases.toMutableList()
+        generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}guilds(" +
+                "id BIGINT," +
+                "prefix TEXT," +
+                "PRIMARY KEY (id)" +
+                ");")
+        cassandra = CassandraSource(cassandraAuthenticator.username, cassandraAuthenticator.password, cassandraKeyspace, codecRegistry, contactPoints)
+        cassandra.connectAsync().thenAccept { source ->
+            log.info("[Regnum] Successfully connected to Cassandra cluster")
+            log.info("[Regnum] Generating Cassandra databases")
+            generators.forEach {
+                try {
+                    val statement = source.session.prepare(it).bind()
+                    source.session.executeAsync(statement).get()
+                } catch (e: Exception) {
+                    log.info("[Regnum] Error while generating default database")
+                    e.printStackTrace()
+                }
+            }
+
+            log.info("[Regnum] Generated databases. Initializing caches")
+
+            // Caches
+            guildCache = CassandraCacheImpl(this, RegnumGuild::class, RegnumGuild.Accessor::class.java)
+
+            // Default commands
+            commandParser.registerCommands(PrefixCommand())
+            log.info("[Regnum] Connecting to server")
+            try {
+                websocket.start()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }.exceptionally { throw it }
     }
 }

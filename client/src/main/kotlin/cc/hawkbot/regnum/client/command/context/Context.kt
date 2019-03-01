@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.command.context
 
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.command.ICommand
+import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.FormatUtil
 import cc.hawkbot.regnum.client.util.SafeMessage
 import net.dv8tion.jda.api.EmbedBuilder
@@ -184,6 +185,12 @@ interface Context {
         return sendMessage(FormatUtil.formatCommand(command, "", regnum))
     }
 
-    //TODO: Translation method
-    //TODO: Database entity getters
+    fun translate(key: String): String {
+        return regnum.languageManager.getLanguageByUser(author()).translate(key)
+    }
+
+    fun regnumGuild(): RegnumGuild {
+        return regnum.guild(guild())
+    }
+
 }

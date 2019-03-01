@@ -17,9 +17,25 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
+package cc.hawkbot.regnum.client.entities;
 
-import cc.hawkbot.regnum.client.command.impl.Permissions
+import cc.hawkbot.regnum.client.Regnum;
+import org.jetbrains.annotations.NotNull;
 
-@Suppress("unused")
-class CommandPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = true, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "command.$node")
+/**
+ * Interface for entities that needs a {@link Regnum} instance.
+ */
+public interface RequiresRegnum {
+
+    /**
+     * Method that returns the {@link Regnum instance}.
+     * @return the Regnum instance
+     */
+    Regnum regnum();
+
+    /**
+     * Method that injects the {@link Regnum} instance.
+     * @param regnum the instance
+     */
+    void regnum(@NotNull Regnum regnum);
+}

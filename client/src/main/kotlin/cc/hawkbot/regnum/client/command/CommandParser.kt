@@ -26,6 +26,8 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
  */
 interface CommandParser {
 
+    val defaultPrefix: String
+
     /**
      * Returns all commands and its aliases in a map.
      * @return all commands and its aliases in a map

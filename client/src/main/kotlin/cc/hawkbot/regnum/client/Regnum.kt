@@ -20,13 +20,19 @@
 package cc.hawkbot.regnum.client
 
 import cc.hawkbot.regnum.client.command.CommandParser
+import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
+import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.entities.cache.CassandraCache
+import cc.hawkbot.regnum.client.io.database.CassandraSource
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.hooks.IEventManager
 
 /**
  * Main class of Regnum client instance.
  */
+@Suppress("unused")
 interface Regnum {
 
     /**
@@ -55,8 +61,51 @@ interface Regnum {
     val commandParser: CommandParser
 
     /**
+     * The language manager.
+     */
+    val languageManager: LanguageManager
+
+    /**
+     * The cassandra source
+     */
+    val cassandra: CassandraSource
+
+    /**
      * Ids of users with owner permissions
      */
     val owners: List<Long>
+
+
+    /**
+     * The guild cache
+     */
+    val guildCache: CassandraCache<RegnumGuild>
+
+    /**
+     * Returns a Regnum guild from the cache.
+     * @param id the id of the guild
+     * @return a Regnum guild from the cache
+     */
+    fun guild(id: Long): RegnumGuild {
+        return guildCache[id]
+    }
+
+    /**
+     * Returns a Regnum guild from the cache.
+     * @param id the id of the guild
+     * @return a Regnum guild from the cache
+     */
+    fun guild(id: String): RegnumGuild {
+        return guildCache[id]
+    }
+
+    /**
+     * Returns a Regnum guild from the cache.
+     * @param guild the guild
+     * @return a Regnum guild from the cache
+     */
+    fun guild(guild: Guild): RegnumGuild {
+        return guildCache[guild]
+    }
 
 }

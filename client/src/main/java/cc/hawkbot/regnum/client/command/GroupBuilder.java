@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.command;
 
 import cc.hawkbot.regnum.client.command.impl.GroupImpl;
 import cc.hawkbot.regnum.client.command.permission.IPermissions;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Builder for groups {@link Group}.
@@ -114,6 +115,7 @@ public class GroupBuilder {
      * Builds the group.
      * @return the group
      */
+    @NotNull
     public Group build() {
         return new GroupImpl(
                 _public,

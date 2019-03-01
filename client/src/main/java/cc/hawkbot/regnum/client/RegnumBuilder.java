@@ -22,8 +22,12 @@ package cc.hawkbot.regnum.client;
 import cc.hawkbot.regnum.client.command.ICommand;
 import cc.hawkbot.regnum.client.command.impl.PermissionProviderImpl;
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider;
+import cc.hawkbot.regnum.client.command.translation.DefaultLanguageManager;
+import cc.hawkbot.regnum.client.command.translation.Language;
+import cc.hawkbot.regnum.client.command.translation.LanguageManager;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
+import com.datastax.driver.core.CodecRegistry;
 import com.google.common.base.Preconditions;
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
 import net.dv8tion.jda.api.hooks.IEventManager;
@@ -39,7 +43,7 @@ import java.util.function.Function;
 /**
  * Builder for {@link Regnum} instances
  */
-@SuppressWarnings({"unused", "UnusedReturnValue"})
+@SuppressWarnings({"unused", "UnusedReturnValue", "WeakerAccess"})
 public class RegnumBuilder {
 
     private String host;
@@ -53,6 +57,12 @@ public class RegnumBuilder {
     private String defaultPrefix;
     private List<ICommand> commands = new ArrayList<>();
     private List<Long> owners = new ArrayList<>();
+    private LanguageManager languageManager;
+    private CodecRegistry codecRegistry = new CodecRegistry();
+    private String cassandraKeyspace;
+    private CassandraAuthenticator cassandraAuthenticator;
+    private Collection<String> cassandraContactPoints = new ArrayList<>();
+
 
     /**
      * Returns the current host of the Regnum server.
@@ -354,6 +364,154 @@ public class RegnumBuilder {
     }
 
     /**
+     * Returns the {@link LanguageManager}.
+     * @return  the {@link LanguageManager}
+     */
+    public LanguageManager getLanguageManager() {
+        return languageManager;
+    }
+
+    /**
+     * Sets the language manager {@link LanguageManager}.
+     * @param languageManager the language manager
+     * @return the builder
+     */
+    public RegnumBuilder setLanguageManager(LanguageManager languageManager) {
+        this.languageManager = languageManager;
+        return this;
+    }
+
+    /**
+     * Sets the default language manager as {@link LanguageManager}.
+     * @param defaultLanguage the default language
+     * @return the builder
+     */
+    public RegnumBuilder setDefaultLanguageManager(Language defaultLanguage) {
+        return setLanguageManager(new DefaultLanguageManager(Language.Companion.defaultLanguage(defaultLanguage)));
+    }
+
+    /**
+     * Returns the Cassandra {@link CodecRegistry}.
+     * @return the Cassandra {@link CodecRegistry}
+     */
+    public CodecRegistry getCodecRegistry() {
+        return codecRegistry;
+    }
+
+    /**
+     * Sets the Cassandra {@link CodecRegistry}.
+     * @param codecRegistry the registry
+     * @return the builder
+     */
+    public RegnumBuilder setCodecRegistry(CodecRegistry codecRegistry) {
+        this.codecRegistry = codecRegistry;
+        return this;
+    }
+
+    /**
+     * Returns the Cassandra keyspace.
+     * @return the keyspace
+     */
+    public String getCassandraKeyspace() {
+        return cassandraKeyspace;
+    }
+
+    /**
+     * Sets the Cassandra keyspace.
+     * @param cassandraKeyspace the keyspace
+     * @return the builder
+     */
+    public RegnumBuilder setCassandraKeyspace(String cassandraKeyspace) {
+        this.cassandraKeyspace = cassandraKeyspace;
+        return this;
+    }
+
+    /**
+     * Returns the {@link CassandraAuthenticator}.
+     * @return the {@link CassandraAuthenticator}
+     */
+    public CassandraAuthenticator getCassandraAuthenticator() {
+        return cassandraAuthenticator;
+    }
+
+    /**
+     * Sets the {@link CassandraAuthenticator}
+     * @param cassandraAuthenticator the authenticator
+     * @return the builder
+     */
+    public RegnumBuilder setCassandraAuthenticator(CassandraAuthenticator cassandraAuthenticator) {
+        this.cassandraAuthenticator = cassandraAuthenticator;
+        return this;
+    }
+
+    /**
+     * Sets the {@link CassandraAuthenticator} to username and password.
+     * @param username the username
+     * @param password the password
+     * @return the builder
+     */
+    public RegnumBuilder authCassandra(String username, String password) {
+        return setCassandraAuthenticator(new CassandraAuthenticator(username, password));
+    }
+
+    /**
+     * Sets the {@link CassandraAuthenticator} to username without a password.
+     * @param username the username
+     * @return the builder
+     */
+    public RegnumBuilder authCassandra(String username) {
+        return authCassandra(username, null);
+    }
+
+    /**
+     * Sets the {@link CassandraAuthenticator} to the standard cassandra user
+     * @return the builder
+     */
+    public RegnumBuilder authCassandra() {
+        return authCassandra("cassandra", "cassandra");
+    }
+
+    /**
+     * Returns the Cassandra contact points.
+     * @return the Cassandra contact points
+     */
+    public Collection<String> getCassandraContactPoints() {
+        return cassandraContactPoints;
+    }
+
+    /**
+     * Sets the Cassandra contact points.
+     * @param cassandraContactPoints the contact points.
+     * @return the builder
+     */
+    public RegnumBuilder setCassandraContactPoints(Collection<String> cassandraContactPoints) {
+        this.cassandraContactPoints = cassandraContactPoints;
+        return this;
+    }
+
+    /**
+     * Adds a Cassandra contact points.
+     * @param addresses the address of the contact points
+     * @return the builder.
+     */
+    public RegnumBuilder addCassandraContactPoints(String... addresses) {
+        Preconditions.checkNotNull(cassandraContactPoints, "CassandraContactPoints may not be null");
+        Collections.addAll(cassandraContactPoints, addresses);
+        return this;
+    }
+
+    /**
+     * Adds a Cassandra contact points.
+     * @param addresses the address of the contact points
+     * @return the builder.
+     */
+    public RegnumBuilder addCassandraContactPoints(Collection<String> addresses) {
+        Preconditions.checkNotNull(cassandraContactPoints, "CassandraContactPoints may not be null");
+        cassandraContactPoints.addAll(addresses);
+        return this;
+    }
+
+    /**
      * Build a new {@link Regnum} instance and connects to the server
      *
      * @return the instance
@@ -368,6 +526,12 @@ public class RegnumBuilder {
         Preconditions.checkNotNull(gameTranslator, "Game translator may not be null");
         Preconditions.checkNotNull(permissionProvider, "Permission provider may not be null");
         Preconditions.checkNotNull(defaultPrefix, "Prefix may not be null");
+        Preconditions.checkNotNull(languageManager, "LanguageManager may not be null");
+        Preconditions.checkNotNull(languageManager.getDefaultLanguage(), "DefaultLanguage may not be null");
+        Preconditions.checkNotNull(cassandraKeyspace, "Cassandra keyspace may not be null");
+        Preconditions.checkNotNull(cassandraAuthenticator, "Cassandra authenticator may not be null");
+        Preconditions.checkNotNull(codecRegistry, "CodecRegistry may not be null");
+        Preconditions.checkNotNull(cassandraContactPoints, "CassandraContactPoints may not be null");
 
         // Register events
         eventListeners.forEach(eventManager::register);
@@ -383,7 +547,48 @@ public class RegnumBuilder {
                 permissionProvider,
                 defaultPrefix,
                 commands,
-                owners
+                owners,
+                languageManager,
+                codecRegistry,
+                cassandraKeyspace,
+                cassandraAuthenticator,
+                cassandraContactPoints,
+                new ArrayList<>()
         );
+    }
+
+    /**
+     * Container for Cassandra authentication properties.
+     */
+    public static class CassandraAuthenticator {
+
+        private final String username;
+        private final String password;
+
+        /**
+         * Constructs a new CassandraAuthenticator.
+         * @param username the password
+         * @param password the username
+         */
+        public CassandraAuthenticator(String username, String password) {
+            this.username = username;
+            this.password = password;
+        }
+
+        /**
+         * Returns the username.
+         * @return the username
+         */
+        public String getUsername() {
+            return username;
+        }
+
+        /**
+         * Returns the password.
+         * @return the password
+         */
+        public String getPassword() {
+            return password;
+        }
     }
 }

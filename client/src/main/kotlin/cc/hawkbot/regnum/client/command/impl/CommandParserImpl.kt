@@ -24,6 +24,7 @@ import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.command.ICommand
 import cc.hawkbot.regnum.client.command.ISubCommand
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
+import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.EmbedUtil
 import cc.hawkbot.regnum.client.util.Emotes
 import cc.hawkbot.regnum.client.util.Misc
@@ -37,7 +38,7 @@ import java.util.*
 import java.util.concurrent.CompletableFuture
 
 class CommandParserImpl(
-        private val defaultPrefix: String,
+        override val defaultPrefix: String,
         private val permissionProvider: IPermissionProvider,
         private val regnum: Regnum
 ) : CommandParser {
@@ -66,12 +67,13 @@ class CommandParserImpl(
         }
         // TODO: BLACK/WHITELIST
         // TODO: Custom prefix
-        val guildPrefix = "-1"
+        val guildPrefix = regnum.guild(event.guild).prefix
         val mention = event.guild.selfMember.asMention
         val content = event.message.contentRaw
         val prefix = when {
             content.startsWith(defaultPrefix, true) -> defaultPrefix
             content.startsWith(mention, true) -> mention
+            guildPrefix == RegnumGuild.NO_PREFIX -> return
             content.startsWith(guildPrefix, true) -> guildPrefix
             else -> return
         }

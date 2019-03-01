@@ -17,9 +17,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
+package cc.hawkbot.regnum.client.entities.cache
 
-import cc.hawkbot.regnum.client.command.impl.Permissions
+import net.dv8tion.jda.api.entities.ISnowflake
 
-@Suppress("unused")
-class CommandPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = true, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "command.$node")
+interface CassandraCache<T: CachableCassandraEntity<T>> {
+
+    operator fun get(id: Long): T
+
+    operator fun get(id: String): T {
+        return get(id.toLong())
+    }
+
+    operator fun get(entity: ISnowflake): T {
+        return get(entity.idLong)
+    }
+
+    fun update(entity: T)
+
+    fun delete(id: Long)
+}
