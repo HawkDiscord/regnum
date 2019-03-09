@@ -17,33 +17,24 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin
+package cc.hawkbot.regnum.waiter.impl;
 
-import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
-import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
-import cc.hawkbot.regnum.server.plugin.io.config.Config
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import io.javalin.Javalin
-import net.dv8tion.jda.api.hooks.IEventManager
-import java.io.Closeable
+import net.dv8tion.jda.api.events.GenericEvent;
+import org.jetbrains.annotations.NotNull;
 
-interface Server: Closeable {
+import java.util.concurrent.CompletionStage;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 
-    val launchedAt: Long
+public interface EventWaiter {
 
-    val dev: Boolean
+    <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull Class<T> event, @NotNull Predicate<T> predicate,
+    long timeout, @NotNull TimeUnit timeoutUnit);
 
-    val javalin: Javalin
+    class TimeoutException extends RuntimeException {
+        public TimeoutException(String message) {
+            super(message);
+        }
+    }
 
-    val websocket: Websocket
-
-    val config: Config
-
-    val discordBot: DiscordBot
-
-    val eventWaiter: EventWaiter
-
-    val eventManager: IEventManager
-
-    var authorizationHandler: AuthorizationHandler
 }

@@ -36,6 +36,7 @@ class PluginManager(private val regnum: Server): Closeable {
     init {
         val pluginsFolder = File(regnum.config.getString(Config.PLUGINS_DIRECTORY))
         if (!pluginsFolder.exists()) {
+            log.warn("[PluginLoader] Could not find plugins folder. Creating it ... Skipping loading of plugins!")
             pluginsFolder.mkdirs()
 
         }

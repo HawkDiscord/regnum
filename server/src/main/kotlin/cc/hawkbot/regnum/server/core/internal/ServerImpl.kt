@@ -19,12 +19,24 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
+import cc.hawkbot.regnum.server.core.internal.websocket.ConfigAuthorizer
+import cc.hawkbot.regnum.server.core.internal.websocket.WebsocketImpl
 import cc.hawkbot.regnum.server.discord.DiscordBotImpl
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
+import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
+import cc.hawkbot.regnum.server.plugin.events.RegnumEvent
+import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.server.plugin.io.config.Config
+import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import io.javalin.Javalin
+import net.dv8tion.jda.api.events.Event
+import net.dv8tion.jda.api.events.GenericEvent
+import net.dv8tion.jda.api.hooks.AnnotatedEventManager
+import net.dv8tion.jda.api.hooks.IEventManager
+import net.dv8tion.jda.api.hooks.SubscribeEvent
 
 class ServerImpl(
         override val launchedAt: Long,
@@ -34,6 +46,9 @@ class ServerImpl(
     override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
     override lateinit var websocket: Websocket
     override lateinit var discordBot: DiscordBot
+    override val eventManager: IEventManager = AnnotatedEventManager()
+    override val eventWaiter: EventWaiter = EventWaiterImpl(eventManager)
+    override var authorizationHandler: AuthorizationHandler = ConfigAuthorizer()
 
     private lateinit var pluginManager: PluginManager
 

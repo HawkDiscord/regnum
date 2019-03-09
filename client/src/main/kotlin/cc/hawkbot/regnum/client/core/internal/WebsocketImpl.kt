@@ -88,6 +88,7 @@ class WebsocketImpl(
     }
 
     private fun authorize() {
+        log.info("[WS] Sending IDENTIFY")
         val identify = Payload.of(IdentifyPacket(regnum.token), IdentifyPacket.IDENTIFIER)
         send(identify)
     }

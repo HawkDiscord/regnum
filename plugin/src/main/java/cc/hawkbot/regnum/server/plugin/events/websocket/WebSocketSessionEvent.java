@@ -17,33 +17,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin
+package cc.hawkbot.regnum.server.plugin.events.websocket;
 
-import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
-import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
-import cc.hawkbot.regnum.server.plugin.io.config.Config
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import io.javalin.Javalin
-import net.dv8tion.jda.api.hooks.IEventManager
-import java.io.Closeable
+import cc.hawkbot.regnum.server.plugin.Server;
+import cc.hawkbot.regnum.server.plugin.Websocket;
+import io.javalin.websocket.WsSession;
 
-interface Server: Closeable {
+@SuppressWarnings("unused")
+public class WebSocketSessionEvent extends WebSocketEvent {
 
-    val launchedAt: Long
+    private final WsSession session;
 
-    val dev: Boolean
+    WebSocketSessionEvent(Server server, Websocket websocket, WsSession session) {
+        super(server, websocket);
+        this.session = session;
+    }
 
-    val javalin: Javalin
-
-    val websocket: Websocket
-
-    val config: Config
-
-    val discordBot: DiscordBot
-
-    val eventWaiter: EventWaiter
-
-    val eventManager: IEventManager
-
-    var authorizationHandler: AuthorizationHandler
+    public WsSession getSession() {
+        return session;
+    }
 }

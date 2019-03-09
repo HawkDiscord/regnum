@@ -17,33 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin
+package cc.hawkbot.regnum.server.plugin.core
 
-import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
-import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
-import cc.hawkbot.regnum.server.plugin.io.config.Config
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import io.javalin.Javalin
-import net.dv8tion.jda.api.hooks.IEventManager
-import java.io.Closeable
+import cc.hawkbot.regnum.server.plugin.Server
+import io.javalin.websocket.WsSession
+import java.util.concurrent.CompletionStage
 
-interface Server: Closeable {
+interface AuthorizationHandler {
 
-    val launchedAt: Long
-
-    val dev: Boolean
-
-    val javalin: Javalin
-
-    val websocket: Websocket
-
-    val config: Config
-
-    val discordBot: DiscordBot
-
-    val eventWaiter: EventWaiter
-
-    val eventManager: IEventManager
-
-    var authorizationHandler: AuthorizationHandler
+    fun authorize(server: Server, wsSession: WsSession): CompletionStage<WsSession>
 }

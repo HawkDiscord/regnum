@@ -34,7 +34,7 @@ public class ClientLauncher {
     public static void main(String[] args) {
         var builder = new RegnumBuilder()
                 .setHost("ws://localhost:7001/ws")
-                .setToken("SUPER-SECRET-TOKEN");
+                .setToken("SUPER-SECRET-TOKE");
         builder.registerCommands(new Command());
         builder.setDefaultPrefix("hw!");
         builder.setCassandraKeyspace("test");

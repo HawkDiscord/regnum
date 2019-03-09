@@ -17,33 +17,28 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin
+package cc.hawkbot.regnum.server.plugin.events;
 
-import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
-import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
-import cc.hawkbot.regnum.server.plugin.io.config.Config
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import io.javalin.Javalin
-import net.dv8tion.jda.api.hooks.IEventManager
-import java.io.Closeable
+import cc.hawkbot.regnum.events.NoJDAEvent;
+import cc.hawkbot.regnum.server.plugin.Server;
+import net.dv8tion.jda.api.JDA;
 
-interface Server: Closeable {
+public class RegnumEvent extends NoJDAEvent {
 
-    val launchedAt: Long
+    private final Server server;
 
-    val dev: Boolean
+    public RegnumEvent(Server server) {
+        this.server = server;
+    }
 
-    val javalin: Javalin
 
-    val websocket: Websocket
+    @Override
+    public JDA getJDA() {
+        return server.getDiscordBot().getJda();
+    }
 
-    val config: Config
-
-    val discordBot: DiscordBot
-
-    val eventWaiter: EventWaiter
-
-    val eventManager: IEventManager
-
-    var authorizationHandler: AuthorizationHandler
+    @Override
+    public long getResponseNumber() {
+        throw new UnsupportedOperationException("Regnum events does not support response numbers");
+    }
 }
