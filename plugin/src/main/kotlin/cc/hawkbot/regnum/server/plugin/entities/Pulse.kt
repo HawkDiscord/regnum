@@ -19,5 +19,9 @@
 
 package cc.hawkbot.regnum.server.plugin.entities
 
+import java.time.OffsetDateTime
+
 interface Pulse {
+
+    var lastHearbeat: OffsetDateTime
 }

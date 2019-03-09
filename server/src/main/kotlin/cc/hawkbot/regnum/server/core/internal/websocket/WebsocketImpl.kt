@@ -19,25 +19,17 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket
-import cc.hawkbot.regnum.entites.packets.HeartBeatPacket
 import cc.hawkbot.regnum.server.core.internal.ServerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.entities.NodeImpl
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.events.websocket.*
-import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsHandler
 import io.javalin.websocket.WsSession
-import java.io.EOFException
-import java.util.concurrent.Executors
-import java.util.concurrent.ScheduledFuture
-import java.util.concurrent.TimeUnit
 
-class WebsocketImpl(ws: WsHandler, config: Config, private val server: Server) : Websocket {
+class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
 
     private val log = Logger.getLogger()
     override val nodes = mutableListOf<Node>()
@@ -66,7 +58,7 @@ class WebsocketImpl(ws: WsHandler, config: Config, private val server: Server) :
         authorizationHandler.authorize(server, it)
                 .thenAccept {
                     log.info("[WS] ${it.id} connected!")
-                    nodes.add(NodeImpl(it))
+                    nodes.add(NodeImpl(it, this, server))
                 }
                 .exceptionally {
                     // IGNORE IT //

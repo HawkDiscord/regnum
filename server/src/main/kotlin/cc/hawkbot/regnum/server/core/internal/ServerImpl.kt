@@ -26,17 +26,12 @@ import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
-import cc.hawkbot.regnum.server.plugin.events.RegnumEvent
-import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import io.javalin.Javalin
-import net.dv8tion.jda.api.events.Event
-import net.dv8tion.jda.api.events.GenericEvent
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager
 import net.dv8tion.jda.api.hooks.IEventManager
-import net.dv8tion.jda.api.hooks.SubscribeEvent
 
 class ServerImpl(
         override val launchedAt: Long,
@@ -71,7 +66,7 @@ class ServerImpl(
 
     private fun initWebsocket() {
         javalin.ws("/ws") {
-            websocket = WebsocketImpl(it, config, this)
+            websocket = WebsocketImpl(it, this)
         }
     }
 

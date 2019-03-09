@@ -19,6 +19,8 @@
 
 package cc.hawkbot.regnum.server.plugin.entities
 
+import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 
 interface Node {
@@ -28,4 +30,13 @@ interface Node {
     val shards: IntRange
 
     val pulse: Pulse
+
+    val websocket: Websocket
+
+    fun send(message: String) {
+        websocket.send(session, message)
+    }
+    fun send(payload: Payload) {
+        websocket.send(session, payload)
+    }
 }

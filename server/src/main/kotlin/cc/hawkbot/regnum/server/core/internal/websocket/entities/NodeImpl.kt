@@ -19,14 +19,16 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket.entities
 
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.entities.Pulse
 import io.javalin.websocket.WsSession
 
-class NodeImpl(override val session: WsSession) : Node {
+class NodeImpl(override val session: WsSession, override val websocket: Websocket, server: Server) : Node {
 
     // No shards for now
     override val shards: IntRange = 0 until 0
-    override val pulse: Pulse = PulseImpl()
+    override val pulse: Pulse = PulseImpl(server, this)
 
 }

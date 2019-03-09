@@ -19,7 +19,42 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket.entities
 
+import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.entities.Pulse
+import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
+import cc.hawkbot.regnum.server.plugin.io.config.Config
+import cc.hawkbot.regnum.util.logging.Logger
+import java.time.OffsetDateTime
+import java.util.concurrent.TimeUnit
 
-class PulseImpl: Pulse {
+class PulseImpl(private val server: Server, private val node: Node) : Pulse {
+
+    companion object {
+        const val MARGIN = 5
+    }
+
+    override var lastHearbeat: OffsetDateTime = OffsetDateTime.now()
+    private val log = Logger.getLogger()
+
+    init {
+        waitForHeartbeat()
+    }
+
+    private fun waitForHeartbeat() {
+        val future = server.eventWaiter.waitFor(WebSocketMessageEvent::class.java, {
+            it.session == node.session
+        }, (server.config.getString(Config.SOCKET_HEARTBEAT) + MARGIN).toLong(), TimeUnit.SECONDS)
+        future.exceptionally {
+            log.warn("[WS] Disconnecting node ${node.session.id} for not sending hearbeat")
+            node.session.disconnect()
+            return@exceptionally null
+        }.thenAccept {
+            lastHearbeat = OffsetDateTime.now()
+            node.send(Payload.of(HeartBeatAckPacket(), HeartBeatAckPacket.IDENTIFIER))
+            waitForHeartbeat()
+        }
+    }
 }
