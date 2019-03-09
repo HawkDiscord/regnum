@@ -17,23 +17,19 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.server.plugin
 
-import cc.hawkbot.regnum.server.discord.DiscordBot
-import cc.hawkbot.regnum.server.io.config.Config
-import io.javalin.Javalin
+import cc.hawkbot.regnum.entites.Payload
+import io.javalin.websocket.WsSession
 
-interface Server {
+interface Websocket {
 
-    val launchedAt: Long
+    val nodes: MutableList<WsSession>
 
-    val dev: Boolean
+    fun send(session: WsSession, message: String)
 
-    val javalin: Javalin
+    fun send(session: WsSession, payload: Payload) {
+        send(session, payload.toJson())
+    }
 
-    val websocket: Websocket
-
-    val config: Config
-
-    val discordBot: DiscordBot
 }

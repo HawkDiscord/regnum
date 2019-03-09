@@ -22,8 +22,8 @@ package cc.hawkbot.regnum.server.core.internal
 import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.entites.json.JsonObject
 import cc.hawkbot.regnum.entites.packets.discord.StartPacket
-import cc.hawkbot.regnum.server.core.Server
-import cc.hawkbot.regnum.server.io.config.Config
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsSession
 import okhttp3.OkHttpClient

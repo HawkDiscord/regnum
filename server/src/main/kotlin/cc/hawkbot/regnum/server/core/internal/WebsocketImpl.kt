@@ -24,9 +24,9 @@ import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket
 import cc.hawkbot.regnum.entites.packets.HeartBeatPacket
 import cc.hawkbot.regnum.entites.packets.HelloPacket
 import cc.hawkbot.regnum.entites.packets.IdentifyPacket
-import cc.hawkbot.regnum.server.core.Server
-import cc.hawkbot.regnum.server.core.Websocket
-import cc.hawkbot.regnum.server.io.config.Config
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.Websocket
+import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsHandler
 import io.javalin.websocket.WsSession

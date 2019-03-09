@@ -17,19 +17,12 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.server.plugin.discord
 
-import cc.hawkbot.regnum.entites.Payload
-import io.javalin.websocket.WsSession
+import net.dv8tion.jda.api.JDA
+import java.io.Closeable
 
-interface Websocket {
+interface DiscordBot: Closeable {
 
-    val nodes: MutableList<WsSession>
-
-    fun send(session: WsSession, message: String)
-
-    fun send(session: WsSession, payload: Payload) {
-        send(session, payload.toJson())
-    }
-
+    val jda: JDA
 }

@@ -21,4 +21,7 @@ rootProject.name = 'regnum'
 include 'shared'
 include 'server'
 include 'client'
+include 'server:plugin'
+findProject(':server:plugin')?.name = 'plugin'
+include 'plugin'
 

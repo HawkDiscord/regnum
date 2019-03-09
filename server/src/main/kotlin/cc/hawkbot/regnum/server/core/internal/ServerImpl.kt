@@ -19,11 +19,11 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
-import cc.hawkbot.regnum.server.core.Server
-import cc.hawkbot.regnum.server.core.Websocket
-import cc.hawkbot.regnum.server.discord.DiscordBot
 import cc.hawkbot.regnum.server.discord.DiscordBotImpl
-import cc.hawkbot.regnum.server.io.config.Config
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.Websocket
+import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
+import cc.hawkbot.regnum.server.plugin.io.config.Config
 import io.javalin.Javalin
 
 class ServerImpl(
@@ -33,13 +33,41 @@ class ServerImpl(
     override val config: Config = Config("config/server.yml")
     override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
     override lateinit var websocket: Websocket
-    override val discordBot: DiscordBot
+    override lateinit var discordBot: DiscordBot
+
+    private lateinit var pluginManager: PluginManager
 
     init {
+        shutdownHook()
+        plugins()
+        initWebsocket()
+        initDiscord()
+    }
+
+    private fun plugins() {
+        pluginManager = PluginManager(this)
+    }
+
+    private fun shutdownHook() {
+        Runtime.getRuntime().addShutdownHook(Thread {
+            close()
+        })
+    }
+
+    private fun initWebsocket() {
         javalin.ws("/ws") {
             websocket = WebsocketImpl(it, config, this)
         }
+    }
+
+    private fun initDiscord() {
         discordBot = DiscordBotImpl(config.getString(Config.DISCORD_TOKEN))
+    }
+
+    override fun close() {
+        pluginManager.close()
+        javalin.stop()
+        discordBot.close()
     }
 
 }
