@@ -17,11 +17,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites;
+package cc.hawkbot.regnum.entites.json;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import java.io.IOException;
 
@@ -44,13 +47,52 @@ public class Json {
     /**
      * Converts a object into json.
      *
-     * @param obj the object
+     * @param writer the writer to format the object
+     * @param obj    the object
      * @return the json object as a string
      */
-    public static String toJson(Object obj) {
+    public static String toJson(ObjectWriter writer, Object obj) {
         try {
-            return JACKSON.writeValueAsString(obj);
+            return writer.writeValueAsString(obj);
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /**
+     * Encodes an {@link Object} into json.
+     *
+     * @return the json in a string
+     * @see Json#toJson(ObjectWriter, Object)
+     */
+    public static String toJson(Object obj) {
+        return toJson(JACKSON.writer(), obj);
+    }
+
+    /**
+     * Encodes an {@link Object} into prettily formatted json.
+     *
+     * @return the json in a string
+     * @see Json#toJson(ObjectWriter, Object)
+     */
+    public static String toPrettyJson(Object obj) {
+        return toJson(JACKSON.writerWithDefaultPrettyPrinter(), obj);
+    }
+
+    /**
+     * Parses a {@link JsonNode}.
+     *
+     * @param json the json in a string
+     * @return the json node
+     * @throws JsonParseException if underlying input contains invalid content
+     *                            of type {@link JsonParser} supports (JSON for default case)
+     */
+    @SuppressWarnings("JavaDoc")
+    public static JsonNode readJson(String json) {
+        try {
+            return JACKSON.readTree(json);
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;

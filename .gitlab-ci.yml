@@ -75,6 +75,8 @@ pages:
 deploy:
   stage: deploy
   script: echo Automatic bintray deploy is coming soon just want to have a deploy job
+  only:
+    - master
 #bintray:
 #  stage: deploy
 #  script: gradle bintrayUpload

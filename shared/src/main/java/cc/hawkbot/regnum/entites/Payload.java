@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.entites;
 
+import cc.hawkbot.regnum.entites.json.Json;
 import cc.hawkbot.regnum.entites.packets.Packet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
