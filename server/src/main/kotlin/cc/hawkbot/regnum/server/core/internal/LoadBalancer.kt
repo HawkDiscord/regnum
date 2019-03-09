@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.server.core.internal
 
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.json.JsonObject
 import cc.hawkbot.regnum.entites.packets.discord.StartPacket
 import cc.hawkbot.regnum.server.core.Server
 import cc.hawkbot.regnum.server.io.config.Config
@@ -27,7 +28,6 @@ import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsSession
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.JSONObject
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -51,7 +51,7 @@ class LoadBalancer(private val server: Server) {
                 .url("https://discordapp.com/api/gateway/bot")
                 .build()
         val body = OkHttpClient().newCall(request).execute().body() ?: return 1
-        return JSONObject(body.string()).getInt("shards")
+        return JsonObject(body.string()).getInt("shards")
     }
 
     private fun calculateShardIds(to: Int): IntRange {
