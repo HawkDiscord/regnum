@@ -32,6 +32,11 @@ import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
+/**
+ * Implementation of [Heart].
+ * @property regnum the regnum instance
+ * @param hello the [HelloPacket]
+ */
 class HeartImpl(
         private val regnum: Regnum,
         hello: HelloPacket

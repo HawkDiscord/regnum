@@ -107,6 +107,10 @@ class WebsocketImpl(
         super.close()
     }
 
+    /**
+     * Returns whether the [heart] is initialized or not.
+     * @return whether the [heart] is initialized or not
+     */
     fun isHeartInitialized(): Boolean {
         return this::heart.isInitialized
     }

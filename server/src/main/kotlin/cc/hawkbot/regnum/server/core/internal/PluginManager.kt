@@ -27,6 +27,11 @@ import de.foryasee.plugins.loader.impl.PluginLoader
 import java.io.Closeable
 import java.io.File
 
+/**
+ * Plugin manager.
+ * @property regnum the [Server] instance
+ * @constructor Constructs a new server
+ */
 class PluginManager(private val regnum: Server): Closeable {
 
     private val log = Logger.getLogger()

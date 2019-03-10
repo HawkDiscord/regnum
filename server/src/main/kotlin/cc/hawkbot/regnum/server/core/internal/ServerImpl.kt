@@ -33,6 +33,13 @@ import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager
 import net.dv8tion.jda.api.hooks.IEventManager
 
+/**
+ * Implementation of [Server].
+ * @param launchedAt timestamp of the servers launch date
+ * @param dev whether the server is operating in dev mode or not
+ * @param noDiscord Whether the server should start the discord bot or not
+ * @constructor Constructs a new server
+ */
 class ServerImpl(
         override val launchedAt: Long,
         override val dev: Boolean,

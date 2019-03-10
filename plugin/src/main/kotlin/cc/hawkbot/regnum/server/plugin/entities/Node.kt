@@ -23,20 +23,44 @@ import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 
+/**
+ * Representation of a connected Regnum node.
+ */
 @Suppress("unused")
 interface Node {
 
+    /**
+     * The websocket session.
+     */
     val session: WsSession
 
+    /**
+     * The range of all shards on this node.
+     */
     val shards: IntRange
 
+    /**
+     * The nodes pulse.
+     */
     val pulse: Pulse
 
+    /**
+     * The current websocket instance.
+     */
     val websocket: Websocket
 
+    /**
+     * Sends a [message] to this node
+     * @param message the message
+     */
     fun send(message: String) {
         websocket.send(session, message)
     }
+
+    /**
+     * Sends a [payload] to this node
+     * @param payload the payload
+     */
     fun send(payload: Payload) {
         websocket.send(session, payload)
     }

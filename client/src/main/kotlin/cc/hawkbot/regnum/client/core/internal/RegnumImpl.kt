@@ -119,11 +119,7 @@ class RegnumImpl(
             // Default commands
             commandParser.registerCommands(PrefixCommand())
             log.info("[Regnum] Connecting to server")
-            try {
-                websocket.start()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            websocket.start()
         }.exceptionally { throw it }
     }
 }

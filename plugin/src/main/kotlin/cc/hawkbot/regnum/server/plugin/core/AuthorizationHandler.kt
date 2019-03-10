@@ -25,5 +25,9 @@ import java.util.concurrent.CompletionStage
 
 interface AuthorizationHandler {
 
+    /**
+     * Function that should return a future which completes after a successful IDENTIFY and fails after a unsUccesful IDENTIFY
+     * or no IDENTIFY after a specifc amount of time
+     */
     fun authorize(server: Server, wsSession: WsSession): CompletionStage<WsSession>
 }

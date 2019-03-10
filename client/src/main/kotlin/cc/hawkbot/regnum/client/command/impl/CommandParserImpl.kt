@@ -37,6 +37,12 @@ import java.time.LocalDateTime
 import java.util.*
 import java.util.concurrent.CompletableFuture
 
+/**
+ * Implementation of [CommandParser].
+ * @param defaultPrefix the default prefix
+ * @property permissionProvider the [IPermissionProvider]
+ * @property regnum the Regnum instance
+ */
 class CommandParserImpl(
         override val defaultPrefix: String,
         private val permissionProvider: IPermissionProvider,

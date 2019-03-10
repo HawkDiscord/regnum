@@ -19,8 +19,14 @@
 
 package cc.hawkbot.regnum.server.plugin.entities
 
+/**
+ * Represents a heartbeat pulse from a [Node].
+ */
 @Suppress("unused")
 interface Pulse {
 
+    /**
+     * Last time the server received a heartbeat.
+     */
     var lastHeartbeat: Long
 }

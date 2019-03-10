@@ -29,17 +29,42 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 
+/**
+ * Utility to wait for events
+ */
 @SuppressWarnings("unused")
 public interface EventWaiter extends Closeable {
 
+    /**
+     * Waits for the specified event.
+     * @param event the Class of that event
+     * @param predicate the predicate to match the event
+     * @param timeout the timeout
+     * @param timeoutUnit the unit of the timeout
+     * @param <T> the type of the event
+     * @return a future that completes when a predicate matching event was fired and fails when the timeout exceeds
+     */
     <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull Class<T> event, @NotNull Predicate<T> predicate,
     long timeout, @NotNull TimeUnit timeoutUnit);
 
+    /**
+     * Waits for the specified event.
+     * @param event the KClass of that event
+     * @param predicate the predicate to match the event
+     * @param timeout the timeout
+     * @param timeoutUnit the unit of the timeout
+     * @param <T> the type of the event
+     * @see EventWaiter#waitFor(Class, Predicate, long, TimeUnit)
+     * @return a future that completes when a predicate matching event was fired and fails when the timeout exceeds
+     */
     default <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull KClass<T> event, @NotNull Predicate<T> predicate,
                                                                  long timeout, @NotNull TimeUnit timeoutUnit) {
         return waitFor(JvmClassMappingKt.getJavaClass(event), predicate, timeout, timeoutUnit);
     }
 
+    /**
+     * An exception that represents that the event wasn't fired in time.
+     */
     class TimeoutException extends RuntimeException {
         public TimeoutException(String message) {
             super(message);

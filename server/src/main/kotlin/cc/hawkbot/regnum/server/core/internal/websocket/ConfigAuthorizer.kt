@@ -30,6 +30,9 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
 
+/**
+ * Default implementation of [AuthorizationHandler] which compares the token which [Config.SOCKET_TOKEN].
+ */
 class ConfigAuthorizer : AuthorizationHandler {
 
     private val log = Logger.getLogger()

@@ -29,6 +29,12 @@ import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import java.util.concurrent.TimeUnit
 
+/**
+ * Implementation of [Pulse].
+ * @param server the [Server]
+ * @param node the [Node]
+ * @constructor Constructs a new pulse
+*/
 class PulseImpl(private val server: Server, private val node: Node) : Pulse {
 
     companion object {
@@ -48,7 +54,7 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
         }, (server.config.getString(Config.SOCKET_HEARTBEAT) + MARGIN).toLong(), TimeUnit.SECONDS)
         future.exceptionally {
             @Suppress("SpellCheckingInspection")
-            log.warn("[WS] Disconnecting node ${node.session.id} for not sending hearbeat")
+            log.warn("[WS] Disconnecting node ${node.session.id} for not sending heartbeat")
             node.session.disconnect()
             return@exceptionally null
         }.thenAccept {

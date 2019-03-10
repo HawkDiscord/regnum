@@ -23,12 +23,21 @@ import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneId
 
+/**
+ * The Heart(beater) of the client.
+ * @property lastHeartbeat the timestamp of the last heartbeat
+ * @property ping the last ping between the client and the server
+ */
 @Suppress("unused")
 interface Heart {
 
     var lastHeartbeat: Long
     var ping: Int
 
+    /**
+     * Returns the heartbeat as an [OffsetDateTime].
+     * @return the heartbeat as an [OffsetDateTime]
+     */
     fun lastHeartbeat(): OffsetDateTime {
         return OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())
     }
