@@ -19,12 +19,15 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
+import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.packets.HelloPacket
 import cc.hawkbot.regnum.server.core.internal.ServerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.entities.NodeImpl
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.events.websocket.*
+import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsHandler
 import io.javalin.websocket.WsSession
@@ -58,7 +61,9 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
         authorizationHandler.authorize(server, it)
                 .thenAccept {
                     log.info("[WS] ${it.id} connected!")
-                    nodes.add(NodeImpl(it, this, server))
+                    val node = NodeImpl(it, this, server)
+                    nodes.add(node)
+                    node.send(Payload.of(HelloPacket(server.config.getInt(Config.SOCKET_HEARTBEAT)), HelloPacket.IDENTIFIER))
                 }
                 .exceptionally {
                     // IGNORE IT //

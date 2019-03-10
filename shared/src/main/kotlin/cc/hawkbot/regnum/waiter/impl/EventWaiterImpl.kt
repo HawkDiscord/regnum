@@ -79,4 +79,8 @@ class EventWaiterImpl(
             eventManager.unregister(this)
         }
     }
+
+    override fun close() {
+        scheduler.shutdownNow()
+    }
 }

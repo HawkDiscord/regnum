@@ -17,18 +17,19 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin.entities
+package cc.hawkbot.regnum.client.core
 
 import java.time.Instant
 import java.time.OffsetDateTime
 import java.time.ZoneId
 
-@Suppress("unused")
-interface Pulse {
+interface Heart {
 
     var lastHeartbeat: Long
+    var ping: Int
 
     fun lastHeartbeat(): OffsetDateTime {
         return OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())
     }
+
 }
