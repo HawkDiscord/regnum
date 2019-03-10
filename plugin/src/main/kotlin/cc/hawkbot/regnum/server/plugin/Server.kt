@@ -27,23 +27,53 @@ import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.IEventManager
 import java.io.Closeable
 
+/**
+ * Representation of the Regnum server.
+ */
 interface Server: Closeable {
 
+    /**
+     * Millis at the time the server got started.
+     */
     val launchedAt: Long
 
+    /**
+     * Whether the server is in dev mode or not.
+     */
     val dev: Boolean
 
+    /**
+     * The javalin instance.
+     */
     val javalin: Javalin
 
+    /**
+     * The websocket instance.
+     */
     val websocket: Websocket
 
+    /**
+     * The config.
+     */
     val config: Config
 
+    /**
+     * The built in discord bot.
+     */
     val discordBot: DiscordBot
 
+    /**
+     * The event waiter.
+     */
     val eventWaiter: EventWaiter
 
+    /**
+     * The event manager.
+     */
     val eventManager: IEventManager
 
+    /**
+     * The authorization handler.
+     */
     var authorizationHandler: AuthorizationHandler
 }

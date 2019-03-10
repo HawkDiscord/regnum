@@ -23,6 +23,9 @@ import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import io.javalin.websocket.WsSession
 
+/**
+ * Representation of the Regnum websocket.
+ */
 @Suppress("unused")
 interface Websocket {
 

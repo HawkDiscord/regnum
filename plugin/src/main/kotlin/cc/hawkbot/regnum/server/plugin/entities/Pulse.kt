@@ -19,10 +19,6 @@
 
 package cc.hawkbot.regnum.server.plugin.entities
 
-import java.time.Instant
-import java.time.OffsetDateTime
-import java.time.ZoneId
-
 @Suppress("unused")
 interface Pulse {
 

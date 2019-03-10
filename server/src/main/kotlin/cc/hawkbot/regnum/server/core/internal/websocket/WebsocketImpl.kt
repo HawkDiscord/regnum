@@ -32,6 +32,12 @@ import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsHandler
 import io.javalin.websocket.WsSession
 
+/**
+ * Implementation of [Websocket]
+ * @param ws the Javalin [WsHandler]
+ * @property server the [Server]
+ */
+@Suppress("UNSAFE_CAST")
 class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
 
     private val log = Logger.getLogger()

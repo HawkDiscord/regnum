@@ -59,8 +59,8 @@ class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
         return cache[id]
     }
 
-    override fun update(entity: T) {
-        cache.put(entity.idLong, entity)
+    override fun set(id: Long, entity: T) {
+        cache.put(id, entity)
     }
 
     override fun delete(id: Long) {

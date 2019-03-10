@@ -49,11 +49,19 @@ interface CassandraCache<T: CachableCassandraEntity<T>> {
     }
 
     /**
-     * Updates an entities instance
+     * Updates an entities instance.
      * @param id the entities id
      * @param entity the entity
      */
     operator fun set(id: Long, entity: T)
+
+    /**
+     * Updated the [entity].
+     * @param entity the entity
+     */
+    fun update(entity: T) {
+        set(entity.idLong, entity)
+    }
 
     /**
      * Deletes an entity by its id

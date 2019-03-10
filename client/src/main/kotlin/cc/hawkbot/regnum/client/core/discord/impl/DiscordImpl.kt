@@ -41,6 +41,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
  *
  * @constructor Constructs a new Discord client
  */
+@Suppress("UNSAFE_CAST")
 class DiscordImpl(
         val regnum: Regnum,
         token: String,

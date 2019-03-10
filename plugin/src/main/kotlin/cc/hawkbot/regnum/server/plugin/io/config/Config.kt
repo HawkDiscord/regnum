@@ -21,6 +21,12 @@ package cc.hawkbot.regnum.server.plugin.io.config
 
 import cc.hawkbot.regnum.io.config.GenericConfig
 
+/**
+ * Config for Regnum server.
+ * @param source the path to the config
+ * @see GenericConfig
+ * @constructor Constructs a new config
+ */
 class Config(source: String) : GenericConfig(source) {
 
     companion object {

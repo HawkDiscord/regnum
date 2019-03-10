@@ -37,11 +37,7 @@ import java.util.Locale;
 @SuppressWarnings("WeakerAccess")
 public class ClientLauncher {
 
-<<<<<<< Updated upstream
-    private Regnum regnum;
-=======
     private final Regnum regnum;
->>>>>>> Stashed changes
 
     public static void main(String[] args) {
         new ClientLauncher();

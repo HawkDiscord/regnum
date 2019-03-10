@@ -22,7 +22,13 @@ package cc.hawkbot.regnum.server.plugin.discord
 import net.dv8tion.jda.api.JDA
 import java.io.Closeable
 
+/**
+ * Representation of the built-in Discord bot.
+ */
 interface DiscordBot: Closeable {
 
+    /**
+     * The JDA instance.
+     */
     val jda: JDA
 }

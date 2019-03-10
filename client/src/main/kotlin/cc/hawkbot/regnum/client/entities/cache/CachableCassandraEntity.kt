@@ -43,7 +43,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
      */
     @Suppress("UNCHECKED_CAST")
     fun update() {
-        cache.update(this as T)
+        cache[idLong] = this as T
     }
 
     /**

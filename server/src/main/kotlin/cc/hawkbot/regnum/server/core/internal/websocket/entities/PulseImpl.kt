@@ -35,7 +35,7 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
         const val MARGIN = 500
     }
 
-    override var lastHearbeat: Long = System.currentTimeMillis()
+    override var lastHeartbeat: Long = System.currentTimeMillis()
     private val log = Logger.getLogger()
 
     init {
