@@ -25,6 +25,12 @@ import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.entities.Pulse
 import io.javalin.websocket.WsSession
 
+/**
+ * Implementation of [Node].
+ * @param server the [WsSession]
+ * @param websocket the [Websocket]
+ * @param server the server
+ */
 class NodeImpl(override val session: WsSession, override val websocket: Websocket, server: Server) : Node {
 
     // No shards for now

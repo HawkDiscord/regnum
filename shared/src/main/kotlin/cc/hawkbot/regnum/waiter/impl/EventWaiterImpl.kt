@@ -27,6 +27,10 @@ import net.dv8tion.jda.api.hooks.SubscribeEvent
 import java.util.concurrent.*
 import java.util.function.Predicate
 
+/**
+ * Implementation of [EventWaiter].
+ * @param eventManager the event manager
+ */
 class EventWaiterImpl(
         private val eventManager: IEventManager
 ) : EventWaiter {
