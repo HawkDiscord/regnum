@@ -33,10 +33,10 @@ import java.util.concurrent.TimeUnit
 class PulseImpl(private val server: Server, private val node: Node) : Pulse {
 
     companion object {
-        const val MARGIN = 5
+        const val MARGIN = 500
     }
 
-    override var lastHearbeat: OffsetDateTime = OffsetDateTime.now()
+    override var lastHeartbeat: Long = System.currentTimeMillis()
     private val log = Logger.getLogger()
 
     init {
@@ -52,7 +52,7 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
             node.session.disconnect()
             return@exceptionally null
         }.thenAccept {
-            lastHearbeat = OffsetDateTime.now()
+            lastHeartbeat = System.currentTimeMillis()
             node.send(Payload.of(HeartBeatAckPacket(), HeartBeatAckPacket.IDENTIFIER))
             waitForHeartbeat()
         }

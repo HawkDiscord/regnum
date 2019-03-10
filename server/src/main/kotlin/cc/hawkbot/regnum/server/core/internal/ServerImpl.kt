@@ -35,7 +35,8 @@ import net.dv8tion.jda.api.hooks.IEventManager
 
 class ServerImpl(
         override val launchedAt: Long,
-        override val dev: Boolean
+        override val dev: Boolean,
+        noDiscord: Boolean
 ) : Server {
     override val config: Config = Config("config/server.yml")
     override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
@@ -51,7 +52,7 @@ class ServerImpl(
         shutdownHook()
         plugins()
         initWebsocket()
-        initDiscord()
+        initDiscord(noDiscord)
     }
 
     private fun plugins() {
@@ -70,14 +71,19 @@ class ServerImpl(
         }
     }
 
-    private fun initDiscord() {
-        discordBot = DiscordBotImpl(config.getString(Config.DISCORD_TOKEN))
+    private fun initDiscord(noDiscord: Boolean) {
+        if (!noDiscord) {
+            discordBot = DiscordBotImpl(config.getString(Config.DISCORD_TOKEN))
+        }
     }
 
     override fun close() {
         pluginManager.close()
         javalin.stop()
-        discordBot.close()
+        eventWaiter.close()
+        if (this::discordBot.isInitialized) {
+            discordBot.close()
+        }
     }
 
 }

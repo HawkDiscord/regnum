@@ -19,17 +19,25 @@
 
 package cc.hawkbot.regnum.waiter.impl;
 
+import kotlin.jvm.JvmClassMappingKt;
+import kotlin.reflect.KClass;
 import net.dv8tion.jda.api.events.GenericEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Closeable;
 import java.util.concurrent.CompletionStage;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Predicate;
 
-public interface EventWaiter {
+public interface EventWaiter extends Closeable {
 
     <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull Class<T> event, @NotNull Predicate<T> predicate,
     long timeout, @NotNull TimeUnit timeoutUnit);
+
+    default <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull KClass<T> event, @NotNull Predicate<T> predicate,
+                                                                 long timeout, @NotNull TimeUnit timeoutUnit) {
+        return waitFor(JvmClassMappingKt.getJavaClass(event), predicate, timeout, timeoutUnit);
+    }
 
     class TimeoutException extends RuntimeException {
         public TimeoutException(String message) {

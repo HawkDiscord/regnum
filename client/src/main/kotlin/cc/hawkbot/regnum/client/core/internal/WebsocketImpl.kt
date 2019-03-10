@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client.core.internal
 
 import cc.hawkbot.regnum.client.Regnum
+import cc.hawkbot.regnum.client.core.Heart
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.events.Event
 import cc.hawkbot.regnum.client.events.websocket.WebSocketCloseEvent
@@ -46,6 +47,7 @@ class WebsocketImpl(
 ) : WebSocketClient(location), Websocket {
 
     private val log = Logger.getLogger()
+    override lateinit var heart: Heart
 
     /**
      * Websocket client
@@ -99,6 +101,14 @@ class WebsocketImpl(
 
     private fun callEventAsync(event: Event) {
         regnum.eventManager.handle(event)
+    }
+
+    override fun close() {
+        super.close()
+    }
+
+    fun isHeartInitialized(): Boolean {
+        return this::heart.isInitialized
     }
 
 }

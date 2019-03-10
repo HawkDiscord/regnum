@@ -41,7 +41,8 @@ class LoadBalancer(private val server: Server) {
     private val counts = mutableMapOf<WsSession, Array<Int>>()
 
     init {
-        optimalShards = calculateShardCount()
+        optimalShards = 2
+                //calculateShardCount()
         shardIds = calculateShardIds(optimalShards)
     }
 

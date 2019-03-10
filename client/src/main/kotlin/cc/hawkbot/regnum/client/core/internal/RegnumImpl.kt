@@ -36,6 +36,8 @@ import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
 import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.io.database.CassandraSource
 import cc.hawkbot.regnum.util.logging.Logger
+import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import com.datastax.driver.core.CodecRegistry
 import net.dv8tion.jda.api.hooks.IEventManager
 import java.util.function.Function
@@ -70,11 +72,12 @@ class RegnumImpl(
 ) : Regnum {
 
     private val log = Logger.getLogger()
-    override val websocket: Websocket
+    override val websocket: WebsocketImpl
     override lateinit var discord: Discord
     override val commandParser: CommandParser
     override val cassandra: CassandraSource
     override lateinit var guildCache: CassandraCache<RegnumGuild>
+    override val eventWaiter: EventWaiter
 
     init {
         permissionProvider.regnum = this
@@ -87,6 +90,7 @@ class RegnumImpl(
         eventManager.register(HeartBeater())
         eventManager.register(PacketHandler(this))
         eventManager.register(commandParser)
+        eventWaiter = EventWaiterImpl(eventManager)
         websocket = WebsocketImpl(host, this)
         // Default databases
         val generators = defaultDatabases.toMutableList()
