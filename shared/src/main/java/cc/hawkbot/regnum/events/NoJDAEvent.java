@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.events;
 import cc.hawkbot.regnum.entites.EmptyJDA;
 import net.dv8tion.jda.api.events.Event;
 
+@SuppressWarnings("WeakerAccess")
 public class NoJDAEvent extends Event {
     public NoJDAEvent() {
         super(EmptyJDA.INSTANCE);

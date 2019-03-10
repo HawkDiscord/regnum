@@ -67,8 +67,16 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
         return super.deleteAsync()
     }
 
+    /**
+     * Interface for accessing a [CachableCassandraEntity] from database
+     */
     @com.datastax.driver.mapping.annotations.Accessor
     interface Accessor<T> {
+        /**
+         * Methods that needs to be overridden in order to fetch entity by its id.
+         * Please annotate with [com.datastax.driver.mapping.annotations.Query]
+         * @param
+         */
         operator fun get(id: Long): Result<T>
     }
 

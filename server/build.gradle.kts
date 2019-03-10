@@ -84,6 +84,12 @@ tasks {
     }
 }
 
+/**
+ * Returns the dependency notation for a log4j dependency
+ * @param name the name of the dependency
+ * @param version the version of the dependency
+ * @return the dependency notation
+ */
 fun log4j(name: String, version: String = log4jVersion): String {
     return "org.apache.logging.log4j:log4j-$name:$version"
 }

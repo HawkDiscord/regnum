@@ -32,6 +32,7 @@ import net.dv8tion.jda.api.hooks.SubscribeEvent
  * @property regnum the regnum implementation
  * @constructor Constructs a new packet handler
  */
+@Suppress("UNSAFE_CAST")
 class PacketHandler(val regnum: RegnumImpl) {
 
     @Suppress("unused")

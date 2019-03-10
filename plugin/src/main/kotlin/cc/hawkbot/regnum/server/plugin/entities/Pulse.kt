@@ -27,8 +27,4 @@ import java.time.ZoneId
 interface Pulse {
 
     var lastHeartbeat: Long
-
-    fun lastHeartbeat(): OffsetDateTime {
-        return OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())
-    }
 }

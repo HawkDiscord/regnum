@@ -27,7 +27,6 @@ import cc.hawkbot.regnum.client.command.impl.CommandParserImpl
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
-import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
 import cc.hawkbot.regnum.client.entities.RegnumGuild
@@ -87,7 +86,6 @@ class RegnumImpl(
                 this
         )
         commandParser.registerCommands(*commands.toTypedArray())
-        eventManager.register(HeartBeater())
         eventManager.register(PacketHandler(this))
         eventManager.register(commandParser)
         eventWaiter = EventWaiterImpl(eventManager)

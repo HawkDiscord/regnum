@@ -27,7 +27,6 @@ import cc.hawkbot.regnum.server.plugin.entities.Pulse
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
-import java.time.OffsetDateTime
 import java.util.concurrent.TimeUnit
 
 class PulseImpl(private val server: Server, private val node: Node) : Pulse {
@@ -36,7 +35,7 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
         const val MARGIN = 500
     }
 
-    override var lastHeartbeat: Long = System.currentTimeMillis()
+    override var lastHearbeat: Long = System.currentTimeMillis()
     private val log = Logger.getLogger()
 
     init {
@@ -48,6 +47,7 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
             it.session == node.session
         }, (server.config.getString(Config.SOCKET_HEARTBEAT) + MARGIN).toLong(), TimeUnit.SECONDS)
         future.exceptionally {
+            @Suppress("SpellCheckingInspection")
             log.warn("[WS] Disconnecting node ${node.session.id} for not sending hearbeat")
             node.session.disconnect()
             return@exceptionally null

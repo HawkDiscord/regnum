@@ -23,6 +23,7 @@ import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 
+@Suppress("unused")
 interface Node {
 
     val session: WsSession

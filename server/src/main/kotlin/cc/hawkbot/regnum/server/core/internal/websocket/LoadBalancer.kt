@@ -31,6 +31,10 @@ import okhttp3.Request
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
+/**
+ * ShardBalancer
+ * @property server the [Server] instance
+ */
 class LoadBalancer(private val server: Server) {
 
     private val log = Logger.getLogger()
@@ -59,6 +63,7 @@ class LoadBalancer(private val server: Server) {
         return 0 until to
     }
 
+    //TODO: Implement load balancing again
     fun handleConnect() {
         if (ws.nodes.size == 1) {
             log.info("[DiscordBalancer] First node connected waiting 30 seconds for other nodes to connect before balancing")

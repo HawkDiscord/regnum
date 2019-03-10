@@ -26,10 +26,23 @@ import io.javalin.websocket.WsSession
 @Suppress("unused")
 interface Websocket {
 
-    val nodes: MutableList<Node>
+    /**
+     * A list containing all available nodes
+     */
+    val nodes: List<Node>
 
+    /**
+     * Sends a [message] to the specified [session]
+     * @param session the session to sent the message to
+     * @param message the message
+     */
     fun send(session: WsSession, message: String)
 
+    /**
+     * Sends a [payload] to the specified [session]
+     * @param session the session to sent the message to
+     * @param payload the payload
+     */
     fun send(session: WsSession, payload: Payload) {
         send(session, payload.toJson())
     }

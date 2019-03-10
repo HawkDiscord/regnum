@@ -41,7 +41,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class EmptyJDA {
 
-    public static JDA INSTANCE = new JDA() {
+    public static final JDA INSTANCE = new JDA() {
         @Override
         public Status getStatus() {
             return null;
@@ -53,7 +53,7 @@ public class EmptyJDA {
         }
 
         @Override
-        public JDA awaitStatus(Status status) throws InterruptedException {
+        public JDA awaitStatus(Status status) {
             return null;
         }
 

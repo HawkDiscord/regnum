@@ -28,6 +28,10 @@ import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.core.config.ConfigurationSource
 import org.apache.logging.log4j.core.config.Configurator
 
+/**
+ * Regnum servers main function.
+ * @param args the program arguments
+ */
 fun main(args: Array<String>) {
 
     val launchedAt = System.currentTimeMillis()

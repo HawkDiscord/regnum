@@ -29,7 +29,7 @@ import net.dv8tion.jda.api.entities.ISnowflake;
  * @see ISnowflake
  * @see CassandraEntity
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "CanBeFinal"})
 public abstract class SnowflakeCassandraEntity<T> extends CassandraEntity<T> implements ISnowflake {
 
     @PartitionKey

@@ -23,6 +23,7 @@ import cc.hawkbot.regnum.events.NoJDAEvent;
 import cc.hawkbot.regnum.server.plugin.Server;
 import net.dv8tion.jda.api.JDA;
 
+@SuppressWarnings("WeakerAccess")
 public class RegnumEvent extends NoJDAEvent {
 
     private final Server server;

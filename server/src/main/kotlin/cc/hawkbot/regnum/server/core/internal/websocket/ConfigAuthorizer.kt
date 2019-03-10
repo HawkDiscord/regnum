@@ -19,7 +19,6 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
-import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.entites.packets.IdentifyPacket
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
@@ -27,9 +26,6 @@ import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsSession
-import net.dv8tion.jda.api.JDA
-import net.dv8tion.jda.api.events.GenericEvent
-import java.lang.RuntimeException
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit

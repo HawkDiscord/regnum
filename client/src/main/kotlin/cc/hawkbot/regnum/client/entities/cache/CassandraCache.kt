@@ -21,19 +21,43 @@ package cc.hawkbot.regnum.client.entities.cache
 
 import net.dv8tion.jda.api.entities.ISnowflake
 
+/**
+ * A cache of [CachableCassandraEntity].
+ */
 interface CassandraCache<T: CachableCassandraEntity<T>> {
 
+    /**
+     * Returns an entity by its [id].
+     * @return an entity by its [id]
+     */
     operator fun get(id: Long): T
 
+    /**
+     * Returns an entity by its [id].
+     * @return an entity by its [id]
+     */
     operator fun get(id: String): T {
         return get(id.toLong())
     }
 
+    /**
+     * Returns an entity by its instance.
+     * @return an entity by its instance
+     */
     operator fun get(entity: ISnowflake): T {
         return get(entity.idLong)
     }
 
-    fun update(entity: T)
+    /**
+     * Updates an entities instance
+     * @param id the entities id
+     * @param entity the entity
+     */
+    operator fun set(id: Long, entity: T)
 
+    /**
+     * Deletes an entity by its id
+     * @param id the id
+     */
     fun delete(id: Long)
 }

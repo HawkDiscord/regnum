@@ -38,6 +38,7 @@ public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
      * @param unavailableGuilds the count of unavailable guilds
      * @see net.dv8tion.jda.api.events.ReadyEvent#ReadyEvent(JDA, long)
      */
+    @SuppressWarnings("unused")
     public ReadyEvent(ShardManager shardManager, int availableGuilds, int unavailableGuilds) {
         super(shardManager.getShards().get(0), 200);
         this.availableGuilds = availableGuilds;

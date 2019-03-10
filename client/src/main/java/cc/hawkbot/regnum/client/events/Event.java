@@ -22,7 +22,6 @@ package cc.hawkbot.regnum.client.events;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.events.NoJDAEvent;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.events.GenericEvent;
 
 /**
  * Generic event for Regnum.

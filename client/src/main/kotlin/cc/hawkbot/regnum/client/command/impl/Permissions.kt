@@ -21,5 +21,13 @@ package cc.hawkbot.regnum.client.command.impl
 
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 
+/**
+ * Generic implementation of [IPermissions].
+ * @param botOwnerExclusive whether only the bot owner should have the permission or not
+ * @param serverAdminExclusive whether only the server admin should have the permission or not
+ * @param public whether everyone should have the permission or not
+ * @param node the permission node of the command
+ * @constructor Constructs a new permission object
+ */
 @Suppress("unused")
 open class Permissions(override val botOwnerExclusive: Boolean = false, override val serverAdminExclusive: Boolean = true, override val public: Boolean = false, override val node: String) : IPermissions

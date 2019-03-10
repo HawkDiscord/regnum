@@ -23,7 +23,7 @@ import cc.hawkbot.regnum.server.plugin.discord.DiscordBot;
 import cc.hawkbot.regnum.server.plugin.io.config.Config;
 import de.foryasee.plugins.Plugin;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "EmptyMethod"})
 public abstract class RegnumPlugin implements Plugin {
 
     private Server server;
