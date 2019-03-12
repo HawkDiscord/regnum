@@ -21,5 +21,13 @@ package cc.hawkbot.regnum.client.command.permission
 
 import cc.hawkbot.regnum.client.command.impl.Permissions
 
+/**
+ * Command implementation of [IPermissions].
+ * @param botOwnerExclusive whether only the bot owner should have the permission or not
+ * @param serverAdminExclusive whether only the server admin should have the permission or not
+ * @param public whether everyone should have the permission or not
+ * @param node the permission node of the command
+ * @constructor Constructs a new permission object
+ */
 @Suppress("unused")
 class CommandPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = true, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "command.$node")

@@ -26,7 +26,7 @@ import java.util.*
 /**
  * Represents all mentions in a commands message
  */
-@Suppress("unused")
+@Suppress("unused", "UNSAFE_CAST")
 interface Mentions {
 
     /**

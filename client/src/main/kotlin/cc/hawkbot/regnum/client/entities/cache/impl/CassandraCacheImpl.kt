@@ -28,6 +28,13 @@ import com.google.common.cache.CacheLoader
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.KClass
 
+/**
+ * Implementation of [CassandraCache].
+ * @param regnum the Regnum instance
+ * @param clazz the class of the entity
+ * @param accessorClazz the class of the accessor
+ * @property T The type of the entity
+ */
 class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
         val regnum: Regnum,
         val clazz: KClass<T>,
@@ -59,8 +66,8 @@ class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
         return cache[id]
     }
 
-    override fun update(entity: T) {
-        cache.put(entity.idLong, entity)
+    override fun set(id: Long, entity: T) {
+        cache.put(id, entity)
     }
 
     override fun delete(id: Long) {

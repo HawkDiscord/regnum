@@ -31,26 +31,56 @@ import net.dv8tion.jda.api.entities.User
 @Suppress("unused")
 interface LanguageManager : RequiresRegnum {
 
+    /**
+     * The fallback language
+     */
     val defaultLanguage: Language
 
+    /**
+     * A list of all languages.
+     * @return a list of all languages.
+     */
     fun languages(): Collection<Language>
 
+    /**
+     * Registers the [language]
+     * @param language the language
+     */
     fun registerLanguage(language: Language)
 
+    /**
+     * Registers the [languages]
+     * @param languages the languages
+     */
     fun registerLanguages(vararg languages: Language) {
         languages.forEach { registerLanguages(it) }
     }
 
+    /**
+     * Registers the [languages]
+     * @param languages the language
+     */
     fun registerLanguages(languages: Collection<Language>) {
         registerLanguages(*languages.toTypedArray())
     }
 
+    /**
+     * Returns the language by a users [id].
+     * @return the language by a users [id]
+     */
     fun getLanguageByUser(id: Long): Language
 
+    /**
+     * Returns the language by a users [id].
+     * @return the language by a users [id]
+     */
     fun getLanguageByUser(id: String): Language {
         return getLanguageByUser(id.toLong())
     }
-
+    /**
+     * Returns the language by a [snowflake]
+     * @return the language by a [snowflake]
+     */
     fun getLanguageByUser(snowflake: ISnowflake): Language {
         if (snowflake !is User && snowflake !is Member) {
             throw IllegalArgumentException("Only users and members can have a language")

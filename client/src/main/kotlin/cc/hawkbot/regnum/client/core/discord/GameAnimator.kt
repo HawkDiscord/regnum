@@ -32,6 +32,7 @@ import java.util.concurrent.TimeUnit
  * @property regnum the Regnum instance
  * @constructor Constructs a new GameAnimator
  */
+@Suppress("UNSAFE_CAST")
 class GameAnimator(
         val regnum: Regnum
 ) {

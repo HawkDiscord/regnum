@@ -24,7 +24,7 @@ import cc.hawkbot.regnum.entites.json.JsonObject;
 import cc.hawkbot.regnum.entites.json.RegnumJsonNode;
 import org.junit.Test;
 
-@SuppressWarnings("FieldCanBeLocal")
+@SuppressWarnings({"FieldCanBeLocal", "SpellCheckingInspection"})
 public class JSONTest {
 
     private final String ARRAY = "[\"HUI\",\"HUII\",\"HUIII\"]";

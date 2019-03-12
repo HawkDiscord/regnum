@@ -17,23 +17,29 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.client.core
 
-import cc.hawkbot.regnum.server.discord.DiscordBot
-import cc.hawkbot.regnum.server.io.config.Config
-import io.javalin.Javalin
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneId
 
-interface Server {
+/**
+ * The Heart(beater) of the client.
+ * @property lastHeartbeat the timestamp of the last heartbeat
+ * @property ping the last ping between the client and the server
+ */
+@Suppress("unused")
+interface Heart {
 
-    val launchedAt: Long
+    var lastHeartbeat: Long
+    var ping: Int
 
-    val dev: Boolean
+    /**
+     * Returns the heartbeat as an [OffsetDateTime].
+     * @return the heartbeat as an [OffsetDateTime]
+     */
+    fun lastHeartbeat(): OffsetDateTime {
+        return OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())
+    }
 
-    val javalin: Javalin
-
-    val websocket: Websocket
-
-    val config: Config
-
-    val discordBot: DiscordBot
 }

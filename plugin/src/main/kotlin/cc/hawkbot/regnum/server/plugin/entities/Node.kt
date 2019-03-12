@@ -17,19 +17,51 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.server.plugin.entities
 
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 
-interface Websocket {
+/**
+ * Representation of a connected Regnum node.
+ */
+@Suppress("unused")
+interface Node {
 
-    val nodes: MutableList<WsSession>
+    /**
+     * The websocket session.
+     */
+    val session: WsSession
 
-    fun send(session: WsSession, message: String)
+    /**
+     * The range of all shards on this node.
+     */
+    val shards: IntRange
 
-    fun send(session: WsSession, payload: Payload) {
-        send(session, payload.toJson())
+    /**
+     * The nodes pulse.
+     */
+    val pulse: Pulse
+
+    /**
+     * The current websocket instance.
+     */
+    val websocket: Websocket
+
+    /**
+     * Sends a [message] to this node
+     * @param message the message
+     */
+    fun send(message: String) {
+        websocket.send(session, message)
     }
 
+    /**
+     * Sends a [payload] to this node
+     * @param payload the payload
+     */
+    fun send(payload: Payload) {
+        websocket.send(session, payload)
+    }
 }

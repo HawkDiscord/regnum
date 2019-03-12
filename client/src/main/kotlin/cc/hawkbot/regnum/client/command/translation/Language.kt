@@ -31,6 +31,10 @@ import java.util.*
 interface Language : RequiresRegnum {
 
     companion object {
+        /**
+         * Converts the [language] into a default language.
+         * @return the default language
+         */
         fun defaultLanguage(language: Language): Language {
             return object : Language {
                 override val locale: Locale
@@ -65,18 +69,41 @@ interface Language : RequiresRegnum {
 
     val locale: Locale
 
+    /**
+     * Returns the language-tag.
+     * @return the language-tag.
+     */
     fun languageTag(): String {
         return locale.toLanguageTag()
     }
 
+    /**
+     * Returns the display-name.
+     * @return the display-name.
+     */
     fun displayName(): String {
         return locale.displayName
     }
 
+    /**
+     * Returns whether the language contains the [key] or not.
+     * @param key the key
+     * @return whether the language contains the key or not
+     */
     fun has(key: String): Boolean
 
+    /**
+     * Returns he translated string for the specified [key].
+     * @param key the key
+     * @return the translated string for the specified [key]
+     */
     fun get(key: String): String
 
+    /**
+     * Returns the translated string from this language or from the default language if it isn't translated yet.
+     * @param key the key
+     * @return the translated string
+     */
     fun translate(key: String): String {
         if (!has(key))
             return regnum().languageManager.defaultLanguage.translate(key)

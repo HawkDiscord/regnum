@@ -22,7 +22,7 @@ package cc.hawkbot.regnum.entites.packets;
 /**
  * Currently unused
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings("unused")
 public class ResumePacket extends IdentifyPacket {
 
     public static final String IDENTIFIER = "RESUME";

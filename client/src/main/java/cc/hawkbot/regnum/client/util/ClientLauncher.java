@@ -17,12 +17,18 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.util;import cc.hawkbot.regnum.client.RegnumBuilder;
+package cc.hawkbot.regnum.client.util;
+
+import cc.hawkbot.regnum.client.Regnum;
+import cc.hawkbot.regnum.client.RegnumBuilder;
 import cc.hawkbot.regnum.client.command.Group;
 import cc.hawkbot.regnum.client.command.context.Arguments;
 import cc.hawkbot.regnum.client.command.context.Context;
 import cc.hawkbot.regnum.client.command.permission.CommandPermissions;
 import cc.hawkbot.regnum.client.command.translation.defaults.PropertyLanguage;
+import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
+import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
+import net.dv8tion.jda.api.hooks.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.nio.charset.StandardCharsets;
@@ -31,7 +37,13 @@ import java.util.Locale;
 @SuppressWarnings("WeakerAccess")
 public class ClientLauncher {
 
+    private final Regnum regnum;
+
     public static void main(String[] args) {
+        new ClientLauncher();
+    }
+
+    private ClientLauncher() {
         var builder = new RegnumBuilder()
                 .setHost("ws://localhost:7001/ws")
                 .setToken("SUPER-SECRET-TOKEN");
@@ -40,8 +52,17 @@ public class ClientLauncher {
         builder.setCassandraKeyspace("test");
         builder.addCassandraContactPoints("127.0.0.1");
         builder.authCassandra();
+        builder.registerEvents(this);
         builder.setDefaultLanguageManager(new PropertyLanguage(Locale.ENGLISH, "locales/en_US.properties", StandardCharsets.UTF_8));
-        var regnum = builder.build();
+        regnum = builder.build();
+    }
+
+    @SubscribeEvent
+    @SuppressWarnings("unused")
+    private void onMessage(WebSocketMessageEvent event) {
+        if (event.payload().getType().equals(HeartBeatAckPacket.IDENTIFIER)) {
+            System.out.println("PING: " + regnum.getWebsocket().ping());
+        }
     }
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {

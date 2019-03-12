@@ -21,6 +21,8 @@ package cc.hawkbot.regnum.client.events.websocket;
 
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
+import cc.hawkbot.regnum.entites.Payload;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Event that is fired when a websocket message got received.
@@ -50,5 +52,10 @@ public class WebSocketMessageEvent extends WebSocketEvent {
      */
     public String getMessage() {
         return message;
+    }
+
+    @NotNull
+    public Payload payload() {
+        return Payload.fromJson(message);
     }
 }

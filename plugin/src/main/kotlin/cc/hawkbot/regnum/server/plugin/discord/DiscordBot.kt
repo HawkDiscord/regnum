@@ -17,11 +17,18 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.discord
+package cc.hawkbot.regnum.server.plugin.discord
 
 import net.dv8tion.jda.api.JDA
+import java.io.Closeable
 
-interface DiscordBot {
+/**
+ * Representation of the built-in Discord bot.
+ */
+interface DiscordBot: Closeable {
 
+    /**
+     * The JDA instance.
+     */
     val jda: JDA
 }
