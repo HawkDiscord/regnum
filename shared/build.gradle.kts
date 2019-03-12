@@ -33,6 +33,7 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
+    jcenter()
     maven { url = uri("https://jitpack.io") }
 }
 
@@ -40,6 +41,8 @@ dependencies {
 
     // Logging
     implementation("org.slf4j:slf4j-api:1.7.25")
+
+    compile("net.dv8tion:JDA:4.ALPHA.0_54")
 
     // Util
     compile("com.github.Carleslc:Simple-YAML:1.3")

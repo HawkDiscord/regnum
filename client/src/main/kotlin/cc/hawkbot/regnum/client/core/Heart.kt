@@ -1,5 +1,5 @@
 /*
- * Regnum - A Discord bot clustering system made for Hawk 
+ * Regnum - A Discord bot clustering system made for Hawk
  *
  * Copyright (C) 2019  Michael Rittmeister
  *
@@ -17,11 +17,19 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-rootProject.name = 'regnum'
-include 'shared'
-include 'server'
-include 'client'
-include 'server:plugin'
-findProject(':server:plugin')?.name = 'plugin'
-include 'plugin'
+package cc.hawkbot.regnum.client.core
 
+import java.time.Instant
+import java.time.OffsetDateTime
+import java.time.ZoneId
+
+interface Heart {
+
+    var lastHeartbeat: Long
+    var ping: Int
+
+    fun lastHeartbeat(): OffsetDateTime {
+        return OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())
+    }
+
+}

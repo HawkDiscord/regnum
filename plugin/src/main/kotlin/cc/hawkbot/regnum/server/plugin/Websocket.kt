@@ -17,44 +17,21 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.core
+package cc.hawkbot.regnum.server.plugin
 
-import cc.hawkbot.regnum.client.core.internal.WebsocketImpl
 import cc.hawkbot.regnum.entites.Payload
-import com.google.common.base.Preconditions
-import org.java_websocket.WebSocketImpl
+import cc.hawkbot.regnum.server.plugin.entities.Node
+import io.javalin.websocket.WsSession
 
-/**
- * Class to represent websocket connection.
- */
+@Suppress("unused")
 interface Websocket {
 
-    val heart: Heart
+    val nodes: MutableList<Node>
 
-    /**
-     * Connects to the websocket.
-     */
-    fun start()
+    fun send(session: WsSession, message: String)
 
-    /**
-     * Sends a message to the server.
-     * @param message the message
-     */
-    fun sendMessage(message: String)
-
-    /**
-     * Sends a payload to the server.
-     * @param payload the payload
-     */
-    fun send(payload: Payload) {
-        sendMessage(payload.toJson())
+    fun send(session: WsSession, payload: Payload) {
+        send(session, payload.toJson())
     }
 
-    fun ping(): Int {
-        Preconditions.checkArgument((this as WebsocketImpl).isHeartInitialized(), "Heart is not initialized yet");
-        return heart.ping
-    }
-
-
-    fun close()
 }

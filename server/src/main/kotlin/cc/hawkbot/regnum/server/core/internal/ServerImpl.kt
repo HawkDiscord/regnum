@@ -19,27 +19,71 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
-import cc.hawkbot.regnum.server.core.Server
-import cc.hawkbot.regnum.server.core.Websocket
-import cc.hawkbot.regnum.server.discord.DiscordBot
+import cc.hawkbot.regnum.server.core.internal.websocket.ConfigAuthorizer
+import cc.hawkbot.regnum.server.core.internal.websocket.WebsocketImpl
 import cc.hawkbot.regnum.server.discord.DiscordBotImpl
-import cc.hawkbot.regnum.server.io.config.Config
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.Websocket
+import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
+import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
+import cc.hawkbot.regnum.server.plugin.io.config.Config
+import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import io.javalin.Javalin
+import net.dv8tion.jda.api.hooks.AnnotatedEventManager
+import net.dv8tion.jda.api.hooks.IEventManager
 
 class ServerImpl(
         override val launchedAt: Long,
-        override val dev: Boolean
+        override val dev: Boolean,
+        noDiscord: Boolean
 ) : Server {
     override val config: Config = Config("config/server.yml")
     override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
     override lateinit var websocket: Websocket
-    override val discordBot: DiscordBot
+    override lateinit var discordBot: DiscordBot
+    override val eventManager: IEventManager = AnnotatedEventManager()
+    override val eventWaiter: EventWaiter = EventWaiterImpl(eventManager)
+    override var authorizationHandler: AuthorizationHandler = ConfigAuthorizer()
+
+    private lateinit var pluginManager: PluginManager
 
     init {
+        shutdownHook()
+        plugins()
+        initWebsocket()
+        initDiscord(noDiscord)
+    }
+
+    private fun plugins() {
+        pluginManager = PluginManager(this)
+    }
+
+    private fun shutdownHook() {
+        Runtime.getRuntime().addShutdownHook(Thread {
+            close()
+        })
+    }
+
+    private fun initWebsocket() {
         javalin.ws("/ws") {
-            websocket = WebsocketImpl(it, config, this)
+            websocket = WebsocketImpl(it, this)
         }
-        discordBot = DiscordBotImpl(config.getString(Config.DISCORD_TOKEN))
+    }
+
+    private fun initDiscord(noDiscord: Boolean) {
+        if (!noDiscord) {
+            discordBot = DiscordBotImpl(config.getString(Config.DISCORD_TOKEN))
+        }
+    }
+
+    override fun close() {
+        pluginManager.close()
+        javalin.stop()
+        eventWaiter.close()
+        if (this::discordBot.isInitialized) {
+            discordBot.close()
+        }
     }
 
 }

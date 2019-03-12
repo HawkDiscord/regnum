@@ -17,46 +17,28 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.events;
+package cc.hawkbot.regnum.server.plugin.events;
 
-import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.events.NoJDAEvent;
+import cc.hawkbot.regnum.server.plugin.Server;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.events.GenericEvent;
 
-/**
- * Generic event for Regnum.
- */
-@SuppressWarnings("unused")
-public class Event extends NoJDAEvent {
+public class RegnumEvent extends NoJDAEvent {
 
-    private final Regnum regnum;
+    private final Server server;
 
-    /**
-     * Constructs a new Regnum event.
-     *
-     * @param regnum the Regnum instance
-     */
-    public Event(Regnum regnum) {
-        this.regnum = regnum;
+    public RegnumEvent(Server server) {
+        this.server = server;
     }
 
-    /**
-     * Returns the {@link Regnum} instance.
-     *
-     * @return the {@link Regnum} instance
-     */
-    public Regnum getRegnum() {
-        return regnum;
-    }
 
     @Override
     public JDA getJDA() {
-        throw new UnsupportedOperationException("Regnum events does not support JDA getter");
+        return server.getDiscordBot().getJda();
     }
 
     @Override
     public long getResponseNumber() {
-        throw new UnsupportedOperationException("Regnum events does not support response number");
+        throw new UnsupportedOperationException("Regnum events does not support response numbers");
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Regnum - A Discord bot clustering system made for Hawk 
+ * Regnum - A Discord bot clustering system made for Hawk
  *
  * Copyright (C) 2019  Michael Rittmeister
  *
@@ -17,11 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-rootProject.name = 'regnum'
-include 'shared'
-include 'server'
-include 'client'
-include 'server:plugin'
-findProject(':server:plugin')?.name = 'plugin'
-include 'plugin'
+package cc.hawkbot.regnum.events;
 
+import cc.hawkbot.regnum.entites.EmptyJDA;
+import net.dv8tion.jda.api.events.Event;
+
+public class NoJDAEvent extends Event {
+    public NoJDAEvent() {
+        super(EmptyJDA.INSTANCE);
+    }
+}

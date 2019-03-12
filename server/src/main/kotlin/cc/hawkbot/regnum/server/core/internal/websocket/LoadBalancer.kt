@@ -17,13 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core.internal
+package cc.hawkbot.regnum.server.core.internal.websocket
 
 import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.entites.json.JsonObject
 import cc.hawkbot.regnum.entites.packets.discord.StartPacket
-import cc.hawkbot.regnum.server.core.Server
-import cc.hawkbot.regnum.server.io.config.Config
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsSession
 import okhttp3.OkHttpClient
@@ -41,7 +41,8 @@ class LoadBalancer(private val server: Server) {
     private val counts = mutableMapOf<WsSession, Array<Int>>()
 
     init {
-        optimalShards = calculateShardCount()
+        optimalShards = 2
+                //calculateShardCount()
         shardIds = calculateShardIds(optimalShards)
     }
 
@@ -108,8 +109,8 @@ class LoadBalancer(private val server: Server) {
                 }
             }
             shards = shardsList.toTypedArray()
-            counts[node] = shards
-            ws.send(node, Payload.of(StartPacket(token, shards, shardsTotal), StartPacket.IDENTIFIER))
+            counts[node.session] = shards
+            ws.send(node.session, Payload.of(StartPacket(token, shards, shardsTotal), StartPacket.IDENTIFIER))
         }
     }
 }

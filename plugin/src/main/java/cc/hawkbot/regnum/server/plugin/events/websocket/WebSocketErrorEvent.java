@@ -1,5 +1,5 @@
 /*
- * Regnum - A Discord bot clustering system made for Hawk 
+ * Regnum - A Discord bot clustering system made for Hawk
  *
  * Copyright (C) 2019  Michael Rittmeister
  *
@@ -17,11 +17,23 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-rootProject.name = 'regnum'
-include 'shared'
-include 'server'
-include 'client'
-include 'server:plugin'
-findProject(':server:plugin')?.name = 'plugin'
-include 'plugin'
+package cc.hawkbot.regnum.server.plugin.events.websocket;
 
+import cc.hawkbot.regnum.server.plugin.Server;
+import cc.hawkbot.regnum.server.plugin.Websocket;
+import io.javalin.websocket.WsSession;
+
+@SuppressWarnings("unused")
+public class WebSocketErrorEvent extends WebSocketSessionEvent {
+
+    private final Throwable throwable;
+
+    public WebSocketErrorEvent(Server server, Websocket websocket, WsSession session, Throwable throwable) {
+        super(server, websocket, session);
+        this.throwable = throwable;
+    }
+
+    public Throwable getThrowable() {
+        return throwable;
+    }
+}

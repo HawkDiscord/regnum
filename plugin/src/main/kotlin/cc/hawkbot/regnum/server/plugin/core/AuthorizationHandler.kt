@@ -17,19 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.server.plugin.core
 
-import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.server.plugin.Server
 import io.javalin.websocket.WsSession
+import java.util.concurrent.CompletionStage
 
-interface Websocket {
+interface AuthorizationHandler {
 
-    val nodes: MutableList<WsSession>
-
-    fun send(session: WsSession, message: String)
-
-    fun send(session: WsSession, payload: Payload) {
-        send(session, payload.toJson())
-    }
-
+    fun authorize(server: Server, wsSession: WsSession): CompletionStage<WsSession>
 }

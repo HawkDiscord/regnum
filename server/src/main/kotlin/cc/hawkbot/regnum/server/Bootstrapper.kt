@@ -44,6 +44,11 @@ fun main(args: Array<String>) {
                             .hasArg()
                             .desc("Logging level")
                             .build()
+            ).addOption(
+                    Option.builder("ND")
+                            .longOpt("no-discord")
+                            .desc("Disabled built-in Discord bot")
+                            .build()
             )
 
     val parser = DefaultParser()
@@ -55,5 +60,5 @@ fun main(args: Array<String>) {
     Logger.getLogger().info("[Launcher] Starting Regnum server!")
 
     // Start server
-    ServerImpl(launchedAt, cmd.hasOption("D"))
+    ServerImpl(launchedAt, cmd.hasOption("D"), cmd.hasOption("ND"))
 }

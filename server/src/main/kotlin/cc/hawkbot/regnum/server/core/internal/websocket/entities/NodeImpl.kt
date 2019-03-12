@@ -17,11 +17,18 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.discord
+package cc.hawkbot.regnum.server.core.internal.websocket.entities
 
-import net.dv8tion.jda.api.JDA
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.Websocket
+import cc.hawkbot.regnum.server.plugin.entities.Node
+import cc.hawkbot.regnum.server.plugin.entities.Pulse
+import io.javalin.websocket.WsSession
 
-interface DiscordBot {
+class NodeImpl(override val session: WsSession, override val websocket: Websocket, server: Server) : Node {
 
-    val jda: JDA
+    // No shards for now
+    override val shards: IntRange = 0 until 0
+    override val pulse: Pulse = PulseImpl(server, this)
+
 }

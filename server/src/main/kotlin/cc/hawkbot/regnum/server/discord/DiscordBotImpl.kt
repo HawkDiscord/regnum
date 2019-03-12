@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.server.discord
 
+import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.OnlineStatus
@@ -46,5 +47,9 @@ class DiscordBotImpl(token: String) : DiscordBot {
         val presence = event.jda.presence
         presence.status = OnlineStatus.ONLINE
         presence.activity = Activity.playing("With my little brother Hawk")
+    }
+
+    override fun close() {
+        jda.shutdownNow()
     }
 }
