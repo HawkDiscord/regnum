@@ -45,8 +45,7 @@ class LoadBalancer(private val server: Server) {
     private val counts = mutableMapOf<WsSession, Array<Int>>()
 
     init {
-        optimalShards = 2
-                //calculateShardCount()
+        optimalShards = calculateShardCount()
         shardIds = calculateShardIds(optimalShards)
     }
 
@@ -64,6 +63,9 @@ class LoadBalancer(private val server: Server) {
     }
 
     //TODO: Implement load balancing again
+    /**
+     * Handles new connections.
+     */
     fun handleConnect() {
         if (ws.nodes.size == 1) {
             log.info("[DiscordBalancer] First node connected waiting 30 seconds for other nodes to connect before balancing")
