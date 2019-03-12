@@ -1,5 +1,5 @@
 /*
- * Regnum - A Discord bot clustering system made for Hawk 
+ * Regnum - A Discord bot clustering system made for Hawk
  *
  * Copyright (C) 2019  Michael Rittmeister
  *
@@ -17,12 +17,17 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-rootProject.name = 'regnum'
-include 'shared'
-include 'server'
-include 'client'
-include 'server:plugin'
-findProject(':server:plugin')?.name = 'plugin'
-include 'plugin'
-include 'example-plugin'
+package cc.hawkbot.regnum.example
 
+import cc.hawkbot.regnum.server.plugin.RegnumPlugin
+
+class Plugin: RegnumPlugin() {
+
+    override fun onEnable() {
+        println("Enabled test plugin!")
+    }
+
+    override fun onDisable() {
+        println("Disabled test plugin")
+    }
+}

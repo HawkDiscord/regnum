@@ -18,7 +18,7 @@ dependencies {
 
     implementation(project(":shared"))
 
-    implementation("de.foryasee:plugins:1.0.1")
+    compile("de.foryasee:plugins:1.1.0")
 
     // Server
     implementation("io.javalin:javalin:2.6.0")

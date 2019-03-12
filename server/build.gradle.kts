@@ -45,8 +45,7 @@ dependencies {
     implementation(project(":plugin"))
     implementation(project(":shared"))
 
-    implementation("de.foryasee:plugins:1.0.1")
-
+    implementation("de.foryasee:plugins:1.1.0")
 
     // Server
     implementation("io.javalin:javalin:2.6.0")
@@ -59,6 +58,9 @@ dependencies {
 
     // Util
     implementation("commons-cli:commons-cli:$cliVersion")
+
+    // Javalin
+    compile("org.eclipse.jetty:jetty-jmx:9.4.15.v20190215")
 
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
