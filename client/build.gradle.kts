@@ -60,7 +60,6 @@ dependencies {
 
     // Util
     compile("com.google.guava:guava:27.0.1-jre")
-    compile("com.relops:snowflake:1.1")
 
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
