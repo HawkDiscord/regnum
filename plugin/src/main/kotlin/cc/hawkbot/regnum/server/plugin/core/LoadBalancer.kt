@@ -17,28 +17,21 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin.events.websocket;
+package cc.hawkbot.regnum.server.plugin.core
 
-import cc.hawkbot.regnum.server.plugin.Server;
-import cc.hawkbot.regnum.server.plugin.Websocket;
-import cc.hawkbot.regnum.server.plugin.entities.Node;
-import io.javalin.websocket.WsSession;
+import cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent
 
-@SuppressWarnings("unused")
-public class WebSocketSessionEvent extends WebSocketEvent {
+interface LoadBalancer {
 
-    private final WsSession session;
+    val optimalShards: Int
 
-    WebSocketSessionEvent(Server server, Websocket websocket, WsSession session) {
-        super(server, websocket);
-        this.session = session;
-    }
+    val token: String
 
-    public WsSession getSession() {
-        return session;
-    }
+    fun handleConnect(event: WebsocketAuthorizedEvent)
 
-    public Node getNode() {
-        return getWebsocket().getNode(session);
+    fun handleDisconnect(event: WebsocketAuthorizedEvent)
+
+    fun shardIds(to: Int = optimalShards): IntRange {
+        return 0 until to
     }
 }

@@ -20,11 +20,13 @@
 package cc.hawkbot.regnum.server.core.internal
 
 import cc.hawkbot.regnum.server.core.internal.websocket.ConfigAuthorizer
+import cc.hawkbot.regnum.server.core.internal.websocket.LoadBalancerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.WebsocketImpl
 import cc.hawkbot.regnum.server.discord.DiscordBotImpl
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
+import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
@@ -32,6 +34,7 @@ import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager
 import net.dv8tion.jda.api.hooks.IEventManager
+import okhttp3.OkHttpClient
 
 /**
  * Implementation of [Server].
@@ -52,6 +55,8 @@ class ServerImpl(
     override val eventManager: IEventManager = AnnotatedEventManager()
     override val eventWaiter: EventWaiter = EventWaiterImpl(eventManager)
     override var authorizationHandler: AuthorizationHandler = ConfigAuthorizer()
+    override lateinit var loadBalancer: LoadBalancer
+    override val httpClient: OkHttpClient = OkHttpClient()
 
     private lateinit var pluginManager: PluginManager
 
@@ -76,6 +81,8 @@ class ServerImpl(
         javalin.ws("/ws") {
             websocket = WebsocketImpl(it, this)
         }
+        loadBalancer = LoadBalancerImpl(this)
+        eventManager.register(loadBalancer)
     }
 
     private fun initDiscord(noDiscord: Boolean) {

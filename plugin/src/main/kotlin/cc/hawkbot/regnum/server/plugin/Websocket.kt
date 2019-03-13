@@ -34,6 +34,10 @@ interface Websocket {
      */
     val nodes: List<Node>
 
+    fun getNode(session: WsSession): Node {
+        return nodes.first { it.session == session }
+    }
+
     /**
      * Sends a [message] to the specified [session]
      * @param session the session to sent the message to

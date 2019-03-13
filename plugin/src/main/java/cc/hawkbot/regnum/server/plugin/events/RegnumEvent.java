@@ -38,6 +38,10 @@ public class RegnumEvent extends NoJDAEvent {
         return server.getDiscordBot().getJda();
     }
 
+    public Server getServer() {
+        return server;
+    }
+
     @Override
     public long getResponseNumber() {
         throw new UnsupportedOperationException("Regnum events does not support response numbers");

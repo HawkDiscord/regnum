@@ -17,28 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin.events.websocket;
+package cc.hawkbot.regnum.server
 
-import cc.hawkbot.regnum.server.plugin.Server;
-import cc.hawkbot.regnum.server.plugin.Websocket;
-import cc.hawkbot.regnum.server.plugin.entities.Node;
-import io.javalin.websocket.WsSession;
-
-@SuppressWarnings("unused")
-public class WebSocketSessionEvent extends WebSocketEvent {
-
-    private final WsSession session;
-
-    WebSocketSessionEvent(Server server, Websocket websocket, WsSession session) {
-        super(server, websocket);
-        this.session = session;
-    }
-
-    public WsSession getSession() {
-        return session;
-    }
-
-    public Node getNode() {
-        return getWebsocket().getNode(session);
-    }
-}
+fun IntProgression.toArray() =
+        IntArray(this.count()).also { forEachIndexed { index, i -> it[index] = i } }

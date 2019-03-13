@@ -21,24 +21,11 @@ package cc.hawkbot.regnum.server.plugin.events.websocket;
 
 import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
-import cc.hawkbot.regnum.server.plugin.entities.Node;
 import io.javalin.websocket.WsSession;
 
-@SuppressWarnings("unused")
-public class WebSocketSessionEvent extends WebSocketEvent {
+public class WebsocketAuthorizedEvent extends WebSocketSessionEvent {
 
-    private final WsSession session;
-
-    WebSocketSessionEvent(Server server, Websocket websocket, WsSession session) {
-        super(server, websocket);
-        this.session = session;
-    }
-
-    public WsSession getSession() {
-        return session;
-    }
-
-    public Node getNode() {
-        return getWebsocket().getNode(session);
+    public WebsocketAuthorizedEvent(Server server, Websocket websocket, WsSession session) {
+        super(server, websocket, session);
     }
 }

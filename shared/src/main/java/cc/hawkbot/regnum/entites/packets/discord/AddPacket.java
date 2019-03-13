@@ -19,12 +19,14 @@
 
 package cc.hawkbot.regnum.entites.packets.discord;
 
+import cc.hawkbot.regnum.entites.packets.Packet;
+
 /**
  * Discord ADD packet.
  * Packet that is used to add another Discord shard to a node
  */
 @SuppressWarnings("unused")
-public class AddPacket {
+public class AddPacket implements Packet {
 
     /**
      * Type identifier
