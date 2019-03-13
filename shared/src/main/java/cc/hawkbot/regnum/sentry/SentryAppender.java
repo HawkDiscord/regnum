@@ -30,6 +30,10 @@ import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * Standard LOG4J appender which posts errors to Sentry.
+ * @see SentryClient
+ */
 @Plugin(
         name = "SentryAppender",
         category = Core.CATEGORY_NAME,
@@ -41,6 +45,10 @@ public class SentryAppender extends AbstractAppender {
     private static SentryClient client;
     private final Level[] WHITELISTED_LEVELS = {Level.ERROR, Level.FATAL, Level.TRACE};
 
+    /**
+     * Method that injects the {@link SentryClient}.
+     * @param sentry the client
+     */
     public static void injectSentry(SentryClient sentry) {
         client = sentry;
     }
@@ -63,6 +71,13 @@ public class SentryAppender extends AbstractAppender {
         }
     }
 
+    /**
+     * Plugin factory method.
+     * @param name the name of the appender
+     * @param filter any filter for the appender
+     * @param layout the layout for the appender
+     * @return a new Sentry appender
+     */
     @PluginFactory
     public static SentryAppender createAppender(
             @PluginAttribute("name") String name,
