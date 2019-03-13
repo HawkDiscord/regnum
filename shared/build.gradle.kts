@@ -41,6 +41,8 @@ dependencies {
 
     // Logging
     implementation("org.slf4j:slf4j-api:1.7.25")
+    // Only needed in server
+    implementation("org.apache.logging.log4j:log4j-core:2.11.0")
 
     @Suppress("SpellCheckingInspection")
     compile("net.dv8tion:JDA:4.ALPHA.0_54")

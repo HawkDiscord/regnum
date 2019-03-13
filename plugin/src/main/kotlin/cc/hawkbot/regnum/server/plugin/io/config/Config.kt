@@ -45,6 +45,9 @@ class Config(source: String) : GenericConfig(source) {
         // General
         const val PLUGINS_DIRECTORY = "general.plugins_directory"
         const val LOAD_BALANCE_TIMEOUT = "general.load_balance_timeout"
+
+        // Sentry
+        const val SENTRY_DSN = "sentry.dsn"
     }
 
     override fun defaults() {
@@ -58,5 +61,6 @@ class Config(source: String) : GenericConfig(source) {
         applyDefault(DISCORD_NODE_TOKEN, "WUMPUS IS STILL LOVE BRA")
         applyDefault(PLUGINS_DIRECTORY, "plugins/")
         applyDefault(LOAD_BALANCE_TIMEOUT, 30)
+        applyDefault(SENTRY_DSN, "YOU DSN")
     }
 }

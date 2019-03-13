@@ -19,6 +19,8 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
+import cc.hawkbot.regnum.sentry.SentryAppender
+import cc.hawkbot.regnum.sentry.SentryClient
 import cc.hawkbot.regnum.server.core.internal.websocket.ConfigAuthorizer
 import cc.hawkbot.regnum.server.core.internal.websocket.LoadBalancerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.WebsocketImpl
@@ -46,7 +48,8 @@ import okhttp3.OkHttpClient
 class ServerImpl(
         override val launchedAt: Long,
         override val dev: Boolean,
-        noDiscord: Boolean
+        noDiscord: Boolean,
+        noSentry: Boolean
 ) : Server {
     override val config: Config = Config("config/server.yml")
     override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
@@ -57,14 +60,22 @@ class ServerImpl(
     override var authorizationHandler: AuthorizationHandler = ConfigAuthorizer()
     override lateinit var loadBalancer: LoadBalancer
     override val httpClient: OkHttpClient = OkHttpClient()
-
+    override lateinit var sentry: SentryClient
     private lateinit var pluginManager: PluginManager
 
     init {
+        initSentry(noSentry)
         shutdownHook()
         plugins()
         initWebsocket()
         initDiscord(noDiscord)
+    }
+
+    private fun initSentry(noSentry: Boolean) {
+        if (!noSentry) {
+            sentry = SentryClient(config.getString(Config.SENTRY_DSN))
+            SentryAppender.injectSentry(sentry)
+        }
     }
 
     private fun plugins() {
