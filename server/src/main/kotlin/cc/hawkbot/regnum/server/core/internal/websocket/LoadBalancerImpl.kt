@@ -72,7 +72,6 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
 
     @SubscribeEvent
     override fun handleConnect(event: WebsocketAuthorizedEvent) {
-        println("event")
         val node = event.node
         // Check if it's the first node
         if (ws.nodes.size == 1) {
@@ -141,7 +140,6 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
     private fun startShards(shardsPerNode: Int, shards: Array<Int>) {
         val nodes = ws.nodes.iterator()
         log.info("[DiscordBalancer] Balancing Discord shards on $shards nodes with $shardsPerNode shards/node")
-        println(ws.nodes)
         val shardIds = shards.iterator()
         while (nodes.hasNext()) {
             val shardsList = mutableListOf<Int>()
@@ -156,7 +154,6 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
 
             // Check if its last node
             if (nodes.hasNext()) {
-                println("HAS NEXT")
                 for (i in 0 until shardsPerNode) {
                     addNextId()
                 }
@@ -166,8 +163,6 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
                     addNextId()
                 }
             }
-            println(toString())
-            println("START SHARDS")
             node.startShards(shardsList.toTypedArray())
         }
         balanced = true
