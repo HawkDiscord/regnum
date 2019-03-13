@@ -23,7 +23,9 @@ import cc.hawkbot.regnum.events.NoJDAEvent;
 import cc.hawkbot.regnum.server.plugin.Server;
 import net.dv8tion.jda.api.JDA;
 
-@SuppressWarnings("WeakerAccess")
+/**
+ * Generic Regnum event
+ */
 public class RegnumEvent extends NoJDAEvent {
 
     private final Server server;
@@ -38,6 +40,10 @@ public class RegnumEvent extends NoJDAEvent {
         return server.getDiscordBot().getJda();
     }
 
+    /**
+     * Returns the server instance.
+     * @return the server instance
+     */
     public Server getServer() {
         return server;
     }

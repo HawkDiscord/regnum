@@ -79,7 +79,13 @@ interface Server: Closeable {
      */
     var authorizationHandler: AuthorizationHandler
 
-    var loadBalancer: LoadBalancer
+    /**
+     * The loadbalancer.
+     */
+    val loadBalancer: LoadBalancer
 
+    /**
+     * The HTTP client used for requests.
+     */
     val httpClient: OkHttpClient
 }

@@ -23,6 +23,10 @@ import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
 import cc.hawkbot.regnum.server.plugin.events.RegnumEvent;
 
+/**
+ * Generic websocket event.
+ * @see RegnumEvent
+ */
 @SuppressWarnings("unused")
 public class WebSocketEvent extends RegnumEvent {
 
@@ -33,6 +37,10 @@ public class WebSocketEvent extends RegnumEvent {
         this.websocket = websocket;
     }
 
+    /**
+     * Returns the websocket.
+     * @return the websocket
+     */
     public Websocket getWebsocket() {
         return websocket;
     }

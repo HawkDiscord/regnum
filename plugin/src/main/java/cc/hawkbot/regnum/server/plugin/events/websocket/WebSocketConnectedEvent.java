@@ -23,6 +23,10 @@ import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
 import io.javalin.websocket.WsSession;
 
+/**
+ * Event that indicates a new connection.
+ * @see WebSocketSessionEvent
+ */
 @SuppressWarnings("unused")
 public class WebSocketConnectedEvent extends WebSocketSessionEvent {
 

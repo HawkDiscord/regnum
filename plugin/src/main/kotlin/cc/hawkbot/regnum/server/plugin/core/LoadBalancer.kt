@@ -19,18 +19,40 @@
 
 package cc.hawkbot.regnum.server.plugin.core
 
+import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketCloseEvent
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent
 
+/**
+ * Represents balancing of shards to different Regnum nodes.
+ */
 interface LoadBalancer {
 
+    /**
+     * Count of optimal shards.
+     */
     val optimalShards: Int
 
+    /**
+     * The Discord Bot token.
+     */
     val token: String
 
+    /**
+     * Method that handles new connections.
+     * @param event the authorization event
+     */
     fun handleConnect(event: WebsocketAuthorizedEvent)
 
-    fun handleDisconnect(event: WebsocketAuthorizedEvent)
+    /**
+     * Method that handles disconnects.
+     * @param event the disconnect event
+     */
+    fun handleDisconnect(event: WebSocketCloseEvent)
 
+    /**
+     * Method that calculated shard ids.
+     * @param to the maximal shard id
+     */
     fun shardIds(to: Int = optimalShards): IntRange {
         return 0 until to
     }

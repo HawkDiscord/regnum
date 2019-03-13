@@ -23,6 +23,10 @@ import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
 import io.javalin.websocket.WsSession;
 
+/**
+ * Event that indicates that a node has sent a valid IDENTIFY.
+ * @see WebSocketSessionEvent
+ */
 public class WebsocketAuthorizedEvent extends WebSocketSessionEvent {
 
     public WebsocketAuthorizedEvent(Server server, Websocket websocket, WsSession session) {

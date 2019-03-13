@@ -21,31 +21,50 @@ package cc.hawkbot.regnum.server.plugin.events.websocket;
 
 import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
+import cc.hawkbot.regnum.server.plugin.entities.Node;
 import io.javalin.websocket.WsSession;
 
+/**
+ * Event that indicates that a node closed it's connection.
+ * @see WebSocketSessionEvent
+ */
 @SuppressWarnings("unused")
-public class WebSocketCloseEvent extends WebSocketEvent {
+public class WebSocketCloseEvent extends WebSocketSessionEvent {
 
-    private final WsSession session;
     private final int code;
     private final String reason;
+    private final Node node;
 
-    public WebSocketCloseEvent(Server server, Websocket websocket, WsSession session, int code, String reason) {
-        super(server, websocket);
-        this.session = session;
+    public WebSocketCloseEvent(Server server, Websocket websocket, WsSession session, int code, String reason, Node node) {
+        super(server, websocket, session);
         this.code = code;
         this.reason = reason;
+        this.node = node;
     }
 
-    public WsSession getSession() {
-        return session;
-    }
-
+    /**
+     * Returns the WebSocket close code.
+     * @return the WebSocket close code
+     */
     public int getCode() {
         return code;
     }
 
+    /**
+     * Returns the reason for the disconnect.
+     * @return the reason for the disconnect
+     */
     public String getReason() {
         return reason;
+    }
+
+    /**
+     * Override because the node gets deleted after disconnects.
+     * @see WebSocketSessionEvent#getNode()
+     * @return the node
+     */
+    @Override
+    public Node getNode() {
+        return node;
     }
 }

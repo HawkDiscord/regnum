@@ -23,6 +23,7 @@ import cc.hawkbot.regnum.entites.json.JsonObject
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.entities.Node
+import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketCloseEvent
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
@@ -33,11 +34,17 @@ import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
 
+/**
+ * Implementation of [LoadBalancer].
+ * @param server the server instance
+ * @constructor Constructs a new LoadBalancer
+ */
 class LoadBalancerImpl(server: Server) : LoadBalancer {
 
     private val log = Logger.getLogger()
 
     override val optimalShards: Int
+    @Suppress("JoinDeclarationAndAssignment")
     override val token: String
     private val ws = server.websocket
     private val scheduler = Executors.newSingleThreadScheduledExecutor(ThreadFactoryBuilder()
@@ -49,6 +56,7 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
     init {
         token = server.config.getString(Config.DISCORD_NODE_TOKEN)
         optimalShards = calculateShardCount(server)
+        log.info("[Balancer] Discovered initial optimal shard count of $optimalShards shards")
     }
 
     private fun calculateShardCount(server: Server): Int {
@@ -64,6 +72,7 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
 
     @SubscribeEvent
     override fun handleConnect(event: WebsocketAuthorizedEvent) {
+        println("event")
         val node = event.node
         // Check if it's the first node
         if (ws.nodes.size == 1) {
@@ -93,7 +102,7 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
     }
 
     @SubscribeEvent
-    override fun handleDisconnect(event: WebsocketAuthorizedEvent) {
+    override fun handleDisconnect(event: WebSocketCloseEvent) {
         balanced = false
         rebalance(event.node)
     }
@@ -132,6 +141,7 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
     private fun startShards(shardsPerNode: Int, shards: Array<Int>) {
         val nodes = ws.nodes.iterator()
         log.info("[DiscordBalancer] Balancing Discord shards on $shards nodes with $shardsPerNode shards/node")
+        println(ws.nodes)
         val shardIds = shards.iterator()
         while (nodes.hasNext()) {
             val shardsList = mutableListOf<Int>()
@@ -146,6 +156,7 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
 
             // Check if its last node
             if (nodes.hasNext()) {
+                println("HAS NEXT")
                 for (i in 0 until shardsPerNode) {
                     addNextId()
                 }
@@ -155,6 +166,8 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
                     addNextId()
                 }
             }
+            println(toString())
+            println("START SHARDS")
             node.startShards(shardsList.toTypedArray())
         }
         balanced = true

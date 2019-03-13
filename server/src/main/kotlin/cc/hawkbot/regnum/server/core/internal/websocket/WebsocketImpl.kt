@@ -52,8 +52,9 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
         }
         ws.onClose { session, statusCode, reason ->
             val node = getNode(session)
+            println(node)
             nodes.remove(node)
-            callEvent(WebSocketCloseEvent(server, this, session, statusCode, reason))
+            callEvent(WebSocketCloseEvent(server, this, session, statusCode, reason, node))
             println(session.id + "Disconnected")
         }
         ws.onMessage { session, msg -> handleMessage(session, msg) }
