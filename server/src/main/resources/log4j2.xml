@@ -17,7 +17,7 @@
   ~ along with this program.  If not, see https://www.gnu.org/licenses/.
   -->
 
-<Configuration packages="org.discordlist.cloud.gateway">
+<Configuration packages="cc.hawkbot.regnum">
     <Properties>
         <property name="fileDate">${date:dd-MM-yyyy}</property>
     </Properties>
@@ -39,9 +39,15 @@
                 <pattern>[%d{HH:mm:ss}] [%-5level] [%t - %tid] %c{36} - %msg%n</pattern>
             </PatternLayout>
         </File>
+        <SentryAppender name="Sentry">
+            <PatternLayout>
+                <pattern>[%d{HH:mm:ss}] [%-5level] [%t - %tid] %c{36} - %msg%n</pattern>
+            </PatternLayout>
+        </SentryAppender>
         <Async name="Async">
             <AppenderRef ref="Log"/>
             <AppenderRef ref="LatestLog"/>
+            <AppenderRef ref="Sentry"/>
         </Async>
     </Appenders>
     <Loggers>

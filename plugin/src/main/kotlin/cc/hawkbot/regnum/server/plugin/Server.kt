@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.server.plugin
 
+import cc.hawkbot.regnum.sentry.SentryClient
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
@@ -88,4 +89,9 @@ interface Server: Closeable {
      * The HTTP client used for requests.
      */
     val httpClient: OkHttpClient
+
+    /**
+     * Sentry client.
+     */
+    val sentry: SentryClient
 }
