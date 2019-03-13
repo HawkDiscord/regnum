@@ -24,13 +24,12 @@ import cc.hawkbot.regnum.server.plugin.Websocket;
 import io.javalin.websocket.WsSession;
 
 /**
- * Event that indicates a new connection.
+ * Event that indicates that a node has sent a valid IDENTIFY.
  * @see WebSocketSessionEvent
  */
-@SuppressWarnings("unused")
-public class WebSocketConnectedEvent extends WebSocketSessionEvent {
+public class WebsocketAuthorizedEvent extends WebSocketSessionEvent {
 
-    public WebSocketConnectedEvent(Server server, Websocket websocket, WsSession session) {
+    public WebsocketAuthorizedEvent(Server server, Websocket websocket, WsSession session) {
         super(server, websocket, session);
     }
 }

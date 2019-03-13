@@ -17,20 +17,11 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.plugin.events.websocket;
-
-import cc.hawkbot.regnum.server.plugin.Server;
-import cc.hawkbot.regnum.server.plugin.Websocket;
-import io.javalin.websocket.WsSession;
+package cc.hawkbot.regnum.server
 
 /**
- * Event that indicates a new connection.
- * @see WebSocketSessionEvent
+ * Converts an [IntProgression] into an array.
+ * @return the converted array
  */
-@SuppressWarnings("unused")
-public class WebSocketConnectedEvent extends WebSocketSessionEvent {
-
-    public WebSocketConnectedEvent(Server server, Websocket websocket, WsSession session) {
-        super(server, websocket, session);
-    }
-}
+fun IntProgression.toArray() =
+        IntArray(this.count()).also { forEachIndexed { index, i -> it[index] = i } }

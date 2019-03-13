@@ -37,7 +37,7 @@ interface Node {
     /**
      * The range of all shards on this node.
      */
-    val shards: IntRange
+    val shards: Array<Int>
 
     /**
      * The nodes pulse.
@@ -48,6 +48,13 @@ interface Node {
      * The current websocket instance.
      */
     val websocket: Websocket
+
+    val id: String
+        get() = session.id
+
+    fun startShards(shards: Array<Int>)
+
+    fun addShards(shards: Array<Int>)
 
     /**
      * Sends a [message] to this node
@@ -63,5 +70,9 @@ interface Node {
      */
     fun send(payload: Payload) {
         websocket.send(session, payload)
+    }
+
+    fun disconnect() {
+        session.disconnect()
     }
 }

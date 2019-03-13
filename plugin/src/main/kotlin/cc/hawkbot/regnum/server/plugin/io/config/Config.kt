@@ -40,9 +40,11 @@ class Config(source: String) : GenericConfig(source) {
         const val DISCORD_TOKEN = "discord.token"
         const val DISCORD_PREFIX = "discord.prefix"
         const val DISCORD_OWNERS = "discord.owners"
+        const val DISCORD_NODE_TOKEN = "discord.node_token"
 
         // General
         const val PLUGINS_DIRECTORY = "general.plugins_directory"
+        const val LOAD_BALANCE_TIMEOUT = "general.load_balance_timeout"
     }
 
     override fun defaults() {
@@ -53,6 +55,8 @@ class Config(source: String) : GenericConfig(source) {
         applyDefault(DISCORD_TOKEN, "WUMPUS IS LOVE BRA")
         applyDefault(DISCORD_PREFIX, "hc!")
         applyDefault(DISCORD_OWNERS, listOf(416902379598774273L, 240797338430341120L))
+        applyDefault(DISCORD_NODE_TOKEN, "WUMPUS IS STILL LOVE BRA")
         applyDefault(PLUGINS_DIRECTORY, "plugins/")
+        applyDefault(LOAD_BALANCE_TIMEOUT, 30)
     }
 }

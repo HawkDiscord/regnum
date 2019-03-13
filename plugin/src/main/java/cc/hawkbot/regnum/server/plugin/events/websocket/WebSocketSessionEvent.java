@@ -21,8 +21,13 @@ package cc.hawkbot.regnum.server.plugin.events.websocket;
 
 import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
+import cc.hawkbot.regnum.server.plugin.entities.Node;
 import io.javalin.websocket.WsSession;
 
+/**
+ * Generic event for websocket events with sessions
+ * @see WebSocketEvent
+ */
 @SuppressWarnings("unused")
 public class WebSocketSessionEvent extends WebSocketEvent {
 
@@ -33,7 +38,19 @@ public class WebSocketSessionEvent extends WebSocketEvent {
         this.session = session;
     }
 
+    /**
+     * Returns the websocket session.
+     * @return the websocket session
+     */
     public WsSession getSession() {
         return session;
+    }
+
+    /**
+     * Returns the {@link Node} corresponding to the session.
+     * @return the {@link Node} corresponding to the session
+     */
+    public Node getNode() {
+        return getWebsocket().getNode(session);
     }
 }

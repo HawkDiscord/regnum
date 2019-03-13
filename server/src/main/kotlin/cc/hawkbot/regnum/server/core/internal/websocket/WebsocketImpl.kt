@@ -25,6 +25,7 @@ import cc.hawkbot.regnum.server.core.internal.ServerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.entities.NodeImpl
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
+import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.events.websocket.*
 import cc.hawkbot.regnum.server.plugin.io.config.Config
@@ -42,21 +43,19 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
 
     private val log = Logger.getLogger()
     override val nodes = mutableListOf<Node>()
-    private val loadBalancer: LoadBalancer
     private val authorizationHandler = server.authorizationHandler
 
     init {
         (server as ServerImpl).websocket = this
-        loadBalancer = LoadBalancer(server)
         ws.onConnect {
             handleConnect(it)
         }
         ws.onClose { session, statusCode, reason ->
-            callEvent(WebSocketCloseEvent(server, this, session, statusCode, reason))
-            val node = nodes.firstOrNull { it.session == session } ?: return@onClose
-                nodes.remove(node)
+            val node = getNode(session)
+            println(node)
+            nodes.remove(node)
+            callEvent(WebSocketCloseEvent(server, this, session, statusCode, reason, node))
             println(session.id + "Disconnected")
-            loadBalancer.rebalance(session)
         }
         ws.onMessage { session, msg -> handleMessage(session, msg) }
         ws.onError { session, throwable -> handleError(session, throwable) }
@@ -70,6 +69,7 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
                     val node = NodeImpl(it, this, server)
                     nodes.add(node)
                     node.send(Payload.of(HelloPacket(server.config.getInt(Config.SOCKET_HEARTBEAT)), HelloPacket.IDENTIFIER))
+                    callEvent(WebsocketAuthorizedEvent(server, this, it))
                 }
                 .exceptionally {
                     // IGNORE IT //

@@ -20,11 +20,13 @@
 package cc.hawkbot.regnum.server.plugin
 
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
+import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.IEventManager
+import okhttp3.OkHttpClient
 import java.io.Closeable
 
 /**
@@ -76,4 +78,14 @@ interface Server: Closeable {
      * The authorization handler.
      */
     var authorizationHandler: AuthorizationHandler
+
+    /**
+     * The loadbalancer.
+     */
+    val loadBalancer: LoadBalancer
+
+    /**
+     * The HTTP client used for requests.
+     */
+    val httpClient: OkHttpClient
 }
