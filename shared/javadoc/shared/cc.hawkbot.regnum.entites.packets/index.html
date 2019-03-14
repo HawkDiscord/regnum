@@ -1,0 +1,77 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>cc.hawkbot.regnum.entites.packets - shared</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">shared</a>&nbsp;/&nbsp;<a href="./index.html">cc.hawkbot.regnum.entites.packets</a><br/>
+<br/>
+<h2>Package cc.hawkbot.regnum.entites.packets</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-heart-beat-ack-packet/index.html">HeartBeatAckPacket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HeartBeatAckPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HeartBeatAckPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code>
+<p>Websocket HEARTBEAT_ACK packet. Used to acknowledge websocket heartbeat. Sent by client</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-heart-beat-packet/index.html">HeartBeatPacket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HeartBeatPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HeartBeatPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code>
+<p>Websocket heartbeat packet. Sent by server</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-hello-packet/index.html">HelloPacket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelloPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelloPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code>
+<p>Websocket HELLO packet. Packet that is sent after a successful authentication</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-identify-packet/index.html">IdentifyPacket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">IdentifyPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">IdentifyPacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-packet.html"><span class="identifier">Packet</span></a></code>
+<p>Websocket IDENTIFY packet. Used to authenticate nodes after connecting.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-packet.html">Packet</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Packet</span></code><br/>
+<code><span class="keyword">interface </span><span class="identifier">Packet</span></code>
+<p>Generic packet with nice annotation</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-resume-packet/index.html">ResumePacket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ResumePacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-identify-packet/index.html"><span class="identifier">IdentifyPacket</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ResumePacket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-identify-packet/index.html"><span class="identifier">IdentifyPacket</span></a></code>
+<p>Currently unused</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
