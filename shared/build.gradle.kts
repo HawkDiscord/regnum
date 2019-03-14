@@ -72,7 +72,7 @@ tasks {
             val relativePath = rootDir.toPath().relativize(it.toPath()).toString()
             linkMapping(delegateClosureOf<LinkMapping> {
                 dir = it.absolutePath
-                url = "https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/$relativePath"
+                url = "https://github.com/DRSchlaubi/regnum/tree/master/$relativePath"
                 suffix = "#L"
             })
         }
