@@ -1,0 +1,72 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CassandraCache - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.entities.cache</a>&nbsp;/&nbsp;<a href="./index.html">CassandraCache</a><br/>
+<br/>
+<h1>CassandraCache</h1>
+<code><span class="keyword">interface </span><span class="identifier">CassandraCache</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-cachable-cassandra-entity/index.html"><span class="identifier">CachableCassandraEntity</span></a><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code> <a href="https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/entities/cache/CassandraCache.kt#L27">(source)</a>
+<p>A cache of <a href="../-cachable-cassandra-entity/index.html">CachableCassandraEntity</a>.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="delete.html">delete</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$delete(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Deletes an entity by its id</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$get(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#T"><span class="identifier">T</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$get(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#T"><span class="identifier">T</span></a></code>
+<p>Returns an entity by its <a href="get.html#cc.hawkbot.regnum.client.entities.cache.CassandraCache$get(kotlin.Long)/id">id</a>.</p>
+<code><span class="keyword">open</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$get(net.dv8tion.jda.api.entities.ISnowflake)/entity">entity</span><span class="symbol">:</span>&nbsp;<span class="identifier">ISnowflake</span><span class="symbol">)</span><span class="symbol">: </span><a href="index.html#T"><span class="identifier">T</span></a></code>
+<p>Returns an entity by its instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set.html">set</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$set(kotlin.Long, cc.hawkbot.regnum.client.entities.cache.CassandraCache.T)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$set(kotlin.Long, cc.hawkbot.regnum.client.entities.cache.CassandraCache.T)/entity">entity</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Updates an entities instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update.html">update</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">update</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CassandraCache$update(cc.hawkbot.regnum.client.entities.cache.CassandraCache.T)/entity">entity</span><span class="symbol">:</span>&nbsp;<a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Updated the <a href="update.html#cc.hawkbot.regnum.client.entities.cache.CassandraCache$update(cc.hawkbot.regnum.client.entities.cache.CassandraCache.T)/entity">entity</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities.cache.impl/-cassandra-cache-impl/index.html">CassandraCacheImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CassandraCacheImpl</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-cachable-cassandra-entity/index.html"><span class="identifier">CachableCassandraEntity</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.cache.impl/-cassandra-cache-impl/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CassandraCache</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.cache.impl/-cassandra-cache-impl/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Implementation of <a href="./index.html">CassandraCache</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

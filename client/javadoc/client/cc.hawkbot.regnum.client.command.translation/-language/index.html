@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Language - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command.translation</a>&nbsp;/&nbsp;<a href="./index.html">Language</a><br/>
+<br/>
+<h1>Language</h1>
+<code><span class="keyword">interface </span><span class="identifier">Language</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities/-requires-regnum/index.html"><span class="identifier">RequiresRegnum</span></a></code> <a href="https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/translation/Language.kt#L31">(source)</a>
+<p>Represents a translated language.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="locale.html">locale</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">locale</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Locale.html"><span class="identifier">Locale</span></a></code>
+<p>the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Locale.html">Locale</a> object for the language</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="display-name.html">displayName</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">displayName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the display-name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.Language$get(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns he translated string for the specified <a href="get.html#cc.hawkbot.regnum.client.command.translation.Language$get(kotlin.String)/key">key</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has.html">has</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">has</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.Language$has(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether the language contains the <a href="has.html#cc.hawkbot.regnum.client.command.translation.Language$has(kotlin.String)/key">key</a> or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="language-tag.html">languageTag</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">languageTag</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the language-tag.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="translate.html">translate</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">translate</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.Language$translate(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the translated string from this language or from the default language if it isn't translated yet.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities/-requires-regnum/regnum.html">regnum</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">regnum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code>
+<p>Method that returns the Regnum.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">regnum</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RequiresRegnum$regnum(cc.hawkbot.regnum.client.Regnum)/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that injects the Regnum instance.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="default-language.html">defaultLanguage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">defaultLanguage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.Language.Companion$defaultLanguage(cc.hawkbot.regnum.client.command.translation.Language)/language">language</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Language</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Language</span></a></code>
+<p>Converts the <a href="default-language.html#cc.hawkbot.regnum.client.command.translation.Language.Companion$defaultLanguage(cc.hawkbot.regnum.client.command.translation.Language)/language">language</a> into a default language.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.translation.defaults/-property-language/index.html">PropertyLanguage</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PropertyLanguage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Language</span></a></code>
+<p>Implementation of <a href="./index.html">Language</a> using <a href="http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html">ResourceBundle</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

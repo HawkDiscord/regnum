@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ICommand - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command</a>&nbsp;/&nbsp;<a href="./index.html">ICommand</a><br/>
+<br/>
+<h1>ICommand</h1>
+<code><span class="keyword">interface </span><span class="identifier">ICommand</span></code> <a href="https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/ICommand.kt#L30">(source)</a>
+<p>Interface for commands</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="aliases.html">aliases</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">aliases</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The aliases of the command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="description.html">description</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The commands description.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="display-name.html">displayName</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">displayName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The display name of the command for help messages.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="example-usage.html">exampleUsage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">exampleUsage</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The commands example usage without the prefix and the command name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="group.html">group</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">group</span><span class="symbol">: </span><a href="../-group/index.html"><span class="identifier">Group</span></a></code>
+<p>The group the command is in.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="permissions.html">permissions</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">permissions</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a></code>
+<p>The commands permissions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="sub-command-associations.html">subCommandAssociations</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">subCommandAssociations</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html"><span class="identifier">MutableMap</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-i-sub-command/index.html"><span class="identifier">ISubCommand</span></a><span class="symbol">&gt;</span></code>
+<p>The alias associations of the sub-commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="usage.html">usage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">usage</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The commands usage without the prefix and the command name.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="execute.html">execute</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">execute</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.ICommand$execute(cc.hawkbot.regnum.client.command.context.Arguments, cc.hawkbot.regnum.client.command.context.Context)/args">args</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.context/-arguments/index.html"><span class="identifier">Arguments</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.ICommand$execute(cc.hawkbot.regnum.client.command.context.Arguments, cc.hawkbot.regnum.client.command.context.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.context/-context/index.html"><span class="identifier">Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>The method that gets executed when the command gets invoked</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">name</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the name of the command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-sub-command.html">registerSubCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">registerSubCommand</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.ICommand$registerSubCommand(cc.hawkbot.regnum.client.command.ISubCommand)/subCommand">subCommand</span><span class="symbol">:</span>&nbsp;<a href="../-i-sub-command/index.html"><span class="identifier">ISubCommand</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers a sub-command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-sub-commands.html">registerSubCommands</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">registerSubCommands</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.command.ICommand$registerSubCommands(kotlin.Array((cc.hawkbot.regnum.client.command.ISubCommand)))/subCommands">subCommands</span><span class="symbol">:</span>&nbsp;<a href="../-i-sub-command/index.html"><span class="identifier">ISubCommand</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers a sub-command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-command/index.html">Command</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">Command</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ICommand</span></a></code>
+<p>Default command class.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-i-sub-command/index.html">ISubCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ISubCommand</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ICommand</span></a></code>
+<p>A sub command</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

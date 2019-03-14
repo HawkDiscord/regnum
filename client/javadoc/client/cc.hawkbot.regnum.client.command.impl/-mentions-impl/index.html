@@ -1,0 +1,156 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MentionsImpl - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command.impl</a>&nbsp;/&nbsp;<a href="./index.html">MentionsImpl</a><br/>
+<br/>
+<h1>MentionsImpl</h1>
+<code><span class="keyword">class </span><span class="identifier">MentionsImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.context/-mentions/index.html"><span class="identifier">Mentions</span></a></code> <a href="https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/impl/MentionsImpl.kt#L33">(source)</a>
+<p>Implementation of <a href="../../cc.hawkbot.regnum.client.command.context/-mentions/index.html">Mentions</a>.</p>
+<h3>Parameters</h3>
+<p><a name="message"></a>
+<code>message</code> - the message</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">MentionsImpl</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.impl.MentionsImpl$<init>(net.dv8tion.jda.api.entities.Message)/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">Message</span><span class="symbol">)</span></code>
+<p>constructs a new MentionsImpl</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="everyone.html">everyone</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">everyone</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>whether the message mentions everyone or not</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="list.html">list</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">list</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">IMentionable</span><span class="symbol">&gt;</span></code>
+<p>Returns all mentions in a list.</p>
+<code><span class="keyword">fun </span><span class="identifier">list</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.command.impl.MentionsImpl$list(kotlin.Array((net.dv8tion.jda.api.entities.Message.MentionType)))/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">MentionType</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">IMentionable</span><span class="symbol">&gt;</span></code>
+<p>Returns all mentions of a specific type in a list.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="members.html">members</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">members</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Member</span><span class="symbol">&gt;</span></code>
+<p>Returns all member mentions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/channels.html">channels</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">channels</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">TextChannel</span><span class="symbol">&gt;</span></code>
+<p>Returns all channel mentions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/first.html">first</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">first</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.context.Mentions$first(net.dv8tion.jda.api.entities.Message.MentionType)/type">type</span><span class="symbol">:</span>&nbsp;<span class="identifier">MentionType</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><span class="identifier">Optional</span></a><span class="symbol">&lt;</span><span class="identifier">IMentionable</span><span class="symbol">&gt;</span></code>
+<p>Returns the first mention of a specific type.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/first-channel.html">firstChannel</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">firstChannel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><span class="identifier">Optional</span></a><span class="symbol">&lt;</span><span class="identifier">TextChannel</span><span class="symbol">&gt;</span></code>
+<p>Returns the first channel mention.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/first-member.html">firstMember</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">firstMember</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><span class="identifier">Optional</span></a><span class="symbol">&lt;</span><span class="identifier">Member</span><span class="symbol">&gt;</span></code>
+<p>Returns the first member mention.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/first-role.html">firstRole</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">firstRole</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><span class="identifier">Optional</span></a><span class="symbol">&lt;</span><span class="identifier">Role</span><span class="symbol">&gt;</span></code>
+<p>Returns the first role mention.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/first-user.html">firstUser</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">firstUser</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Optional.html"><span class="identifier">Optional</span></a><span class="symbol">&lt;</span><span class="identifier">User</span><span class="symbol">&gt;</span></code>
+<p>Returns the first user mention.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/is-empty.html">isEmpty</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">isEmpty</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether there are mentions or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/roles.html">roles</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">roles</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Role</span><span class="symbol">&gt;</span></code>
+<p>Returns all role mentions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.context/-mentions/users.html">users</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">users</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">User</span><span class="symbol">&gt;</span></code>
+<p>Returns all user mentions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

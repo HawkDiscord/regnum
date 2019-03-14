@@ -1,0 +1,83 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Websocket - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.core</a>&nbsp;/&nbsp;<a href="./index.html">Websocket</a><br/>
+<br/>
+<h1>Websocket</h1>
+<code><span class="keyword">interface </span><span class="identifier">Websocket</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="http://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html"><span class="identifier">Closeable</span></a></code> <a href="https://gitlab.schlaubi.me/schlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/core/Websocket.kt#L30">(source)</a>
+<p>Class to represent websocket connection.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="heart.html">heart</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">heart</span><span class="symbol">: </span><a href="../-heart/index.html"><span class="identifier">Heart</span></a></code>
+<p>The <a href="../-heart/index.html">Heart</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="ping.html">ping</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">ping</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns the last ping between the client and server heartbeat.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="send.html">send</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">send</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.Websocket$send(cc.hawkbot.regnum.entites.Payload)/payload">payload</span><span class="symbol">:</span>&nbsp;<a href="https://pages.hawkbot.cc/shared/javadoc/shared/cc.hawkbot.regnum.entites/-payload/index.html"><span class="identifier">Payload</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a payload to the server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="send-message.html">sendMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">sendMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.Websocket$sendMessage(kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a message to the server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="start.html">start</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">start</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Connects to the websocket.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.core.internal/-websocket-impl/index.html">WebsocketImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">WebsocketImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">WebSocketClient</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">Websocket</span></a></code>
+<p>Websocket client</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
