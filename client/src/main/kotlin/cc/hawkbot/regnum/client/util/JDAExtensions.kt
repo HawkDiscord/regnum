@@ -17,25 +17,21 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
+@file:Suppress("ObjectPropertyName", "FunctionName")
 
-/**
- * Class that represents entities which can hold permissions
- */
-@Suppress("unused")
-interface IPermissionHolder {
+package cc.hawkbot.regnum.client.util
 
-    /**
-     * Returns whether an entity has a permission or not.
-     * @return whether an entity has a permission or not
-     */
-    fun hasPermission(permission: IPermissions): Boolean
+import cc.hawkbot.regnum.client.Regnum
+import net.dv8tion.jda.api.JDA
 
-    fun assignPermission(permission: IPermissions, negated: Boolean = false)
+private var _regnum: Regnum? = null
 
-    fun deletePermissionAssignment(permission: IPermissions)
+var JDA.regnum: Regnum
+    get() = _regnum!!
+    set(value) = _setRegnum(value)
 
-    fun assignNegatedPermission(permission: IPermissions) {
-        assignPermission(permission, true)
+internal fun _setRegnum(regnum: Regnum?) {
+    if (regnum != null) {
+        _regnum = regnum
     }
 }

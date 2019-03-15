@@ -63,6 +63,6 @@ class PermissionProviderImpl : IPermissionProvider {
     }
 
     private fun verifyNode(permissions: IPermissions, member: Member): Boolean {
-        TODO("not implemented")
+        return regnum.permissionManager.hasPermissions(permissions, member)
     }
 }

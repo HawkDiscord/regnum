@@ -17,25 +17,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
+package cc.hawkbot.regnum.client.util
 
 /**
- * Class that represents entities which can hold permissions
+ * Filters for [predicate] matching elements and add non-matching elements to [destination]
+ * @return the matching elements
  */
-@Suppress("unused")
-interface IPermissionHolder {
-
-    /**
-     * Returns whether an entity has a permission or not.
-     * @return whether an entity has a permission or not
-     */
-    fun hasPermission(permission: IPermissions): Boolean
-
-    fun assignPermission(permission: IPermissions, negated: Boolean = false)
-
-    fun deletePermissionAssignment(permission: IPermissions)
-
-    fun assignNegatedPermission(permission: IPermissions) {
-        assignPermission(permission, true)
-    }
+inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterAndExtract(destination: C, predicate: (T) -> Boolean): MutableCollection<T> {
+    val matching: MutableCollection<T> = mutableListOf()
+    for (element in this) if (!predicate(element)) destination.add(element) else matching.add(element)
+    return matching
 }

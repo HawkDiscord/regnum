@@ -35,11 +35,16 @@ import cc.hawkbot.regnum.client.command.permission.IPermissions
 abstract class SubCommand(
         override val displayName: String,
         override val aliases: Array<String>,
-        override val permissions: IPermissions,
+        private val _permissions: IPermissions? = null,
         override val usage: String = "",
         override val exampleUsage: String = "",
         override val description: String
 ) : ISubCommand {
     override val subCommandAssociations: MutableMap<String, ISubCommand>
         get() = throw UnsupportedOperationException("Sub commands do not support sub commands")
+
+    override val permissions: IPermissions
+        get() = _permissions ?: parent.permissions
+
+    override lateinit var parent: ICommand
 }

@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client
 
 import cc.hawkbot.regnum.client.command.CommandParser
+import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
@@ -110,5 +111,7 @@ interface Regnum {
     fun guild(guild: Guild): RegnumGuild {
         return guildCache[guild]
     }
+
+    val permissionManager: PermissionManager
 
 }

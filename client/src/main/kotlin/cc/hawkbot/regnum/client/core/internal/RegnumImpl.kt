@@ -25,6 +25,8 @@ import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.command.ICommand
 import cc.hawkbot.regnum.client.command.impl.CommandParserImpl
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
+import cc.hawkbot.regnum.client.command.permission.PermissionManager
+import cc.hawkbot.regnum.client.command.permission.PermissionManagerImpl
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
 import cc.hawkbot.regnum.client.core.discord.Discord
@@ -34,6 +36,7 @@ import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
 import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.io.database.CassandraSource
+import cc.hawkbot.regnum.client.util._setRegnum
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
@@ -77,8 +80,10 @@ class RegnumImpl(
     override val cassandra: CassandraSource
     override lateinit var guildCache: CassandraCache<RegnumGuild>
     override val eventWaiter: EventWaiter
+    override lateinit var permissionManager: PermissionManager
 
     init {
+        _setRegnum(this)
         permissionProvider.regnum = this
         commandParser = CommandParserImpl(
                 defaultPrefix,
@@ -118,6 +123,8 @@ class RegnumImpl(
 
             // Default commands
             commandParser.registerCommands(PrefixCommand())
+            // Permissions
+            permissionManager = PermissionManagerImpl(this)
             log.info("[Regnum] Connecting to server")
             websocket.start()
         }.exceptionally { throw it }
