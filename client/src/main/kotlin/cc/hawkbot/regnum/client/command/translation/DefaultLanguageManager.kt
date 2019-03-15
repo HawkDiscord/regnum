@@ -21,6 +21,10 @@ package cc.hawkbot.regnum.client.command.translation
 
 import cc.hawkbot.regnum.client.Regnum
 
+/**
+ * Default implementation of [LanguageManager].
+ * @param defaultLanguage the language that should be used as a fallback language
+ */
 open class DefaultLanguageManager(override val defaultLanguage: Language) : LanguageManager {
 
     private val languages = mutableMapOf<String, Language>()

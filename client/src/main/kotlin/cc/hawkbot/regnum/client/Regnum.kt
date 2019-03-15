@@ -26,6 +26,7 @@ import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.io.database.CassandraSource
+import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.hooks.IEventManager
 
@@ -80,6 +81,8 @@ interface Regnum {
      * The guild cache
      */
     val guildCache: CassandraCache<RegnumGuild>
+
+    val eventWaiter: EventWaiter
 
     /**
      * Returns a Regnum guild from the cache.

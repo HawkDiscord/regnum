@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client.core.internal
 import cc.hawkbot.regnum.client.core.discord.impl.DiscordImpl
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.packets.HelloPacket
 import cc.hawkbot.regnum.entites.packets.discord.AddPacket
 import cc.hawkbot.regnum.entites.packets.discord.StartPacket
 import net.dv8tion.jda.api.hooks.SubscribeEvent
@@ -31,6 +32,7 @@ import net.dv8tion.jda.api.hooks.SubscribeEvent
  * @property regnum the regnum implementation
  * @constructor Constructs a new packet handler
  */
+@Suppress("UNSAFE_CAST")
 class PacketHandler(val regnum: RegnumImpl) {
 
     @Suppress("unused")
@@ -38,6 +40,10 @@ class PacketHandler(val regnum: RegnumImpl) {
     private fun onMessage(event: WebSocketMessageEvent) {
         val payload = Payload.fromJson(event.message)
         when (payload.type) {
+            HelloPacket.IDENTIFIER -> {
+                val hello = payload.packet as HelloPacket
+                regnum.websocket.heart = HeartImpl(regnum, hello)
+            }
             StartPacket.IDENTIFIER -> {
                 val start = payload.packet as StartPacket
                 regnum.discord = DiscordImpl(

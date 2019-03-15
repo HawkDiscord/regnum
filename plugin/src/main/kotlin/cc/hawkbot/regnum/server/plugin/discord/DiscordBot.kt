@@ -17,23 +17,18 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.server.plugin.discord
 
-import cc.hawkbot.regnum.server.discord.DiscordBot
-import cc.hawkbot.regnum.server.io.config.Config
-import io.javalin.Javalin
+import net.dv8tion.jda.api.JDA
+import java.io.Closeable
 
-interface Server {
+/**
+ * Representation of the built-in Discord bot.
+ */
+interface DiscordBot: Closeable {
 
-    val launchedAt: Long
-
-    val dev: Boolean
-
-    val javalin: Javalin
-
-    val websocket: Websocket
-
-    val config: Config
-
-    val discordBot: DiscordBot
+    /**
+     * The JDA instance.
+     */
+    val jda: JDA
 }

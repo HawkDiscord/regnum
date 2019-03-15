@@ -17,10 +17,16 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.io.config
+package cc.hawkbot.regnum.server.plugin.io.config
 
 import cc.hawkbot.regnum.io.config.GenericConfig
 
+/**
+ * Config for Regnum server.
+ * @param source the path to the config
+ * @see GenericConfig
+ * @constructor Constructs a new config
+ */
 class Config(source: String) : GenericConfig(source) {
 
     companion object {
@@ -34,6 +40,14 @@ class Config(source: String) : GenericConfig(source) {
         const val DISCORD_TOKEN = "discord.token"
         const val DISCORD_PREFIX = "discord.prefix"
         const val DISCORD_OWNERS = "discord.owners"
+        const val DISCORD_NODE_TOKEN = "discord.node_token"
+
+        // General
+        const val PLUGINS_DIRECTORY = "general.plugins_directory"
+        const val LOAD_BALANCE_TIMEOUT = "general.load_balance_timeout"
+
+        // Sentry
+        const val SENTRY_DSN = "sentry.dsn"
     }
 
     override fun defaults() {
@@ -44,5 +58,9 @@ class Config(source: String) : GenericConfig(source) {
         applyDefault(DISCORD_TOKEN, "WUMPUS IS LOVE BRA")
         applyDefault(DISCORD_PREFIX, "hc!")
         applyDefault(DISCORD_OWNERS, listOf(416902379598774273L, 240797338430341120L))
+        applyDefault(DISCORD_NODE_TOKEN, "WUMPUS IS STILL LOVE BRA")
+        applyDefault(PLUGINS_DIRECTORY, "plugins/")
+        applyDefault(LOAD_BALANCE_TIMEOUT, 30)
+        applyDefault(SENTRY_DSN, "YOU DSN")
     }
 }

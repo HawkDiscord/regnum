@@ -19,12 +19,20 @@
 
 package cc.hawkbot.regnum.client.core
 
+import cc.hawkbot.regnum.client.core.internal.WebsocketImpl
 import cc.hawkbot.regnum.entites.Payload
+import com.google.common.base.Preconditions
+import java.io.Closeable
 
 /**
  * Class to represent websocket connection.
  */
-interface Websocket {
+interface Websocket : Closeable {
+
+    /**
+     * The [Heart].
+     */
+    val heart: Heart
 
     /**
      * Connects to the websocket.
@@ -43,5 +51,14 @@ interface Websocket {
      */
     fun send(payload: Payload) {
         sendMessage(payload.toJson())
+    }
+
+    /**
+     * Returns the last ping between the client and server heartbeat.
+     * @return the last ping between the client and server heartbeat
+     */
+    fun ping(): Int {
+        Preconditions.checkArgument((this as WebsocketImpl).isHeartInitialized(), "Heart is not initialized yet")
+        return heart.ping
     }
 }

@@ -28,6 +28,10 @@ import org.apache.logging.log4j.Level
 import org.apache.logging.log4j.core.config.ConfigurationSource
 import org.apache.logging.log4j.core.config.Configurator
 
+/**
+ * Regnum servers main function.
+ * @param args the program arguments
+ */
 fun main(args: Array<String>) {
 
     val launchedAt = System.currentTimeMillis()
@@ -44,6 +48,16 @@ fun main(args: Array<String>) {
                             .hasArg()
                             .desc("Logging level")
                             .build()
+            ).addOption(
+                    Option.builder("ND")
+                            .longOpt("no-discord")
+                            .desc("Disabled built-in Discord bot")
+                            .build()
+            ).addOption(
+                    Option.builder("DS")
+                            .longOpt("disable-sentry")
+                            .desc("Disable sentry logging")
+                            .build()
             )
 
     val parser = DefaultParser()
@@ -55,5 +69,5 @@ fun main(args: Array<String>) {
     Logger.getLogger().info("[Launcher] Starting Regnum server!")
 
     // Start server
-    ServerImpl(launchedAt, cmd.hasOption("D"))
+    ServerImpl(launchedAt, cmd.hasOption("D"), cmd.hasOption("ND"), cmd.hasOption("DS"))
 }

@@ -25,6 +25,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Interface for entities that needs a {@link Regnum} instance.
  */
+@SuppressWarnings("UnusedReturnValue")
 public interface RequiresRegnum {
 
     /**

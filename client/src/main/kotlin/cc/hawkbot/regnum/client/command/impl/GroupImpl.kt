@@ -23,6 +23,14 @@ import cc.hawkbot.regnum.client.command.Group
 import cc.hawkbot.regnum.client.command.groups
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 
+/**
+ * Implementation of [Group].
+ * @param public whether the group should be listed in the help command or not
+ * @param name the name of the group
+ * @param description the description of the group
+ * @param permissions the group-wide permissions
+ * @constructor Constructs a new group
+ */
 class GroupImpl(override val public: Boolean, override val name: String, override val description: String, override val permissions: IPermissions) : Group {
 
     init {

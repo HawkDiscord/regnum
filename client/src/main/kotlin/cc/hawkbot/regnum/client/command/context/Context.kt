@@ -185,10 +185,19 @@ interface Context {
         return sendMessage(FormatUtil.formatCommand(command, "", regnum))
     }
 
+    /**
+     * Gets the translated string for the specified [key].
+     * @param key the key
+     * @return the string
+     */
     fun translate(key: String): String {
         return regnum.languageManager.getLanguageByUser(author()).translate(key)
     }
 
+    /**
+     * Returns the [RegnumGuild] which belongs to the [guild].
+     * @return the regnum guild
+     */
     fun regnumGuild(): RegnumGuild {
         return regnum.guild(guild())
     }

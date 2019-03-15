@@ -17,11 +17,20 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.discord
+package cc.hawkbot.regnum.server.plugin.events.websocket;
 
-import net.dv8tion.jda.api.JDA
+import cc.hawkbot.regnum.server.plugin.Server;
+import cc.hawkbot.regnum.server.plugin.Websocket;
+import io.javalin.websocket.WsSession;
 
-interface DiscordBot {
+/**
+ * Event that indicates a new connection.
+ * @see WebSocketSessionEvent
+ */
+@SuppressWarnings("unused")
+public class WebSocketConnectedEvent extends WebSocketSessionEvent {
 
-    val jda: JDA
+    public WebSocketConnectedEvent(Server server, Websocket websocket, WsSession session) {
+        super(server, websocket, session);
+    }
 }

@@ -17,13 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core.internal
+package cc.hawkbot.regnum.server.core.internal.websocket
 
 import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.entites.json.JsonObject
 import cc.hawkbot.regnum.entites.packets.discord.StartPacket
-import cc.hawkbot.regnum.server.core.Server
-import cc.hawkbot.regnum.server.io.config.Config
+import cc.hawkbot.regnum.server.plugin.Server
+import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.util.logging.Logger
 import io.javalin.websocket.WsSession
 import okhttp3.OkHttpClient
@@ -31,6 +31,10 @@ import okhttp3.Request
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
+/**
+ * ShardBalancer
+ * @property server the [Server] instance
+ */
 class LoadBalancer(private val server: Server) {
 
     private val log = Logger.getLogger()
@@ -58,6 +62,10 @@ class LoadBalancer(private val server: Server) {
         return 0 until to
     }
 
+    //TODO: Implement load balancing again
+    /**
+     * Handles new connections.
+     */
     fun handleConnect() {
         if (ws.nodes.size == 1) {
             log.info("[DiscordBalancer] First node connected waiting 30 seconds for other nodes to connect before balancing")
@@ -108,8 +116,8 @@ class LoadBalancer(private val server: Server) {
                 }
             }
             shards = shardsList.toTypedArray()
-            counts[node] = shards
-            ws.send(node, Payload.of(StartPacket(token, shards, shardsTotal), StartPacket.IDENTIFIER))
+            counts[node.session] = shards
+            ws.send(node.session, Payload.of(StartPacket(token, shards, shardsTotal), StartPacket.IDENTIFIER))
         }
     }
 }

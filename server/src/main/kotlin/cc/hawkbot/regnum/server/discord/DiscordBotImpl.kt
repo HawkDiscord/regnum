@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.server.discord
 
+import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import net.dv8tion.jda.api.JDA
 import net.dv8tion.jda.api.JDABuilder
 import net.dv8tion.jda.api.OnlineStatus
@@ -27,6 +28,10 @@ import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
+/**
+ * Implementation of [DiscordBot].
+ * @param token the Discord bot token
+ */
 class DiscordBotImpl(token: String) : DiscordBot {
 
     override lateinit var jda: JDA
@@ -42,9 +47,13 @@ class DiscordBotImpl(token: String) : DiscordBot {
 
     @SubscribeEvent
     @Suppress("unused")
-    fun whenReady(event: ReadyEvent) {
+    private fun whenReady(event: ReadyEvent) {
         val presence = event.jda.presence
         presence.status = OnlineStatus.ONLINE
         presence.activity = Activity.playing("With my little brother Hawk")
+    }
+
+    override fun close() {
+        jda.shutdownNow()
     }
 }

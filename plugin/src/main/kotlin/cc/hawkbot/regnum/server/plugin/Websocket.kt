@@ -17,17 +17,39 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core
+package cc.hawkbot.regnum.server.plugin
 
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.server.plugin.entities.Node
 import io.javalin.websocket.WsSession
 
+/**
+ * Representation of the Regnum websocket.
+ */
+@Suppress("unused")
 interface Websocket {
 
-    val nodes: MutableList<WsSession>
+    /**
+     * A list containing all available nodes
+     */
+    val nodes: List<Node>
 
+    fun getNode(session: WsSession): Node {
+        return nodes.first { it.session == session }
+    }
+
+    /**
+     * Sends a [message] to the specified [session]
+     * @param session the session to sent the message to
+     * @param message the message
+     */
     fun send(session: WsSession, message: String)
 
+    /**
+     * Sends a [payload] to the specified [session]
+     * @param session the session to sent the message to
+     * @param payload the payload
+     */
     fun send(session: WsSession, payload: Payload) {
         send(session, payload.toJson())
     }
