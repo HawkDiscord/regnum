@@ -28,6 +28,7 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.permission.PermissionManagerImpl
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
+import cc.hawkbot.regnum.client.commands.settings.PermissionCommand
 import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
@@ -35,12 +36,15 @@ import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
 import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
+import cc.hawkbot.regnum.client.entities.permission.PermissionNode
 import cc.hawkbot.regnum.client.io.database.CassandraSource
 import cc.hawkbot.regnum.client.util._setRegnum
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import com.datastax.driver.core.CodecRegistry
+import com.datastax.driver.extras.codecs.enums.EnumNameCodec
+import com.datastax.driver.extras.codecs.enums.EnumOrdinalCodec
 import net.dv8tion.jda.api.hooks.IEventManager
 import java.util.function.Function
 
@@ -102,31 +106,39 @@ class RegnumImpl(
                 "prefix TEXT," +
                 "PRIMARY KEY (id)" +
                 ");")
+        generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}permissions(" +
+                "id BIGINT," +
+                "negated BOOLEAN," +
+                "guild_id BIGINT," +
+                "permission_node TEXT," +
+                "type TEXT," +
+                "PRIMARY KEY (id, guild_id, permission_node, type)" +
+                ");")
         cassandra = CassandraSource(cassandraAuthenticator.username, cassandraAuthenticator.password, cassandraKeyspace, codecRegistry, contactPoints)
-        cassandra.connectAsync().thenAccept { source ->
-            log.info("[Regnum] Successfully connected to Cassandra cluster")
-            log.info("[Regnum] Generating Cassandra databases")
-            generators.forEach {
-                try {
-                    val statement = source.session.prepare(it).bind()
-                    source.session.executeAsync(statement).get()
-                } catch (e: Exception) {
-                    log.info("[Regnum] Error while generating default database")
-                    e.printStackTrace()
-                }
+        cassandra.codecRegistry.register(EnumNameCodec(PermissionNode.PermissionTarget::class.java))
+        val source = cassandra.connect()
+        log.info("[Regnum] Successfully connected to Cassandra cluster")
+        log.info("[Regnum] Generating Cassandra databases")
+        generators.forEach {
+            try {
+                val statement = source.session.prepare(it).bind()
+                source.session.executeAsync(statement).get()
+            } catch (e: Exception) {
+                log.error("[Regnum] Error while generating default database", e)
             }
+        }
 
-            log.info("[Regnum] Generated databases. Initializing caches")
+        log.info("[Regnum] Generated databases. Initializing caches")
 
-            // Caches
-            guildCache = CassandraCacheImpl(this, RegnumGuild::class, RegnumGuild.Accessor::class.java)
+        // Caches
+        guildCache = CassandraCacheImpl(this, RegnumGuild::class, RegnumGuild.Accessor::class.java)
 
-            // Default commands
-            commandParser.registerCommands(PrefixCommand())
-            // Permissions
-            permissionManager = PermissionManagerImpl(this)
-            log.info("[Regnum] Connecting to server")
-            websocket.start()
-        }.exceptionally { throw it }
+        // Default commands
+        commandParser.registerCommands(PrefixCommand(), PermissionCommand())
+
+        // Permissions
+        permissionManager = PermissionManagerImpl(this)
+        log.info("[Regnum] Connecting to server")
+        websocket.start()
     }
 }

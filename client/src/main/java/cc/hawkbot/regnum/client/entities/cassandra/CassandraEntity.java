@@ -93,8 +93,9 @@ public abstract class CassandraEntity<T> {
      *
      * @return a CompletionStage that completes when the request succeeded
      */
+    @SuppressWarnings("unchecked")
     public CompletionStage<Void> deleteAsync() {
-        return execute(getMapper().deleteAsync(this));
+        return execute(getMapper().deleteAsync((T) this));
     }
 
     /**

@@ -96,6 +96,8 @@ interface ICommand {
      */
     fun registerSubCommand(subCommand: ISubCommand) {
         subCommand.parent = this
-        subCommand.aliases.forEach { subCommandAssociations[it] = subCommand }
+        subCommand.aliases.forEach {
+            subCommandAssociations[it] = subCommand
+        }
     }
 }

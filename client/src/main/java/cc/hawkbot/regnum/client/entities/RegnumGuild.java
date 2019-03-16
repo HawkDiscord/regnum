@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client.entities;
 
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity;
+import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.Param;
 import com.datastax.driver.mapping.annotations.Query;
@@ -34,6 +35,10 @@ import static cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity.TABLE_
 public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     public static final String NO_PREFIX = "%NO%";
+
+    public RegnumGuild() {
+        super(0);
+    }
 
     private String prefix = NO_PREFIX;
 
@@ -52,7 +57,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     @com.datastax.driver.mapping.annotations.Accessor
     public interface Accessor extends CachableCassandraEntity.Accessor<RegnumGuild> {
-        @Query("SELECT * FROM guilds WHERE id = :id")
+        @Query("SELECT * FROM " + TABLE_PREFIX + "guilds WHERE id = :id")
         @NotNull
         @Override
         Result<RegnumGuild> get(@Param("id") long id);

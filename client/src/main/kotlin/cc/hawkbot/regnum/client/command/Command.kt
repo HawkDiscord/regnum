@@ -42,6 +42,5 @@ abstract class Command(
         override val exampleUsage: String = "",
         override val description: String
 ) : ICommand {
-    override val subCommandAssociations: MutableMap<String, ISubCommand>
-        get() = mutableMapOf()
+    override val subCommandAssociations: MutableMap<String, ISubCommand> = mutableMapOf()
 }

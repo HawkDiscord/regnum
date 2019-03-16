@@ -41,7 +41,8 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
     }
 
     override fun execute(args: Arguments, context: Context) {
-        TODO("not implemented")
+        context.sendMessage("No sub command bro").queue()
+        //TODO("not implemented")
     }
 
     private class AddCommand : SubCommand("Add", arrayOf("add", "assign"), usage = "<@User/@Role <node>", exampleUsage = "@Schlaubi#1337 command.help", description = "Adds the permission to use a command") {
@@ -50,6 +51,14 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                 checkArgs(context) { node ->
                     val manager = context.regnum.permissionManager
                     if (manager.nodeExists(it, node)) {
+                        val permission = manager.getNode(it, node)
+                        if (permission.isNegated) {
+                            permission.allow()
+                            permission.saveAsync().thenRun {
+                                context.sendMessage("Allowed perm").queue()
+                            }
+                            return@checkArgs
+                        }
                         return@checkArgs context.sendMessage("Node exists").queue()
                     }
                     manager.createPermissionNode(it, node).thenAccept { holder ->
@@ -67,12 +76,15 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                     val manager = context.regnum.permissionManager
                     if (manager.nodeExists(it, node)) {
                         val permission = manager.getNode(it, node)
+                        if (permission.isNegated) {
+                            return@checkArgs context.sendMessage("Already negated").queue()
+                        }
                         permission.negate()
-                        manager.updateNode(permission).thenRun {
+                        permission.saveAsync().thenRun {
                             context.sendMessage("Negated $node to ${it.id}").queue()
                         }
                     } else {
-                        manager.createPermissionNode(it, node).thenAccept { holder ->
+                        manager.createPermissionNode(it, node, true).thenAccept { holder ->
                             context.sendMessage("Added ${holder.permissionNode} to ${holder.id}").queue()
                         }
                     }
@@ -89,7 +101,8 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                     if (!manager.nodeExists(it, node)) {
                         return@checkArgs context.sendMessage("!Node exists").queue()
                     }
-                    manager.getNode(it, node).deleteAsync().thenRun {
+                    val node = manager.getNode(it, node).deleteAsync()
+                    .thenRun {
                         context.sendMessage("Removed $node from ${it.id}").queue()
                     }
                 }
@@ -101,11 +114,15 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
         override fun execute(args: Arguments, context: Context) {
             checkMention(context) { holder ->
                 val manager = context.regnum.permissionManager
-                val permissions = manager.getNodes(holder).toMutableList()
+                var permissions = manager.getNodes(holder).toMutableList()
                 if (holder is Member) {
                     holder.roles.forEach {
                         permissions.addAll(manager.getNodes(it))
                     }
+                }
+                if (permissions.isEmpty()) {
+                    context.sendMessage("No perms bro").queue()
+                    return@checkMention
                 }
                 val allowedPermissions = mutableListOf<PermissionNode>()
                 val negatedPermissions = permissions.filterAndExtract(allowedPermissions) { it.isNegated }
@@ -114,7 +131,7 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
         }
 
         private fun stringifyPermissionList(permissions: Collection<PermissionNode>): String {
-            return permissions.joinToString(prefix = "`", postfix = "`", separator = ", ")
+            return permissions.map { it.permissionNode }.joinToString(prefix = "`", postfix = "`", separator = ", ")
         }
 
     }

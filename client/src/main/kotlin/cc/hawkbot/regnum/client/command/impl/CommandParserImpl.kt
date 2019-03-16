@@ -75,6 +75,7 @@ class CommandParserImpl(
         // TODO: Custom prefix
         parseCommands(event)
     }
+
     private fun parseCommands(event: GuildMessageReceivedEvent) {
         val guildPrefix = regnum.guild(event.guild).prefix
         val mention = event.guild.selfMember.asMention
@@ -97,15 +98,17 @@ class CommandParserImpl(
         // Sub commands
         if (rawArgs.size >= 2) {
             val subInvoke = rawArgs[1].toLowerCase()
-            if (subInvoke in command.subCommandAssociations)
+            if (command.subCommandAssociations.containsKey(subInvoke)) {
                 command = command.subCommandAssociations[subInvoke]!!
+            }
         }
         executeCommand(command, rawArgs, event)
     }
+
     private fun executeCommand(command: ICommand, rawArgs: Array<String>, event: GuildMessageReceivedEvent) {
         if (!permissionProvider.hasPermission(command.permissions, event.member)) {
             if (!permissionProvider.hasPermission(command.group.permissions, event.member)) {
-                TODO("HANDLE PERMISSIONS")
+                SafeMessage.sendMessage("NO PERMS BRA", event.channel).queue()
             }
         }
 
@@ -157,7 +160,7 @@ class CommandParserImpl(
                 .thenAccept { message ->
                     Misc.postToHastebinAsync(information.toString())
                             .thenAccept {
-                                SafeMessage.editMessage(message, EmbedUtil.error("An error occurred", "Please report [this]($it) link to the developers"))
+                                SafeMessage.editMessage(message, EmbedUtil.error("An error occurred", "Please report [this]($it) link to the developers")).queue()
                             }
                 }
                 .exceptionally {

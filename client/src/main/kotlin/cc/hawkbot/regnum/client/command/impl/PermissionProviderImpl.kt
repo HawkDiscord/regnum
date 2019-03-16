@@ -37,9 +37,9 @@ class PermissionProviderImpl : IPermissionProvider {
 
     override fun hasPermission(permissions: IPermissions, member: Member): Boolean {
         // Public command
-        if (permissions.public) {
+        /*if (permissions.public) {
             return true
-        }
+        }*/
 
         // Check lateinit var
         if (!this::regnum.isInitialized) {

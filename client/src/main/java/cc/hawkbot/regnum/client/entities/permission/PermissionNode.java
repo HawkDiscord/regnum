@@ -26,6 +26,8 @@ import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.*;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.CompletionStage;
+
 @Table(name = CassandraEntity.TABLE_PREFIX + "permissions")
 @SuppressWarnings("unused")
 public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
@@ -35,11 +37,17 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     private boolean negated;
     @PartitionKey(1)
+    @Column(name = "guild_id")
     private long guildId;
     @PartitionKey(2)
+    @Column(name = "permission_node")
     private String permissionNode;
     @PartitionKey(3)
     private PermissionTarget type;
+
+    public PermissionNode() {
+        super(-1L);
+    }
 
     public PermissionNode(Long idAsLong, boolean negated, long guildId, String permissionNode, PermissionTarget type) {
         super(idAsLong);
@@ -73,9 +81,21 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
         this.negated = false;
     }
 
+    @Override
+    public CompletionStage<Void> deleteAsync() {
+        manager.deleteNode(this);
+        return super.deleteAsync();
+    }
+
+    @Override
+    public CompletionStage<Void> saveAsync() {
+        manager.updateNode(this);
+        return super.saveAsync();
+    }
+
     @NotNull
     public PermissionManager.PermissionInfoContainer toInfo() {
-        return new PermissionManager.PermissionInfoContainer(getIdLong(), guildId, permissionNode);
+        return new PermissionManager.PermissionInfoContainer(getIdLong(), guildId, permissionNode, false);
     }
 
     public PermissionManager getManager() {
@@ -104,10 +124,10 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     @com.datastax.driver.mapping.annotations.Accessor
     public interface Accessor {
-        @Query("SELECT * FROM permissions WHERE id = :userId AND guild_id = :guildId AND node = :node")
+        @Query("SELECT * FROM " + CassandraEntity.TABLE_PREFIX + "permissions WHERE id = :userId AND guild_id = :guildId AND permission_node = :node")
         Result<PermissionNode> getNode(@Param("userId") long userId, @Param("guildId") long guildId, @Param("node") String node);
 
-        @Query("SELECT * FROM permissions WHERE id = :userId AND guild_id = :guildId")
+        @Query("SELECT * FROM " + CassandraEntity.TABLE_PREFIX + "permissions WHERE id = :userId AND guild_id = :guildId")
         Result<PermissionNode> getNodes(@Param("userId") long userId, @Param("guildId") long guildId);
     }
 

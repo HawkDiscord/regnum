@@ -27,17 +27,9 @@ import java.util.concurrent.CompletionStage
 
 interface PermissionManager {
 
-    fun hasPermissions(permissions: IPermissions, member: Member): Boolean {
-        return hasPermissions(permissions.node, member)
-    }
+    fun hasPermissions(permissions: IPermissions, permissionHolder: IPermissionHolder): Boolean
 
-    fun hasPermissions(node: String, member: Member): Boolean
-
-    fun hasPermissions(permissions: IPermissions, permissionHolder: IPermissionHolder): Boolean {
-        return hasPermissions(permissions.node, permissionHolder)
-    }
-
-    fun hasPermissions(node: String, permissionHolder: IPermissionHolder): Boolean
+    fun hasPermissions(permissions: IPermissions, member: Member): Boolean
 
     fun hasWildcard(permissionHolder: IPermissionHolder): Boolean {
         return hasWildcard(permissionHolder.idLong, permissionHolder.guild.idLong)
@@ -87,8 +79,9 @@ interface PermissionManager {
 
     fun deleteNode(node: PermissionNode): CompletionStage<Void>
 
-    fun hasPermission(id: Long, guildId: Long, node: String): Boolean {
-        return nodeExists(id, guildId, node) && !getNode(id, guildId, node).isNegated
+    fun hasPermission(id: Long, guildId: Long, node: String, public: Boolean): Boolean {
+        val container = PermissionInfoContainer(id, guildId, node, public)
+        return hasPermission(container)
     }
 
     fun hasPermission(info: PermissionInfoContainer): Boolean
@@ -96,7 +89,15 @@ interface PermissionManager {
     data class PermissionInfoContainer(
             val id: Long,
             val guildId: Long,
-            val node: String
-    )
+            val node: String,
+            val public: Boolean = false
+    ) {
+        override fun equals(other: Any?): Boolean {
+            if (other != null && other is PermissionInfoContainer) {
+                return other.id == id && other.guildId == guildId && other.node == node
+            }
+            return false
+        }
+    }
 
 }
