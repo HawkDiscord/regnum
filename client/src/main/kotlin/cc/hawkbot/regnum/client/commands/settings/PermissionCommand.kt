@@ -17,6 +17,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
+@file:Suppress("SpellCheckingInspection")
+
 package cc.hawkbot.regnum.client.commands.settings
 
 import cc.hawkbot.regnum.client.command.Command
@@ -26,7 +28,9 @@ import cc.hawkbot.regnum.client.command.context.Arguments
 import cc.hawkbot.regnum.client.command.context.Context
 import cc.hawkbot.regnum.client.command.permission.CommandPermissions
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
+import cc.hawkbot.regnum.client.util.EmbedUtil
 import cc.hawkbot.regnum.client.util.filterAndExtract
+import net.dv8tion.jda.api.entities.IMentionable
 import net.dv8tion.jda.api.entities.IPermissionHolder
 import net.dv8tion.jda.api.entities.Member
 
@@ -41,8 +45,7 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
     }
 
     override fun execute(args: Arguments, context: Context) {
-        context.sendMessage("No sub command bro").queue()
-        //TODO("not implemented")
+        return context.sendHelp().queue()
     }
 
     private class AddCommand : SubCommand("Add", arrayOf("add", "assign"), usage = "<@User/@Role <node>", exampleUsage = "@Schlaubi#1337 command.help", description = "Adds the permission to use a command") {
@@ -55,14 +58,32 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                         if (permission.isNegated) {
                             permission.allow()
                             permission.saveAsync().thenRun {
-                                context.sendMessage("Allowed perm").queue()
+                                context.sendMessage(
+                                        EmbedUtil.success(
+                                                context.translate("command.permission.add.allowed.title"),
+                                                context.translate("command.permission.add.allowed.description")
+                                                        .format(node, (it as IMentionable).asMention)
+                                        )
+                                ).queue()
                             }
                             return@checkArgs
                         }
-                        return@checkArgs context.sendMessage("Node exists").queue()
+                        return@checkArgs context.sendMessage(
+                                EmbedUtil.error(
+                                        context.translate("command.permission.add.exists.title"),
+                                        context.translate("command.permission.add.exists.description")
+                                                .format(node, (it as IMentionable).asMention)
+                                )
+                        ).queue()
                     }
-                    manager.createPermissionNode(it, node).thenAccept { holder ->
-                        context.sendMessage("Added ${holder.permissionNode} to ${holder.id}").queue()
+                    manager.createPermissionNode(it, node).thenAccept { permission ->
+                        context.sendMessage(
+                                EmbedUtil.success(
+                                        context.translate("command.permission.add.success.title"),
+                                        context.translate("command.permission.add.success.description")
+                                                .format(permission.permissionNode, (it as IMentionable).asMention)
+                                )
+                        ).queue()
                     }
                 }
             }
@@ -77,15 +98,33 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                     if (manager.nodeExists(it, node)) {
                         val permission = manager.getNode(it, node)
                         if (permission.isNegated) {
-                            return@checkArgs context.sendMessage("Already negated").queue()
+                            return@checkArgs context.sendMessage(
+                                    EmbedUtil.error(
+                                            context.translate("command.permission.deny.exists.title"),
+                                            context.translate("command.permission.deny.exists.description")
+                                    )
+                            ).queue()
                         }
                         permission.negate()
                         permission.saveAsync().thenRun {
-                            context.sendMessage("Negated $node to ${it.id}").queue()
+                            context.sendMessage(
+                                    EmbedUtil.success(
+                                            context.translate("command.permission.deny.negated.title"),
+                                            context.translate("command.permission.deny.negated.description")
+                                                    .format(node, (it as IMentionable).asMention)
+                                    )
+                            ).queue()
                         }
+                        return@checkArgs
                     } else {
-                        manager.createPermissionNode(it, node, true).thenAccept { holder ->
-                            context.sendMessage("Added ${holder.permissionNode} to ${holder.id}").queue()
+                        manager.createPermissionNode(it, node, true).thenAccept { permission ->
+                            context.sendMessage(
+                                    EmbedUtil.success(
+                                            context.translate("command.permission.deny.success.title"),
+                                            context.translate("command.permission.deny.success.description")
+                                                    .format(permission.permissionNode, (it as IMentionable).asMention)
+                                    )
+                            ).queue()
                         }
                     }
                 }
@@ -99,12 +138,23 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                 checkArgs(context) { node ->
                     val manager = context.regnum.permissionManager
                     if (!manager.nodeExists(it, node)) {
-                        return@checkArgs context.sendMessage("!Node exists").queue()
+                        return@checkArgs context.sendMessage(
+                                EmbedUtil.error(
+                                        context.translate("command.permission.remove.unkown.title"),
+                                        context.translate("command.permission.remove.unkown.description")
+                                )
+                        ).queue()
                     }
-                    val node = manager.getNode(it, node).deleteAsync()
-                    .thenRun {
-                        context.sendMessage("Removed $node from ${it.id}").queue()
-                    }
+                    manager.getNode(it, node).deleteAsync()
+                            .thenRun {
+                                context.sendMessage(
+                                        EmbedUtil.success(
+                                                context.translate("command.permission.remove.title"),
+                                                context.translate("command.permission.remove.description")
+                                                        .format(node, (it as IMentionable).asMention)
+                                        )
+                                )
+                            }
                 }
             }
         }
@@ -114,24 +164,46 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
         override fun execute(args: Arguments, context: Context) {
             checkMention(context) { holder ->
                 val manager = context.regnum.permissionManager
-                var permissions = manager.getNodes(holder).toMutableList()
+                val permissions = manager.getNodes(holder).toMutableList()
                 if (holder is Member) {
                     holder.roles.forEach {
                         permissions.addAll(manager.getNodes(it))
                     }
                 }
                 if (permissions.isEmpty()) {
-                    context.sendMessage("No perms bro").queue()
-                    return@checkMention
+                    return@checkMention context.sendMessage(
+                            EmbedUtil.error(
+                                    context.translate("command.permission.list.empty.title"),
+                                    context.translate("command.permission.list.empty.description")
+                            )
+                    ).queue()
                 }
                 val allowedPermissions = mutableListOf<PermissionNode>()
                 val negatedPermissions = permissions.filterAndExtract(allowedPermissions) { it.isNegated }
-                context.sendMessage("Allowed ${stringifyPermissionList(allowedPermissions)}, denied ${stringifyPermissionList(negatedPermissions)}").queue()
+                val embed = EmbedUtil.info(
+                        context.translate("command.permission.list.title"),
+                        context.translate("command.permission.list.description")
+                                .format((holder as IMentionable).asMention)
+                )
+                if (allowedPermissions.isNotEmpty()) {
+                    embed.addField(
+                            context.translate("command.permission.list.allowed"),
+                            stringifyPermissionList(allowedPermissions),
+                            false
+                    )
+                }
+                if (negatedPermissions.isNotEmpty())
+                    embed.addField(
+                            context.translate("command.permission.list.negated"),
+                            stringifyPermissionList(negatedPermissions),
+                            false
+                    )
+                context.sendMessage(embed).queue()
             }
         }
 
         private fun stringifyPermissionList(permissions: Collection<PermissionNode>): String {
-            return permissions.map { it.permissionNode }.joinToString(prefix = "`", postfix = "`", separator = ", ")
+            return permissions.joinToString(prefix = "`", postfix = "`", separator = "`, `") { it.permissionNode }
         }
 
     }
@@ -144,8 +216,12 @@ fun checkMention(context: Context, action: (mention: IPermissionHolder) -> Unit)
         mentions.firstMember().isPresent -> mentions.firstMember().get()
         mentions.firstRole().isPresent -> mentions.firstRole().get()
         else -> {
-            context.sendMessage("Please define a holder").queue()
-            return
+            return context.sendMessage(
+                    EmbedUtil.error(
+                            context.translate("command.permission.notargt.title"),
+                            context.translate("command.permission.notargt.description")
+                    )
+            ).queue()
         }
     }
     action(holder)
@@ -154,7 +230,12 @@ fun checkMention(context: Context, action: (mention: IPermissionHolder) -> Unit)
 fun checkArgs(context: Context, action: (node: String) -> Unit) {
     val args = context.args
     if (args.size() > 2) {
-        return context.sendMessage("PLS define a node").queue()
+        return context.sendMessage(
+                EmbedUtil.error(
+                        context.translate("command.permissions.error.nodemissing.title"),
+                        context.translate("command.permissions.error.nodemissing.description")
+                )
+        ).queue()
     }
     action(args[1])
 }
