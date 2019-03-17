@@ -102,11 +102,13 @@ class RegnumImpl(
         eventManager.register(commandParser)
         eventWaiter = EventWaiterImpl(eventManager)
         websocket = WebsocketImpl(host, this)
+        languageManager.regnum(this)
         // Default databases
         val generators = defaultDatabases.toMutableList()
         generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}guilds(" +
                 "id BIGINT," +
                 "prefix TEXT," +
+                "language_tag TEXT," +
                 "PRIMARY KEY (id)" +
                 ");")
         generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}permissions(" +

@@ -21,10 +21,7 @@ package cc.hawkbot.regnum.client.entities;
 
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity;
 import com.datastax.driver.mapping.Result;
-import com.datastax.driver.mapping.annotations.Param;
-import com.datastax.driver.mapping.annotations.Query;
-import com.datastax.driver.mapping.annotations.Table;
-import com.datastax.driver.mapping.annotations.Transient;
+import com.datastax.driver.mapping.annotations.*;
 import org.jetbrains.annotations.NotNull;
 
 import static cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity.TABLE_PREFIX;
@@ -43,6 +40,8 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
     }
 
     private String prefix = NO_PREFIX;
+
+    @Column(name = "language_tag")
     private String languageTag = "en-US";
 
     public RegnumGuild(long id) {

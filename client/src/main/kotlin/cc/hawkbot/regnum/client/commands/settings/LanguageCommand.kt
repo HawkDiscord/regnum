@@ -25,6 +25,7 @@ import cc.hawkbot.regnum.client.command.SubCommand
 import cc.hawkbot.regnum.client.command.context.Arguments
 import cc.hawkbot.regnum.client.command.context.Context
 import cc.hawkbot.regnum.client.command.permission.CommandPermissions
+import cc.hawkbot.regnum.client.command.translation.Language
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.util.EmbedUtil
 
@@ -67,7 +68,7 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
                     )
             ).queue()
         }
-        val language = context.regnum.languageManager.languages().first { it.languageTag().equals(tag, true) }
+        val language = context.regnum.languageManager.getLanguageByTag(tag)
         target.languageTag = language.languageTag()
         target.saveAsync().thenRun {
             context.sendMessage(
@@ -91,7 +92,48 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
 
     private class GuildCommand: SubCommand("Guild", arrayOf("guild"), CommandPermissions(serverAdminExclusive = true, node="language.guild"), "[languageTag]", "en-US", "Changes the language for guild specific messages") {
         override fun execute(args: Arguments, context: Context) {
-            TODO("not implemented")
+            val target = context.regnumGuild()
+            if (args.isEmpty()) {
+                return context.sendMessage(
+                        EmbedUtil.info(
+                                context.translate("command.language.guild.current.title"),
+                                context.translate("command.language.guild.current.description")
+                                        .format(context.regnum.languageManager.getLanguageByTag(target.languageTag).displayName())
+                        )
+                ).queue()
+            }
+            val tag = args[0]
+            if (!context.regnum.languageManager.isTranslated(tag)) {
+                return context.sendMessage(
+                        EmbedUtil.error(
+                                context.translate("command.language.notfound.title"),
+                                context.translate("command.language.notfound.description")
+                        )
+                ).queue()
+            }
+            if (target.languageTag == tag) {
+                return context.sendMessage(
+                        EmbedUtil.error(
+                                context.translate("command.language.guild.same.title"),
+                                context.translate("command.language.guild.same.description")
+                        )
+                ).queue()
+            }
+            val language = context.regnum.languageManager.getLanguageByTag(tag)
+            target.languageTag = language.languageTag()
+            target.saveAsync().thenRun {
+                context.sendMessage(
+                        EmbedUtil.success(
+                                context.translate("command.language.guild.success.title"),
+                                context.translate("command.language.guild.success.description")
+                                        .format(language.displayName())
+                        )
+                ).queue()
+            }
         }
     }
+}
+
+private fun LanguageManager.getLanguageByTag(tag: String): Language {
+    return this.languages().first { it.languageTag().equals(tag, true) }
 }
