@@ -30,6 +30,10 @@ open class DefaultLanguageManager(override val defaultLanguage: Language) : Lang
     private val languages = mutableMapOf<String, Language>()
     private lateinit var regnum: Regnum
 
+    init {
+        languages[defaultLanguage.languageTag()] = defaultLanguage
+    }
+
     override fun languages(): Collection<Language> {
         return languages.values
     }
@@ -40,7 +44,11 @@ open class DefaultLanguageManager(override val defaultLanguage: Language) : Lang
     }
 
     override fun getLanguageByUser(id: Long): Language {
-        return defaultLanguage
+        return languages[regnum.user(id).languageTag]!!
+    }
+
+    override fun getLanguageByGuild(id: Long): Language {
+        return languages[regnum.guild(id).languageTag]!!
     }
 
     override fun regnum(): Regnum {
@@ -50,5 +58,9 @@ open class DefaultLanguageManager(override val defaultLanguage: Language) : Lang
     override fun regnum(regnum: Regnum) {
         this.regnum = regnum
         defaultLanguage.regnum(regnum)
+    }
+
+    override fun isTranslated(languageTag: String): Boolean {
+        return languages.containsKey(languageTag)
     }
 }

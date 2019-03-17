@@ -28,11 +28,13 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.permission.PermissionManagerImpl
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
+import cc.hawkbot.regnum.client.commands.settings.LanguageCommand
 import cc.hawkbot.regnum.client.commands.settings.PermissionCommand
 import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
 import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
 import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
@@ -83,6 +85,7 @@ class RegnumImpl(
     override val commandParser: CommandParser
     override val cassandra: CassandraSource
     override lateinit var guildCache: CassandraCache<RegnumGuild>
+    override lateinit var userCache: CassandraCache<RegnumUser>
     override val eventWaiter: EventWaiter
     override lateinit var permissionManager: PermissionManager
 
@@ -99,11 +102,13 @@ class RegnumImpl(
         eventManager.register(commandParser)
         eventWaiter = EventWaiterImpl(eventManager)
         websocket = WebsocketImpl(host, this)
+        languageManager.regnum(this)
         // Default databases
         val generators = defaultDatabases.toMutableList()
         generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}guilds(" +
                 "id BIGINT," +
                 "prefix TEXT," +
+                "language_tag TEXT," +
                 "PRIMARY KEY (id)" +
                 ");")
         generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}permissions(" +
@@ -113,6 +118,11 @@ class RegnumImpl(
                 "permission_node TEXT," +
                 "type TEXT," +
                 "PRIMARY KEY (id, guild_id, permission_node, type)" +
+                ");")
+        generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}user(" +
+                "id BIGINT," +
+                "language_tag TEXT," +
+                "PRIMARY KEY (id)" +
                 ");")
         cassandra = CassandraSource(cassandraAuthenticator.username, cassandraAuthenticator.password, cassandraKeyspace, codecRegistry, contactPoints)
         cassandra.codecRegistry.register(EnumNameCodec(PermissionNode.PermissionTarget::class.java))
@@ -132,9 +142,10 @@ class RegnumImpl(
 
         // Caches
         guildCache = CassandraCacheImpl(this, RegnumGuild::class, RegnumGuild.Accessor::class.java)
+        userCache = CassandraCacheImpl(this, RegnumUser::class, RegnumUser.Accessor::class.java)
 
         // Default commands
-        commandParser.registerCommands(PrefixCommand(), PermissionCommand())
+        commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand())
 
         // Permissions
         permissionManager = PermissionManagerImpl(this)

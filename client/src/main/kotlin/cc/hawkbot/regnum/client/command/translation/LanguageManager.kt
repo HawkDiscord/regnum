@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client.command.translation
 
 import cc.hawkbot.regnum.client.entities.RequiresRegnum
+import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.ISnowflake
 import net.dv8tion.jda.api.entities.Member
 import net.dv8tion.jda.api.entities.User
@@ -47,6 +48,12 @@ interface LanguageManager : RequiresRegnum {
      * @param language the language
      */
     fun registerLanguage(language: Language)
+
+    /**
+     * Returns whether a language is translated or not.
+     * @return whether a language is translated or not
+     */
+    fun isTranslated(languageTag: String): Boolean
 
     /**
      * Registers the [languages]
@@ -77,15 +84,32 @@ interface LanguageManager : RequiresRegnum {
     fun getLanguageByUser(id: String): Language {
         return getLanguageByUser(id.toLong())
     }
+
     /**
      * Returns the language by a [snowflake]
      * @return the language by a [snowflake]
      */
     fun getLanguageByUser(snowflake: ISnowflake): Language {
-        if (snowflake !is User && snowflake !is Member) {
-            throw IllegalArgumentException("Only users and members can have a language")
+        if (snowflake !is User && snowflake !is Member && snowflake !is Guild) {
+            throw IllegalArgumentException("Only users, guilds and members can have a language")
+        }
+        if (snowflake is Guild) {
+            return getLanguageByGuild(snowflake.idLong)
         }
         return getLanguageByUser(snowflake.idLong)
     }
 
+    /**
+     * Returns the language by a guilds [id].
+     * @return the language by a guilds [id]
+     */
+    fun getLanguageByGuild(id: Long): Language
+
+    /**
+     * Returns the language by a guilds [id].
+     * @return the language by a guilds [id]
+     */
+    fun getLanguageByGuild(id: String): Language {
+        return getLanguageByGuild(id.toLong())
+    }
 }
