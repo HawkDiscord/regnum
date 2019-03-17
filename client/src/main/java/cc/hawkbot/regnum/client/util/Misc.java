@@ -44,7 +44,7 @@ import java.util.stream.Stream;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Misc {
 
-    public static final String HASTEBIN_URL = "https://paste.hawkbot.cc";
+    public static final String HASTEBIN_URL = "https://haste.hawkbot.cc";
     public static ExecutorService EXECUTOR = Executors.newCachedThreadPool(new DefaultThreadFactory("Futures"));
 
     /**

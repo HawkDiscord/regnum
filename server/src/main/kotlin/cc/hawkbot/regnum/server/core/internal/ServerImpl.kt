@@ -22,7 +22,6 @@ package cc.hawkbot.regnum.server.core.internal
 import cc.hawkbot.regnum.sentry.SentryAppender
 import cc.hawkbot.regnum.sentry.SentryClient
 import cc.hawkbot.regnum.server.core.internal.websocket.ConfigAuthorizer
-import cc.hawkbot.regnum.server.core.internal.websocket.LoadBalancerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.WebsocketImpl
 import cc.hawkbot.regnum.server.discord.DiscordBotImpl
 import cc.hawkbot.regnum.server.plugin.Server

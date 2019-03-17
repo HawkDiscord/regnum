@@ -17,17 +17,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
-
-import cc.hawkbot.regnum.client.command.impl.Permissions
+package cc.hawkbot.regnum.client.util
 
 /**
- * Command implementation of [IPermissions].
- * @param botOwnerExclusive whether only the bot owner should have the permission or not
- * @param serverAdminExclusive whether only the server admin should have the permission or not
- * @param public whether everyone should have the permission or not
- * @param node the permission node of the command
- * @constructor Constructs a new permission object
+ * Filters for [predicate] matching elements and add non-matching elements to [destination]
+ * @return the matching elements
  */
-@Suppress("unused")
-class CommandPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = false, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "command.$node")
+inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterAndExtract(destination: C, predicate: (T) -> Boolean): MutableCollection<T> {
+    val matching: MutableCollection<T> = mutableListOf()
+    for (element in this) if (!predicate(element)) destination.add(element) else matching.add(element)
+    return matching
+}

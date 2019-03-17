@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.server.core.internal.websocket
+package cc.hawkbot.regnum.server.core.internal
 
 import cc.hawkbot.regnum.entites.json.JsonObject
 import cc.hawkbot.regnum.server.plugin.Server

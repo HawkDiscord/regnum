@@ -35,6 +35,10 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     public static final String NO_PREFIX = "%NO%";
 
+    public RegnumGuild() {
+        super(0);
+    }
+
     private String prefix = NO_PREFIX;
 
     public RegnumGuild(long id) {
@@ -52,7 +56,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     @com.datastax.driver.mapping.annotations.Accessor
     public interface Accessor extends CachableCassandraEntity.Accessor<RegnumGuild> {
-        @Query("SELECT * FROM guilds WHERE id = :id")
+        @Query("SELECT * FROM " + TABLE_PREFIX + "guilds WHERE id = :id")
         @NotNull
         @Override
         Result<RegnumGuild> get(@Param("id") long id);

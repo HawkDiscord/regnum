@@ -17,17 +17,21 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
+@file:Suppress("ObjectPropertyName", "FunctionName")
 
-import cc.hawkbot.regnum.client.command.impl.Permissions
+package cc.hawkbot.regnum.client.util
 
-/**
- * Command implementation of [IPermissions].
- * @param botOwnerExclusive whether only the bot owner should have the permission or not
- * @param serverAdminExclusive whether only the server admin should have the permission or not
- * @param public whether everyone should have the permission or not
- * @param node the permission node of the command
- * @constructor Constructs a new permission object
- */
-@Suppress("unused")
-class CommandPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = false, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "command.$node")
+import cc.hawkbot.regnum.client.Regnum
+import net.dv8tion.jda.api.JDA
+
+private var _regnum: Regnum? = null
+
+var JDA.regnum: Regnum
+    get() = _regnum!!
+    set(value) = _setRegnum(value)
+
+internal fun _setRegnum(regnum: Regnum?) {
+    if (regnum != null) {
+        _regnum = regnum
+    }
+}

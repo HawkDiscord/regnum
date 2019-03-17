@@ -106,6 +106,7 @@ public class HttpClient {
 
     /**
      * Returns a plain text body.
+     *
      * @param content the content
      * @return the body
      */
@@ -115,6 +116,7 @@ public class HttpClient {
 
     /**
      * Returns a json body.
+     *
      * @param json the json
      * @return the body
      */

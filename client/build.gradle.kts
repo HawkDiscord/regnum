@@ -60,7 +60,6 @@ dependencies {
 
     // Util
     compile("com.google.guava:guava:27.0.1-jre")
-    compile("com.relops:snowflake:1.1")
 
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
@@ -113,9 +112,10 @@ tasks {
         externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("https://pages.hawkbot.cc/shared/javadoc/shared/").toURL()
         })
-        /*externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/").toURL()
-        })*/
+            packageListUrl = uri("https://gist.githubusercontent.com/DRSchlaubi/3d1d0aaa5c01963dcd4d0149c841c896/raw/22141759fbab1e38fd2381c3e4f97616ecb43fc8/package-list").toURL()
+        })
     }
 }
 
