@@ -47,7 +47,7 @@ interface IPermissions {
     /**
      * Whether the permission is passed by the [permissionHolder] or not.
      */
-    fun isPassedBy(permissionHolder: IPermissionHolder): Boolean {
-        return permissionHolder.hasPermission(this)
+    fun isPassedBy(permissionHolder: IPermissionHolder, guildId: Long): Boolean {
+        return permissionHolder.hasPermission(this, guildId)
     }
 }

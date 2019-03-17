@@ -19,6 +19,9 @@
 
 package cc.hawkbot.regnum.client.command.permission
 
+import cc.hawkbot.regnum.client.entities.permission.PermissionNode
+import java.util.concurrent.CompletionStage
+
 /**
  * Class that represents entities which can hold permissions
  */
@@ -29,26 +32,26 @@ interface IPermissionHolder {
      * Returns whether an entity has a permission or not.
      * @return whether an entity has a permission or not
      */
-    fun hasPermission(permission: IPermissions): Boolean
+    fun hasPermission(permission: IPermissions, guildId: Long): Boolean
 
     /**
      * Assigned a permission to a holder.
      * @param permission the permission
      * @param negated whether the permission should be negated or not
      */
-    fun assignPermission(permission: IPermissions, negated: Boolean = false)
+    fun assignPermission(permission: IPermissions, guildId: Long, negated: Boolean = false): CompletionStage<PermissionNode>
 
     /**
      * Deletes a permission.
      * @param permission the permission
      */
-    fun deletePermissionAssignment(permission: IPermissions)
+    fun deletePermissionAssignment(permission: IPermissions, guildId: Long): CompletionStage<Void>
 
     /**
      * Assigned a negated permission to a holder.
      * @param permission the permission
      */
-    fun assignNegatedPermission(permission: IPermissions) {
-        assignPermission(permission, true)
+    fun assignNegatedPermission(permission: IPermissions, guildId: Long): CompletionStage<PermissionNode>  {
+        return assignPermission(permission, guildId, true)
     }
 }

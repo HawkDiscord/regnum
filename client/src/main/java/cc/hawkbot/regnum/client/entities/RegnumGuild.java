@@ -29,6 +29,9 @@ import org.jetbrains.annotations.NotNull;
 
 import static cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity.TABLE_PREFIX;
 
+/**
+ * Entity for guilds.
+ */
 @Table(name = TABLE_PREFIX + "guilds")
 @SuppressWarnings("unused")
 public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
@@ -40,18 +43,43 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
     }
 
     private String prefix = NO_PREFIX;
+    private String languageTag = "en-US";
 
     public RegnumGuild(long id) {
         super(id);
     }
 
+    /**
+     * Returns the prefix of the guild.
+     * @return the prefix of the guild
+     */
     @Transient
     public String getPrefix() {
         return prefix.equals(NO_PREFIX) ? regnum().getCommandParser().getDefaultPrefix() : prefix;
     }
 
+    /**
+     * Sets the prefix of the guild.
+     * @param prefix the new prefix
+     */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
+    }
+
+    /**
+     * Returns the language tag of the guild.
+     * @return the language tag
+     */
+    public String getLanguageTag() {
+        return languageTag;
+    }
+
+    /**
+     * Sets the language tag of the guild
+     * @param languageTag the new language tag.
+     */
+    public void setLanguageTag(String languageTag) {
+        this.languageTag = languageTag;
     }
 
     @com.datastax.driver.mapping.annotations.Accessor

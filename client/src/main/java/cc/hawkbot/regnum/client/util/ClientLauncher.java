@@ -53,7 +53,7 @@ public class ClientLauncher {
         builder.addCassandraContactPoints("127.0.0.1");
         builder.authCassandra();
         builder.registerEvents(this);
-        builder.setDefaultLanguageManager(new PropertyLanguage(Locale.ENGLISH, "locales/en_US.properties", StandardCharsets.UTF_8));
+        builder.setDefaultLanguageManager(new PropertyLanguage(new Locale("en", "US"), "locales/en_US.properties", StandardCharsets.UTF_8));
         regnum = builder.build();
     }
 

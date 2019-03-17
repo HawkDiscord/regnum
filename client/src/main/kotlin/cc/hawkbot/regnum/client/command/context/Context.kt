@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client.command.context
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.command.ICommand
 import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.util.FormatUtil
 import cc.hawkbot.regnum.client.util.SafeMessage
 import net.dv8tion.jda.api.EmbedBuilder
@@ -200,6 +201,14 @@ interface Context {
      */
     fun regnumGuild(): RegnumGuild {
         return regnum.guild(guild())
+    }
+
+    /**
+     * Returns the [RegnumUser] which belongs to the [author].
+     * @return the regnum user
+     */
+    fun regnumUser(): RegnumUser {
+        return regnum.user(author())
     }
 
 }

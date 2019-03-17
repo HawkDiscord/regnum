@@ -25,10 +25,12 @@ import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.io.database.CassandraSource
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import net.dv8tion.jda.api.entities.Guild
+import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.hooks.IEventManager
 
 /**
@@ -68,22 +70,35 @@ interface Regnum {
     val languageManager: LanguageManager
 
     /**
-     * The cassandra source
+     * The cassandra source.
      */
     val cassandra: CassandraSource
 
     /**
-     * Ids of users with owner permissions
+     * Ids of users with owner permissions.
      */
     val owners: List<Long>
 
 
     /**
-     * The guild cache
+     * The guild cache.
      */
     val guildCache: CassandraCache<RegnumGuild>
 
+    /**
+     * The user cache.
+     */
+    val userCache: CassandraCache<RegnumUser>
+
+    /**
+     * The event waiter.
+     */
     val eventWaiter: EventWaiter
+
+    /**
+     * The permission manager.
+     */
+    val permissionManager: PermissionManager
 
     /**
      * Returns a Regnum guild from the cache.
@@ -112,6 +127,31 @@ interface Regnum {
         return guildCache[guild]
     }
 
-    val permissionManager: PermissionManager
+    /**
+     * Returns the Regnum user grom the cache
+     * @param id the id of the user
+     * @return the user
+     */
+    fun user(id: Long): RegnumUser {
+        return userCache[id]
+    }
+
+    /**
+     * Returns the Regnum user grom the cache
+     * @param id the id of the user
+     * @return the user
+     */
+    fun user(id: String): RegnumUser {
+        return userCache[id]
+    }
+
+    /**
+     * Returns the Regnum user grom the cache
+     * @param user the user
+     * @return the user
+     */
+    fun user(user: User): RegnumUser {
+        return userCache[user]
+    }
 
 }
