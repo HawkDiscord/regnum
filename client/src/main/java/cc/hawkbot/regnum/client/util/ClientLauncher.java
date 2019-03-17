@@ -67,7 +67,7 @@ public class ClientLauncher {
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {
         public Command() {
-            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, false, "test"), "", "", "");
+            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
         }
 
         @Override

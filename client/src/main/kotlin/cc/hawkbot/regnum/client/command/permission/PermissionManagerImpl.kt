@@ -26,6 +26,7 @@ import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import net.dv8tion.jda.api.entities.IPermissionHolder
 import net.dv8tion.jda.api.entities.Member
+import net.dv8tion.jda.api.exceptions.PermissionException
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
@@ -58,11 +59,14 @@ class PermissionManagerImpl(
 
     override fun hasPermissions(permissions: IPermissions, member: Member): Boolean {
         if (hasPermissions(permissions, permissionHolder = member)) {
+            println("Memb $member")
             return true
         }
         member.roles.forEach {
-            if (hasPermissions(permissions, it))
+            if (hasPermissions(permissions, it)) {
+                println("role $it")
                 return true
+            }
         }
         return false
     }
@@ -73,7 +77,8 @@ class PermissionManagerImpl(
     }
 
     override fun hasWildcard(id: Long, guildId: Long): Boolean {
-        return hasPermission(id, guildId, "*", false)
+        val info = PermissionManager.PermissionInfoContainer(id, guildId, "*", false)
+        return nodeExists(info) && !getNode(info).isNegated
     }
 
     override fun retrievePermissions(id: Long, guildId: Long, node: String): Result<PermissionNode> {
@@ -114,8 +119,17 @@ class PermissionManagerImpl(
     }
 
     override fun hasPermission(info: PermissionManager.PermissionInfoContainer): Boolean {
-        if (nodeExists(info))
-            return !getNode(info).isNegated || hasWildcard(info.id, info.guildId)
+        if (nodeExists(info)) {
+            val node = getNode(info)
+            if (node.isNegated) {
+                throw PermissionException("This permission is negated")
+            } else {
+                return true
+            }
+        }
+        if (hasWildcard(info.id, info.guildId)) {
+            return true
+        }
         return info.public
     }
 }

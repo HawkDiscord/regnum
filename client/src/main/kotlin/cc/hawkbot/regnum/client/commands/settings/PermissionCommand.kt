@@ -153,7 +153,7 @@ class PermissionCommand : Command(Group.SETTINGS, "Permissions", arrayOf("permis
                                                 context.translate("command.permission.remove.description")
                                                         .format(node, (it as IMentionable).asMention)
                                         )
-                                )
+                                ).queue()
                             }
                 }
             }

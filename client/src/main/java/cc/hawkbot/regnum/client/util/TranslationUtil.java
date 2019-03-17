@@ -17,17 +17,22 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.command.permission
+package cc.hawkbot.regnum.client.util;
 
-import cc.hawkbot.regnum.client.command.impl.Permissions
+import cc.hawkbot.regnum.client.Regnum;
+import net.dv8tion.jda.api.entities.User;
 
-/**
- * Command implementation of [IPermissions].
- * @param botOwnerExclusive whether only the bot owner should have the permission or not
- * @param serverAdminExclusive whether only the server admin should have the permission or not
- * @param public whether everyone should have the permission or not
- * @param node the permission node of the command
- * @constructor Constructs a new permission object
- */
-@Suppress("unused")
-class CommandPermissions(botOwnerExclusive: Boolean = false, serverAdminExclusive: Boolean = false, public: Boolean = false, node: String) : Permissions(botOwnerExclusive, serverAdminExclusive, public, "command.$node")
+public class TranslationUtil {
+
+    public static String translate(Regnum regnum, String key, User user) {
+        return translate(regnum, key, user.getIdLong());
+    }
+
+    public static String translate(Regnum regnum, String key, String userId) {
+        return translate(regnum, key, Long.parseUnsignedLong(userId));
+    }
+
+    public static String translate(Regnum regnum, String key, Long userId) {
+        return regnum.getLanguageManager().getLanguageByUser(userId).translate(key);
+    }
+}

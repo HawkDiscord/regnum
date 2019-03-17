@@ -59,10 +59,13 @@ class PermissionProviderImpl : IPermissionProvider {
                 member.hasPermission(Permission.MANAGE_SERVER)
         if (isAdmin)
             return true
+        println(isAdmin)
+        println(permissions.serverAdminExclusive)
         return verifyNode(permissions, member)
     }
 
     private fun verifyNode(permissions: IPermissions, member: Member): Boolean {
+        println("NODE")
         return regnum.permissionManager.hasPermissions(permissions, member)
     }
 }
