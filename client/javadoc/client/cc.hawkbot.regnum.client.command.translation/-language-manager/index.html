@@ -8,7 +8,7 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command.translation</a>&nbsp;/&nbsp;<a href="./index.html">LanguageManager</a><br/>
 <br/>
 <h1>LanguageManager</h1>
-<code><span class="keyword">interface </span><span class="identifier">LanguageManager</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities/-requires-regnum/index.html"><span class="identifier">RequiresRegnum</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/translation/LanguageManager.kt#L32">(source)</a>
+<code><span class="keyword">interface </span><span class="identifier">LanguageManager</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities/-requires-regnum/index.html"><span class="identifier">RequiresRegnum</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/translation/LanguageManager.kt#L33">(source)</a>
 <p>Manager for languages.</p>
 <h3>Properties</h3>
 <table>
@@ -29,6 +29,16 @@
 <tbody>
 <tr>
 <td>
+<p><a href="get-language-by-guild.html">getLanguageByGuild</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getLanguageByGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByGuild(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-language/index.html"><span class="identifier">Language</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLanguageByGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByGuild(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-language/index.html"><span class="identifier">Language</span></a></code>
+<p>Returns the language by a guilds <a href="get-language-by-guild.html#cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByGuild(kotlin.Long)/id">id</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="get-language-by-user.html">getLanguageByUser</a></p>
 </td>
 <td>
@@ -37,6 +47,15 @@
 <p>Returns the language by a users <a href="get-language-by-user.html#cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByUser(kotlin.Long)/id">id</a>.</p>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLanguageByUser</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByUser(net.dv8tion.jda.api.entities.ISnowflake)/snowflake">snowflake</span><span class="symbol">:</span>&nbsp;<span class="identifier">ISnowflake</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-language/index.html"><span class="identifier">Language</span></a></code>
 <p>Returns the language by a <a href="get-language-by-user.html#cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByUser(net.dv8tion.jda.api.entities.ISnowflake)/snowflake">snowflake</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="is-translated.html">isTranslated</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">isTranslated</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.LanguageManager$isTranslated(kotlin.String)/languageTag">languageTag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether a language is translated or not.</p>
 </td>
 </tr>
 <tr>

@@ -1,0 +1,143 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RegnumUser - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.entities</a>&nbsp;/&nbsp;<a href="./index.html">RegnumUser</a><br/>
+<br/>
+<h1>RegnumUser</h1>
+<code><span class="keyword">class </span><span class="identifier">RegnumUser</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.cache/-cachable-cassandra-entity/index.html"><span class="identifier">CachableCassandraEntity</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">RegnumUser</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="../../cc.hawkbot.regnum.client.command.permission/-i-permission-holder/index.html"><span class="identifier">IPermissionHolder</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/entities/RegnumUser.kt#L39">(source)</a>
+<p>Entity for users.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-accessor/index.html">Accessor</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Accessor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.cache/-cachable-cassandra-entity/-accessor/index.html"><span class="identifier">Accessor</span></a><span class="symbol">&lt;</span><a href="./index.html"><span class="identifier">RegnumUser</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RegnumUser</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$<init>(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span></code><br/>
+<code><span class="identifier">RegnumUser</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="language-tag.html">languageTag</a></p>
+</td>
+<td>
+<code><span class="keyword">var </span><span class="identifier">languageTag</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The language tag.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="assign-permission.html">assignPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">assignPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$assignPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long, kotlin.Boolean)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$assignPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long, kotlin.Boolean)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$assignPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long, kotlin.Boolean)/negated">negated</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Assigned a permission to a holder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete-permission-assignment.html">deletePermissionAssignment</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">deletePermissionAssignment</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$deletePermissionAssignment(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$deletePermissionAssignment(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Deletes a permission.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-permission.html">hasPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">hasPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$hasPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.entities.RegnumUser$hasPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether an entity has a permission or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="locale.html">locale</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">locale</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/Locale.html"><span class="identifier">Locale</span></a></code>
+<p>Returns the <a href="http://docs.oracle.com/javase/8/docs/api/java/util/Locale.html">Locale</a> of the user</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.permission/-i-permission-holder/assign-negated-permission.html">assignNegatedPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">assignNegatedPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignNegatedPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignNegatedPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Assigned a negated permission to a holder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities.cache/-cachable-cassandra-entity/delete-async.html">deleteAsync</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">deleteAsync</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Deletes the entity.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities.cache/-cachable-cassandra-entity/regnum.html">regnum</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">regnum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">regnum</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity$regnum(cc.hawkbot.regnum.client.Regnum)/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities.cache/-cachable-cassandra-entity/save-async.html">saveAsync</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">saveAsync</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="http://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Saves the entity.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities.cache/-cachable-cassandra-entity/update.html">update</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">update</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Updates entity in cache.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
