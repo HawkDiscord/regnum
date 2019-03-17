@@ -20,7 +20,6 @@
 package cc.hawkbot.regnum.client.entities;
 
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity;
-import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.Param;
 import com.datastax.driver.mapping.annotations.Query;

@@ -31,6 +31,10 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
 
+/**
+ * Implementation of [PermissionManager]
+ * @param regnum the current Regnum instance
+ */
 @Suppress("MemberVisibilityCanBePrivate", "unused")
 class PermissionManagerImpl(
         regnum: Regnum

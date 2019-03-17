@@ -70,7 +70,6 @@ class CommandParserImpl(
             return
         }
         // TODO: BLACK/WHITELIST
-        // TODO: Custom prefix
         parseCommands(event)
     }
 

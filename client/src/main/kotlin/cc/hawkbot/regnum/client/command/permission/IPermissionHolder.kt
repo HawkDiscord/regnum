@@ -31,10 +31,23 @@ interface IPermissionHolder {
      */
     fun hasPermission(permission: IPermissions): Boolean
 
+    /**
+     * Assigned a permission to a holder.
+     * @param permission the permission
+     * @param negated whether the permission should be negated or not
+     */
     fun assignPermission(permission: IPermissions, negated: Boolean = false)
 
+    /**
+     * Deletes a permission.
+     * @param permission the permission
+     */
     fun deletePermissionAssignment(permission: IPermissions)
 
+    /**
+     * Assigned a negated permission to a holder.
+     * @param permission the permission
+     */
     fun assignNegatedPermission(permission: IPermissions) {
         assignPermission(permission, true)
     }
