@@ -35,14 +35,14 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     public static final String NO_PREFIX = "%NO%";
 
-    public RegnumGuild() {
-        super(0);
-    }
-
     private String prefix = NO_PREFIX;
 
     @Column(name = "language_tag")
     private String languageTag = "en-US";
+
+    public RegnumGuild() {
+        super(0);
+    }
 
     public RegnumGuild(long id) {
         super(id);
