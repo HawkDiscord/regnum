@@ -27,6 +27,7 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.*
 import cc.hawkbot.regnum.util.logging.Logger
+import com.google.common.util.concurrent.ThreadFactoryBuilder
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.PermissionException
@@ -34,17 +35,25 @@ import net.dv8tion.jda.api.hooks.SubscribeEvent
 import java.time.LocalDateTime
 import java.util.*
 import java.util.concurrent.CompletableFuture
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 /**
  * Implementation of [CommandParser].
  * @param defaultPrefix the default prefix
  * @property permissionProvider the [IPermissionProvider]
  * @property regnum the Regnum instance
+ * @property executor the [ExecutorService] used for executing commands
  */
 class CommandParserImpl(
         override val defaultPrefix: String,
         private val permissionProvider: IPermissionProvider,
-        private val regnum: Regnum
+        private val regnum: Regnum,
+        private val executor: ExecutorService = Executors.newCachedThreadPool(
+                ThreadFactoryBuilder()
+                        .setNameFormat("CommandExecutor")
+                        .build()
+        )
 ) : CommandParser {
 
     private val log = Logger.getLogger()
@@ -70,7 +79,9 @@ class CommandParserImpl(
             return
         }
         // TODO: BLACK/WHITELIST
-        parseCommands(event)
+        executor.execute {
+            parseCommands(event)
+        }
     }
 
     private fun parseCommands(event: GuildMessageReceivedEvent) {
