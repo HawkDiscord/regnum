@@ -8,7 +8,7 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client</a>&nbsp;/&nbsp;<a href="./index.html">Regnum</a><br/>
 <br/>
 <h1>Regnum</h1>
-<code><span class="keyword">interface </span><span class="identifier">Regnum</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/Regnum.kt#L37">(source)</a>
+<code><span class="keyword">interface </span><span class="identifier">Regnum</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/Regnum.kt#L38">(source)</a>
 <p>Main class of Regnum client instance.</p>
 <h3>Properties</h3>
 <table>
@@ -45,7 +45,7 @@
 <p><a href="event-manager.html">eventManager</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">eventManager</span><span class="symbol">: </span><span class="identifier">IEventManager</span></code>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">eventManager</span><span class="symbol">: </span><a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/hooks/IEventManager.html"><span class="identifier">IEventManager</span></a></code>
 <p>The event manager.</p>
 </td>
 </tr>
@@ -82,6 +82,13 @@
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">owners</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code>
 <p>Ids of users with owner permissions</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="permission-manager.html">permissionManager</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">permissionManager</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.permission/-permission-manager/index.html"><span class="identifier">PermissionManager</span></a></code></td>
 </tr>
 <tr>
 <td>

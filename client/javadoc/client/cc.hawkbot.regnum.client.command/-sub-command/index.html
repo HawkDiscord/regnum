@@ -18,7 +18,7 @@
 <p><a href="-init-.html">&lt;init&gt;</a></p>
 </td>
 <td>
-<code><span class="identifier">SubCommand</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/displayName">displayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/aliases">aliases</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/permissions">permissions</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/usage">usage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/exampleUsage">exampleUsage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/description">description</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code>
+<code><span class="identifier">SubCommand</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/displayName">displayName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/aliases">aliases</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/_permissions">_permissions</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/usage">usage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/exampleUsage">exampleUsage</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;""<span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.SubCommand$<init>(kotlin.String, kotlin.Array((kotlin.String)), cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.String, kotlin.String, kotlin.String)/description">description</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code>
 <p>Default sub-command class.</p>
 </td>
 </tr>
@@ -65,6 +65,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="parent.html">parent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-i-command/index.html"><span class="identifier">ICommand</span></a></code>
+<p>The parent command of the sub command</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="permissions.html">permissions</a></p>
 </td>
 <td>
@@ -102,15 +111,6 @@
 <td>
 <code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">group</span><span class="symbol">: </span><a href="../-group/index.html"><span class="identifier">Group</span></a></code>
 <p>The group the command is in.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-i-sub-command/parent.html">parent</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">parent</span><span class="symbol">: </span><a href="../-i-command/index.html"><span class="identifier">ICommand</span></a></code>
-<p>The parent command of the sub command</p>
 </td>
 </tr>
 </tbody>
