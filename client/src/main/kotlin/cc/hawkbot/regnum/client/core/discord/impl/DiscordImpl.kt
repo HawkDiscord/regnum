@@ -27,7 +27,6 @@ import cc.hawkbot.regnum.client.core.internal.RegnumImpl
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -41,7 +40,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
  *
  * @constructor Constructs a new Discord client
  */
-@Suppress("UNSAFE_CAST")
+@Suppress("UNSAFE_CAST", "unused")
 class DiscordImpl(
         val regnum: Regnum,
         token: String,
