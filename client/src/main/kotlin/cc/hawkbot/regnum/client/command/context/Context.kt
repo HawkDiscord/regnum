@@ -183,7 +183,7 @@ interface Context {
      * @return the message action
      */
     fun sendHelp(): MessageAction {
-        return sendMessage(FormatUtil.formatCommand(command, "", regnum))
+        return sendMessage(FormatUtil.formatCommand(command, regnumGuild(), regnum))
     }
 
     /**

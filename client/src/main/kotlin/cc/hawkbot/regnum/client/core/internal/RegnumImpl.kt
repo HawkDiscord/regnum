@@ -28,6 +28,7 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.permission.PermissionManagerImpl
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
+import cc.hawkbot.regnum.client.commands.general.HelpCommand
 import cc.hawkbot.regnum.client.commands.settings.LanguageCommand
 import cc.hawkbot.regnum.client.commands.settings.PermissionCommand
 import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
@@ -145,7 +146,7 @@ class RegnumImpl(
         userCache = CassandraCacheImpl(this, RegnumUser::class, RegnumUser.Accessor::class.java)
 
         // Default commands
-        commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand())
+        commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand(), HelpCommand())
 
         // Permissions
         permissionManager = PermissionManagerImpl(this)
