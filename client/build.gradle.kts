@@ -38,7 +38,6 @@ val archivesBasename = "regnum.client"
 repositories {
     mavenCentral()
     jcenter()
-    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {

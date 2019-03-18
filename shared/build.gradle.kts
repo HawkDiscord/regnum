@@ -34,7 +34,6 @@ version = "1.0-SNAPSHOT"
 repositories {
     mavenCentral()
     jcenter()
-    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -48,7 +47,8 @@ dependencies {
     compile("net.dv8tion:JDA:4.ALPHA.0_54")
 
     // Util
-    compile("com.github.Carleslc:Simple-YAML:1.3")
+    @Suppress("SpellCheckingInspection")
+    compile("com.electronwill.night-config:yaml:3.5.0")
     compile("com.fasterxml.jackson.core:jackson-databind:2.9.7")
     compile("io.sentry:sentry:1.7.16")
 
