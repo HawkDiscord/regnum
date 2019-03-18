@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client.core.discord
 
 import cc.hawkbot.regnum.client.Regnum
+import cc.hawkbot.regnum.client.config.GameAnimatorConfig
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -36,15 +37,16 @@ import java.util.concurrent.TimeUnit
 class GameAnimator(
         val regnum: Regnum
 ) {
+    private val config = (regnum as RegnumImpl).gameAnimatorConfig
     private val scheduler = Executors.newSingleThreadScheduledExecutor()
     private val shardManager = regnum.discord.shardManager
-    private val games = (regnum as RegnumImpl).games
+    private val games = config.games
     /**
      * The translator that is used to translate variables
-     * @see cc.hawkbot.regnum.client.RegnumBuilder.gameTranslator
+     * @see cc.hawkbot.regnum.client.config.GameAnimatorConfig.translator
      */
-    val translator = (regnum as RegnumImpl).gameTranslator
-    private val interval = (regnum as RegnumImpl).gameAnimatorInterval
+    val translator = config.translator
+    private val interval = config.interval
 
     /**
      * Starts the game animator
@@ -95,7 +97,7 @@ class GameAnimator(
         }
 
         private fun toActivity(gameAnimator: GameAnimator): Activity {
-            val content = gameAnimator.translator.apply(content.replace("%servers%", gameAnimator.shardManager.guilds.size.toString()).replace("%users%", gameAnimator.shardManager.users.size.toString()))
+            val content = gameAnimator.translator(gameAnimator.regnum, content)
             return Activity.of(type, content)
         }
     }

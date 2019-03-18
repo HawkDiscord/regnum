@@ -24,6 +24,7 @@ import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.command.ICommand
 import cc.hawkbot.regnum.client.command.ISubCommand
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
+import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.*
 import cc.hawkbot.regnum.util.DefaultThreadFactory
@@ -46,11 +47,13 @@ import java.util.concurrent.Executors
  * @property executor the [ExecutorService] used for executing commands
  */
 class CommandParserImpl(
-        override val defaultPrefix: String,
-        private val permissionProvider: IPermissionProvider,
-        private val regnum: Regnum,
-        private val executor: ExecutorService = Executors.newCachedThreadPool(DefaultThreadFactory("CommandExecutor"))
+        config: CommandConfig,
+        private val regnum: Regnum
 ) : CommandParser {
+
+    override val defaultPrefix: String = config.defaultPrefix
+    private val permissionProvider: IPermissionProvider = config.permissionProvider
+    private val executor: ExecutorService = config.executor
 
     private val log = Logger.getLogger()
 

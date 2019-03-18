@@ -19,12 +19,10 @@
 
 package cc.hawkbot.regnum.client.core.internal
 
+import cc.hawkbot.regnum.client.Feature
 import cc.hawkbot.regnum.client.Regnum
-import cc.hawkbot.regnum.client.RegnumBuilder
 import cc.hawkbot.regnum.client.command.CommandParser
-import cc.hawkbot.regnum.client.command.ICommand
 import cc.hawkbot.regnum.client.command.impl.CommandParserImpl
-import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.permission.PermissionManagerImpl
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
@@ -32,8 +30,11 @@ import cc.hawkbot.regnum.client.commands.general.HelpCommand
 import cc.hawkbot.regnum.client.commands.settings.LanguageCommand
 import cc.hawkbot.regnum.client.commands.settings.PermissionCommand
 import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
+import cc.hawkbot.regnum.client.config.CassandraConfig
+import cc.hawkbot.regnum.client.config.CommandConfig
+import cc.hawkbot.regnum.client.config.GameAnimatorConfig
+import cc.hawkbot.regnum.client.config.ServerConfig
 import cc.hawkbot.regnum.client.core.discord.Discord
-import cc.hawkbot.regnum.client.core.discord.GameAnimator
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
@@ -45,42 +46,34 @@ import cc.hawkbot.regnum.client.util._setRegnum
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
-import com.datastax.driver.core.CodecRegistry
 import com.datastax.driver.extras.codecs.enums.EnumNameCodec
-import com.datastax.driver.extras.codecs.enums.EnumOrdinalCodec
 import net.dv8tion.jda.api.hooks.IEventManager
-import java.util.function.Function
 
 /**
  * Implementation of [Regnum]
- * @param host the host of the Regnum server
+ * @param serverConfig the configuration for server specific settings
  * @property eventManager the event manager
  * @property token the Regnum token
- * @property games a list of games for the [GameAnimator]
- * @property gameAnimatorInterval the interval for the [GameAnimator]
+ * @property gameAnimatorConfig the config used by the game anitmator
+ * @param commandConfig the config for command related settings
+ * @param cassandraConfig the config for cassandra related settings
  * @see cc.hawkbot.regnum.client.RegnumBuilder
  * @constructor Constructs a new Regnum instance
  */
+@Suppress("FunctionName")
 class RegnumImpl(
-        host: String,
+        serverConfig: ServerConfig,
         override val eventManager: IEventManager,
-        override val token: String,
-        val games: MutableList<GameAnimator.Game>,
-        val gameTranslator: Function<String, String>,
-        val gameAnimatorInterval: Long,
-        permissionProvider: IPermissionProvider,
-        defaultPrefix: String,
-        commands: List<ICommand>,
-        override val owners: List<Long>,
-        override val languageManager: LanguageManager,
-        codecRegistry: CodecRegistry,
-        cassandraKeyspace: String,
-        cassandraAuthenticator: RegnumBuilder.CassandraAuthenticator,
-        contactPoints: Collection<String>,
-        defaultDatabases: Collection<String>
+        val gameAnimatorConfig: GameAnimatorConfig,
+        commandConfig: CommandConfig,
+        cassandraConfig: CassandraConfig,
+        override val disabledFeatures: List<Feature>
 ) : Regnum {
 
     private val log = Logger.getLogger()
+    override val token: String = serverConfig.token
+    override val languageManager: LanguageManager = commandConfig.languageManager
+    override val owners: List<Long> = commandConfig.botOwners
     override val websocket: WebsocketImpl
     override lateinit var discord: Discord
     override val commandParser: CommandParser
@@ -88,22 +81,23 @@ class RegnumImpl(
     override lateinit var guildCache: CassandraCache<RegnumGuild>
     override lateinit var userCache: CassandraCache<RegnumUser>
     override val eventWaiter: EventWaiter
-    override lateinit var permissionManager: PermissionManager
+    private lateinit var _permissionManager: PermissionManager
+    override var permissionManager: PermissionManager
+        get() = _getPermissionManager()
+        set(value) = _setPermissionManager(value)
 
     init {
         _setRegnum(this)
+        val permissionProvider = commandConfig.permissionProvider
         permissionProvider.regnum = this
-        commandParser = CommandParserImpl(
-                defaultPrefix,
-                permissionProvider,
-                this
-        )
-        commandParser.registerCommands(*commands.toTypedArray())
+        commandParser = CommandParserImpl(commandConfig, this)
+        commandParser.registerCommands(*commandConfig.commands.toTypedArray())
         eventManager.register(PacketHandler(this))
         eventManager.register(commandParser)
         eventWaiter = EventWaiterImpl(eventManager)
-        websocket = WebsocketImpl(host, this)
+        websocket = WebsocketImpl(serverConfig.host, this)
         languageManager.regnum(this)
+        val defaultDatabases = cassandraConfig.defaultDatabases
         // Default databases
         val generators = defaultDatabases.toMutableList()
         generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}guilds(" +
@@ -112,20 +106,22 @@ class RegnumImpl(
                 "language_tag TEXT," +
                 "PRIMARY KEY (id)" +
                 ");")
-        generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}permissions(" +
-                "id BIGINT," +
-                "negated BOOLEAN," +
-                "guild_id BIGINT," +
-                "permission_node TEXT," +
-                "type TEXT," +
-                "PRIMARY KEY (id, guild_id, permission_node, type)" +
-                ");")
+        if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
+            generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}permissions(" +
+                    "id BIGINT," +
+                    "negated BOOLEAN," +
+                    "guild_id BIGINT," +
+                    "permission_node TEXT," +
+                    "type TEXT," +
+                    "PRIMARY KEY (id, guild_id, permission_node, type)" +
+                    ");")
+        }
         generators.add("CREATE TABLE IF NOT EXISTS ${CassandraEntity.TABLE_PREFIX}user(" +
                 "id BIGINT," +
                 "language_tag TEXT," +
                 "PRIMARY KEY (id)" +
                 ");")
-        cassandra = CassandraSource(cassandraAuthenticator.username, cassandraAuthenticator.password, cassandraKeyspace, codecRegistry, contactPoints)
+        cassandra = CassandraSource(cassandraConfig.username, cassandraConfig.password, cassandraConfig.keyspace, cassandraConfig.codecRegistry, cassandraConfig.contactPoints)
         cassandra.codecRegistry.register(EnumNameCodec(PermissionNode.PermissionTarget::class.java))
         val source = cassandra.connect()
         log.info("[Regnum] Successfully connected to Cassandra cluster")
@@ -149,8 +145,21 @@ class RegnumImpl(
         commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand(), HelpCommand())
 
         // Permissions
-        permissionManager = PermissionManagerImpl(this)
+        if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
+            permissionManager = PermissionManagerImpl(this)
+        }
         log.info("[Regnum] Connecting to server")
         websocket.start()
+    }
+
+    private fun _getPermissionManager(): PermissionManager {
+        if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
+            throw IllegalStateException("You have to enable Feature.PERMISSION_SYSTEM in order to use that feature.")
+        }
+        return permissionManager
+    }
+
+    private fun _setPermissionManager(value: PermissionManager) {
+        this._permissionManager = value
     }
 }

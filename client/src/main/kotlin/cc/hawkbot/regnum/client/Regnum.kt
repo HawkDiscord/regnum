@@ -100,6 +100,8 @@ interface Regnum {
      */
     val permissionManager: PermissionManager
 
+    val disabledFeatures: List<Feature>
+
     /**
      * Returns a Regnum guild from the cache.
      * @param id the id of the guild
