@@ -35,7 +35,6 @@ val cliVersion = "1.4"
 
 repositories {
     mavenCentral()
-    maven { url = uri("https://jitpack.io") }
     jcenter()
 }
 
