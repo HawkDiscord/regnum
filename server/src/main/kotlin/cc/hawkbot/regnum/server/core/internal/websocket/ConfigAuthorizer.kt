@@ -45,6 +45,7 @@ class ConfigAuthorizer : AuthorizationHandler {
             it.session == wsSession
         }, config.getLong(Config.SOCKET_IDENTIFY), TimeUnit.SECONDS)
         future.exceptionally {
+            println("CONNECT")
             log.warn("[Authorizer] ${wsSession.id} Got disconnected for not sending IDENTIFY in time")
             wsSession.disconnect()
             return@exceptionally null

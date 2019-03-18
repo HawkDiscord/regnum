@@ -70,31 +70,35 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
 
     @SubscribeEvent
     override fun handleConnect(event: WebsocketAuthorizedEvent) {
-        val node = event.node
-        // Check if it's the first node
-        if (ws.nodes.size == 1) {
-            // Check if we only need one node
-            if (optimalShards == 1) {
-                log.info("[Balancer] Starting shards immediately because enough nodes got connected ")
-                balance()
-                return
-            }
-            // Wait for other nodes to connect
-            val timeout = event.server.config.getLong(Config.LOAD_BALANCE_TIMEOUT)
-            log.info("[Balancer] First node connected waiting $timeout seconds for other nodes to connect!")
-            waitFuture = scheduler.schedule(this::balance, timeout, TimeUnit.SECONDS)
-        } else {
-            // Check if shards are already balance
-            if (balanced) {
-                node.disconnect()
+        try {
+            val node = event.node
+            // Check if it's the first node
+            if (ws.nodes.size == 1) {
+                // Check if we only need one node
+                if (optimalShards == 1) {
+                    log.info("[Balancer] Starting shards immediately because enough nodes got connected ")
+                    balance()
+                    return
+                }
+                // Wait for other nodes to connect
+                val timeout = event.server.config.getLong(Config.LOAD_BALANCE_TIMEOUT)
+                log.info("[Balancer] First node connected waiting $timeout seconds for other nodes to connect!")
+                waitFuture = scheduler.schedule(this::balance, timeout, TimeUnit.SECONDS)
             } else {
-                // Check if enough nodes are connected
-                if (ws.nodes.size == optimalShards) {
-                    if (waitFuture.cancel(false)) {
-                        balance()
+                // Check if shards are already balance
+                if (balanced) {
+                    node.disconnect()
+                } else {
+                    // Check if enough nodes are connected
+                    if (ws.nodes.size == optimalShards) {
+                        if (waitFuture.cancel(false)) {
+                            balance()
+                        }
                     }
                 }
             }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
     }
 

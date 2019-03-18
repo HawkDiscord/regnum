@@ -25,7 +25,6 @@ import cc.hawkbot.regnum.server.core.internal.ServerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.entities.NodeImpl
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
-import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.events.websocket.*
 import cc.hawkbot.regnum.server.plugin.io.config.Config
@@ -65,9 +64,13 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
         callEvent(WebSocketConnectedEvent(server, this, it))
         authorizationHandler.authorize(server, it)
                 .thenAccept {
-                    log.info("[WS] ${it.id} connected!")
+                    log.info("[WS] ${it.id} connected and authorized!")
+                    print("REG")
                     val node = NodeImpl(it, this, server)
+
+                    print("ADD")
                     nodes.add(node)
+                    print("HELLOW")
                     node.send(Payload.of(HelloPacket(server.config.getInt(Config.SOCKET_HEARTBEAT)), HelloPacket.IDENTIFIER))
                     callEvent(WebsocketAuthorizedEvent(server, this, it))
                 }

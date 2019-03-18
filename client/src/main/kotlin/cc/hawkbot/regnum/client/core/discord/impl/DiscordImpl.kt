@@ -84,21 +84,8 @@ class DiscordImpl(
     @SubscribeEvent
     @Suppress("unused")
     private fun whenReady(event: cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
+        println(event.toString())
         log.info("[Discord] Connected to discord with ${event.guildAvailableCount}/${event.guildUnavailableCount} available/unavailable guilds.")
         gameAnimator.start()
     }
-
-    @SubscribeEvent
-    @Suppress("unused")
-    private fun whenShardReady(event: ReadyEvent) {
-        if (event is cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
-            return
-        }
-        availableGuilds += event.guildAvailableCount
-        unavailableGuilds += event.guildUnavailableCount
-        if (shardManager.shardsQueued == 0) {
-            regnum.eventManager.handle(cc.hawkbot.regnum.client.events.discord.ReadyEvent(shardManager, availableGuilds, unavailableGuilds))
-        }
-    }
-
 }
