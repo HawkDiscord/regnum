@@ -27,7 +27,6 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.*
 import cc.hawkbot.regnum.util.logging.Logger
-import com.google.common.util.concurrent.ThreadFactoryBuilder
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.PermissionException
@@ -49,11 +48,7 @@ class CommandParserImpl(
         override val defaultPrefix: String,
         private val permissionProvider: IPermissionProvider,
         private val regnum: Regnum,
-        private val executor: ExecutorService = Executors.newCachedThreadPool(
-                ThreadFactoryBuilder()
-                        .setNameFormat("CommandExecutor")
-                        .build()
-        )
+        private val executor: ExecutorService = Executors.newCachedThreadPool(DefaultThreadFactory("CommandExecutor"))
 ) : CommandParser {
 
     private val log = Logger.getLogger()
@@ -164,21 +159,22 @@ class CommandParserImpl(
         val information = StringBuilder()
         val channel = context.channel()
         information.append("TextChannel: ").append("#").append(channel.name)
-                .append("(").append(channel.id).append(")").append("\n")
+                .append("(").append(channel.id).append(")").appendln()
         val guild = context.guild()
         information.append("Guild: ").append(guild.name).append("(").append(guild.id)
-                .append(")").append("\n")
+                .append(")").appendln()
         val executor = context.author()
         information.append("Executor: ").append("@").append(executor.name).append("#")
                 .append(executor.discriminator).append("(").append(executor.id).append(")")
-                .append("\n")
+                .appendln()
         val selfMember = guild.selfMember
-        information.append("Permissions: ").append(selfMember.permissions).append("\n")
+        information.append("Permissions: ").append(selfMember.permissions).appendln()
         information.append("Channel permissions: ").append(selfMember.getPermissions(channel))
-                .append("\n")
-        information.append("Timestamp: ").append(LocalDateTime.now()).append("\n")
+                .appendln()
+        information.append("Timestamp: ").append(LocalDateTime.now()).appendln()
+        information.append("Thread: ").append(Thread.currentThread()).appendln()
         val exception = Misc.stringifyException(e)
-        information.append("Stacktrace: ").append("\n").append(exception)
+        information.append("Stacktrace: ").appendln().append(exception)
         future
                 .thenAccept { message ->
                     Misc.postToHastebinAsync(information.toString())

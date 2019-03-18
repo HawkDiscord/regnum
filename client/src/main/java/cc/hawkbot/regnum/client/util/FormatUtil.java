@@ -23,17 +23,21 @@ import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.command.CommandParser;
 import cc.hawkbot.regnum.client.command.Group;
 import cc.hawkbot.regnum.client.command.ICommand;
+import cc.hawkbot.regnum.client.command.SubCommand;
+import cc.hawkbot.regnum.client.command.permission.IPermissions;
+import cc.hawkbot.regnum.client.entities.RegnumGuild;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
  * Some useful formatters.
  */
-@SuppressWarnings({"unused","WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class FormatUtil {
 
     /**
@@ -67,8 +71,8 @@ public class FormatUtil {
      * Formats a list of commands in a group.
      *
      * @param group the group that needs to be formatted
-     * @see FormatUtil#generateCommandList(Collection)
      * @return the formatted group
+     * @see FormatUtil#generateCommandList(Collection)
      */
     public static String generateCommandList(Group group, CommandParser parser) {
         return generateCommandList(group.commands(parser));
@@ -85,7 +89,7 @@ public class FormatUtil {
             return "";
         }
         StringBuilder builder = new StringBuilder();
-        commands.forEach(command ->
+        commands.stream().distinct().forEach(command ->
                 builder.append("`")
                         .append(command.name())
                         .append("`")
@@ -97,11 +101,12 @@ public class FormatUtil {
 
     /**
      * Formats the help message of a command.
+     *
      * @param command the command
      * @return the formatted embed
      */
     @NotNull
-    public static EmbedBuilder formatCommand(@NotNull ICommand command, @NotNull Object guild,
+    public static EmbedBuilder formatCommand(@NotNull ICommand command, @NotNull RegnumGuild guild,
                                              @NotNull Regnum regnum) {
         var embedBuilder = new EmbedBuilder()
                 .setTitle(command.getDisplayName() + " - Help")
@@ -110,21 +115,55 @@ public class FormatUtil {
                 command, guild, regnum), false);
         embedBuilder = embedBuilder.addField("Example usage", formatUsage(command.getExampleUsage(),
                 command, guild, regnum), false);
+        embedBuilder = embedBuilder.addField("Aliases", "`" + Arrays.toString(command.getAliases()).replace("[", "").replace("]", "") + "`", false);
+        embedBuilder = embedBuilder.addField("Required permissions", parsePermissions(command.getPermissions()), false);
+        if (!(command instanceof SubCommand) && !command.getSubCommandAssociations().isEmpty()) {
+            var buf = new StringBuilder();
+            command.getSubCommandAssociations().values().stream().distinct().forEach(it -> {
+                buf.append(formatUsage(it.getUsage(), it, guild, regnum)).append(System.lineSeparator());
+            });
+            embedBuilder = embedBuilder.addField("Subcommands", buf.toString(), false);
+        }
         return embedBuilder;
+    }
+
+    private static String parsePermissions(IPermissions permissions) {
+        if (permissions.getPublic()) {
+            return "public";
+        } else if (permissions.getBotOwnerExclusive()) {
+            return "bot-owner";
+        } else if (permissions.getServerAdminExclusive()) {
+            return "server-admin or `" + permissions.getNode() + "`";
+        } else
+            return permissions.getNode();
     }
 
     /**
      * Formats the usage of a command in prefixcommand usage.
-     * @param usage the usage
+     *
+     * @param usage   the usage
      * @param command the command
-     * @param guild the guild the command gets executed on
-     * @param regnum the Regnum instance
+     * @param guild   the guild the command gets executed on
+     * @param regnum  the Regnum instance
      * @return the formatted usage
      */
     @SuppressWarnings("SpellCheckingInspection")
-    public static String formatUsage(@NotNull String usage, @NotNull ICommand command, @NotNull Object guild,
+    public static String formatUsage(@NotNull String usage, @NotNull ICommand command, @NotNull RegnumGuild guild,
                                      @NotNull Regnum regnum) {
-        return "prefix" + command.name() + " " + usage;
+        var buf = new StringBuilder();
+        buf.append(guild.getPrefix());
+        if (command instanceof SubCommand) {
+            buf.append(((SubCommand) command).getParent().name());
+            buf.append(' ');
+        }
+        buf.append(command.name());
+        buf.append(' ');
+        buf.append(usage);
+        if (command instanceof SubCommand) {
+            buf.append(" - ");
+            buf.append(command.getDescription());
+        }
+        return buf.toString();
     }
 
     /**

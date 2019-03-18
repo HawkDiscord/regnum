@@ -80,6 +80,9 @@ public class ClientLauncher {
                             "Args: " + String.join(" ", context.getArgs().array())
 
             ).queue();
+            if (!args.isEmpty() && args.get(0).equals("error")) {
+                Integer.parseInt("OMA");
+            }
         }
     }
 }

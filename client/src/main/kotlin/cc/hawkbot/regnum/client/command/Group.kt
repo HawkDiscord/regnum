@@ -72,6 +72,12 @@ interface Group {
                 .setPermissions(GroupPermissions(node = "settings", serverAdminExclusive = true))
                 .build()
 
+        val GENERAL = GroupBuilder()
+                .setDescription("Generic commands")
+                .setName("General")
+                .setPermissions(GroupPermissions(node = "general", public = true))
+                .build()
+
         /**
          * Returns an empty group.
          * @return an empty group

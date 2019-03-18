@@ -47,7 +47,7 @@ class PrefixCommand: Command(Group.SETTINGS, "Prefix", arrayOf("prefix", "p"), C
             context.sendMessage(EmbedUtil.error(
                     context.translate("command.prefix.length.title"),
                     context.translate("command.prefix.length.description")
-                            .format(guild.prefix)
+                            .format(3)
             )).queue()
             return
         }
