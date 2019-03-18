@@ -11,6 +11,7 @@ cc.hawkbot.regnum.client.command.translation
 cc.hawkbot.regnum.client.command.translation.defaults
 cc.hawkbot.regnum.client.commands.general
 cc.hawkbot.regnum.client.commands.settings
+cc.hawkbot.regnum.client.config
 cc.hawkbot.regnum.client.core
 cc.hawkbot.regnum.client.core.discord
 cc.hawkbot.regnum.client.core.discord.impl

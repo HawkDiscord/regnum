@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CommandConfig - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.config</a>&nbsp;/&nbsp;<a href="./index.html">CommandConfig</a><br/>
+<br/>
+<h1>CommandConfig</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">CommandConfig</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/config/CommandConfig.kt#L32">(source)</a>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">CommandConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/defaultPrefix">defaultPrefix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/commands">commands</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.command/-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/botOwners">botOwners</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/languageManager">languageManager</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.translation/-language-manager/index.html"><span class="identifier">LanguageManager</span></a><span class="symbol">)</span></code><br/>
+<code><span class="identifier">CommandConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.LanguageManager)/defaultPrefix">defaultPrefix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.LanguageManager)/languageManager">languageManager</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.translation/-language-manager/index.html"><span class="identifier">LanguageManager</span></a><span class="symbol">)</span></code><br/>
+<code><span class="identifier">CommandConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.Language)/defaultPrefix">defaultPrefix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.Language)/defaultLanguage">defaultLanguage</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.translation/-language/index.html"><span class="identifier">Language</span></a><span class="symbol">)</span></code><br/>
+<code><span class="identifier">CommandConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.permission.IPermissionProvider, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/defaultPrefix">defaultPrefix</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.permission.IPermissionProvider, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/permissionProvider">permissionProvider</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.permission/-i-permission-provider/index.html"><span class="identifier">IPermissionProvider</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.permission.IPermissionProvider, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/commands">commands</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.command/-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.permission.IPermissionProvider, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/botOwners">botOwners</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$<init>(kotlin.String, cc.hawkbot.regnum.client.command.permission.IPermissionProvider, kotlin.collections.MutableList((cc.hawkbot.regnum.client.command.ICommand)), kotlin.collections.MutableList((kotlin.Long)), cc.hawkbot.regnum.client.command.translation.LanguageManager)/languageManager">languageManager</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command.translation/-language-manager/index.html"><span class="identifier">LanguageManager</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="bot-owners.html">botOwners</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">botOwners</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="commands.html">commands</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">commands</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.command/-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="default-prefix.html">defaultPrefix</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">defaultPrefix</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="executor.html">executor</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">executor</span><span class="symbol">: </span><a href="http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html"><span class="identifier">ExecutorService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="language-manager.html">languageManager</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">languageManager</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.translation/-language-manager/index.html"><span class="identifier">LanguageManager</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="permission-provider.html">permissionProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">permissionProvider</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.permission/-i-permission-provider/index.html"><span class="identifier">IPermissionProvider</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-bot-owners.html">addBotOwners</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addBotOwners</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$addBotOwners(kotlin.LongArray)/ownerIds">ownerIds</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CommandConfig</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">addBotOwners</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$addBotOwners(kotlin.collections.Collection((kotlin.Long)))/ownerIds">ownerIds</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CommandConfig</span></a></code>
+<p>Assigns an user owner permissions</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-commands.html">registerCommands</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">registerCommands</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$registerCommands(kotlin.Array((cc.hawkbot.regnum.client.command.ICommand)))/commands">commands</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.command/-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CommandConfig</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">registerCommands</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.config.CommandConfig$registerCommands(kotlin.collections.Collection((cc.hawkbot.regnum.client.command.ICommand)))/commands">commands</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.command/-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">CommandConfig</span></a></code>
+<p>Registers a command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
