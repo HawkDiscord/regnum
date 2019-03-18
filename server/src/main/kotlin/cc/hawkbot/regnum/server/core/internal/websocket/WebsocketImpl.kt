@@ -72,7 +72,7 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
                     callEvent(WebsocketAuthorizedEvent(server, this, it))
                 }
                 .exceptionally {
-                    log.error("[WS] Error while authenticating node", e)
+                    log.error("[WS] Error while authenticating node", it)
                     null
                 }
     }
