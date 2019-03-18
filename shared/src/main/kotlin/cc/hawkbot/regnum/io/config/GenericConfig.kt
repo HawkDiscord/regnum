@@ -100,7 +100,6 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
         if (!super.contains(path))
             super.add(path, value)
     }
-
     // See Config class for more information abot those methods
 
     override fun clear() {

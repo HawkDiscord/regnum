@@ -52,6 +52,7 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
         val future = server.eventWaiter.waitFor(WebSocketMessageEvent::class.java, {
             it.session == node.session
         }, (server.config.get<Long>(Config.SOCKET_HEARTBEAT) + MARGIN), TimeUnit.SECONDS)
+
         future.exceptionally {
             @Suppress("SpellCheckingInspection")
             log.warn("[WS] Disconnecting node ${node.session.id} for not sending heartbeat")
