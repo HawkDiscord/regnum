@@ -101,6 +101,8 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
             super.add(path, value)
     }
 
+    // See Config class for more information abot those methods
+
     override fun clear() {
         config.clear()
     }
