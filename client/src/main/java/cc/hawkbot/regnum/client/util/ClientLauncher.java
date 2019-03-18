@@ -26,6 +26,9 @@ import cc.hawkbot.regnum.client.command.context.Arguments;
 import cc.hawkbot.regnum.client.command.context.Context;
 import cc.hawkbot.regnum.client.command.permission.CommandPermissions;
 import cc.hawkbot.regnum.client.command.translation.defaults.PropertyLanguage;
+import cc.hawkbot.regnum.client.config.CassandraConfig;
+import cc.hawkbot.regnum.client.config.CommandConfig;
+import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
 import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
 import cc.hawkbot.regnum.util.logging.Logger;
@@ -34,6 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.event.Level;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Locale;
 
 @SuppressWarnings("WeakerAccess")
@@ -48,15 +52,17 @@ public class ClientLauncher {
     private ClientLauncher() {
         Logger.LOG_LEVEL = Level.DEBUG;
         var builder = new RegnumBuilder()
-                .setHost("ws://localhost:7001/ws")
-                .setToken("SUPER-SECRET-TOKEN");
-        builder.registerCommands(new Command());
-        builder.setDefaultPrefix("hw!");
-        builder.setCassandraKeyspace("test");
-        builder.addCassandraContactPoints("127.0.0.1");
-        builder.authCassandra();
-        builder.registerEvents(this);
-        builder.setDefaultLanguageManager(new PropertyLanguage(new Locale("en", "US"), "locales/en_US.properties", StandardCharsets.UTF_8));
+                .setServerConfig(
+                        new ServerConfig("ws://localhost:7001/ws", "SUPER-SECRET-TOKEN")
+                );
+        builder.setCommandConfig(
+                new CommandConfig("hw!", new PropertyLanguage(new Locale("en", "US"), "locales/en_US.properties", StandardCharsets.UTF_8))
+                        .registerCommands(new Command())
+        )
+                .setCassandraConfig(
+                        new CassandraConfig("test", "cassandra", "cassandra", Arrays.asList("127.0.0.1"))
+                )
+                .registerEvents(this);
         regnum = builder.build();
     }
 

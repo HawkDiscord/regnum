@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.client.command.impl
 
+import cc.hawkbot.regnum.client.Feature
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.command.permission.IPermissions
@@ -57,15 +58,16 @@ class PermissionProviderImpl : IPermissionProvider {
 
         val isAdmin = member.isOwner ||
                 member.hasPermission(Permission.MANAGE_SERVER)
-        if (isAdmin)
+        if (isAdmin) {
             return true
-        println(isAdmin)
-        println(permissions.serverAdminExclusive)
+        }
+        if (Feature.PERMISSION_SYSTEM in regnum.disabledFeatures) {
+            return permissions.public
+        }
         return verifyNode(permissions, member)
     }
 
     private fun verifyNode(permissions: IPermissions, member: Member): Boolean {
-        println("NODE")
         return regnum.permissionManager.hasPermissions(permissions, member)
     }
 }
