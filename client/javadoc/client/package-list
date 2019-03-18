@@ -9,6 +9,7 @@ cc.hawkbot.regnum.client.command.impl
 cc.hawkbot.regnum.client.command.permission
 cc.hawkbot.regnum.client.command.translation
 cc.hawkbot.regnum.client.command.translation.defaults
+cc.hawkbot.regnum.client.commands.general
 cc.hawkbot.regnum.client.commands.settings
 cc.hawkbot.regnum.client.core
 cc.hawkbot.regnum.client.core.discord
