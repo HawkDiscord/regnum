@@ -65,12 +65,9 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
         authorizationHandler.authorize(server, it)
                 .thenAccept {
                     log.info("[WS] ${it.id} connected and authorized!")
-                    print("REG")
                     val node = NodeImpl(it, this, server)
 
-                    print("ADD")
                     nodes.add(node)
-                    print("HELLOW")
                     node.send(Payload.of(HelloPacket(server.config.getInt(Config.SOCKET_HEARTBEAT)), HelloPacket.IDENTIFIER))
                     callEvent(WebsocketAuthorizedEvent(server, this, it))
                 }

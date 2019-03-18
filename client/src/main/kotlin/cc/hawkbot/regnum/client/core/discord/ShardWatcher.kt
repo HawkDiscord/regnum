@@ -43,7 +43,6 @@ class ShardWatcher(private val regnum: Regnum, private val shardsTotal: Int) {
             unavailableGuilds += event.guildUnavailableCount
 
             if (shardsConnected == shardsTotal) {
-                println("READY")
                 ready = true
                 regnum.eventManager.handle(cc.hawkbot.regnum.client.events.discord.ReadyEvent(regnum.discord.shardManager,
                         availableGuilds, unavailableGuilds))
