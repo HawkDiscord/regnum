@@ -72,7 +72,7 @@ class ServerImpl(
 
     private fun initSentry(noSentry: Boolean) {
         if (!noSentry) {
-            sentry = SentryClient(config.getString(Config.SENTRY_DSN))
+            sentry = SentryClient(config.get(Config.SENTRY_DSN))
             SentryAppender.injectSentry(sentry)
         }
     }
@@ -97,7 +97,7 @@ class ServerImpl(
 
     private fun initDiscord(noDiscord: Boolean) {
         if (!noDiscord) {
-            discordBot = DiscordBotImpl(config.getString(Config.DISCORD_TOKEN))
+            discordBot = DiscordBotImpl(config.get(Config.DISCORD_TOKEN))
         }
     }
 

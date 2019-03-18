@@ -50,7 +50,7 @@ class ConfigAuthorizer : AuthorizationHandler {
             return@exceptionally null
         }
         future.thenAccept {
-            val token = config.getString(Config.SOCKET_TOKEN)
+            val token = config.get<String>(Config.SOCKET_TOKEN)
             val payload = it.payload
             if (payload.type == IdentifyPacket.IDENTIFIER) {
                 val identify = payload.packet as IdentifyPacket

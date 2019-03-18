@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.util;
+package cc.hawkbot.regnum.util;
 
 import org.jetbrains.annotations.NotNull;
 

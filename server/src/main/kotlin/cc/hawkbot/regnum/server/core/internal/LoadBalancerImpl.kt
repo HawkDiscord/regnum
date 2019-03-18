@@ -26,8 +26,8 @@ import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketCloseEvent
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent
 import cc.hawkbot.regnum.server.plugin.io.config.Config
+import cc.hawkbot.regnum.util.DefaultThreadFactory
 import cc.hawkbot.regnum.util.logging.Logger
-import com.google.common.util.concurrent.ThreadFactoryBuilder
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 import okhttp3.Request
 import java.util.concurrent.Executors
@@ -47,14 +47,12 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
     @Suppress("JoinDeclarationAndAssignment")
     override val token: String
     private val ws = server.websocket
-    private val scheduler = Executors.newSingleThreadScheduledExecutor(ThreadFactoryBuilder()
-            .setNameFormat("LoadBalancer")
-            .build())
+    private val scheduler = Executors.newSingleThreadScheduledExecutor(DefaultThreadFactory("LoadBalancer"))
     private var balanced = false
     private lateinit var waitFuture: ScheduledFuture<*>
 
     init {
-        token = server.config.getString(Config.DISCORD_NODE_TOKEN)
+        token = server.config.get(Config.DISCORD_NODE_TOKEN)
         optimalShards = calculateShardCount(server)
         log.info("[Balancer] Discovered initial optimal shard count of $optimalShards shards")
     }
