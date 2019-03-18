@@ -27,8 +27,6 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.*
 import cc.hawkbot.regnum.util.logging.Logger
-import com.google.common.util.concurrent.ThreadFactoryBuilder
-import io.netty.util.concurrent.DefaultThreadFactory
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.exceptions.PermissionException
