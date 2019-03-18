@@ -32,27 +32,41 @@ class ShardWatcher(private val regnum: Regnum, private val shardsTotal: Int) {
     private var shardsConnected = 0
     private var availableGuilds = 0
     private var unavailableGuilds = 0
+    private var ready = false
 
     @Suppress("unused")
     @SubscribeEvent
     private fun shardReady(event: ReadyEvent) {
-        shardsConnected++
-        availableGuilds += event.guildAvailableCount
-        unavailableGuilds += event.guildUnavailableCount
+        checkReady {
+            shardsConnected++
+            availableGuilds += event.guildAvailableCount
+            unavailableGuilds += event.guildUnavailableCount
 
-        if (shardsConnected == shardsTotal) {
-            regnum.eventManager.handle(cc.hawkbot.regnum.client.events.discord.ReadyEvent(regnum.discord.shardManager,
-                    availableGuilds, unavailableGuilds))
-            regnum.eventManager.unregister(this)
+            if (shardsConnected == shardsTotal) {
+                ready = true
+                regnum.eventManager.handle(cc.hawkbot.regnum.client.events.discord.ReadyEvent(regnum.discord.shardManager,
+                        availableGuilds, unavailableGuilds))
+                regnum.eventManager.unregister(this)
+            }
         }
     }
 
     @Suppress("unused")
     @SubscribeEvent
     private fun shardDisconnected(@Suppress("UNUSED_PARAMETER") event: DisconnectEvent) {
-        shardsConnected--
-        availableGuilds -= event.jda.guilds.size
-        // Why is there no way to fetch unavailable guilds @Minn?
-        //unavailableGuilds -= event.jda.
+        checkReady {
+            shardsConnected--
+            availableGuilds -= event.jda.guilds.size
+            // Why is there no way to fetch unavailable guilds @Minn?
+            //unavailableGuilds -= event.jda.
+        }
+    }
+
+    private fun checkReady(action: () -> Unit) {
+        if (ready) {
+            regnum.eventManager.unregister(this)
+        } else {
+            action()
+        }
     }
 }

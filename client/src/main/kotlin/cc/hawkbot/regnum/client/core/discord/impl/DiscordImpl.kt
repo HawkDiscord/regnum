@@ -27,7 +27,6 @@ import cc.hawkbot.regnum.client.core.internal.RegnumImpl
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.events.ReadyEvent
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
 import net.dv8tion.jda.api.sharding.ShardManager
@@ -41,7 +40,7 @@ import net.dv8tion.jda.api.sharding.ShardManager
  *
  * @constructor Constructs a new Discord client
  */
-@Suppress("UNSAFE_CAST")
+@Suppress("UNSAFE_CAST", "unused")
 class DiscordImpl(
         val regnum: Regnum,
         token: String,
@@ -84,21 +83,8 @@ class DiscordImpl(
     @SubscribeEvent
     @Suppress("unused")
     private fun whenReady(event: cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
+        println(event.toString())
         log.info("[Discord] Connected to discord with ${event.guildAvailableCount}/${event.guildUnavailableCount} available/unavailable guilds.")
         gameAnimator.start()
     }
-
-    @SubscribeEvent
-    @Suppress("unused")
-    private fun whenShardReady(event: ReadyEvent) {
-        if (event is cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
-            return
-        }
-        availableGuilds += event.guildAvailableCount
-        unavailableGuilds += event.guildUnavailableCount
-        if (shardManager.shardsQueued == 0) {
-            regnum.eventManager.handle(cc.hawkbot.regnum.client.events.discord.ReadyEvent(shardManager, availableGuilds, unavailableGuilds))
-        }
-    }
-
 }
