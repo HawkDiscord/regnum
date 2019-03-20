@@ -39,9 +39,9 @@ import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
-import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
+import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
-import cc.hawkbot.regnum.client.io.database.CassandraSource
+import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.client.util._setRegnum
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
@@ -82,6 +82,7 @@ class RegnumImpl(
     override lateinit var userCache: CassandraCache<RegnumUser>
     override val eventWaiter: EventWaiter
     private lateinit var _permissionManager: PermissionManager
+    val metricsSender: MetricsSender
     override var permissionManager: PermissionManager
         get() = _getPermissionManager()
         set(value) = _setPermissionManager(value)
@@ -96,6 +97,7 @@ class RegnumImpl(
         eventManager.register(commandParser)
         eventWaiter = EventWaiterImpl(eventManager)
         websocket = WebsocketImpl(serverConfig.host, this)
+        metricsSender = MetricsSender(this)
         languageManager.regnum(this)
         val defaultDatabases = cassandraConfig.defaultDatabases
         // Default databases
@@ -131,7 +133,7 @@ class RegnumImpl(
                 val statement = source.session.prepare(it).bind()
                 source.session.executeAsync(statement).get()
             } catch (e: Exception) {
-                log.error("[Regnum] Error while generating default database", e)
+                log.error("[Regnum] Error while generating default cc.hawkbot.regnum.io.database", e)
             }
         }
 
@@ -150,6 +152,10 @@ class RegnumImpl(
         }
         log.info("[Regnum] Connecting to server")
         websocket.start()
+    }
+
+    internal fun discordInitialized(): Boolean {
+        return this::discord.isInitialized
     }
 
     private fun _getPermissionManager(): PermissionManager {

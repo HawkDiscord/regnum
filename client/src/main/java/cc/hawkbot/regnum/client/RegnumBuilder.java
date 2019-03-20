@@ -26,12 +26,14 @@ import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
 import com.google.common.base.Preconditions;
+import cc.hawkbot.regnum.io.database.CassandraSource;
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
 import net.dv8tion.jda.api.hooks.IEventManager;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -164,7 +166,7 @@ public class RegnumBuilder {
     }
 
     /**
-     * Returns the configuration used by {@link cc.hawkbot.regnum.client.io.database.CassandraSource}.
+     * Returns the configuration used by {@link CassandraSource}.
      *
      * @return the {@link CassandraConfig}
      */
@@ -173,7 +175,7 @@ public class RegnumBuilder {
     }
 
     /**
-     * Sets the configuration used by {@link cc.hawkbot.regnum.client.io.database.CassandraSource}.
+     * Sets the configuration used by {@link CassandraSource}.
      *
      * @param cassandraConfig the {@link CassandraConfig}
      * @return the current builder
@@ -183,12 +185,43 @@ public class RegnumBuilder {
         return this;
     }
 
+    /**
+     * Returns a list of all disabled features.
+     * @return the list.
+     */
     public List<Feature> getDisabledFeatures() {
         return disabledFeatures;
     }
 
+    /**
+     * Sets the list of disabled features.
+     * @param disabledFeatures the disabled features
+     * @return the current builder
+     */
     public RegnumBuilder setDisabledFeatures(List<Feature> disabledFeatures) {
         this.disabledFeatures = disabledFeatures;
+        return this;
+    }
+
+    /**
+     * Disables features.
+     * @param features an array of features {@link Feature} to disable
+     * @return the current builder
+     */
+    public RegnumBuilder disableFeatures(Feature... features) {
+        Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
+        Collections.addAll(disabledFeatures, features);
+        return this;
+    }
+
+    /**
+     * Disables features.
+     * @param features a collection of features {@link Feature} to disable
+     * @return the current builder
+     */
+    public RegnumBuilder disableFeatures(Collection<Feature> features) {
+        Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
+        disabledFeatures.addAll(features);
         return this;
     }
 
@@ -204,6 +237,7 @@ public class RegnumBuilder {
         Preconditions.checkNotNull(gameAnimatorConfig, "GameAnimator config may not be null");
         Preconditions.checkNotNull(commandConfig, "CommandSettings may not be null");
         Preconditions.checkNotNull(cassandraConfig, "CassandraConfig may not be null");
+        Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
 
         // Build
         return new RegnumImpl(

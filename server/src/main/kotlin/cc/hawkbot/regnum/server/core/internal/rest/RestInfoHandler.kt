@@ -17,11 +17,17 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client;
+package cc.hawkbot.regnum.server.core.internal.rest
 
-/**
- * Enum that represents features which can be disabled.
- */
-public enum Feature {
-    PERMISSION_SYSTEM
+import cc.hawkbot.regnum.server.plugin.Server
+import com.datastax.driver.mapping.Result
+import io.javalin.Context
+import io.javalin.core.HandlerType
+
+class RestInfoHandler<T : Any>(endpoint: String, accessor: (id: Long, server: Server) -> Result<T>) : EntityRestHandler<T>("/$endpoint/:id", HandlerType.GET, accessor) {
+
+    override fun handle(entity: T, token: String?, context: Context, server: Server) {
+        context.json(entity)
+    }
+
 }

@@ -22,7 +22,7 @@ package cc.hawkbot.regnum.client.entities.cache.impl
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
-import cc.hawkbot.regnum.client.io.database.CassandraSource
+import cc.hawkbot.regnum.io.database.CassandraSource
 import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import java.util.concurrent.TimeUnit

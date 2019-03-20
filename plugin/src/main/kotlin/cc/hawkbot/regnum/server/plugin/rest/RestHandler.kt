@@ -17,11 +17,27 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client;
+package cc.hawkbot.regnum.server.plugin.rest
+
+import cc.hawkbot.regnum.server.plugin.Server
+import io.javalin.Context
+import io.javalin.core.HandlerType
 
 /**
- * Enum that represents features which can be disabled.
+ * Generic Rest handler
+ * @property endpoint the endpoint path
+ * @property method the HTTP method
  */
-public enum Feature {
-    PERMISSION_SYSTEM
+abstract class RestHandler(
+        val endpoint: String,
+        val method: HandlerType
+) {
+
+    /**
+     * Method that handles requests.
+     * @param token the provided token
+     * @param context the context
+     * @param server the server instance
+     */
+    abstract fun handle(token: String?, context: Context, server: Server)
 }

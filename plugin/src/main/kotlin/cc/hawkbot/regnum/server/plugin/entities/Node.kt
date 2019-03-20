@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.server.plugin.entities
 
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 
@@ -49,11 +50,28 @@ interface Node {
      */
     val websocket: Websocket
 
+    /**
+     * The latest received metrics packet.
+     */
+    val metrics: MetricsPacket
+        get() = websocket.metrics(this)
+
+    /**
+     * The WSSession id.
+     */
     val id: String
         get() = session.id
 
+    /**
+     * Starts a new shard on the node.
+     * @param shards an array with all shard ids to start.
+     */
     fun startShards(shards: Array<Int>)
 
+    /**
+     * Stops a new shard on the node.
+     * @param shards an array with all shard ids to stop.
+     */
     fun addShards(shards: Array<Int>)
 
     /**
@@ -72,6 +90,9 @@ interface Node {
         websocket.send(session, payload)
     }
 
+    /**
+     * Disconnects the node using [WsSession.disconnect].
+     */
     fun disconnect() {
         session.disconnect()
     }

@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.server.core.internal.websocket
 
 import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.entites.packets.HelloPacket
+import cc.hawkbot.regnum.entites.packets.MetricsPacket
 import cc.hawkbot.regnum.server.core.internal.ServerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.entities.NodeImpl
 import cc.hawkbot.regnum.server.plugin.Server
@@ -43,6 +44,7 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
     private val log = Logger.getLogger()
     override val nodes = mutableListOf<Node>()
     private val authorizationHandler = server.authorizationHandler
+    internal val metrics = mutableMapOf<Node, MetricsPacket>()
 
     init {
         (server as ServerImpl).websocket = this
@@ -58,6 +60,10 @@ class WebsocketImpl(ws: WsHandler, private val server: Server) : Websocket {
         }
         ws.onMessage { session, msg -> handleMessage(session, msg) }
         ws.onError { session, throwable -> handleError(session, throwable) }
+    }
+
+    override fun metrics(node: Node): MetricsPacket {
+        return metrics[node]!!
     }
 
     private fun handleConnect(it: WsSession) {

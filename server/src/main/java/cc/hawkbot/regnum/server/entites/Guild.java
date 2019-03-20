@@ -17,11 +17,12 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.entities;
+package cc.hawkbot.regnum.server.entites;
 
-import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity;
+import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.*;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jetbrains.annotations.NotNull;
 
 import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
@@ -30,8 +31,9 @@ import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
  * Entity for guilds.
  */
 @Table(name = TABLE_PREFIX + "guilds")
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 @SuppressWarnings("unused")
-public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
+public class Guild extends SnowflakeCassandraEntity<Guild> {
 
     public static final String NO_PREFIX = "%NO%";
 
@@ -40,55 +42,18 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
     @Column(name = "language_tag")
     private String languageTag = "en-US";
 
-    public RegnumGuild() {
-        super(0);
+    public Guild() {
+        super(0L);
     }
 
-    public RegnumGuild(long id) {
+    public Guild(long id) {
         super(id);
     }
 
-    /**
-     * Returns the prefix of the guild.
-     * @return the prefix of the guild
-     */
-    @Transient
-    public String getPrefix() {
-        return prefix.equals(NO_PREFIX) ? regnum().getCommandParser().getDefaultPrefix() : prefix;
-    }
-
-    /**
-     * Sets the prefix of the guild.
-     * @param prefix the new prefix
-     */
-    public void setPrefix(String prefix) {
-        this.prefix = prefix;
-    }
-
-    /**
-     * Returns the language tag of the guild.
-     * @return the language tag
-     */
-    public String getLanguageTag() {
-        return languageTag;
-    }
-
-    /**
-     * Sets the language tag of the guild
-     * @param languageTag the new language tag.
-     */
-    public void setLanguageTag(String languageTag) {
-        this.languageTag = languageTag;
-    }
-
-    /**
-     * Internally used accessor
-     */
     @com.datastax.driver.mapping.annotations.Accessor
-    public interface Accessor extends CachableCassandraEntity.Accessor<RegnumGuild> {
+    public interface Accessor {
         @Query("SELECT * FROM " + TABLE_PREFIX + "guilds WHERE id = :id")
         @NotNull
-        @Override
-        Result<RegnumGuild> get(@Param("id") long id);
+        Result<Guild> get(@Param("id") long id);
     }
 }

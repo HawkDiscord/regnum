@@ -46,6 +46,12 @@ class Config(source: String) : GenericConfig(source) {
         const val PLUGINS_DIRECTORY = "general.plugins_directory"
         const val LOAD_BALANCE_TIMEOUT = "general.load_balance_timeout"
 
+        // Discord
+        const val CASSANDRA_CONTACT_POINTS = "cassandra.contact_points"
+        const val CASSANDRA_USERNAME = "cassandra.username"
+        const val CASSANDRA_PASSWORD = "cassandra.password"
+        const val CASSANDRA_KEYSPACE = "cassandra.keyspace"
+
         // Sentry
         const val SENTRY_DSN = "sentry.dsn"
     }
@@ -62,5 +68,9 @@ class Config(source: String) : GenericConfig(source) {
         applyDefault(PLUGINS_DIRECTORY, "plugins/")
         applyDefault(LOAD_BALANCE_TIMEOUT, 30)
         applyDefault(SENTRY_DSN, "YOU DSN")
+        applyDefault(CASSANDRA_CONTACT_POINTS, listOf("localhost"))
+        applyDefault(CASSANDRA_USERNAME, "cassandra")
+        applyDefault(CASSANDRA_PASSWORD, "cassandra")
+        applyDefault(CASSANDRA_KEYSPACE, "regnum")
     }
 }

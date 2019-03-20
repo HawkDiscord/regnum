@@ -17,11 +17,19 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client;
 
-/**
- * Enum that represents features which can be disabled.
- */
-public enum Feature {
-    PERMISSION_SYSTEM
+package cc.hawkbot.regnum.server.core.internal.rest
+
+import com.fasterxml.jackson.annotation.JsonIgnore
+import net.dv8tion.jda.api.entities.ISnowflake
+import java.time.OffsetDateTime
+
+@Suppress("unused", "RedundantModalityModifier")
+abstract interface ISnowflake: ISnowflake {
+
+    @JsonIgnore
+    override fun getIdLong(): Long
+
+    @JsonIgnore
+    override fun getTimeCreated(): OffsetDateTime
 }

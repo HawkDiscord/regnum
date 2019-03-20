@@ -21,7 +21,7 @@ package cc.hawkbot.regnum.client.entities.cache
 
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.entities.RequiresRegnum
-import cc.hawkbot.regnum.client.entities.cassandra.SnowflakeCassandraEntity
+import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity
 import com.datastax.driver.mapping.Result
 import java.util.concurrent.CompletionStage
 
@@ -68,7 +68,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
     }
 
     /**
-     * Interface for accessing a [CachableCassandraEntity] from database
+     * Interface for accessing a [CachableCassandraEntity] from cc.hawkbot.regnum.io.database
      */
     @com.datastax.driver.mapping.annotations.Accessor
     interface Accessor<T> {

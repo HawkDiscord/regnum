@@ -58,6 +58,11 @@ fun main(args: Array<String>) {
                             .longOpt("disable-sentry")
                             .desc("Disable sentry logging")
                             .build()
+            ).addOption(
+                    Option.builder("DA")
+                            .longOpt("disable-api")
+                            .desc("Disables the REST API and cassandra")
+                            .build()
             )
 
     val parser = DefaultParser()
@@ -69,5 +74,5 @@ fun main(args: Array<String>) {
     Logger.getLogger().info("[Launcher] Starting Regnum server!")
 
     // Start server
-    ServerImpl(launchedAt, cmd.hasOption("D"), cmd.hasOption("ND"), cmd.hasOption("DS"))
+    ServerImpl(launchedAt, cmd.hasOption("D"), cmd.hasOption("ND"), cmd.hasOption("DS"), cmd.hasOption("DA"))
 }

@@ -17,11 +17,25 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client;
+package cc.hawkbot.regnum.server.plugin.rest
+
+import cc.hawkbot.regnum.server.plugin.Server
+import io.javalin.Context
 
 /**
- * Enum that represents features which can be disabled.
+ * Authorizer for Rest requests.
  */
-public enum Feature {
-    PERMISSION_SYSTEM
+interface RestAuthorizationHandler {
+
+    /**
+     * The [Server] instance which will be injected during startup.
+     */
+    var server: Server
+
+    /**
+     * Method that verified that the [token] is allowed to access the guild with the [id].
+     * @param context more context
+     */
+    fun authorizeGuild(id: Long, token: String?, context: Context): Boolean
+
 }

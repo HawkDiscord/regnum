@@ -24,7 +24,7 @@ import cc.hawkbot.regnum.server.plugin.Server;
 import net.dv8tion.jda.api.JDA;
 
 /**
- * Generic Regnum event
+ * Generic Regnum event.
  */
 public class RegnumEvent extends NoJDAEvent {
 

@@ -17,11 +17,16 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client;
+package cc.hawkbot.regnum.server.plugin.rest
 
 /**
- * Enum that represents features which can be disabled.
+ * Data class for providing error messages.
+ * @property code the HTTP code
+ * @property message the error message
+ * @property description further information
  */
-public enum Feature {
-    PERMISSION_SYSTEM
-}
+data class RestError(
+        val code: Int,
+        val message: String,
+        val description: String
+)

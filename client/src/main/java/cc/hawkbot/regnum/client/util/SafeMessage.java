@@ -37,8 +37,14 @@ import java.util.function.BiFunction;
 @SuppressWarnings({"WeakerAccess", "unused", "CanBeFinal"})
 public class SafeMessage {
 
+    /**
+     * Method that is called whenever the bot has no permission to send messages.
+     */
     public static Runnable DEFAULT_ERROR_HANDLER = () -> {
     };
+    /**
+     * Default deletion time -1 to disable.
+     */
     public static int DEFAULT_DELETE_TIME = -1;
     private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 

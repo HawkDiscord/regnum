@@ -23,19 +23,32 @@ import cc.hawkbot.regnum.server.plugin.discord.DiscordBot;
 import cc.hawkbot.regnum.server.plugin.io.config.Config;
 import de.foryasee.plugins.Plugin;
 
+/**
+ * Interface for Regnum plugins.
+ */
 @SuppressWarnings({"unused", "EmptyMethod"})
 public abstract class RegnumPlugin implements Plugin {
 
     private Server server;
 
+    /**
+     * Method that is invoked when loading the plugin.
+     */
     public void onEnable() {
 
     }
 
+    /**
+     * Method that is invoked when unloading the plugin.
+     */
     public void onDisable() {
 
     }
 
+    /**
+     * Method that is used internally to inject the {@link Server} instance.
+     * @param server the server
+     */
     public void injectServer(Server server) {
         if (server == null) {
             throw new IllegalStateException("Server cannot be injected twice.");
@@ -43,18 +56,34 @@ public abstract class RegnumPlugin implements Plugin {
         this.server = server;
     }
 
+    /**
+     * Returns the server.
+     * @return the {@link Server}
+     */
     public Server getServer() {
         return server;
     }
 
+    /**
+     * Returns the websocket.
+     * @return the {@link Websocket}
+     */
     public Websocket getWebsocket() {
         return server.getWebsocket();
     }
 
+    /**
+     * Returns the config.
+     * @return the {@link Config}
+     */
     public Config getConfig() {
         return server.getConfig();
     }
 
+    /**
+     * Returns the Discord bot instance.
+     * @return {@link DiscordBot}
+     */
     public DiscordBot getDiscord() {
         return server.getDiscordBot();
     }

@@ -22,6 +22,13 @@ package cc.hawkbot.regnum.client.config
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
 
+/**
+ * Config for [GameAnimator].
+ * @property translator method used to parse variables
+ * @property interval the interval of switching games in seconds
+ * @property games a list of Games
+ * @constructor constructs a new GameAnimatorConfig
+ */
 @Suppress("unused")
 data class GameAnimatorConfig(
         val translator: (regnum: Regnum, raw: String) -> String,
@@ -29,27 +36,55 @@ data class GameAnimatorConfig(
         @Suppress("MemberVisibilityCanBePrivate") val games: MutableList<GameAnimator.Game>
 ) {
     companion object {
+        /**
+         * The default interval.
+         */
         const val DEFAULT_INTERVAL = 30L
     }
 
+    /**
+     * Config for [GameAnimator].
+     * @property translator method used to parse variables
+     * @property games a list of Games
+     * @constructor constructs a new GameAnimatorConfig using [DEFAULT_INTERVAL]
+     */
     constructor(translator: (regnum: Regnum, raw: String) -> String,
                 games: MutableList<GameAnimator.Game>): this(translator, DEFAULT_INTERVAL, games)
 
+    /**
+     * Config for [GameAnimator].
+     * @property translator method used to parse variables
+     * @property games a list of Games
+     * @constructor constructs a new GameAnimatorConfig using [DEFAULT_INTERVAL] and [translate]
+     */
     constructor(games: MutableList<GameAnimator.Game>): this({
         regnum, raw -> translate(regnum, raw)
     }, games)
 
+    /**
+     * Config for [GameAnimator].
+     * @property translator method used to parse variables
+     * @property games a list of Games
+     * @constructor constructs a new GameAnimatorConfig using [DEFAULT_INTERVAL] and an empty list of games
+     */
     constructor(): this(mutableListOf())
 
+    /**
+     * Adds all [games] to the game animator.
+     */
     fun registerGames(vararg games: GameAnimator.Game) {
         this.games.addAll(games)
     }
 
+    /**
+     * Adds all [games] to the game animator.
+     */
     fun registerGames(games: Collection<GameAnimator.Game>) {
         this.games.addAll(games)
     }
 
 }
+/* default translator */
 private fun translate(regnum: Regnum, raw: String): String {
     val jda = regnum.discord.shardManager
     return raw.

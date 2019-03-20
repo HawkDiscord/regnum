@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.io.database;
+package cc.hawkbot.regnum.io.database;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.CodecRegistry;
@@ -37,7 +37,7 @@ import java.util.concurrent.CompletionStage;
 import java.util.concurrent.Executors;
 
 /**
- * Connector to the Cassandra database.
+ * Connector to the Cassandra cc.hawkbot.regnum.io.database.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class CassandraSource {

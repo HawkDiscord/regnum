@@ -19,6 +19,13 @@
 
 package cc.hawkbot.regnum.client.config
 
+/**
+ * Configuration for Regnum related settings.
+ *
+ * @property host the host of the Regnum server
+ * @property token the token for authorization
+ * @constructor constructs a new server config
+ */
 data class ServerConfig(
         val host: String,
         val token: String

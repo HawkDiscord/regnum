@@ -19,23 +19,40 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
+import cc.hawkbot.regnum.entites.json.Json
+import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.sentry.SentryAppender
 import cc.hawkbot.regnum.sentry.SentryClient
+import cc.hawkbot.regnum.server.core.internal.rest.InfoHandler
+import cc.hawkbot.regnum.server.core.internal.rest.RedirectHandler
+import cc.hawkbot.regnum.server.core.internal.rest.RestInfoHandler
 import cc.hawkbot.regnum.server.core.internal.websocket.ConfigAuthorizer
+import cc.hawkbot.regnum.server.core.internal.websocket.MetricsWatcher
 import cc.hawkbot.regnum.server.core.internal.websocket.WebsocketImpl
 import cc.hawkbot.regnum.server.discord.DiscordBotImpl
+import cc.hawkbot.regnum.server.entites.Guild
+import cc.hawkbot.regnum.server.entities.User
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import cc.hawkbot.regnum.server.plugin.io.config.Config
+import cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer
+import cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler
+import cc.hawkbot.regnum.server.plugin.rest.RestHandler
+import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import io.javalin.Javalin
+import io.javalin.json.JavalinJackson
+import net.dv8tion.jda.api.entities.ISnowflake
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager
 import net.dv8tion.jda.api.hooks.IEventManager
 import okhttp3.OkHttpClient
+
+const val DOCS_URL = "http://docs.hawkbot.cc"
 
 /**
  * Implementation of [Server].
@@ -48,8 +65,11 @@ class ServerImpl(
         override val launchedAt: Long,
         override val dev: Boolean,
         noDiscord: Boolean,
-        noSentry: Boolean
+        noSentry: Boolean,
+        disableAPI: Boolean
 ) : Server {
+    private val log = Logger.getLogger()
+
     override val config: Config = Config("config/server.yml")
     override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
     override lateinit var websocket: Websocket
@@ -60,13 +80,24 @@ class ServerImpl(
     override lateinit var loadBalancer: LoadBalancer
     override val httpClient: OkHttpClient = OkHttpClient()
     override lateinit var sentry: SentryClient
+    override lateinit var cassandraSource: CassandraSource
+    override var restAuthorizationHandler: RestAuthorizationHandler = ConfigRestAuthorizer()
     private lateinit var pluginManager: PluginManager
+    private lateinit var guildAccessor: Guild.Accessor
+    private lateinit var userAccessor: User.Accessor
+    private val apiInfo = APIInfo()
+    override lateinit var averageMetrics: MetricsPacket
 
     init {
+        JavalinJackson.configure(Json.JACKSON)
         initSentry(noSentry)
         shutdownHook()
         plugins()
         initWebsocket()
+        if (!disableAPI) {
+            initCassandra()
+            initAPI()
+        }
         initDiscord(noDiscord)
     }
 
@@ -79,6 +110,23 @@ class ServerImpl(
 
     private fun plugins() {
         pluginManager = PluginManager(this)
+    }
+
+    private fun initCassandra() {
+        cassandraSource = CassandraSource(
+                config.get<String>(Config.CASSANDRA_USERNAME),
+                config.get<String>(Config.CASSANDRA_PASSWORD),
+                config.get<String>(Config.CASSANDRA_KEYSPACE),
+                config.get<List<String>>(Config.CASSANDRA_CONTACT_POINTS)
+        )
+                .connectAsync()
+                .exceptionally {
+                    log.error("[Server] Could not connect to cassandra", it)
+                    null
+                }
+                .toCompletableFuture().join()
+        guildAccessor = cassandraSource.mappingManager.createAccessor(Guild.Accessor::class.java)
+        userAccessor = cassandraSource.mappingManager.createAccessor(User.Accessor::class.java)
     }
 
     private fun shutdownHook() {
@@ -95,9 +143,38 @@ class ServerImpl(
         eventManager.register(loadBalancer)
     }
 
+    private fun initAPI() {
+        Json.JACKSON.addMixIn(ISnowflake::class.java, cc.hawkbot.regnum.server.core.internal.rest.ISnowflake::class.java)
+        restAuthorizationHandler.server = this
+        eventManager.register(MetricsWatcher())
+        registerRestHandler(InfoHandler("/") {
+            apiInfo
+        })
+        registerRestHandler(RedirectHandler("/docs", DOCS_URL))
+        registerRestHandler(RestInfoHandler("guilds") { id, _ ->
+            guildAccessor[id]
+        })
+        registerRestHandler(RestInfoHandler("user") { id, _ ->
+            userAccessor[id]
+        })
+        registerRestHandler(InfoHandler("/metrics") {
+            if (!this::averageMetrics.isInitialized) {
+                return@InfoHandler MetricsPacket(0, 0, 0, 0, 0, 0, 0, 0)
+            }
+            averageMetrics
+        })
+    }
+
     private fun initDiscord(noDiscord: Boolean) {
         if (!noDiscord) {
             discordBot = DiscordBotImpl(config.get(Config.DISCORD_TOKEN))
+        }
+    }
+
+    override fun registerRestHandler(handler: RestHandler) {
+        javalin.addHandler(handler.method, handler.endpoint) {
+            val token = it.header("Authorization")
+            handler.handle(token, it, this)
         }
     }
 
@@ -107,6 +184,16 @@ class ServerImpl(
         eventWaiter.close()
         if (this::discordBot.isInitialized) {
             discordBot.close()
+        }
+    }
+
+    private data class APIInfo(
+            val version: String = "1.0",
+            val github: String = "https://github.com/DRSchlaubi/regnum",
+            val docs: String = DOCS_URL
+    ) {
+        companion object {
+            val INSTANCE = APIInfo()
         }
     }
 
