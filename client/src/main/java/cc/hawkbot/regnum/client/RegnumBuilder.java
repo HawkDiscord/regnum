@@ -26,6 +26,7 @@ import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
 import com.google.common.base.Preconditions;
+import cc.hawkbot.regnum.io.database.CassandraSource;
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
 import net.dv8tion.jda.api.hooks.IEventManager;
 import org.jetbrains.annotations.NotNull;
@@ -164,7 +165,7 @@ public class RegnumBuilder {
     }
 
     /**
-     * Returns the configuration used by {@link cc.hawkbot.regnum.client.io.database.CassandraSource}.
+     * Returns the configuration used by {@link CassandraSource}.
      *
      * @return the {@link CassandraConfig}
      */
@@ -173,7 +174,7 @@ public class RegnumBuilder {
     }
 
     /**
-     * Sets the configuration used by {@link cc.hawkbot.regnum.client.io.database.CassandraSource}.
+     * Sets the configuration used by {@link CassandraSource}.
      *
      * @param cassandraConfig the {@link CassandraConfig}
      * @return the current builder

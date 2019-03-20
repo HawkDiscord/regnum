@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.server.plugin
 
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import io.javalin.websocket.WsSession
 
@@ -53,5 +54,7 @@ interface Websocket {
     fun send(session: WsSession, payload: Payload) {
         send(session, payload.toJson())
     }
+
+    fun metrics(node: Node): MetricsPacket
 
 }

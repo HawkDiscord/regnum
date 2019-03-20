@@ -20,8 +20,8 @@
 package cc.hawkbot.regnum.client.entities.permission;
 
 import cc.hawkbot.regnum.client.command.permission.PermissionManager;
-import cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity;
-import cc.hawkbot.regnum.client.entities.cassandra.SnowflakeCassandraEntity;
+import cc.hawkbot.regnum.entites.cassandra.CassandraEntity;
+import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.*;
 import org.jetbrains.annotations.NotNull;

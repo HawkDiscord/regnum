@@ -43,6 +43,7 @@ class PacketHandler(val regnum: RegnumImpl) {
             HelloPacket.IDENTIFIER -> {
                 val hello = payload.packet as HelloPacket
                 regnum.websocket.heart = HeartImpl(regnum, hello)
+                regnum.metricsSender.start()
             }
             StartPacket.IDENTIFIER -> {
                 val start = payload.packet as StartPacket

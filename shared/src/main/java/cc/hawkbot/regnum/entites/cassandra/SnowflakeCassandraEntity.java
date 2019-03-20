@@ -17,11 +17,12 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.entities.cassandra;
+package cc.hawkbot.regnum.entites.cassandra;
 
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.PartitionKey;
 import com.datastax.driver.mapping.annotations.Transient;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import net.dv8tion.jda.api.entities.ISnowflake;
 
 /**
@@ -34,6 +35,7 @@ public abstract class SnowflakeCassandraEntity<T> extends CassandraEntity<T> imp
 
     @PartitionKey
     @Column(name = "id")
+    @JsonIgnore
     private Long idAsLong;
 
     /**

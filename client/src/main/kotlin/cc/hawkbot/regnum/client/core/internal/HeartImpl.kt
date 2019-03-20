@@ -26,6 +26,7 @@ import cc.hawkbot.regnum.entites.Payload
 import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket
 import cc.hawkbot.regnum.entites.packets.HeartBeatPacket
 import cc.hawkbot.regnum.entites.packets.HelloPacket
+import cc.hawkbot.regnum.util.DefaultThreadFactory
 import cc.hawkbot.regnum.util.logging.Logger
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
@@ -47,7 +48,7 @@ class HeartImpl(
     }
 
     private val log = Logger.getLogger()
-    private val scheduler = Executors.newSingleThreadScheduledExecutor()
+    private val scheduler = Executors.newSingleThreadScheduledExecutor(DefaultThreadFactory("HeartBeat"))
     private val future: ScheduledFuture<*>
 
     override var lastHeartbeat: Long = -1

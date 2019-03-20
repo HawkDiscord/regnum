@@ -27,7 +27,6 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.*
-import cc.hawkbot.regnum.util.DefaultThreadFactory
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
@@ -37,7 +36,6 @@ import java.time.LocalDateTime
 import java.util.*
 import java.util.concurrent.CompletableFuture
 import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 /**
  * Implementation of [CommandParser].

@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.server.plugin.entities
 
 import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entites.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 
@@ -48,6 +49,9 @@ interface Node {
      * The current websocket instance.
      */
     val websocket: Websocket
+
+    val metrics: MetricsPacket
+        get() = websocket.metrics(this)
 
     val id: String
         get() = session.id

@@ -17,9 +17,9 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.entities.cassandra;
+package cc.hawkbot.regnum.entites.cassandra;
 
-import cc.hawkbot.regnum.client.io.database.CassandraSource;
+import cc.hawkbot.regnum.io.database.CassandraSource;
 import cc.hawkbot.regnum.util.logging.Logger;
 import com.datastax.driver.core.ConsistencyLevel;
 import com.datastax.driver.mapping.Mapper;
@@ -29,8 +29,8 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.internal.shaded.org.jctools.queues.MessagePassingQueue;
-import org.checkerframework.checker.nullness.qual.Nullable;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -54,10 +54,10 @@ public abstract class CassandraEntity<T> {
 
     @Transient
     public static MessagePassingQueue.Consumer<CassandraEntity> DEFAULT_SUCCESS_HANDLER = (entity) -> log.debug(
-            "[Database] Successfully saved {} to database", entity.toString());
+            "[Database] Successfully saved {} to cc.hawkbot.regnum.io.database", entity.toString());
     @Transient
     public static Consumer<Throwable> DEFAULT_ERROR_HANDLER = (throwable) -> log.error(
-            "[Database] Could not modify entity in database", throwable);
+            "[Database] Could not modify entity in cc.hawkbot.regnum.io.database", throwable);
     @Transient
     public static ExecutorService executor = Executors.newCachedThreadPool(new DefaultThreadFactory("Database"));
 

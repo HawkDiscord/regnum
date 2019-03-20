@@ -66,7 +66,7 @@ interface PermissionManager {
     fun hasWildcard(id: Long, guildId: Long): Boolean
 
     /**
-     * Retrieves the permissions from the database.
+     * Retrieves the permissions from the cc.hawkbot.regnum.io.database.
      * @param info the [PermissionInfoContainer]
      * @return the [Result] containing the node
      */
@@ -75,7 +75,7 @@ interface PermissionManager {
     }
 
     /**
-     * Retrieves the permissions from the database.
+     * Retrieves the permissions from the cc.hawkbot.regnum.io.database.
      * @param id the id of the holder
      * @param guildId the id of the guild
      * @param node the permission node

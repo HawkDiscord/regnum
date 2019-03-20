@@ -17,26 +17,22 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.entities
+package cc.hawkbot.regnum.server.entities
 
-import cc.hawkbot.regnum.client.command.permission.IPermissionHolder
-import cc.hawkbot.regnum.client.command.permission.IPermissions
-import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity
 import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
-import cc.hawkbot.regnum.client.entities.permission.PermissionNode
+import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity
 import com.datastax.driver.mapping.Result
 import com.datastax.driver.mapping.annotations.Column
 import com.datastax.driver.mapping.annotations.Param
 import com.datastax.driver.mapping.annotations.Query
 import com.datastax.driver.mapping.annotations.Table
 import java.util.*
-import java.util.concurrent.CompletionStage
 
 /**
  * Entity for users.
  */
 @Table(name = CassandraEntity.TABLE_PREFIX + "user")
-class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
+class User: SnowflakeCassandraEntity<User> {
 
     /**
      * The language tag.
@@ -48,30 +44,10 @@ class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
 
     constructor() : this(-1)
 
-    /**
-     * Returns the [Locale] of the user
-     * @return the [Locale]
-     */
-    fun locale(): Locale {
-        return Locale.forLanguageTag(languageTag)
-    }
-
-    override fun hasPermission(permission: IPermissions, guildId: Long): Boolean {
-        return regnum().permissionManager.hasPermission(idLong, guildId, permission.node, permission.public)
-    }
-
-    override fun assignPermission(permission: IPermissions, guildId: Long, negated: Boolean): CompletionStage<PermissionNode> {
-        return regnum().permissionManager.createPermissionNode(idLong, guildId, permission.node, PermissionNode.PermissionTarget.USER, negated)
-    }
-
-    override fun deletePermissionAssignment(permission: IPermissions, guildId: Long): CompletionStage<Void> {
-        return regnum().permissionManager.deleteNode(regnum().permissionManager.getNode(idLong, guildId, permission.node))
-    }
-
     @com.datastax.driver.mapping.annotations.Accessor
-    interface Accessor : CachableCassandraEntity.Accessor<RegnumUser> {
+    interface Accessor {
         @Query("SELECT * FROM " + CassandraEntity.TABLE_PREFIX + "user WHERE id = :id")
-        override fun get(@Param("id") id: Long): Result<RegnumUser>
+        operator fun get(@Param("id") id: Long): Result<User>
     }
 
 }

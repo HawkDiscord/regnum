@@ -141,7 +141,7 @@ class LoadBalancerImpl(server: Server) : LoadBalancer {
 
     private fun startShards(shardsPerNode: Int, shards: Array<Int>) {
         val nodes = ws.nodes.iterator()
-        log.info("[DiscordBalancer] Balancing Discord shards on $shards nodes with $shardsPerNode shards/node")
+        log.info("[DiscordBalancer] Balancing Discord shards on ${shards.toIntArray()} nodes with $shardsPerNode shards/node")
         val shardIds = shards.iterator()
         while (nodes.hasNext()) {
             val shardsList = mutableListOf<Int>()
