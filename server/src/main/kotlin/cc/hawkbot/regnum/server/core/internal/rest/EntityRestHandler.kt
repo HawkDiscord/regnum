@@ -27,6 +27,9 @@ import io.javalin.BadRequestResponse
 import io.javalin.Context
 import io.javalin.core.HandlerType
 
+/**
+ * Rest handler for entities.
+ */
 abstract class EntityRestHandler<T>(endpoint: String, method: HandlerType, private val accessor: (id: Long, server: Server) -> Result<T>) : RestHandler(endpoint, method) {
 
     override fun handle(token: String?, context: Context, server: Server) {

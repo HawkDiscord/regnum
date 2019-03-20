@@ -109,6 +109,9 @@ interface Server: Closeable {
      */
     var restAuthorizationHandler: RestAuthorizationHandler
 
+    /**
+     * The average metrics of all node.
+     */
     var averageMetrics: MetricsPacket
 
     /**

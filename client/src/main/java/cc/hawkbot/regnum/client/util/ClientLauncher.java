@@ -43,6 +43,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Util which launches client just for testing.
+ */
 @SuppressWarnings("WeakerAccess")
 public class ClientLauncher {
 

@@ -100,6 +100,9 @@ interface Regnum {
      */
     val permissionManager: PermissionManager
 
+    /**
+     * A list of all disabled features.
+     */
     val disabledFeatures: List<Feature>
 
     /**

@@ -23,10 +23,21 @@ import cc.hawkbot.regnum.server.plugin.Server
 import io.javalin.Context
 import io.javalin.core.HandlerType
 
+/**
+ * Generic Rest handler
+ * @property endpoint the endpoint path
+ * @property method the HTTP method
+ */
 abstract class RestHandler(
         val endpoint: String,
         val method: HandlerType
 ) {
 
+    /**
+     * Method that handles requests.
+     * @param token the provided token
+     * @param context the context
+     * @param server the server instance
+     */
     abstract fun handle(token: String?, context: Context, server: Server)
 }

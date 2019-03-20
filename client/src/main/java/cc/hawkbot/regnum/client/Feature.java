@@ -19,6 +19,9 @@
 
 package cc.hawkbot.regnum.client;
 
+/**
+ * Enum that represents features which can be disabled.
+ */
 public enum Feature {
     PERMISSION_SYSTEM
 }

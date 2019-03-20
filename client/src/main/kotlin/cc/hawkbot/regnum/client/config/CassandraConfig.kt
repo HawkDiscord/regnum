@@ -23,6 +23,16 @@ import com.datastax.driver.core.CodecRegistry
 import com.google.common.base.Preconditions
 import java.util.*
 
+/**
+ * Configuration for Cassandra settings.
+ * @property codecRegistry the [CodecRegistry]
+ * @property keyspace the keyspace
+ * @property username the username
+ * @property password the password
+ * @property contactPoints all contact points
+ * @property defaultDatabases a list of cql queries which will be executed directly after connecting to cassandra
+ * @constructor constructs a new Cassandra config
+ */
 data class CassandraConfig(
         var codecRegistry: CodecRegistry,
         var keyspace: String?,
@@ -32,14 +42,52 @@ data class CassandraConfig(
         var defaultDatabases: MutableList<String> = mutableListOf()
 ) {
 
+    /**
+     * Configuration for Cassandra settings using the default [CodecRegistry].
+     * @property keyspace the keyspace
+     * @property username the username
+     * @property password the password
+     * @property contactPoints all contact points
+     * @property defaultDatabases a list of cql queries which will be executed directly after connecting to cassandra
+     * @constructor constructs a new Cassandra config
+     */
     constructor(keyspace: String?, username: String, password: String?, contactPoints: MutableList<String>): this(CodecRegistry(), keyspace, username, password, contactPoints)
 
+    /**
+     * Configuration for Cassandra settings using the default [CodecRegistry] and no [defaultDatabases].
+     * @property keyspace the keyspace
+     * @property username the username
+     * @property password the password
+     * @property contactPoints all contact points
+     * @constructor constructs a new Cassandra config
+     */
     constructor(keyspace: String?, username: String, password: String?): this(keyspace, username, password, mutableListOf())
 
+    /**
+     * Configuration for Cassandra settings using the default [CodecRegistry], no keyspace and no [defaultDatabases].
+     * @property username the username
+     * @property password the password
+     * @property contactPoints all contact points
+     * @constructor constructs a new Cassandra config
+     */
     constructor(username: String, password: String?): this(null, username, password)
 
+    /**
+     * Configuration for Cassandra settings using the default [CodecRegistry], no keyspace, no password and no [defaultDatabases].
+     * @property username the username
+     * @property password the password
+     * @property contactPoints all contact points
+     * @constructor constructs a new Cassandra config
+     */
     constructor(username: String): this(username, null)
 
+    /**
+     * Configuration for Cassandra settings using the default [CodecRegistry], no keyspace, the Cassandra default login and no [defaultDatabases].
+     * @property username the username
+     * @property password the password
+     * @property contactPoints all contact points
+     * @constructor constructs a new Cassandra config
+     */
     constructor(): this("cassandra", "cassandra")
 
     /**

@@ -23,6 +23,9 @@ import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import io.javalin.Context
 
+/**
+ * Implementation of [RestAuthorizationHandler] which compares the provided token with the token that is saved in the config.
+ */
 class ConfigRestAuthorizer: RestAuthorizationHandler {
 
     override lateinit var server: Server

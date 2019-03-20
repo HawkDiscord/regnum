@@ -19,6 +19,12 @@
 
 package cc.hawkbot.regnum.server.plugin.rest
 
+/**
+ * Data class for providing error messages.
+ * @property code the HTTP code
+ * @property message the error message
+ * @property description further information
+ */
 data class RestError(
         val code: Int,
         val message: String,

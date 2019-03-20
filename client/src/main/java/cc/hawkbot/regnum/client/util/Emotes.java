@@ -21,6 +21,8 @@ package cc.hawkbot.regnum.client.util;
 
 /**
  * Useful collection of Discord emotes.
+ *
+ * Designed by <a href="https://rxsto.me">Rxsto#1337</a>
  * Bot needs to be on <a href="https://discord.gg/8phqcej">https://discord.gg/8phqcej</a>
  */
 @SuppressWarnings({"unused", "WeakerAccess"})

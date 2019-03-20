@@ -29,6 +29,15 @@ import cc.hawkbot.regnum.util.DefaultThreadFactory
 import java.util.*
 import java.util.concurrent.Executors
 
+/**
+ * Config for all command system related settings.
+ * @property defaultPrefix the default prefix
+ * @property permissionProvider the permission provider
+ * @property commands a list of commands
+ * @property botOwners a list of ids which should have all permissions
+ * @property languageManager the language manager
+ * @constructor constructs a new CommandConfig
+ */
 data class CommandConfig(
         val defaultPrefix: String,
         val permissionProvider: IPermissionProvider,
@@ -37,8 +46,19 @@ data class CommandConfig(
         val languageManager: LanguageManager
 ) {
 
-    val executor = Executors.newCachedThreadPool(DefaultThreadFactory("CommandExecutor"))
+    /**
+     * Executor for commands.
+     */
+    val executor = Executors.newCachedThreadPool(DefaultThreadFactory("CommandExecutor"))!!
 
+    /**
+     * Config for all command system related settings.
+     * @property defaultPrefix the default prefix
+     * @property commands a list of commands
+     * @property botOwners a list of ids which should have all permissions
+     * @property languageManager the language manager
+     * @constructor constructs a new CommandConfig using [PermissionProviderImpl]
+     */
     constructor(
             defaultPrefix: String,
             commands: MutableList<ICommand>,
@@ -46,11 +66,23 @@ data class CommandConfig(
             languageManager: LanguageManager
     ) : this(defaultPrefix, PermissionProviderImpl(), commands, botOwners, languageManager)
 
+    /**
+     * Config for all command system related settings.
+     * @property defaultPrefix the default prefix
+     * @property languageManager the language manager
+     * @constructor constructs a new CommandConfig using [PermissionProviderImpl] and empty lists for [commands] and [botOwners]
+     */
     constructor(
             defaultPrefix: String,
             languageManager: LanguageManager
     ) : this(defaultPrefix, mutableListOf(), mutableListOf(), languageManager)
 
+    /**
+     * Config for all command system related settings.
+     * @property defaultPrefix the default prefix
+     * @param defaultLanguage the default [Language]
+     * @constructor constructs a new CommandConfig using [PermissionProviderImpl] and empty lists for [commands] and [botOwners] and [DefaultLanguageManager]
+     */
     constructor(defaultPrefix: String, defaultLanguage: Language) : this(defaultPrefix, DefaultLanguageManager(Language.defaultLanguage(defaultLanguage)))
 
 

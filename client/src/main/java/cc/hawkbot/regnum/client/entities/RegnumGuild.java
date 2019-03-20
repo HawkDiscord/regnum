@@ -81,6 +81,9 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
         this.languageTag = languageTag;
     }
 
+    /**
+     * Internally used accessor
+     */
     @com.datastax.driver.mapping.annotations.Accessor
     public interface Accessor extends CachableCassandraEntity.Accessor<RegnumGuild> {
         @Query("SELECT * FROM " + TABLE_PREFIX + "guilds WHERE id = :id")

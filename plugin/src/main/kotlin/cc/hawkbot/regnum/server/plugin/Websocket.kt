@@ -55,6 +55,9 @@ interface Websocket {
         send(session, payload.toJson())
     }
 
+    /**
+     * Returns the las received [MetricsPacket] of a the provided [node].
+     */
     fun metrics(node: Node): MetricsPacket
 
 }
