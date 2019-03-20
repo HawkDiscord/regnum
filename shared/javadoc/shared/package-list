@@ -2,11 +2,13 @@ $dokka.format:html
 $dokka.linkExtension:html
 
 cc.hawkbot.regnum.entites
+cc.hawkbot.regnum.entites.cassandra
 cc.hawkbot.regnum.entites.json
 cc.hawkbot.regnum.entites.packets
 cc.hawkbot.regnum.entites.packets.discord
 cc.hawkbot.regnum.events
 cc.hawkbot.regnum.io.config
+cc.hawkbot.regnum.io.database
 cc.hawkbot.regnum.sentry
 cc.hawkbot.regnum.util
 cc.hawkbot.regnum.util.logging
