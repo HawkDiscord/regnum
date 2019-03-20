@@ -19,10 +19,8 @@ cc.hawkbot.regnum.client.core.internal
 cc.hawkbot.regnum.client.entities
 cc.hawkbot.regnum.client.entities.cache
 cc.hawkbot.regnum.client.entities.cache.impl
-cc.hawkbot.regnum.client.entities.cassandra
 cc.hawkbot.regnum.client.entities.permission
 cc.hawkbot.regnum.client.events
 cc.hawkbot.regnum.client.events.discord
 cc.hawkbot.regnum.client.events.websocket
-cc.hawkbot.regnum.client.io.database
 cc.hawkbot.regnum.client.util
