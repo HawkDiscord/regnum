@@ -25,6 +25,7 @@ import io.javalin.websocket.WsSession;
 
 /**
  * Event that indicates that a node has sent a valid IDENTIFY.
+ *
  * @see WebSocketSessionEvent
  */
 public class WebsocketAuthorizedEvent extends WebSocketSessionEvent {

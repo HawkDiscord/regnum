@@ -37,7 +37,7 @@ import java.io.Closeable
 /**
  * Representation of the Regnum server.
  */
-interface Server: Closeable {
+interface Server : Closeable {
 
     /**
      * Millis at the time the server got started.

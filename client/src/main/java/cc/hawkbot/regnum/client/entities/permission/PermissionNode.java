@@ -59,11 +59,11 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
     /**
      * Constructs a new PermissionNode.
      *
-     * @param idAsLong the id of the permission holder
-     * @param negated whether the node should be negated or not
-     * @param guildId the id of the guild where the permission should be valid on
+     * @param idAsLong       the id of the permission holder
+     * @param negated        whether the node should be negated or not
+     * @param guildId        the id of the guild where the permission should be valid on
      * @param permissionNode the node itself
-     * @param type the type{@link PermissionTarget}
+     * @param type           the type{@link PermissionTarget}
      * @see PermissionManager#createPermissionNode(IPermissionHolder, String, boolean)
      * @see PermissionManager#createPermissionNode(long, long, String, PermissionTarget, boolean)
      */
@@ -77,6 +77,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Returns whether the node is negated or not.
+     *
      * @return whether the node is negated or not
      */
     public boolean isNegated() {
@@ -85,6 +86,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Returns the type of the permission holder.
+     *
      * @return the {@link PermissionTarget}
      */
     public PermissionTarget getType() {
@@ -93,6 +95,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Returns the id of the guild the node is on.
+     *
      * @return the id
      */
     public long getGuildId() {
@@ -101,6 +104,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Returns the permission node itself.
+     *
      * @return the node
      */
     public String getPermissionNode() {
@@ -123,6 +127,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Deletes a permission node.
+     *
      * @return a {@link CompletionStage} which completes when the permission node got deleted
      */
     @Override
@@ -133,6 +138,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Updates a permission node.
+     *
      * @return a {@link CompletionStage} which completes when the permission node got updated
      */
     @Override
@@ -143,6 +149,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Converts the permission node to an information container.
+     *
      * @return the {@link cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer}
      */
     @NotNull
@@ -152,6 +159,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Returns the permission manager.
+     *
      * @return the {@link PermissionManager}
      */
     public PermissionManager getManager() {
@@ -160,6 +168,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
     /**
      * Internally used for injecting the permission manager
+     *
      * @param permissionManager the {@link PermissionManager}
      */
     public void setManager(PermissionManager permissionManager) {
@@ -182,6 +191,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
 
         /**
          * Returns the translation key of this permission target.
+         *
          * @return the translation key
          */
         public String getTranslation() {

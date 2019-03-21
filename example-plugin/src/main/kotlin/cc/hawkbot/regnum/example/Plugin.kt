@@ -26,8 +26,8 @@ import cc.hawkbot.regnum.server.plugin.RegnumPlugin
  * Exactly one class in every plugin has to extend [RegnumPlugin]
  *
  */
-class Plugin: RegnumPlugin() {
-    
+class Plugin : RegnumPlugin() {
+
     /**
      * Function which gets executed when the plugin loads
      */
@@ -35,9 +35,9 @@ class Plugin: RegnumPlugin() {
         println("Enabled test plugin!")
     }
 
-     /**
-      * Function which gets executed when the plugin gets unloaded
-      */
+    /**
+     * Function which gets executed when the plugin gets unloaded
+     */
     override fun onDisable() {
         println("Disabled test plugin")
     }

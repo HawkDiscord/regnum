@@ -49,7 +49,7 @@ data class GameAnimatorConfig(
      * @constructor constructs a new GameAnimatorConfig using [DEFAULT_INTERVAL]
      */
     constructor(translator: (regnum: Regnum, raw: String) -> String,
-                games: MutableList<GameAnimator.Game>): this(translator, DEFAULT_INTERVAL, games)
+                games: MutableList<GameAnimator.Game>) : this(translator, DEFAULT_INTERVAL, games)
 
     /**
      * Config for [GameAnimator].
@@ -57,8 +57,8 @@ data class GameAnimatorConfig(
      * @property games a list of Games
      * @constructor constructs a new GameAnimatorConfig using [DEFAULT_INTERVAL] and [translate]
      */
-    constructor(games: MutableList<GameAnimator.Game>): this({
-        regnum, raw -> translate(regnum, raw)
+    constructor(games: MutableList<GameAnimator.Game>) : this({ regnum, raw ->
+        translate(regnum, raw)
     }, games)
 
     /**
@@ -67,7 +67,7 @@ data class GameAnimatorConfig(
      * @property games a list of Games
      * @constructor constructs a new GameAnimatorConfig using [DEFAULT_INTERVAL] and an empty list of games
      */
-    constructor(): this(mutableListOf())
+    constructor() : this(mutableListOf())
 
     /**
      * Adds all [games] to the game animator.
@@ -84,11 +84,11 @@ data class GameAnimatorConfig(
     }
 
 }
+
 /* default translator */
 private fun translate(regnum: Regnum, raw: String): String {
     val jda = regnum.discord.shardManager
-    return raw.
-            replace("%servers%", jda.guilds.size.toString())
+    return raw.replace("%servers%", jda.guilds.size.toString())
             .replace("%users%", jda.users.size.toString())
 }
 

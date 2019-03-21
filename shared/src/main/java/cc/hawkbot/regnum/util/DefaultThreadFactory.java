@@ -27,6 +27,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 /**
  * Modified version of {@link java.util.concurrent.Executors} default thread factory with custom name support.
  * Format <code>name-pool-poolNumber-thread-threadNmber</code>
+ *
  * @see java.util.concurrent.Executors
  */
 @SuppressWarnings("unused")

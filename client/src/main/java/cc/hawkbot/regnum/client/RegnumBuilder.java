@@ -187,6 +187,7 @@ public class RegnumBuilder {
 
     /**
      * Returns a list of all disabled features.
+     *
      * @return the list.
      */
     public List<Feature> getDisabledFeatures() {
@@ -195,6 +196,7 @@ public class RegnumBuilder {
 
     /**
      * Sets the list of disabled features.
+     *
      * @param disabledFeatures the disabled features
      * @return the current builder
      */
@@ -205,6 +207,7 @@ public class RegnumBuilder {
 
     /**
      * Disables features.
+     *
      * @param features an array of features {@link Feature} to disable
      * @return the current builder
      */
@@ -216,6 +219,7 @@ public class RegnumBuilder {
 
     /**
      * Disables features.
+     *
      * @param features a collection of features {@link Feature} to disable
      * @return the current builder
      */
@@ -245,8 +249,11 @@ public class RegnumBuilder {
                 eventManager,
                 gameAnimatorConfig,
                 commandConfig,
-                cassandraConfig,
                 disabledFeatures
+        ).init(
+                serverConfig,
+                cassandraConfig,
+                commandConfig
         );
     }
 }

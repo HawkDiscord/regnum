@@ -36,6 +36,7 @@ public class GroupBuilder {
 
     /**
      * Returns whether the group is public or not.
+     *
      * @return whether the group is public or not
      */
     public boolean isPublic() {
@@ -44,6 +45,7 @@ public class GroupBuilder {
 
     /**
      * Sets whether the group should be listed in help messages or not.
+     *
      * @param _public whether the group should be listed in help messages or not
      * @return the builder
      */
@@ -59,6 +61,7 @@ public class GroupBuilder {
 
     /**
      * Returns the name of the group.
+     *
      * @return the name of the group
      */
     public String getName() {
@@ -67,6 +70,7 @@ public class GroupBuilder {
 
     /**
      * Sets the name of the group.
+     *
      * @param name the name
      * @return the builder
      */
@@ -77,6 +81,7 @@ public class GroupBuilder {
 
     /**
      * Returns the description of the group.
+     *
      * @return the description of the group
      */
     public String getDescription() {
@@ -85,6 +90,7 @@ public class GroupBuilder {
 
     /**
      * Sets the description of the group.
+     *
      * @param description the description
      * @return the builder
      */
@@ -95,6 +101,7 @@ public class GroupBuilder {
 
     /**
      * Returns the groups permissions {@link IPermissions}.
+     *
      * @return the groups permissions {@link IPermissions}
      */
     public IPermissions getPermissions() {
@@ -103,6 +110,7 @@ public class GroupBuilder {
 
     /**
      * Sets the groups permissions {@link IPermissions}
+     *
      * @param permissions the permissions
      * @return the builder
      */
@@ -113,6 +121,7 @@ public class GroupBuilder {
 
     /**
      * Builds the group.
+     *
      * @return the group
      */
     @NotNull

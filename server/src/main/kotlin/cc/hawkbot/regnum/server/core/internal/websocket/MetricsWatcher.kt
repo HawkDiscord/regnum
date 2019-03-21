@@ -54,7 +54,7 @@ class MetricsWatcher {
 
         websocket.nodes.map { it.metrics }.forEach {
             discordRestPing += it.discordRestPing
-            discordGatewayPing+= it.discordGatewayPing
+            discordGatewayPing += it.discordGatewayPing
             usedMemory += it.usedMemory
             availableMemory += it.availableMemory
             cpuUsage += it.cpuUsage

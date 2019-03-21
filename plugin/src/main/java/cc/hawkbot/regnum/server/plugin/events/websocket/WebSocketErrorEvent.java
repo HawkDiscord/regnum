@@ -25,6 +25,7 @@ import io.javalin.websocket.WsSession;
 
 /**
  * Event that indicates an error with the websocket.
+ *
  * @see WebSocketSessionEvent
  */
 @SuppressWarnings("unused")
@@ -39,6 +40,7 @@ public class WebSocketErrorEvent extends WebSocketSessionEvent {
 
     /**
      * Returns the {@link Throwable} that caused the error.
+     *
      * @return the {@link Throwable} that caused the error
      */
     public Throwable getThrowable() {

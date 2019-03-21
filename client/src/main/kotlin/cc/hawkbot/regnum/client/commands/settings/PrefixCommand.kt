@@ -30,7 +30,7 @@ import cc.hawkbot.regnum.client.util.EmbedUtil
  * Default command for changing guild specific prefixes.
  * @constructor constructs the command
  */
-class PrefixCommand: Command(Group.SETTINGS, "Prefix", arrayOf("prefix", "p"), CommandPermissions(node = "prefix", serverAdminExclusive = true), "[prefix]", "hw!", "Changes the prefix of your server!") {
+class PrefixCommand : Command(Group.SETTINGS, "Prefix", arrayOf("prefix", "p"), CommandPermissions(node = "prefix", serverAdminExclusive = true), "[prefix]", "hw!", "Changes the prefix of your server!") {
 
     override fun execute(args: Arguments, context: Context) {
         val guild = context.regnumGuild()

@@ -24,7 +24,7 @@ import net.dv8tion.jda.api.entities.ISnowflake
 /**
  * A cache of [CachableCassandraEntity].
  */
-interface CassandraCache<T: CachableCassandraEntity<T>> {
+interface CassandraCache<T : CachableCassandraEntity<T>> {
 
     /**
      * Returns an entity by its [id].

@@ -39,7 +39,8 @@ class GameAnimator(
 ) {
     private val config = (regnum as RegnumImpl).gameAnimatorConfig
     private val scheduler = Executors.newSingleThreadScheduledExecutor()
-    private val shardManager = regnum.discord.shardManager
+    private val shardManager
+        get() = regnum.discord.shardManager
     private val games = config.games
     /**
      * The translator that is used to translate variables

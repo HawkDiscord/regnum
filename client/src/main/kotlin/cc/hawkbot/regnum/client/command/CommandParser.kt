@@ -28,6 +28,8 @@ interface CommandParser {
 
     val defaultPrefix: String
 
+    val owners: List<Long>
+
     /**
      * Returns all commands and its aliases in a map.
      * @return all commands and its aliases in a map

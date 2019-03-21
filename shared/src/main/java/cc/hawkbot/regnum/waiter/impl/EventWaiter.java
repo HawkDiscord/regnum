@@ -37,28 +37,30 @@ public interface EventWaiter extends Closeable {
 
     /**
      * Waits for the specified event.
-     * @param event the Class of that event
-     * @param predicate the predicate to match the event
-     * @param timeout the timeout
+     *
+     * @param event       the Class of that event
+     * @param predicate   the predicate to match the event
+     * @param timeout     the timeout
      * @param timeoutUnit the unit of the timeout
-     * @param <T> the type of the event
+     * @param <T>         the type of the event
      * @return a future that completes when a predicate matching event was fired and fails when the timeout exceeds
      */
     <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull Class<T> event, @NotNull Predicate<T> predicate,
-    long timeout, @NotNull TimeUnit timeoutUnit);
+                                                                 long timeout, @NotNull TimeUnit timeoutUnit);
 
     /**
      * Waits for the specified event.
-     * @param event the KClass of that event
-     * @param predicate the predicate to match the event
-     * @param timeout the timeout
+     *
+     * @param event       the KClass of that event
+     * @param predicate   the predicate to match the event
+     * @param timeout     the timeout
      * @param timeoutUnit the unit of the timeout
-     * @param <T> the type of the event
-     * @see EventWaiter#waitFor(Class, Predicate, long, TimeUnit)
+     * @param <T>         the type of the event
      * @return a future that completes when a predicate matching event was fired and fails when the timeout exceeds
+     * @see EventWaiter#waitFor(Class, Predicate, long, TimeUnit)
      */
     default <T extends @NotNull GenericEvent> CompletionStage<T> waitFor(@NotNull KClass<T> event, @NotNull Predicate<T> predicate,
-                                                                 long timeout, @NotNull TimeUnit timeoutUnit) {
+                                                                         long timeout, @NotNull TimeUnit timeoutUnit) {
         return waitFor(JvmClassMappingKt.getJavaClass(event), predicate, timeout, timeoutUnit);
     }
 

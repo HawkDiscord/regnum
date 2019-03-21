@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit
  * @param server the [Server]
  * @param node the [Node]
  * @constructor Constructs a new pulse
-*/
+ */
 class PulseImpl(private val server: Server, private val node: Node) : Pulse {
 
     companion object {

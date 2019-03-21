@@ -25,4 +25,5 @@ include 'server:plugin'
 findProject(':server:plugin')?.name = 'plugin'
 include 'plugin'
 include 'example-plugin'
+include 'standalone'
 

@@ -31,9 +31,10 @@ public class TranslationUtil {
 
     /**
      * Translates a translation string.
+     *
      * @param regnum the current Regnum instance
-     * @param key the translation string key
-     * @param user the user
+     * @param key    the translation string key
+     * @param user   the user
      * @return the translated string
      */
     public static String translate(Regnum regnum, String key, User user) {
@@ -42,8 +43,9 @@ public class TranslationUtil {
 
     /**
      * Translates a translation string.
+     *
      * @param regnum the current Regnum instance
-     * @param key the translation string key
+     * @param key    the translation string key
      * @param userId the id of the user
      * @return the translated string
      */
@@ -53,8 +55,9 @@ public class TranslationUtil {
 
     /**
      * Translates a translation string.
+     *
      * @param regnum the current Regnum instance
-     * @param key the translation string key
+     * @param key    the translation string key
      * @param userId the id of the user
      * @return the translated string
      */
@@ -64,9 +67,10 @@ public class TranslationUtil {
 
     /**
      * Translates a translation string.
+     *
      * @param regnum the current Regnum instance
-     * @param key the translation string key
-     * @param guild the guild
+     * @param key    the translation string key
+     * @param guild  the guild
      * @return the translated string
      */
     public static String translateByGuild(Regnum regnum, String key, Guild guild) {
@@ -75,8 +79,9 @@ public class TranslationUtil {
 
     /**
      * Translates a translation string.
-     * @param regnum the current Regnum instance
-     * @param key the translation string key
+     *
+     * @param regnum  the current Regnum instance
+     * @param key     the translation string key
      * @param guildId the if of the guild
      * @return the translated string
      */
@@ -86,8 +91,9 @@ public class TranslationUtil {
 
     /**
      * Translates a translation string.
-     * @param regnum the current Regnum instance
-     * @param key the translation string key
+     *
+     * @param regnum  the current Regnum instance
+     * @param key     the translation string key
      * @param guildId the if of the guild
      * @return the translated string
      */

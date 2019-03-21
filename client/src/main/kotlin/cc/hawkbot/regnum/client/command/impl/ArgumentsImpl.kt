@@ -30,7 +30,7 @@ import cc.hawkbot.regnum.client.command.context.Arguments
 @Suppress("unused")
 class ArgumentsImpl(
         private val array: Array<String>
-): Arguments {
+) : Arguments {
 
     /**
      * @see Arguments.get

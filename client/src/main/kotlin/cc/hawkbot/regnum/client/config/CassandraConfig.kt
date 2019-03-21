@@ -51,7 +51,7 @@ data class CassandraConfig(
      * @property defaultDatabases a list of cql queries which will be executed directly after connecting to cassandra
      * @constructor constructs a new Cassandra config
      */
-    constructor(keyspace: String?, username: String, password: String?, contactPoints: MutableList<String>): this(CodecRegistry(), keyspace, username, password, contactPoints)
+    constructor(keyspace: String?, username: String, password: String?, contactPoints: MutableList<String>) : this(CodecRegistry(), keyspace, username, password, contactPoints)
 
     /**
      * Configuration for Cassandra settings using the default [CodecRegistry] and no [defaultDatabases].
@@ -61,7 +61,7 @@ data class CassandraConfig(
      * @property contactPoints all contact points
      * @constructor constructs a new Cassandra config
      */
-    constructor(keyspace: String?, username: String, password: String?): this(keyspace, username, password, mutableListOf())
+    constructor(keyspace: String?, username: String, password: String?) : this(keyspace, username, password, mutableListOf())
 
     /**
      * Configuration for Cassandra settings using the default [CodecRegistry], no keyspace and no [defaultDatabases].
@@ -70,7 +70,7 @@ data class CassandraConfig(
      * @property contactPoints all contact points
      * @constructor constructs a new Cassandra config
      */
-    constructor(username: String, password: String?): this(null, username, password)
+    constructor(username: String, password: String?) : this(null, username, password)
 
     /**
      * Configuration for Cassandra settings using the default [CodecRegistry], no keyspace, no password and no [defaultDatabases].
@@ -79,7 +79,7 @@ data class CassandraConfig(
      * @property contactPoints all contact points
      * @constructor constructs a new Cassandra config
      */
-    constructor(username: String): this(username, null)
+    constructor(username: String) : this(username, null)
 
     /**
      * Configuration for Cassandra settings using the default [CodecRegistry], no keyspace, the Cassandra default login and no [defaultDatabases].
@@ -88,7 +88,7 @@ data class CassandraConfig(
      * @property contactPoints all contact points
      * @constructor constructs a new Cassandra config
      */
-    constructor(): this("cassandra", "cassandra")
+    constructor() : this("cassandra", "cassandra")
 
     /**
      * Adds a Cassandra contact points.

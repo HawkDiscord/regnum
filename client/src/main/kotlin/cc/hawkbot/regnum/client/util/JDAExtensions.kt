@@ -30,7 +30,7 @@ var JDA.regnum: Regnum
     get() = _regnum!!
     set(value) = _setRegnum(value)
 
-internal fun _setRegnum(regnum: Regnum?) {
+fun _setRegnum(regnum: Regnum?) {
     if (regnum != null) {
         _regnum = regnum
     }

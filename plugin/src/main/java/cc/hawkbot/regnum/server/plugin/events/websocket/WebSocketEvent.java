@@ -25,6 +25,7 @@ import cc.hawkbot.regnum.server.plugin.events.RegnumEvent;
 
 /**
  * Generic websocket event.
+ *
  * @see RegnumEvent
  */
 @SuppressWarnings("unused")
@@ -39,6 +40,7 @@ public class WebSocketEvent extends RegnumEvent {
 
     /**
      * Returns the websocket.
+     *
      * @return the websocket
      */
     public Websocket getWebsocket() {

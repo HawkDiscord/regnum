@@ -46,6 +46,7 @@ import java.util.concurrent.ExecutorService
  */
 class CommandParserImpl(
         config: CommandConfig,
+        override val owners: List<Long>,
         private val regnum: Regnum
 ) : CommandParser {
 

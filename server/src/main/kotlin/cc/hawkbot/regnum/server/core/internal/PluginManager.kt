@@ -32,7 +32,7 @@ import java.io.File
  * @property regnum the [Server] instance
  * @constructor Constructs a new server
  */
-class PluginManager(private val regnum: Server): Closeable {
+class PluginManager(private val regnum: Server) : Closeable {
 
     private val log = Logger.getLogger()
     private val pluginLoader = PluginLoader()

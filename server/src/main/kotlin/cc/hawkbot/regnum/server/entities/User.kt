@@ -32,7 +32,7 @@ import java.util.*
  * Entity for users.
  */
 @Table(name = CassandraEntity.TABLE_PREFIX + "user")
-class User: SnowflakeCassandraEntity<User> {
+class User : SnowflakeCassandraEntity<User> {
 
     /**
      * The language tag.

@@ -26,7 +26,7 @@ import io.javalin.Context
 /**
  * Implementation of [RestAuthorizationHandler] which compares the provided token with the token that is saved in the config.
  */
-class ConfigRestAuthorizer: RestAuthorizationHandler {
+class ConfigRestAuthorizer : RestAuthorizationHandler {
 
     override lateinit var server: Server
 

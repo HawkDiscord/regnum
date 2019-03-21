@@ -63,7 +63,7 @@ class EventWaiterImpl(
         return future
     }
 
-    private abstract class WaitingEventListener: EventListener {
+    private abstract class WaitingEventListener : EventListener {
 
         lateinit var future: ScheduledFuture<*>
 

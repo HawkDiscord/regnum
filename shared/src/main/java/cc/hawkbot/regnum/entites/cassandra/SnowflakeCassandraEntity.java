@@ -27,6 +27,7 @@ import net.dv8tion.jda.api.entities.ISnowflake;
 
 /**
  * Extension of {@link CassandraEntity} for snowflake entities.
+ *
  * @see ISnowflake
  * @see CassandraEntity
  */
@@ -40,6 +41,7 @@ public abstract class SnowflakeCassandraEntity<T> extends CassandraEntity<T> imp
 
     /**
      * Used for cache.
+     *
      * @param idAsLong the id
      */
     public SnowflakeCassandraEntity(Long idAsLong) {
@@ -48,6 +50,7 @@ public abstract class SnowflakeCassandraEntity<T> extends CassandraEntity<T> imp
 
     /**
      * Returns the id as a long.
+     *
      * @return the id as a long
      */
     @Override

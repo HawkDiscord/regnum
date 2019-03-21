@@ -90,7 +90,7 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
         return builder.toString()
     }
 
-    private class GuildCommand: SubCommand("Guild", arrayOf("guild"), CommandPermissions(serverAdminExclusive = true, node="language.guild"), "[languageTag]", "en-US", "Changes the language for guild specific messages") {
+    private class GuildCommand : SubCommand("Guild", arrayOf("guild"), CommandPermissions(serverAdminExclusive = true, node = "language.guild"), "[languageTag]", "en-US", "Changes the language for guild specific messages") {
         override fun execute(args: Arguments, context: Context) {
             val target = context.regnumGuild()
             if (args.isEmpty()) {

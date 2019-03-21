@@ -25,7 +25,7 @@ import java.io.Closeable
 /**
  * Representation of the built-in Discord bot.
  */
-interface DiscordBot: Closeable {
+interface DiscordBot : Closeable {
 
     /**
      * The JDA instance.

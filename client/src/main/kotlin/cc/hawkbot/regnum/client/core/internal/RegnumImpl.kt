@@ -60,13 +60,12 @@ import net.dv8tion.jda.api.hooks.IEventManager
  * @see cc.hawkbot.regnum.client.RegnumBuilder
  * @constructor Constructs a new Regnum instance
  */
-@Suppress("FunctionName")
-class RegnumImpl(
+@Suppress("FunctionName", "ProtectedInFinal", "LeakingThis")
+open class RegnumImpl(
         serverConfig: ServerConfig,
         override val eventManager: IEventManager,
         val gameAnimatorConfig: GameAnimatorConfig,
         commandConfig: CommandConfig,
-        cassandraConfig: CassandraConfig,
         override val disabledFeatures: List<Feature>
 ) : Regnum {
 
@@ -74,31 +73,34 @@ class RegnumImpl(
     override val token: String = serverConfig.token
     override val languageManager: LanguageManager = commandConfig.languageManager
     override val owners: List<Long> = commandConfig.botOwners
-    override val websocket: WebsocketImpl
+    override lateinit var websocket: WebsocketImpl
     override lateinit var discord: Discord
-    override val commandParser: CommandParser
-    override val cassandra: CassandraSource
+    override lateinit var commandParser: CommandParser
+    override lateinit var cassandra: CassandraSource
     override lateinit var guildCache: CassandraCache<RegnumGuild>
     override lateinit var userCache: CassandraCache<RegnumUser>
-    override val eventWaiter: EventWaiter
+    override lateinit var eventWaiter: EventWaiter
     private lateinit var _permissionManager: PermissionManager
-    val metricsSender: MetricsSender
+    lateinit var metricsSender: MetricsSender
     override var permissionManager: PermissionManager
         get() = _getPermissionManager()
         set(value) = _setPermissionManager(value)
 
-    init {
+    fun init(serverConfig: ServerConfig, cassandraConfig: CassandraConfig, commandConfig: CommandConfig): Regnum {
         _setRegnum(this)
-        val permissionProvider = commandConfig.permissionProvider
-        permissionProvider.regnum = this
-        commandParser = CommandParserImpl(commandConfig, this)
-        commandParser.registerCommands(*commandConfig.commands.toTypedArray())
-        eventManager.register(PacketHandler(this))
-        eventManager.register(commandParser)
+        events()
+        cassandra(cassandraConfig)
+        caches()
+        commandManager(commandConfig)
+        websocket(serverConfig)
+        return this
+    }
+
+    protected fun events() {
         eventWaiter = EventWaiterImpl(eventManager)
-        websocket = WebsocketImpl(serverConfig.host, this)
-        metricsSender = MetricsSender(this)
-        languageManager.regnum(this)
+    }
+
+    protected fun cassandra(cassandraConfig: CassandraConfig) {
         val defaultDatabases = cassandraConfig.defaultDatabases
         // Default databases
         val generators = defaultDatabases.toMutableList()
@@ -136,12 +138,22 @@ class RegnumImpl(
                 log.error("[Regnum] Error while generating default cc.hawkbot.regnum.io.database", e)
             }
         }
-
         log.info("[Regnum] Generated databases. Initializing caches")
+    }
 
-        // Caches
+    protected fun caches() {
         guildCache = CassandraCacheImpl(this, RegnumGuild::class, RegnumGuild.Accessor::class.java)
         userCache = CassandraCacheImpl(this, RegnumUser::class, RegnumUser.Accessor::class.java)
+    }
+
+    protected fun commandManager(commandConfig: CommandConfig) {
+        val permissionProvider = commandConfig.permissionProvider
+        permissionProvider.regnum = this
+        commandParser = CommandParserImpl(commandConfig, commandConfig.botOwners, this)
+        commandParser.registerCommands(*commandConfig.commands.toTypedArray())
+        eventManager.register(PacketHandler(this))
+        eventManager.register(commandParser)
+        languageManager.regnum(this)
 
         // Default commands
         commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand(), HelpCommand())
@@ -150,6 +162,12 @@ class RegnumImpl(
         if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
             permissionManager = PermissionManagerImpl(this)
         }
+    }
+
+    private fun websocket(serverConfig: ServerConfig) {
+        eventManager.register(PacketHandler(this))
+        websocket = WebsocketImpl(serverConfig.host, this)
+        metricsSender = MetricsSender(this)
         log.info("[Regnum] Connecting to server")
         websocket.start()
     }

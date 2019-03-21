@@ -51,7 +51,7 @@ interface IPermissionHolder {
      * Assigned a negated permission to a holder.
      * @param permission the permission
      */
-    fun assignNegatedPermission(permission: IPermissions, guildId: Long): CompletionStage<PermissionNode>  {
+    fun assignNegatedPermission(permission: IPermissions, guildId: Long): CompletionStage<PermissionNode> {
         return assignPermission(permission, guildId, true)
     }
 }
