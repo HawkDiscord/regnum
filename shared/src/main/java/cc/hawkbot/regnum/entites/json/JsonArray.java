@@ -60,7 +60,7 @@ public class JsonArray extends RegnumJsonNode {
     /**
      * Returns the string value of the specified field or the specified default value if those field does not exist.
      *
-     * @param index the index of the field
+     * @param index        the index of the field
      * @param defaultValue the default value
      * @return the value
      * @see JsonNode#asText(String)
@@ -83,7 +83,7 @@ public class JsonArray extends RegnumJsonNode {
     /**
      * Returns the boolean value of the specified field or the specified default value if those field does not exist.
      *
-     * @param index the index of the field
+     * @param index        the index of the field
      * @param defaultValue the default value
      * @return the value
      * @see JsonNode#asBoolean(boolean)
@@ -106,7 +106,7 @@ public class JsonArray extends RegnumJsonNode {
     /**
      * Returns the double value of the specified field or the specified default value if those field does not exist.
      *
-     * @param index the index of the field
+     * @param index        the index of the field
      * @param defaultValue the default value
      * @return the value
      * @see JsonNode#asDouble(double)
@@ -129,7 +129,7 @@ public class JsonArray extends RegnumJsonNode {
     /**
      * Returns the integer value of the specified field or the specified default value if those field does not exist.
      *
-     * @param index the index of the field
+     * @param index        the index of the field
      * @param defaultValue the default value
      * @return the value
      * @see JsonNode#asInt(int)
@@ -152,7 +152,7 @@ public class JsonArray extends RegnumJsonNode {
     /**
      * Returns the long value of the specified field or the specified default value if those field does not exist.
      *
-     * @param index the index of the field
+     * @param index        the index of the field
      * @param defaultValue the default value
      * @return the value
      * @see JsonNode#asLong()

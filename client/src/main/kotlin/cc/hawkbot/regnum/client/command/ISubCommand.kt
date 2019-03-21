@@ -22,7 +22,7 @@ package cc.hawkbot.regnum.client.command
 /**
  * A sub command
  */
-interface ISubCommand: ICommand {
+interface ISubCommand : ICommand {
 
     /**
      * The parent command of the sub command

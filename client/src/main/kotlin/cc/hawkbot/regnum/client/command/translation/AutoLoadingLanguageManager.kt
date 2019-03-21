@@ -39,7 +39,7 @@ class AutoLoadingLanguageManager(
         private val encoding: Charset = Charsets.UTF_8
 ) : DefaultLanguageManager(defaultLanguage) {
 
-    constructor(path: String, defaultLanguage: Language, encoding: Charset = Charsets.UTF_8): this(File(path), defaultLanguage, encoding)
+    constructor(path: String, defaultLanguage: Language, encoding: Charset = Charsets.UTF_8) : this(File(path), defaultLanguage, encoding)
 
     init {
         if (!path.exists()) {

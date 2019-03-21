@@ -26,6 +26,7 @@ import io.javalin.websocket.WsSession;
 
 /**
  * Event that indicates a new websocket message.
+ *
  * @see WebSocketSessionEvent
  */
 @SuppressWarnings("unused")
@@ -40,6 +41,7 @@ public class WebSocketMessageEvent extends WebSocketSessionEvent {
 
     /**
      * Returns the message as a {@link Payload}.
+     *
      * @return the payload
      */
     public Payload getPayload() {
@@ -48,6 +50,7 @@ public class WebSocketMessageEvent extends WebSocketSessionEvent {
 
     /**
      * Returns the message.
+     *
      * @return the message
      */
     public String getMessage() {

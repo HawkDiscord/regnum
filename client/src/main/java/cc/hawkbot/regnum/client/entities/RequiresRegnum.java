@@ -30,12 +30,14 @@ public interface RequiresRegnum {
 
     /**
      * Method that returns the {@link Regnum instance}.
+     *
      * @return the Regnum instance
      */
     Regnum regnum();
 
     /**
      * Method that injects the {@link Regnum} instance.
+     *
      * @param regnum the instance
      */
     void regnum(@NotNull Regnum regnum);

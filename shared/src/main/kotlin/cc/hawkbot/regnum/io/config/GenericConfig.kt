@@ -37,22 +37,22 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
     /**
      * Creates a new config from the specified [source]
      */
-    constructor(source: String): this(FileConfig.of(source))
+    constructor(source: String) : this(FileConfig.of(source))
 
     /**
      * Creates a new config from the specified [file]
      */
-    constructor(file: File): this(FileConfig.of(file))
+    constructor(file: File) : this(FileConfig.of(file))
 
     /**
      * Creates a new config from the specified [path]
      */
-    constructor(path: Path): this(FileConfig.of(path))
+    constructor(path: Path) : this(FileConfig.of(path))
 
     /**
      * Creates a new config from the specified [path] with the specified [format]
      */
-    constructor(path: Path, format: ConfigFormat<*>): this(FileConfig.of(path, format))
+    constructor(path: Path, format: ConfigFormat<*>) : this(FileConfig.of(path, format))
 
 
     init {

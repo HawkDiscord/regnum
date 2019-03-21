@@ -26,6 +26,7 @@ import io.javalin.websocket.WsSession;
 
 /**
  * Event that indicates that a node closed it's connection.
+ *
  * @see WebSocketSessionEvent
  */
 @SuppressWarnings("unused")
@@ -44,6 +45,7 @@ public class WebSocketCloseEvent extends WebSocketSessionEvent {
 
     /**
      * Returns the WebSocket close code.
+     *
      * @return the WebSocket close code
      */
     public int getCode() {
@@ -52,6 +54,7 @@ public class WebSocketCloseEvent extends WebSocketSessionEvent {
 
     /**
      * Returns the reason for the disconnect.
+     *
      * @return the reason for the disconnect
      */
     public String getReason() {
@@ -60,8 +63,9 @@ public class WebSocketCloseEvent extends WebSocketSessionEvent {
 
     /**
      * Override because the node gets deleted after disconnects.
-     * @see WebSocketSessionEvent#getNode()
+     *
      * @return the node
+     * @see WebSocketSessionEvent#getNode()
      */
     @Override
     public Node getNode() {

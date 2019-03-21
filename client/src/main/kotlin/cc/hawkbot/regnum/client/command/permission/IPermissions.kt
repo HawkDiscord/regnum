@@ -23,7 +23,7 @@ package cc.hawkbot.regnum.client.command.permission
  * Interface for permissions
  */
 interface IPermissions {
-    
+
     /**
      * If the entity is usable by bot owners only.
      */

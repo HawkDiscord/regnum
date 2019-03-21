@@ -29,7 +29,7 @@ import cc.hawkbot.regnum.client.util.EmbedUtil
 import cc.hawkbot.regnum.client.util.FormatUtil
 import net.dv8tion.jda.api.EmbedBuilder
 
-class HelpCommand: Command(Group.GENERAL, "Help", arrayOf("help", "h"), CommandPermissions(node = "help", public = true), "[command]", "help", "Gives your more information about the bots commands") {
+class HelpCommand : Command(Group.GENERAL, "Help", arrayOf("help", "h"), CommandPermissions(node = "help", public = true), "[command]", "help", "Gives your more information about the bots commands") {
 
     override fun execute(args: Arguments, context: Context) {
         val commandParser = context.regnum.commandParser

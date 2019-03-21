@@ -42,6 +42,7 @@ public class RegnumEvent extends NoJDAEvent {
 
     /**
      * Returns the server instance.
+     *
      * @return the server instance
      */
     public Server getServer() {

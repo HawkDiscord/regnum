@@ -47,6 +47,7 @@ public abstract class RegnumPlugin implements Plugin {
 
     /**
      * Method that is used internally to inject the {@link Server} instance.
+     *
      * @param server the server
      */
     public void injectServer(Server server) {
@@ -58,6 +59,7 @@ public abstract class RegnumPlugin implements Plugin {
 
     /**
      * Returns the server.
+     *
      * @return the {@link Server}
      */
     public Server getServer() {
@@ -66,6 +68,7 @@ public abstract class RegnumPlugin implements Plugin {
 
     /**
      * Returns the websocket.
+     *
      * @return the {@link Websocket}
      */
     public Websocket getWebsocket() {
@@ -74,6 +77,7 @@ public abstract class RegnumPlugin implements Plugin {
 
     /**
      * Returns the config.
+     *
      * @return the {@link Config}
      */
     public Config getConfig() {
@@ -82,6 +86,7 @@ public abstract class RegnumPlugin implements Plugin {
 
     /**
      * Returns the Discord bot instance.
+     *
      * @return {@link DiscordBot}
      */
     public DiscordBot getDiscord() {

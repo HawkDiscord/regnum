@@ -26,6 +26,7 @@ import io.javalin.websocket.WsSession;
 
 /**
  * Generic event for websocket events with sessions
+ *
  * @see WebSocketEvent
  */
 @SuppressWarnings("unused")
@@ -40,6 +41,7 @@ public class WebSocketSessionEvent extends WebSocketEvent {
 
     /**
      * Returns the websocket session.
+     *
      * @return the websocket session
      */
     public WsSession getSession() {
@@ -48,6 +50,7 @@ public class WebSocketSessionEvent extends WebSocketEvent {
 
     /**
      * Returns the {@link Node} corresponding to the session.
+     *
      * @return the {@link Node} corresponding to the session
      */
     public Node getNode() {

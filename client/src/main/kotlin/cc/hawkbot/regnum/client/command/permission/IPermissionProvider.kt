@@ -38,5 +38,5 @@ interface IPermissionProvider {
      *
      * @return whether a member has a permission or not
      */
-    fun hasPermission(permissions:IPermissions, member: Member): Boolean
+    fun hasPermission(permissions: IPermissions, member: Member): Boolean
 }

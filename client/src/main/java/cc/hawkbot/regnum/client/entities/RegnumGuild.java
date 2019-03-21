@@ -50,6 +50,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     /**
      * Returns the prefix of the guild.
+     *
      * @return the prefix of the guild
      */
     @Transient
@@ -59,6 +60,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     /**
      * Sets the prefix of the guild.
+     *
      * @param prefix the new prefix
      */
     public void setPrefix(String prefix) {
@@ -67,6 +69,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     /**
      * Returns the language tag of the guild.
+     *
      * @return the language tag
      */
     public String getLanguageTag() {
@@ -75,6 +78,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     /**
      * Sets the language tag of the guild
+     *
      * @param languageTag the new language tag.
      */
     public void setLanguageTag(String languageTag) {

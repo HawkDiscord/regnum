@@ -34,6 +34,7 @@ import java.util.function.Predicate;
 
 /**
  * Generic class for parsing json entities from a string.
+ *
  * @see JsonObject for parsing an object
  * @see JsonArray for parsing an array
  * @see Json
@@ -49,8 +50,9 @@ public class RegnumJsonNode extends JsonNode {
 
     /**
      * Encodes a {@link RegnumJsonNode} into json.
-     * @see Json#toJson(Object)
+     *
      * @return the json in a string
+     * @see Json#toJson(Object)
      */
     public String encode() {
         return Json.toJson(asObject());
@@ -58,8 +60,9 @@ public class RegnumJsonNode extends JsonNode {
 
     /**
      * Encodes a {@link RegnumJsonNode} into prettily formatted json.
-     * @see Json#toPrettyJson(Object)
+     *
      * @return the json in a string
+     * @see Json#toPrettyJson(Object)
      */
     public String encodePrettily() {
         return Json.toPrettyJson(asObject());
@@ -193,7 +196,7 @@ public class RegnumJsonNode extends JsonNode {
     public void serializeWithType(JsonGenerator gen, SerializerProvider serializers, TypeSerializer typeSer) throws IOException {
         jsonNode.serializeWithType(gen, serializers, typeSer);
     }
-    
+
     @Override
     public int size() {
         return jsonNode.size();

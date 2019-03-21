@@ -51,12 +51,12 @@ dependencies {
     compile("com.electronwill.night-config:yaml:3.5.0")
     compile("com.fasterxml.jackson.core:jackson-databind:2.9.7")
     compile("io.sentry:sentry:1.7.16")
-    
+
     // Database
     compile("com.datastax.cassandra:cassandra-driver-core:3.6.0")
     compile("com.datastax.cassandra:cassandra-driver-mapping:3.6.0")
     compile("com.datastax.cassandra:cassandra-driver-extras:3.6.0")
-    
+
 
     // Kotlin
     implementation(kotlin("stdlib-jdk8"))

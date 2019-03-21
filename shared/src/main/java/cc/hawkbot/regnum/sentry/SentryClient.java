@@ -128,8 +128,8 @@ public class SentryClient {
      * <p>
      * The exception will be logged at the {@link Event.Level#ERROR} level.
      *
-     * @see io.sentry.SentryClient#sendException(Throwable)
      * @param throwable exception to send to Sentry.
+     * @see io.sentry.SentryClient#sendException(Throwable)
      */
     public void sendException(Throwable throwable) {
         client.sendException(throwable);
@@ -137,6 +137,7 @@ public class SentryClient {
 
     /**
      * Returns the actual {@link io.sentry.SentryClient}.
+     *
      * @return the actual {@link io.sentry.SentryClient}
      */
     public io.sentry.SentryClient getClient() {
@@ -158,6 +159,7 @@ public class SentryClient {
 
         /**
          * Returns the name of the protocol.
+         *
          * @return the name of the protocol
          */
         public String getName() {

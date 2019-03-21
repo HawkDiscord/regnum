@@ -25,6 +25,7 @@ import io.javalin.websocket.WsSession;
 
 /**
  * Event that indicates a new connection.
+ *
  * @see WebSocketSessionEvent
  */
 @SuppressWarnings("unused")
