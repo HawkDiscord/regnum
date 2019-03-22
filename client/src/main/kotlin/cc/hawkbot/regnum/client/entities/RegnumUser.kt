@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client.entities
 import cc.hawkbot.regnum.client.command.permission.IPermissionHolder
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity
+import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
 import com.datastax.driver.mapping.Result
@@ -44,6 +45,7 @@ class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
     @Column(name = "language_tag")
     var languageTag = "en-US"
 
+    @CassandraCache.Constructor
     constructor(id: Long) : super(id)
 
     constructor() : this(-1)

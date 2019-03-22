@@ -25,6 +25,8 @@ import com.datastax.driver.mapping.annotations.*;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
+
 import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
 
 /**
@@ -38,7 +40,10 @@ public class Guild extends SnowflakeCassandraEntity<Guild> {
     public static final String NO_PREFIX = "%NO%";
 
     private String prefix = NO_PREFIX;
-
+    @Column(name = "blacklisted_channels")
+    private List<Long> blacklistedChannels;
+    @Column(name = "whitelisted_channels")
+    private List<Long> whitelistedChannels;
     @Column(name = "language_tag")
     private String languageTag = "en-US";
 

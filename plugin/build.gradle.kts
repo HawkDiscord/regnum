@@ -15,7 +15,7 @@ repositories {
 
 dependencies {
 
-    implementation(project(":shared"))
+    compile(project(":shared"))
 
     compile("de.foryasee:plugins:1.1.0")
 
@@ -29,7 +29,7 @@ dependencies {
 }
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_HIGHER
 }
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"

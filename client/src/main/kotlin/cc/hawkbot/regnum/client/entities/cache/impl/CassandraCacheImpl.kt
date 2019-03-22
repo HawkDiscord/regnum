@@ -27,6 +27,8 @@ import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.KClass
+import kotlin.reflect.KFunction
+import kotlin.reflect.full.findAnnotation
 
 /**
  * Implementation of [CassandraCache].
@@ -37,11 +39,13 @@ import kotlin.reflect.KClass
  */
 class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
         val regnum: Regnum,
-        val clazz: KClass<T>,
+        private val clazz: KClass<T>,
         accessorClazz: Class<out CachableCassandraEntity.Accessor<T>>
 ) : CassandraCache<T> {
 
     private val accessor = CassandraSource.getInstance().mappingManager.createAccessor(accessorClazz)
+    private val constructor = cacheConstructor()
+
     private val cache = CacheBuilder.newBuilder()
             .expireAfterWrite(30, TimeUnit.MINUTES)
             .expireAfterAccess(30, TimeUnit.MINUTES)
@@ -51,8 +55,7 @@ class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
                     val instance = if (result.availableWithoutFetching > 0)
                         result.one()
                     else {
-                        val entity = clazz.constructors.first().call(key)
-                        entity
+                        constructor.call(key)
                     }
                     instance.cache(this@CassandraCacheImpl)
                     instance.regnum(regnum)
@@ -61,6 +64,10 @@ class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
                 }
 
             })
+
+    private fun cacheConstructor(): KFunction<T> {
+        return clazz.constructors.first { it.findAnnotation<CassandraCache.Constructor>() != null }
+    }
 
     override fun get(id: Long): T {
         return cache[id]

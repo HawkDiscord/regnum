@@ -33,6 +33,9 @@ import java.nio.file.Path
 @Suppress("unused")
 open class GenericConfig(private val config: FileConfig) : Config, Closeable {
 
+    val file: File
+        get() = config.file
+
 
     /**
      * Creates a new config from the specified [source]
@@ -53,11 +56,6 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
      * Creates a new config from the specified [path] with the specified [format]
      */
     constructor(path: Path, format: ConfigFormat<*>) : this(FileConfig.of(path, format))
-
-
-    init {
-        load()
-    }
 
 
     /*
@@ -91,12 +89,12 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
     }
 
 
-    /*
+    /**
      * Sets a default to the config if it doesn't exist.
      * @param path the path of the option
      * @param value the value
      */
-    protected fun applyDefault(path: String, value: Any) {
+    fun applyDefault(path: String, value: Any) {
         if (!super.contains(path))
             super.add(path, value)
     }

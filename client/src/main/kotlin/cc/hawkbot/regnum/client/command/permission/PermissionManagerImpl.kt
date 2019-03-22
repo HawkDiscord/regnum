@@ -63,12 +63,10 @@ class PermissionManagerImpl(
 
     override fun hasPermissions(permissions: IPermissions, member: Member): Boolean {
         if (hasPermissions(permissions, permissionHolder = member)) {
-            println("Memb $member")
             return true
         }
         member.roles.forEach {
             if (hasPermissions(permissions, it)) {
-                println("role $it")
                 return true
             }
         }

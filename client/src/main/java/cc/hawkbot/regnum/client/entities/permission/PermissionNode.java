@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client.entities.permission;
 
 import cc.hawkbot.regnum.client.command.permission.PermissionManager;
+import cc.hawkbot.regnum.client.entities.cache.CassandraCache;
 import cc.hawkbot.regnum.entites.cassandra.CassandraEntity;
 import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity;
 import com.datastax.driver.mapping.Result;
@@ -52,6 +53,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
     /**
      * Used for serialization.
      */
+    @CassandraCache.Constructor
     public PermissionNode() {
         super(-1L);
     }
