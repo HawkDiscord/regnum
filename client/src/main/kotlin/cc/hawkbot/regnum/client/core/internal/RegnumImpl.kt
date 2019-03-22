@@ -27,9 +27,7 @@ import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.permission.PermissionManagerImpl
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
 import cc.hawkbot.regnum.client.commands.general.HelpCommand
-import cc.hawkbot.regnum.client.commands.settings.LanguageCommand
-import cc.hawkbot.regnum.client.commands.settings.PermissionCommand
-import cc.hawkbot.regnum.client.commands.settings.PrefixCommand
+import cc.hawkbot.regnum.client.commands.settings.*
 import cc.hawkbot.regnum.client.config.CassandraConfig
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig
@@ -56,7 +54,6 @@ import net.dv8tion.jda.api.hooks.IEventManager
  * @property token the Regnum token
  * @property gameAnimatorConfig the config used by the game anitmator
  * @param commandConfig the config for command related settings
- * @param cassandraConfig the config for cassandra related settings
  * @see cc.hawkbot.regnum.client.RegnumBuilder
  * @constructor Constructs a new Regnum instance
  */
@@ -108,6 +105,8 @@ open class RegnumImpl(
                 "id BIGINT," +
                 "prefix TEXT," +
                 "language_tag TEXT," +
+                "blacklisted_channels LIST<BIGINT>," +
+                "whitelisted_channels LIST<BIGINT>," +
                 "PRIMARY KEY (id)" +
                 ");")
         if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
@@ -151,12 +150,11 @@ open class RegnumImpl(
         permissionProvider.regnum = this
         commandParser = CommandParserImpl(commandConfig, commandConfig.botOwners, this)
         commandParser.registerCommands(*commandConfig.commands.toTypedArray())
-        eventManager.register(PacketHandler(this))
         eventManager.register(commandParser)
         languageManager.regnum(this)
 
         // Default commands
-        commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand(), HelpCommand())
+        commandParser.registerCommands(PrefixCommand(), PermissionCommand(), LanguageCommand(), HelpCommand(), BlacklistCommand(), WhitelistCommand())
 
         // Permissions
         if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {

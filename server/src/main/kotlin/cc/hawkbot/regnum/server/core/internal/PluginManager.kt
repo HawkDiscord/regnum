@@ -22,10 +22,12 @@ package cc.hawkbot.regnum.server.core.internal
 import cc.hawkbot.regnum.server.plugin.RegnumPlugin
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.io.config.Config
+import cc.hawkbot.regnum.server.plugin.io.config.PluginConfig
 import cc.hawkbot.regnum.util.logging.Logger
 import de.foryasee.plugins.loader.impl.PluginLoader
 import java.io.Closeable
 import java.io.File
+import java.util.function.Consumer
 
 /**
  * Plugin manager.
@@ -53,7 +55,13 @@ class PluginManager(private val regnum: Server) : Closeable {
                 return@forEach
             }
             val regnumPlugin = plugin.plugin
-            regnumPlugin.injectServer(regnum)
+            val folder = File("plugins/${regnumPlugin.name}")
+            if (!folder.exists()) {
+                folder.mkdirs()
+            }
+            // Kotlin is garbage
+            val config = PluginConfig("${folder.absolutePath}/config.yml", Consumer { t -> regnumPlugin.configDefaults(t) })
+            regnumPlugin.injectServer(regnum, config)
             regnumPlugin.onEnable()
             plugins.add(regnumPlugin)
         }

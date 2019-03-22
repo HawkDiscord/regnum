@@ -76,14 +76,17 @@ class CommandParserImpl(
         if (event.author.isBot || event.isWebhookMessage) {
             return
         }
-        // TODO: BLACK/WHITELIST
         executor.execute {
             parseCommands(event)
         }
     }
 
     private fun parseCommands(event: GuildMessageReceivedEvent) {
-        val guildPrefix = regnum.guild(event.guild).prefix
+        val guild = regnum.guild(event.guild)
+        if (!guild.areCommandsAllowed(event.channel)) {
+            return
+        }
+        val guildPrefix = guild.prefix
         val mention = event.guild.selfMember.asMention
         val content = event.message.contentRaw
         val prefix = when {

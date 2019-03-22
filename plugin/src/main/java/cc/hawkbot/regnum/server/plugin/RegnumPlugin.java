@@ -19,9 +19,14 @@
 
 package cc.hawkbot.regnum.server.plugin;
 
+import cc.hawkbot.regnum.io.config.GenericConfig;
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot;
 import cc.hawkbot.regnum.server.plugin.io.config.Config;
+import cc.hawkbot.regnum.server.plugin.io.config.PluginConfig;
 import de.foryasee.plugins.Plugin;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
 
 /**
  * Interface for Regnum plugins.
@@ -30,6 +35,8 @@ import de.foryasee.plugins.Plugin;
 public abstract class RegnumPlugin implements Plugin {
 
     private Server server;
+    private PluginConfig config;
+    private File folder;
 
     /**
      * Method that is invoked when loading the plugin.
@@ -46,15 +53,24 @@ public abstract class RegnumPlugin implements Plugin {
     }
 
     /**
+     * Method that gets invoked after loading the config file to set default
+     * @param config the config
+     */
+    public void configDefaults(GenericConfig config) {
+    }
+
+    /**
      * Method that is used internally to inject the {@link Server} instance.
      *
      * @param server the server
      */
-    public void injectServer(Server server) {
+    public void injectServer(Server server, PluginConfig config) {
         if (server == null) {
             throw new IllegalStateException("Server cannot be injected twice.");
         }
         this.server = server;
+        this.config = config;
+        this.folder = config.getFile().getParentFile();
     }
 
     /**
@@ -76,12 +92,30 @@ public abstract class RegnumPlugin implements Plugin {
     }
 
     /**
-     * Returns the config.
+     * Returns the config of the server.
      *
      * @return the {@link Config}
      */
-    public Config getConfig() {
+    public Config getGlobalConfig() {
         return server.getConfig();
+    }
+
+    /**
+     * Returns the plugin specific config.
+     *
+     * @return the {@link Config}
+     */
+    public PluginConfig getConfig() {
+        return config;
+    }
+
+    /**
+     * Returns the plugin specific folder.
+     *
+     * @return the {@link File}
+     */
+    public File getDataFolder() {
+        return folder;
     }
 
     /**
@@ -92,4 +126,11 @@ public abstract class RegnumPlugin implements Plugin {
     public DiscordBot getDiscord() {
         return server.getDiscordBot();
     }
+
+    /**
+     * Method that returns the name of the plugin.
+     *
+     * @return the name
+     */
+    public abstract String getName();
 }

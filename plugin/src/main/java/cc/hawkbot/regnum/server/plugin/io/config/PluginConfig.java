@@ -17,32 +17,26 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.example
+package cc.hawkbot.regnum.server.plugin.io.config;
 
-import cc.hawkbot.regnum.server.plugin.RegnumPlugin
+import cc.hawkbot.regnum.io.config.GenericConfig;
 
-/**
- * Example plugin for Regnum
- * Exactly one class in every plugin has to extend [RegnumPlugin]
- *
- */
-class Plugin : RegnumPlugin() {
+import java.util.function.Consumer;
 
-    /**
-     * Function which gets executed when the plugin loads
-     */
-    override fun onEnable() {
-        println("Enabled test plugin!")
+public class PluginConfig extends GenericConfig {
+
+    private final Consumer<PluginConfig> defaultsMethod;
+
+    public PluginConfig(String path, Consumer<PluginConfig> defaultsMethod) {
+        super(path);
+        this.defaultsMethod = defaultsMethod;
+        load();
     }
 
-    /**
-     * Function which gets executed when the plugin gets unloaded
-     */
-    override fun onDisable() {
-        println("Disabled test plugin")
+
+    @Override
+    public void defaults() {
+        this.defaultsMethod.accept(this);
     }
 
-    override fun getName(): String {
-        return "example-plugin"
-    }
 }

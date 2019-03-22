@@ -68,4 +68,6 @@ interface CassandraCache<T : CachableCassandraEntity<T>> {
      * @param id the id
      */
     fun delete(id: Long)
+
+    annotation class Constructor
 }

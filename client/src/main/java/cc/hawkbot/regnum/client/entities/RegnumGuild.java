@@ -20,9 +20,14 @@
 package cc.hawkbot.regnum.client.entities;
 
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity;
+import cc.hawkbot.regnum.client.entities.cache.CassandraCache;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.*;
+import com.google.common.collect.Lists;
+import net.dv8tion.jda.api.entities.TextChannel;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
 
@@ -30,12 +35,16 @@ import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
  * Entity for guilds.
  */
 @Table(name = TABLE_PREFIX + "guilds")
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     public static final String NO_PREFIX = "%NO%";
 
     private String prefix = NO_PREFIX;
+    @Column(name = "blacklisted_channels")
+    private List<Long> blacklistedChannels = Lists.newArrayList();
+    @Column(name = "whitelisted_channels")
+    private List<Long> whitelistedChannels = Lists.newArrayList();
 
     @Column(name = "language_tag")
     private String languageTag = "en-US";
@@ -44,6 +53,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
         super(0);
     }
 
+    @CassandraCache.Constructor
     public RegnumGuild(long id) {
         super(id);
     }
@@ -83,6 +93,113 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      */
     public void setLanguageTag(String languageTag) {
         this.languageTag = languageTag;
+    }
+
+    /**
+     * Adds a channel to the blacklist.
+     *
+     * @param channelId the id of the channel
+     */
+    public void blockChannel(long channelId) {
+        blacklistedChannels.add(channelId);
+    }
+
+    /**
+     * Removes a channel from the blacklist.
+     *
+     * @param channelId the id of the channel
+     */
+    public void unBlockChannel(long channelId) {
+        blacklistedChannels.remove(channelId);
+    }
+
+    /**
+     * Adds a channel to the whitelist.
+     *
+     * @param channelId the id of the channel
+     */
+    public void whitelistChannel(long channelId) {
+        whitelistedChannels.add(channelId);
+    }
+
+    /**
+     * Removes a channel from the whitelist.
+     *
+     * @param channelId the id of the channel
+     */
+    public void unWhitelistChannel(long channelId) {
+        whitelistedChannels.remove(channelId);
+    }
+
+    /**
+     * Returns whether the guild uses a command whitelist or not.
+     *
+     * @return whether the guild uses a command whitelist or not
+     */
+    public boolean usesBlacklist() {
+        return !blacklistedChannels.isEmpty();
+    }
+
+    /**
+     * Returns whether the guild uses a command blacklist or not.
+     *
+     * @return whether the guild uses a command blacklist or not
+     */
+    public boolean usesWhitelist() {
+        return !whitelistedChannels.isEmpty();
+    }
+
+    /**
+     * Returns whether commands are allowed in a channel or not.
+     *
+     * @param channelId the id of the channel
+     * @return whether commands are allowed in a channel or not
+     */
+    public boolean areCommandsAllowed(String channelId) {
+        return areCommandsAllowed(Long.parseUnsignedLong(channelId));
+    }
+
+    /**
+     * Returns whether commands are allowed in a channel or not.
+     *
+     * @param channel the channel
+     * @return whether commands are allowed in a channel or not
+     */
+    public boolean areCommandsAllowed(TextChannel channel) {
+        return areCommandsAllowed(channel.getIdLong());
+    }
+
+    /**
+     * Returns whether commands are allowed in a channel or not.
+     *
+     * @param channelId the id of the channel
+     * @return whether commands are allowed in a channel or not
+     */
+    public boolean areCommandsAllowed(Long channelId) {
+        if (usesBlacklist())
+            return !blacklistedChannels.contains(channelId);
+        else if (usesWhitelist())
+            return whitelistedChannels.contains(channelId);
+        else
+            return true;
+    }
+
+    /**
+     * Returns a list of all blacklisted channels.
+     *
+     * @return the list
+     */
+    public List<Long> getBlacklistedChannels() {
+        return blacklistedChannels;
+    }
+
+    /**
+     * Returns a list of all whitelisted channels.
+     *
+     * @return the list
+     */
+    public List<Long> getWhitelistedChannels() {
+        return whitelistedChannels;
     }
 
     /**

@@ -55,8 +55,6 @@ class StandaloneRegnumBuilder() : RegnumBuilder() {
         Preconditions.checkNotNull(standaloneConfig, "StandaloneConfig may not be null")
         Preconditions.checkNotNull(eventManager, "EventManager may not be null")
 
-        println(this.eventManager)
-
         return StandaloneRegnumImpl(this, this.eventManager)
     }
 }

@@ -27,6 +27,7 @@ import com.google.common.cache.CacheBuilder
 import com.google.common.cache.CacheLoader
 import java.util.concurrent.TimeUnit
 import kotlin.reflect.KClass
+import kotlin.reflect.full.findAnnotation
 
 /**
  * Implementation of [CassandraCache].
@@ -51,8 +52,8 @@ class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
                     val instance = if (result.availableWithoutFetching > 0)
                         result.one()
                     else {
-                        val entity = clazz.constructors.first().call(key)
-                        entity
+                        val constructor = clazz.constructors.first { it.findAnnotation<CassandraCache.Constructor>() != null }
+                        constructor.call(key)
                     }
                     instance.cache(this@CassandraCacheImpl)
                     instance.regnum(regnum)

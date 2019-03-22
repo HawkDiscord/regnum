@@ -71,7 +71,7 @@ class ServerImpl(
     private val log = Logger.getLogger()
 
     override val config: Config = Config("config/server.yml")
-    override val javalin: Javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
+    override val javalin: Javalin
     override lateinit var websocket: Websocket
     override lateinit var discordBot: DiscordBot
     override val eventManager: IEventManager = AnnotatedEventManager()
@@ -90,6 +90,8 @@ class ServerImpl(
 
     init {
         JavalinJackson.configure(Json.JACKSON)
+        config.load()
+        javalin = Javalin.create().start(config.getInt(Config.SOCKET_PORT))
         initSentry(noSentry)
         shutdownHook()
         plugins()
