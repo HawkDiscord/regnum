@@ -69,5 +69,8 @@ interface CassandraCache<T : CachableCassandraEntity<T>> {
      */
     fun delete(id: Long)
 
+    /**
+     * Put this annotation on the constructor the cache should use.
+     */
     annotation class Constructor
 }

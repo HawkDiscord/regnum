@@ -29,6 +29,16 @@ import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.util.EmbedUtil
 import net.dv8tion.jda.api.entities.TextChannel
 
+/**
+ * Generic command for black and whitelist.
+ * @param displayName name of the command
+ * @param aliases aliases of the command
+ * @param description description of the command
+ * @param listDescription description of the list sub command
+ * @param addDescription description of the add sub command
+ * @param removeDescription description of the remove sub command
+ * @param permission permission prefix
+ */
 abstract class ChannelBlockCommand(
         displayName: String,
         aliases: Array<String>,
@@ -62,13 +72,13 @@ abstract class ChannelBlockCommand(
         }
     }
 
-    class ListCommand(listDescription: String, permission: String, private val action: (context: Context) -> Unit) : SubCommand("List", arrayOf("list", "ls", "all"), CommandPermissions(node = "$permission.list", public = true), "", "", listDescription) {
+    private class ListCommand(listDescription: String, permission: String, private val action: (context: Context) -> Unit) : SubCommand("List", arrayOf("list", "ls", "all"), CommandPermissions(node = "$permission.list", public = true), "", "", listDescription) {
         override fun execute(args: Arguments, context: Context) {
             action(context)
         }
     }
 
-    class AddCommand(addDescription: String, permission: String, private val action: (context: Context, channel: TextChannel) -> Unit, private val superCommand: ChannelBlockCommand) : SubCommand("Add", arrayOf("add", "block"), CommandPermissions(node = "$permission.add", serverAdminExclusive = true), "<#TextChannel>", "#general", addDescription) {
+    private class AddCommand(addDescription: String, permission: String, private val action: (context: Context, channel: TextChannel) -> Unit, private val superCommand: ChannelBlockCommand) : SubCommand("Add", arrayOf("add", "block"), CommandPermissions(node = "$permission.add", serverAdminExclusive = true), "<#TextChannel>", "#general", addDescription) {
         override fun execute(args: Arguments, context: Context) {
             superCommand.checkMention(context) { ctx, channel ->
                 action(ctx, channel)
@@ -76,7 +86,7 @@ abstract class ChannelBlockCommand(
         }
     }
 
-    class RemoveCommand(addDescription: String, permission: String, private val action: (context: Context, channel: TextChannel) -> Unit, private val superCommand: ChannelBlockCommand) : SubCommand("Remove", arrayOf("remove", "rm", "unblock"), CommandPermissions(node = "$permission.remove", serverAdminExclusive = true), "<#TextChannel>", "#general", addDescription) {
+    private class RemoveCommand(addDescription: String, permission: String, private val action: (context: Context, channel: TextChannel) -> Unit, private val superCommand: ChannelBlockCommand) : SubCommand("Remove", arrayOf("remove", "rm", "unblock"), CommandPermissions(node = "$permission.remove", serverAdminExclusive = true), "<#TextChannel>", "#general", addDescription) {
         override fun execute(args: Arguments, context: Context) {
             superCommand.checkMention(context) { ctx, channel ->
                 action(ctx, channel)
@@ -84,10 +94,19 @@ abstract class ChannelBlockCommand(
         }
     }
 
+    /**
+     * List command using [context]
+     */
     abstract fun list(context: Context)
 
+    /**
+     * Add command using [context] and [channel]
+     */
     abstract fun add(context: Context, channel: TextChannel)
 
+    /**
+     * Remove command using [context] and [channel]
+     */
     abstract fun remove(context: Context, channel: TextChannel)
 
 
@@ -132,6 +151,9 @@ abstract class ChannelBlockCommand(
 
 }
 
+/**
+ * Whitelist command.
+ */
 class WhitelistCommand : ChannelBlockCommand(
         "whitelist",
         arrayOf("whitelist", "wl"),
@@ -233,6 +255,9 @@ class WhitelistCommand : ChannelBlockCommand(
     }
 }
 
+/**
+ * Blacklist command
+ */
 class BlacklistCommand : ChannelBlockCommand(
         "Blacklist",
         arrayOf("blacklist", "bl"),
