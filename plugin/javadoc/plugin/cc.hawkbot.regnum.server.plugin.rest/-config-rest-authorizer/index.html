@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ConfigRestAuthorizer - plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">plugin</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.server.plugin.rest</a>&nbsp;/&nbsp;<a href="./index.html">ConfigRestAuthorizer</a><br/>
+<br/>
+<h1>ConfigRestAuthorizer</h1>
+<code><span class="keyword">class </span><span class="identifier">ConfigRestAuthorizer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-rest-authorization-handler/index.html"><span class="identifier">RestAuthorizationHandler</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/kotlin/cc/hawkbot/regnum/server/plugin/rest/ConfigRestAuthorizer.kt#L29">(source)</a>
+<p>Implementation of <a href="../-rest-authorization-handler/index.html">RestAuthorizationHandler</a> which compares the provided token with the token that is saved in the config.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ConfigRestAuthorizer</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Implementation of <a href="../-rest-authorization-handler/index.html">RestAuthorizationHandler</a> which compares the provided token with the token that is saved in the config.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="server.html">server</a></p>
+</td>
+<td>
+<code><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">server</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a></code>
+<p>The <a href="../../cc.hawkbot.regnum.server.plugin/-server/index.html">Server</a> instance which will be injected during startup.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="authorize-guild.html">authorizeGuild</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">authorizeGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Method that verified that the <a href="../-rest-authorization-handler/authorize-guild.html#cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/token">token</a> is allowed to access the guild with the <a href="../-rest-authorization-handler/authorize-guild.html#cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/id">id</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RestHandler - plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">plugin</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.server.plugin.rest</a>&nbsp;/&nbsp;<a href="./index.html">RestHandler</a><br/>
+<br/>
+<h1>RestHandler</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">RestHandler</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/kotlin/cc/hawkbot/regnum/server/plugin/rest/RestHandler.kt#L31">(source)</a>
+<p>Generic Rest handler</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RestHandler</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$<init>(kotlin.String, io.javalin.core.HandlerType)/endpoint">endpoint</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$<init>(kotlin.String, io.javalin.core.HandlerType)/method">method</span><span class="symbol">:</span>&nbsp;<span class="identifier">HandlerType</span><span class="symbol">)</span></code>
+<p>Generic Rest handler</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="endpoint.html">endpoint</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">endpoint</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>the endpoint path</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="method.html">method</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">method</span><span class="symbol">: </span><span class="identifier">HandlerType</span></code>
+<p>the HTTP method</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="handle.html">handle</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">handle</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/server">server</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that handles requests.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
