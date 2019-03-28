@@ -1,8 +1,12 @@
+import org.jetbrains.dokka.DokkaConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
+import org.jetbrains.dokka.gradle.LinkMapping
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    java
+    id("org.jetbrains.dokka").version("0.9.17")
     kotlin("jvm") version "1.3.21"
+    java
 }
 
 group = "cc.hawkbot.server"
