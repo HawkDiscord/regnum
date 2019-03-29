@@ -43,8 +43,8 @@ import cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer
 import cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.rest.RestHandler
 import cc.hawkbot.regnum.util.logging.Logger
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
+import cc.hawkbot.regnum.waiter.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiterImpl
 import io.javalin.Javalin
 import io.javalin.json.JavalinJackson
 import net.dv8tion.jda.api.entities.ISnowflake

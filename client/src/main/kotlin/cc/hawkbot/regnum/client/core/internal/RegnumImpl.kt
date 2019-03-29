@@ -42,8 +42,8 @@ import cc.hawkbot.regnum.client.entities.permission.PermissionNode
 import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.client.util._setRegnum
 import cc.hawkbot.regnum.util.logging.Logger
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
+import cc.hawkbot.regnum.waiter.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiterImpl
 import com.datastax.driver.extras.codecs.enums.EnumNameCodec
 import net.dv8tion.jda.api.hooks.IEventManager
 
@@ -175,10 +175,10 @@ open class RegnumImpl(
     }
 
     private fun _getPermissionManager(): PermissionManager {
-        if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
+        if (Feature.PERMISSION_SYSTEM in disabledFeatures) {
             throw IllegalStateException("You have to enable Feature.PERMISSION_SYSTEM in order to use that feature.")
         }
-        return permissionManager
+        return _permissionManager
     }
 
     private fun _setPermissionManager(value: PermissionManager) {

@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.waiter.impl;
+package cc.hawkbot.regnum.waiter;
 
 import kotlin.jvm.JvmClassMappingKt;
 import kotlin.reflect.KClass;

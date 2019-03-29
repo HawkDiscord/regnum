@@ -28,7 +28,7 @@ import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.rest.RestHandler
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiter
 import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.IEventManager
 import okhttp3.OkHttpClient

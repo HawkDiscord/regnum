@@ -32,7 +32,7 @@ plugins {
 }
 
 group = "cc.hawkbot"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 val archivesBasename = "regnum.client"
 
 repositories {
@@ -61,25 +61,28 @@ dependencies {
 }
 
 val dokkaJar by tasks.creating(Jar::class) {
+    classifier = "sources"
+    from(sourceSets["main"].allSource)
+}
+
+val sourcesJar by tasks.creating(Jar::class){
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     classifier = "javadoc"
     from(tasks["dokka"])
-}
-
-val sourcesJar by tasks.creating(Jar::class) {
-    classifier = "sources"
-    from(sourceSets["main"].allSource)
 }
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
-            artifact(sourcesJar)
         }
     }
 }
 
+artifacts {
+    add("archives", sourcesJar)
+    add("archives", dokkaJar)
+}
 
 tasks {
     "dokka"(DokkaTask::class) {
@@ -114,8 +117,8 @@ tasks {
 }
 
 bintray {
-    user = System.getenv("BINTRAY_USER")
-    key = System.getenv("BINTRAY_KEY")
+    user = "drschlaubi"
+    key = "1b56e7110a4d2d2983d988fa5f1736fff4f6a134"
     setPublications("mavenJava")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"
