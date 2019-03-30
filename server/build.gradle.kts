@@ -28,7 +28,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 val log4jVersion = "2.11.2"
 val cliVersion = "1.4"

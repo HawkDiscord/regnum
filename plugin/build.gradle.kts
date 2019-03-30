@@ -5,7 +5,7 @@ import org.jetbrains.dokka.gradle.LinkMapping
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.dokka").version("0.9.17")
+    id("org.jetbrains.dokka").version("0.9.18")
     id("com.jfrog.bintray").version("1.8.4")
     kotlin("jvm") version "1.3.21"
     java
@@ -14,7 +14,7 @@ plugins {
 
 group = "cc.hawkbot.regnum.server"
 val archivesBasename = "plugin"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
 repositories {
     mavenCentral()
