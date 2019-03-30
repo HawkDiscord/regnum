@@ -103,7 +103,7 @@ bintray {
 }
 
 tasks {
-    "dokka"(DokkaTask::class) {
+    dokka {
         outputFormat = "html"
         outputDirectory = "public"
         jdkVersion = 8
@@ -127,18 +127,18 @@ tasks {
     }
     val buildDir = File("build")
     "sourcesJar"(Jar::class) {
-        classifier = "sources"
-        destinationDir = buildDir
+        archiveClassifier.set("sources")
+        destinationDirectory.set(buildDir)
         from(sourceSets["main"].allSource)
     }
     "dokkaJar"(Jar::class) {
         group = JavaBasePlugin.DOCUMENTATION_GROUP
-        classifier = "javadoc"
-        destinationDir = buildDir
-        from(tasks["dokka"])
+        archiveClassifier.set("javadoc")
+        destinationDirectory.set(buildDir)
+        from(dokka)
     }
     "jar"(Jar::class) {
-        destinationDir = buildDir
+        destinationDirectory.set(buildDir)
     }
 }
 
