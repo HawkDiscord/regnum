@@ -125,7 +125,7 @@ tasks {
             url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
         })
     }
-    val buildDir = File("build")
+    val buildDir = File("../build/artifacts")
     "sourcesJar"(Jar::class) {
         archiveClassifier.set("sources")
         destinationDirectory.set(buildDir)
