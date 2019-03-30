@@ -131,7 +131,7 @@ bintray {
     setPublications("mavenJava")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"
-        name = archivesBasename
+        name = "regnum-client"
         userOrg = "drschlaubi"
         setLicenses("GPL-3.0")
         vcsUrl = "https://github.com/DRSchlaubi/regnum.git"
