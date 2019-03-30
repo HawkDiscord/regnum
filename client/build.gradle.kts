@@ -68,6 +68,7 @@ publishing {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
             artifact(sourcesJar)
+            artifact(dokkaJar)
         }
     }
 }
@@ -132,7 +133,7 @@ bintray {
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"
         name = "regnum-client"
-        userOrg = "drschlaubi"
+        userOrg = "hawk"
         setLicenses("GPL-3.0")
         vcsUrl = "https://github.com/DRSchlaubi/regnum.git"
         version(delegateClosureOf<BintrayExtension.VersionConfig> {

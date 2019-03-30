@@ -49,6 +49,8 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             from(components["java"])
+            artifact(sourcesJar)
+            artifact(dokkaJar)
         }
     }
 }
