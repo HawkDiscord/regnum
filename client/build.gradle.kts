@@ -31,7 +31,7 @@ plugins {
     `maven-publish`
 }
 
-group = "cc.hawkbot"
+group = "cc.hawkbot.regnum"
 version = "1.0-SNAPSHOT"
 val archivesBasename = "regnum.client"
 
@@ -60,16 +60,9 @@ dependencies {
     testCompile("junit", "junit", "4.12")
 }
 
-val dokkaJar by tasks.creating(Jar::class) {
-    group = JavaBasePlugin.DOCUMENTATION_GROUP
-    classifier = "javadoc"
-    from(tasks["dokka"])
-}
+val dokkaJar by tasks.creating(Jar::class)
 
-val sourcesJar by tasks.creating(Jar::class) {
-    classifier = "sources"
-    from(sourceSets["main"].allSource)
-}
+val sourcesJar by tasks.creating(Jar::class)
 
 publishing {
     publications {
@@ -80,11 +73,16 @@ publishing {
     }
 }
 
+artifacts {
+    add("archives", dokkaJar)
+    add("archives", sourcesJar)
+}
+
 
 tasks {
     "dokka"(DokkaTask::class) {
         outputFormat = "html"
-        outputDirectory = "$buildDir/javadoc"
+        outputDirectory = "public"
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
@@ -110,6 +108,21 @@ tasks {
             url = uri("https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/").toURL()
             packageListUrl = uri("https://gist.githubusercontent.com/DRSchlaubi/3d1d0aaa5c01963dcd4d0149c841c896/raw/22141759fbab1e38fd2381c3e4f97616ecb43fc8/package-list").toURL()
         })
+    }
+    val buildDir = File("build")
+    "sourcesJar"(Jar::class) {
+        classifier = "sources"
+        destinationDir = buildDir
+        from(sourceSets["main"].allSource)
+    }
+    "dokkaJar"(Jar::class) {
+        group = JavaBasePlugin.DOCUMENTATION_GROUP
+        classifier = "javadoc"
+        destinationDir = buildDir
+        from(tasks["dokka"])
+    }
+    "jar"(Jar::class) {
+        destinationDir = buildDir
     }
 }
 

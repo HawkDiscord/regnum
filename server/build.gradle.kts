@@ -27,7 +27,7 @@ plugins {
     application
 }
 
-group = "cc.hawkbot"
+group = "cc.hawkbot.regnum"
 version = "1.0-SNAPSHOT"
 
 val log4jVersion = "2.11.2"
@@ -78,10 +78,16 @@ tasks.withType<KotlinCompile> {
 }
 
 tasks {
+    val buildDir = File("build")
     "shadowJar"(ShadowJar::class) {
         baseName = project.name
         version = version
-        archiveName = "$baseName.$extension"
+        archiveName = "$baseName-$version.$extension"
+        destinationDir = buildDir
+    }
+    "jar"(Jar::class) {
+        classifier = "original"
+        destinationDir = buildDir
     }
 }
 
