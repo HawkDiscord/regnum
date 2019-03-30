@@ -69,12 +69,8 @@ application {
     mainClassName = "cc.hawkbot.regnum.server.BootstrapperKt"
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_HIGHER
-}
-
-tasks.withType<KotlinCompile> {
-    kotlinOptions.jvmTarget = "1.8"
+artifacts {
+    add("archives", tasks["shadowJar"])
 }
 
 tasks {
@@ -90,6 +86,15 @@ tasks {
         destinationDir = buildDir
     }
 }
+
+configure<JavaPluginConvention> {
+    sourceCompatibility = JavaVersion.VERSION_HIGHER
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
 
 /**
  * Returns the dependency notation for a log4j dependency
