@@ -91,9 +91,9 @@ tasks {
         externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
         })
-        externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
+        /*externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("https://pages.hawkbot.cc/shared/javadoc/shared/").toURL()
-        })
+        })*/
         externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/").toURL()
             packageListUrl = uri("https://gist.githubusercontent.com/DRSchlaubi/3d1d0aaa5c01963dcd4d0149c841c896/raw/22141759fbab1e38fd2381c3e4f97616ecb43fc8/package-list").toURL()
@@ -116,9 +116,10 @@ tasks {
     }
 }
 
-configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_HIGHER
+configure<JavaPluginExtension> {
+    sourceCompatibility = JavaVersion.VERSION_12
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }

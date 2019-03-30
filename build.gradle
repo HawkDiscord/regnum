@@ -17,6 +17,5 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-group 'cc.hawkbot'
+group 'cc.hawkbot.regnum'
 version '1.0-SNAPSHOT'
-
