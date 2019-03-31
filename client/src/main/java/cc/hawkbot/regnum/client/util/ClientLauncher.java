@@ -94,6 +94,7 @@ public class ClientLauncher {
 
             ).queue();
             if (!args.isEmpty() && args.get(0).equals("error")) {
+                //noinspection ResultOfMethodCallIgnored
                 Integer.parseInt("OMA");
             }
         }

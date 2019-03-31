@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.entites.packets;
 
+@SuppressWarnings("UnusedReturnValue")
 public class MetricsPacket implements Packet {
 
     public static final String IDENTIFIER = "METRICS";

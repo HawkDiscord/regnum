@@ -24,7 +24,6 @@ import cc.hawkbot.regnum.server.plugin.discord.DiscordBot;
 import cc.hawkbot.regnum.server.plugin.io.config.Config;
 import cc.hawkbot.regnum.server.plugin.io.config.PluginConfig;
 import de.foryasee.plugins.Plugin;
-import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 

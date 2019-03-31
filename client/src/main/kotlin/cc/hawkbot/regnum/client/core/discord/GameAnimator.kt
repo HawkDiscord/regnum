@@ -20,7 +20,6 @@
 package cc.hawkbot.regnum.client.core.discord
 
 import cc.hawkbot.regnum.client.Regnum
-import cc.hawkbot.regnum.client.config.GameAnimatorConfig
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity

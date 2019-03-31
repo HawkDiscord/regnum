@@ -26,7 +26,6 @@ import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.entities.Pulse
-import cc.hawkbot.regnum.server.toArray
 import io.javalin.websocket.WsSession
 
 /**

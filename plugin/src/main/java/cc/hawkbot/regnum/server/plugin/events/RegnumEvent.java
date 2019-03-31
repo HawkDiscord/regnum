@@ -26,10 +26,15 @@ import net.dv8tion.jda.api.JDA;
 /**
  * Generic Regnum event.
  */
+@SuppressWarnings("UnusedReturnValue")
 public class RegnumEvent extends NoJDAEvent {
 
     private final Server server;
 
+    /**
+     * Creates a generic Regnum event.
+     * @param server the server instance
+     */
     public RegnumEvent(Server server) {
         this.server = server;
     }

@@ -185,7 +185,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
         USER("permissiontargets.user"),
         ROLE("permissiontargets.role");
 
-        private String translation;
+        private final String translation;
 
         PermissionTarget(String translation) {
             this.translation = translation;

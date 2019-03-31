@@ -119,9 +119,7 @@ public class FormatUtil {
         embedBuilder = embedBuilder.addField("Required permissions", parsePermissions(command.getPermissions()), false);
         if (!(command instanceof SubCommand) && !command.getSubCommandAssociations().isEmpty()) {
             var buf = new StringBuilder();
-            command.getSubCommandAssociations().values().stream().distinct().forEach(it -> {
-                buf.append(formatUsage(it.getUsage(), it, guild, regnum)).append(System.lineSeparator());
-            });
+            command.getSubCommandAssociations().values().stream().distinct().forEach(it -> buf.append(formatUsage(it.getUsage(), it, guild, regnum)).append(System.lineSeparator()));
             embedBuilder = embedBuilder.addField("Subcommands", buf.toString(), false);
         }
         return embedBuilder;

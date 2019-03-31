@@ -35,7 +35,7 @@ import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
  * Entity for guilds.
  */
 @Table(name = TABLE_PREFIX + "guilds")
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings({"unused", "WeakerAccess", "CanBeFinal"})
 public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
 
     public static final String NO_PREFIX = "%NO%";

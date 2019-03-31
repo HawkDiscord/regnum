@@ -18,7 +18,6 @@
  */
 
 import cc.hawkbot.regnum.client.Regnum;
-import cc.hawkbot.regnum.client.RegnumBuilder;
 import cc.hawkbot.regnum.client.command.Group;
 import cc.hawkbot.regnum.client.command.context.Arguments;
 import cc.hawkbot.regnum.client.command.context.Context;
@@ -27,7 +26,6 @@ import cc.hawkbot.regnum.client.command.translation.defaults.PropertyLanguage;
 import cc.hawkbot.regnum.client.config.CassandraConfig;
 import cc.hawkbot.regnum.client.config.CommandConfig;
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
-import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
 import cc.hawkbot.regnum.client.standalone.StandaloneRegnumBuilder;
@@ -41,7 +39,6 @@ import org.slf4j.event.Level;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
 /**

@@ -85,7 +85,6 @@ class ServerImpl(
     private lateinit var pluginManager: PluginManager
     private lateinit var guildAccessor: Guild.Accessor
     private lateinit var userAccessor: User.Accessor
-    private val apiInfo = APIInfo()
     override lateinit var averageMetrics: MetricsPacket
 
     init {
@@ -150,7 +149,7 @@ class ServerImpl(
         restAuthorizationHandler.server = this
         eventManager.register(MetricsWatcher())
         registerRestHandler(InfoHandler("/") {
-            apiInfo
+            APIInfo.INSTANCE
         })
         registerRestHandler(RedirectHandler("/docs", DOCS_URL))
         registerRestHandler(RestInfoHandler("guilds") { id, _ ->

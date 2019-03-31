@@ -26,6 +26,7 @@ import cc.hawkbot.regnum.server.plugin.RegnumPlugin
  * Exactly one class in every plugin has to extend [RegnumPlugin]
  *
  */
+@Suppress("unused")
 class Plugin : RegnumPlugin() {
 
     /**

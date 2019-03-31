@@ -36,6 +36,7 @@ import java.util.concurrent.CompletionStage
 /**
  * Entity for users.
  */
+@Suppress("unused")
 @Table(name = CassandraEntity.TABLE_PREFIX + "user")
 class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
 

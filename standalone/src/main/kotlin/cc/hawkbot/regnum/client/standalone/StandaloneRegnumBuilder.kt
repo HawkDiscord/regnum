@@ -29,6 +29,7 @@ import java.lang.UnsupportedOperationException
 
 class StandaloneRegnumBuilder() : RegnumBuilder() {
 
+    @Suppress("unused")
     constructor(old: RegnumBuilder) : this() {
         gameAnimatorConfig = old.gameAnimatorConfig
         commandConfig = old.commandConfig

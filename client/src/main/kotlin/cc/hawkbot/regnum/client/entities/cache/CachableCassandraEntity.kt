@@ -26,9 +26,9 @@ import com.datastax.driver.mapping.Result
 import java.util.concurrent.CompletionStage
 
 /**
- * Extension of [cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity]
+ * Extension of [cc.hawkbot.regnum.entites.cassandra.CassandraEntity]
  * @see SnowflakeCassandraEntity
- * @see cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity
+ * @see cc.hawkbot.regnum.entites.cassandra.CassandraEntity
  */
 // That looks strange Kotlin
 abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long) : SnowflakeCassandraEntity<T>(id), RequiresRegnum {
@@ -48,7 +48,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
 
     /**
      * Saves the entity.
-     * @see cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity.saveAsync
+     * @see cc.hawkbot.regnum.entites.cassandra.CassandraEntity.saveAsync
      * @return a future that completes when the request ist finished
      */
     override fun saveAsync(): CompletionStage<Void> {
@@ -58,7 +58,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
 
     /**
      * Deletes the entity.
-     * @see cc.hawkbot.regnum.client.entities.cassandra.CassandraEntity.deleteAsync
+     * @see cc.hawkbot.regnum.entites.cassandra.CassandraEntity.deleteAsync
      * @return a future that completes when the request ist finished
      */
     @Suppress("UNCHECKED_CAST")

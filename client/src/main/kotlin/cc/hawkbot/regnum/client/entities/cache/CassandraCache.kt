@@ -59,6 +59,7 @@ interface CassandraCache<T : CachableCassandraEntity<T>> {
      * Updated the [entity].
      * @param entity the entity
      */
+    @Suppress("unused")
     fun update(entity: T) {
         set(entity.idLong, entity)
     }

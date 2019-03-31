@@ -39,7 +39,6 @@ import java.util.concurrent.ExecutorService
 
 /**
  * Implementation of [CommandParser].
- * @param defaultPrefix the default prefix
  * @property permissionProvider the [IPermissionProvider]
  * @property regnum the Regnum instance
  * @property executor the [ExecutorService] used for executing commands
