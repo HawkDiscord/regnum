@@ -25,6 +25,9 @@ import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
+/**
+ * Listener which watches and calculates average metrics.
+ */
 class MetricsWatcher {
 
     private val log = Logger.getLogger()

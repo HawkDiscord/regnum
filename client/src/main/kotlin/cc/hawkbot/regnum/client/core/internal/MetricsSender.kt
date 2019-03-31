@@ -27,10 +27,17 @@ import java.lang.management.ManagementFactory
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
+/**
+ * Metrics sender for node metrics.
+ * @param regnum current regnum instance
+ */
 class MetricsSender(private val regnum: Regnum) : Closeable {
 
     private val scheduler = Executors.newSingleThreadScheduledExecutor()
 
+    /**
+     * Starts metrics sender thread.
+     */
     fun start() {
         scheduler.scheduleAtFixedRate(this::post, 0, 5, TimeUnit.MINUTES)
     }

@@ -28,6 +28,9 @@ import cc.hawkbot.regnum.client.standalone.config.StandaloneConfig
 import cc.hawkbot.regnum.client.util._setRegnum
 import net.dv8tion.jda.api.hooks.IEventManager
 
+/**
+ * Implementation of Regnum which does not connect to the websocket
+ */
 class StandaloneRegnumImpl(
         builder: StandaloneRegnumBuilder,
         eventManager: IEventManager

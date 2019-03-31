@@ -27,6 +27,10 @@ import cc.hawkbot.regnum.client.standalone.core.StandaloneRegnumImpl
 import com.google.common.base.Preconditions
 import java.lang.UnsupportedOperationException
 
+/**
+ * Builder for standalone Regnum.
+ * @constructor Constructs a [StandaloneRegnumBuilder]
+ */
 class StandaloneRegnumBuilder() : RegnumBuilder() {
 
     @Suppress("unused")

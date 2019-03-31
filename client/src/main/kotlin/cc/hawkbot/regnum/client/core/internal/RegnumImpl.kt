@@ -37,10 +37,10 @@ import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
-import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.client.util._setRegnum
+import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
+import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
@@ -83,6 +83,12 @@ open class RegnumImpl(
         get() = _getPermissionManager()
         set(value) = _setPermissionManager(value)
 
+    /**
+     * Initializes the Regnum client.
+     * @param serverConfig the server configuration
+     * @param cassandraConfig the cassandra Configuration
+     * @param commandConfig the command configuration
+     */
     fun init(serverConfig: ServerConfig, cassandraConfig: CassandraConfig, commandConfig: CommandConfig): Regnum {
         _setRegnum(this)
         events()
@@ -130,12 +136,8 @@ open class RegnumImpl(
         log.info("[Regnum] Successfully connected to Cassandra cluster")
         log.info("[Regnum] Generating Cassandra databases")
         generators.forEach {
-            try {
-                val statement = source.session.prepare(it).bind()
-                source.session.executeAsync(statement).get()
-            } catch (e: Exception) {
-                log.error("[Regnum] Error while generating default cc.hawkbot.regnum.io.database", e)
-            }
+            val statement = source.session.prepare(it).bind()
+            source.session.executeAsync(statement).get()
         }
         log.info("[Regnum] Generated databases. Initializing caches")
     }

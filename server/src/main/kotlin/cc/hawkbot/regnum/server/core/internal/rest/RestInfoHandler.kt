@@ -24,6 +24,9 @@ import com.datastax.driver.mapping.Result
 import io.javalin.Context
 import io.javalin.core.HandlerType
 
+/**
+ * Rest handler which provides an instance retrieved by the [accessor] at the specified [endpoint].
+ */
 class RestInfoHandler<T : Any>(endpoint: String, accessor: (id: Long, server: Server) -> Result<T>) : EntityRestHandler<T>("/$endpoint/:id", HandlerType.GET, accessor) {
 
     override fun handle(entity: T, token: String?, context: Context, server: Server) {

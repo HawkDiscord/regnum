@@ -33,6 +33,9 @@ import java.nio.file.Path
 @Suppress("unused")
 open class GenericConfig(private val config: FileConfig) : Config, Closeable {
 
+    /**
+     * The file from which the config gets loaded
+     */
     val file: File
         get() = config.file
 
@@ -58,8 +61,8 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
     constructor(path: Path, format: ConfigFormat<*>) : this(FileConfig.of(path, format))
 
 
-    /*
-     * Reads the config
+    /**
+     * Reads the config.
      */
     @Suppress("MemberVisibilityCanBePrivate", "RedundantModalityModifier")
     final fun load() {
@@ -76,6 +79,9 @@ open class GenericConfig(private val config: FileConfig) : Config, Closeable {
         config.save()
     }
 
+    /**
+     * Reloads the config.
+     */
     fun reload() {
         config.load()
     }

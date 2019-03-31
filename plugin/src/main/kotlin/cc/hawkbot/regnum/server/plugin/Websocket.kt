@@ -35,6 +35,11 @@ interface Websocket {
      */
     val nodes: List<Node>
 
+    /**
+     * Returns a node by its [session].
+     * @param session the session
+     * @return the node
+     */
     fun getNode(session: WsSession): Node {
         return nodes.first { it.session == session }
     }

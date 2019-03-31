@@ -43,16 +43,6 @@ import java.util.concurrent.Executors;
 public class CassandraSource {
 
     private static CassandraSource instance;
-
-    /**
-     * Returns the instance of the cassandra sources (needed for mapper).
-     *
-     * @return the instance of the cassandra sources
-     */
-    public static CassandraSource getInstance() {
-        return instance;
-    }
-
     private final Cluster cluster;
     private final CodecRegistry codecRegistry;
     private final String keyspace;
@@ -192,5 +182,14 @@ public class CassandraSource {
      */
     public MappingManager getMappingManager() {
         return mappingManager;
+    }
+
+    /**
+     * Returns the instance of the cassandra sources (needed for mapper).
+     *
+     * @return the instance of the cassandra sources
+     */
+    public static CassandraSource getInstance() {
+        return instance;
     }
 }
