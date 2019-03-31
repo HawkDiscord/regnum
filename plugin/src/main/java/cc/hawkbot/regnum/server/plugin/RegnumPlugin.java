@@ -53,6 +53,7 @@ public abstract class RegnumPlugin implements Plugin {
 
     /**
      * Method that gets invoked after loading the config file to set default
+     *
      * @param config the config
      */
     public void configDefaults(GenericConfig config) {

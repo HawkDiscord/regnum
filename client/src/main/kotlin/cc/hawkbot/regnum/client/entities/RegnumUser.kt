@@ -23,8 +23,8 @@ import cc.hawkbot.regnum.client.command.permission.IPermissionHolder
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
+import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import com.datastax.driver.mapping.Result
 import com.datastax.driver.mapping.annotations.Column
 import com.datastax.driver.mapping.annotations.Param

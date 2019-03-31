@@ -24,7 +24,7 @@ package cc.hawkbot.regnum.client;
  */
 public enum Feature {
     /**
-     *  Disabled advanced permission system.
+     * Disabled advanced permission system.
      */
     PERMISSION_SYSTEM
 }

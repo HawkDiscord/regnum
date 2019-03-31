@@ -21,7 +21,10 @@ package cc.hawkbot.regnum.server.entites;
 
 import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity;
 import com.datastax.driver.mapping.Result;
-import com.datastax.driver.mapping.annotations.*;
+import com.datastax.driver.mapping.annotations.Column;
+import com.datastax.driver.mapping.annotations.Param;
+import com.datastax.driver.mapping.annotations.Query;
+import com.datastax.driver.mapping.annotations.Table;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import org.jetbrains.annotations.NotNull;
 

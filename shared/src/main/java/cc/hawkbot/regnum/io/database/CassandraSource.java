@@ -107,6 +107,15 @@ public class CassandraSource {
     }
 
     /**
+     * Returns the instance of the cassandra sources (needed for mapper).
+     *
+     * @return the instance of the cassandra sources
+     */
+    public static CassandraSource getInstance() {
+        return instance;
+    }
+
+    /**
      * Connects to the Cassandra server.
      *
      * @return A CompletionStage containing the CassandraSource instance which completes when the connection got established
@@ -182,14 +191,5 @@ public class CassandraSource {
      */
     public MappingManager getMappingManager() {
         return mappingManager;
-    }
-
-    /**
-     * Returns the instance of the cassandra sources (needed for mapper).
-     *
-     * @return the instance of the cassandra sources
-     */
-    public static CassandraSource getInstance() {
-        return instance;
     }
 }

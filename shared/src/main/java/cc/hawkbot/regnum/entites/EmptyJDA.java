@@ -93,11 +93,6 @@ public class EmptyJDA {
         }
 
         @Override
-        public void setEventManager(IEventManager manager) {
-
-        }
-
-        @Override
         public void addEventListener(Object... listeners) {
 
         }
@@ -188,6 +183,11 @@ public class EmptyJDA {
         }
 
         @Override
+        public void setEventManager(IEventManager manager) {
+
+        }
+
+        @Override
         public SelfUser getSelfUser() {
             return null;
         }
@@ -218,11 +218,6 @@ public class EmptyJDA {
         }
 
         @Override
-        public void setAutoReconnect(boolean reconnect) {
-
-        }
-
-        @Override
         public void setRequestTimeoutRetry(boolean retryOnTimeout) {
 
         }
@@ -230,6 +225,11 @@ public class EmptyJDA {
         @Override
         public boolean isAutoReconnect() {
             return false;
+        }
+
+        @Override
+        public void setAutoReconnect(boolean reconnect) {
+
         }
 
         @Override

@@ -31,6 +31,23 @@ import javax.annotation.Nonnull;
 @SuppressWarnings("unused")
 public class Payload {
 
+    @JsonProperty("t")
+    private String type;
+    @JsonProperty("d")
+    private Packet packet;
+
+    private Payload(@Nonnull String type, @Nonnull Packet packet) {
+        this.type = type;
+        this.packet = packet;
+    }
+
+    /**
+     * Used for serialization
+     */
+    public Payload() {
+
+    }
+
     /**
      * Creates a {@link Payload} from a json object.
      *
@@ -50,24 +67,6 @@ public class Payload {
      */
     public static Payload of(Packet packet, String identifier) {
         return new Payload(identifier, packet);
-    }
-
-    @JsonProperty("t")
-    private String type;
-
-    @JsonProperty("d")
-    private Packet packet;
-
-    private Payload(@Nonnull String type, @Nonnull Packet packet) {
-        this.type = type;
-        this.packet = packet;
-    }
-
-    /**
-     * Used for serialization
-     */
-    public Payload() {
-
     }
 
     /**

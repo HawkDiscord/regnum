@@ -33,6 +33,7 @@ public class RegnumEvent extends NoJDAEvent {
 
     /**
      * Creates a generic Regnum event.
+     *
      * @param server the server instance
      */
     @SuppressWarnings("WeakerAccess")

@@ -49,10 +49,6 @@ public class StandaloneLauncher {
 
     private final Regnum regnum;
 
-    public static void main(String[] args) {
-        new StandaloneLauncher(args[0]);
-    }
-
     private StandaloneLauncher(String token) {
         Logger.LOG_LEVEL = Level.DEBUG;
         StandaloneRegnumBuilder builder = new StandaloneRegnumBuilder();
@@ -67,6 +63,10 @@ public class StandaloneLauncher {
                 .registerEvents(this);
         builder.setStandaloneConfig(StandaloneConfig.Companion.auto(token));
         regnum = builder.build();
+    }
+
+    public static void main(String[] args) {
+        new StandaloneLauncher(args[0]);
     }
 
     @SubscribeEvent

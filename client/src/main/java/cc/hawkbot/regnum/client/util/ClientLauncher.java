@@ -51,10 +51,6 @@ public class ClientLauncher {
 
     private final Regnum regnum;
 
-    public static void main(String[] args) {
-        new ClientLauncher();
-    }
-
     private ClientLauncher() {
         Logger.LOG_LEVEL = Level.DEBUG;
         var builder = new RegnumBuilder()
@@ -71,6 +67,10 @@ public class ClientLauncher {
                 .setGameAnimatorConfig(new GameAnimatorConfig(List.of(GameAnimator.Game.Companion.compile("ONLINE:0:playing"))))
                 .registerEvents(this);
         regnum = builder.build();
+    }
+
+    public static void main(String[] args) {
+        new ClientLauncher();
     }
 
     @SubscribeEvent
