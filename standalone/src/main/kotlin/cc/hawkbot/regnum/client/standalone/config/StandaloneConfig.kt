@@ -30,6 +30,7 @@ class StandaloneConfig(
 ) {
 
     companion object {
+        @JvmStatic
         fun auto(token: String): StandaloneConfig {
             val request = Request.Builder()
                     .addHeader("Authorization", token)

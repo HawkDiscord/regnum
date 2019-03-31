@@ -35,6 +35,7 @@ interface Language : RequiresRegnum {
          * Converts the [language] into a default language.
          * @return the default language
          */
+        @JvmStatic
         fun defaultLanguage(language: Language): Language {
             return object : Language {
                 override val locale: Locale

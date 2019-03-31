@@ -66,12 +66,14 @@ interface Group {
         /**
          * Settings group
          */
+        @JvmStatic
         val SETTINGS = GroupBuilder()
                 .setDescription("Commands to configure your server")
                 .setName("Settings")
                 .setPermissions(GroupPermissions(node = "settings", serverAdminExclusive = true))
                 .build()
 
+        @JvmStatic
         val GENERAL = GroupBuilder()
                 .setDescription("Generic commands")
                 .setName("General")
@@ -82,6 +84,7 @@ interface Group {
          * Returns an empty group.
          * @return an empty group
          */
+        @JvmStatic
         fun empty(): Group {
             return object : Group {
                 override val public: Boolean

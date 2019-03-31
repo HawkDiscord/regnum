@@ -79,6 +79,7 @@ class GameAnimator(
              * @param game the string
              * @return the compiled game
              */
+            @JvmStatic
             fun compile(game: String): Game {
                 val args = game.split(":")
                 val type = Activity.ActivityType.fromKey(args[1].toInt())
