@@ -25,8 +25,9 @@ import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
-import com.google.common.base.Preconditions;
+import cc.hawkbot.regnum.client.util.MessageCache;
 import cc.hawkbot.regnum.io.database.CassandraSource;
+import com.google.common.base.Preconditions;
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
 import net.dv8tion.jda.api.hooks.IEventManager;
 import org.jetbrains.annotations.NotNull;
@@ -47,6 +48,7 @@ public class RegnumBuilder {
     private CommandConfig commandConfig;
     private IEventManager eventManager = new AnnotatedEventManager();
     private CassandraConfig cassandraConfig;
+    private MessageCache messageCache;
     private List<Feature> disabledFeatures = new ArrayList<>();
 
 
@@ -67,6 +69,26 @@ public class RegnumBuilder {
      */
     public RegnumBuilder setServerConfig(ServerConfig config) {
         this.serverConfig = config;
+        return this;
+    }
+
+    /**
+     * Returns the message cache to be used by Regnum
+     *
+     * @return the message cache
+     */
+    public MessageCache getMessageCache() {
+        return messageCache;
+    }
+
+    /**
+     * Sets the message cache of the Regnum
+     *
+     * @param messageCache the {@link MessageCache}
+     * @return the current builder
+     */
+    public RegnumBuilder setMessageCache(MessageCache messageCache) {
+        this.messageCache = messageCache;
         return this;
     }
 
@@ -249,7 +271,8 @@ public class RegnumBuilder {
                 eventManager,
                 gameAnimatorConfig,
                 commandConfig,
-                disabledFeatures
+                disabledFeatures,
+                messageCache
         ).init(
                 serverConfig,
                 cassandraConfig,

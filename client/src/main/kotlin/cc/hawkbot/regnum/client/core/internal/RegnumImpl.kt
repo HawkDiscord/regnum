@@ -37,15 +37,20 @@ import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
-import cc.hawkbot.regnum.io.database.CassandraSource
+import cc.hawkbot.regnum.client.util.MessageCache
 import cc.hawkbot.regnum.client.util._setRegnum
+import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
+import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter
 import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
 import com.datastax.driver.extras.codecs.enums.EnumNameCodec
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent
+import net.dv8tion.jda.api.events.message.MessageUpdateEvent
 import net.dv8tion.jda.api.hooks.IEventManager
+import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.hooks.SubscribeEvent
 
 /**
  * Implementation of [Regnum]
@@ -63,7 +68,8 @@ open class RegnumImpl(
         override val eventManager: IEventManager,
         val gameAnimatorConfig: GameAnimatorConfig,
         commandConfig: CommandConfig,
-        override val disabledFeatures: List<Feature>
+        override val disabledFeatures: List<Feature>,
+        override val messageCache: MessageCache
 ) : Regnum {
 
     private val log = Logger.getLogger()
@@ -143,6 +149,19 @@ open class RegnumImpl(
     protected fun caches() {
         guildCache = CassandraCacheImpl(this, RegnumGuild::class, RegnumGuild.Accessor::class.java)
         userCache = CassandraCacheImpl(this, RegnumUser::class, RegnumUser.Accessor::class.java)
+        eventManager.register(object : ListenerAdapter() {
+            @SubscribeEvent
+            @SuppressWarnings("unused")
+            fun newMessage(ev: MessageReceivedEvent) {
+                messageCache.storeMessage(ev.messageIdLong, ev.message.contentRaw)
+            }
+
+            @SubscribeEvent
+            @SuppressWarnings("unused")
+            fun updateMessage(ev: MessageUpdateEvent) {
+                messageCache.storeMessage(ev.messageIdLong, ev.message.contentRaw)
+            }
+        })
     }
 
     protected fun commandManager(commandConfig: CommandConfig) {
