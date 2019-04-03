@@ -66,7 +66,7 @@ open class RegnumImpl(
         val gameAnimatorConfig: GameAnimatorConfig,
         commandConfig: CommandConfig,
         override val disabledFeatures: List<Feature>,
-        override val messageCache: MessageCache
+        private val _messageCache: MessageCache
 ) : Regnum {
 
     private val log = Logger.getLogger()
@@ -85,6 +85,8 @@ open class RegnumImpl(
     override var permissionManager: PermissionManager
         get() = _getPermissionManager()
         set(value) = _setPermissionManager(value)
+    override val messageCache: MessageCache
+        get() = _getMessageCache()
 
     /**
      * Initializes the Regnum client.
@@ -104,7 +106,9 @@ open class RegnumImpl(
 
     protected fun events() {
         eventWaiter = EventWaiterImpl(eventManager)
-        eventManager.register(MessageWatcher(this))
+        if (Feature.MESSAGE_CACHE !in disabledFeatures) {
+            eventManager.register(MessageWatcher(this))
+        }
     }
 
     protected fun cassandra(cassandraConfig: CassandraConfig) {
@@ -189,5 +193,12 @@ open class RegnumImpl(
 
     private fun _setPermissionManager(value: PermissionManager) {
         this._permissionManager = value
+    }
+
+    private fun _getMessageCache(): MessageCache {
+        if (Feature.MESSAGE_CACHE in disabledFeatures) {
+            throw UnsupportedOperationException("Message cache is disabled!")
+        }
+        return _messageCache
     }
 }
