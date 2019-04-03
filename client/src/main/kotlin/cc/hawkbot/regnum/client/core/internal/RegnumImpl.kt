@@ -32,7 +32,9 @@ import cc.hawkbot.regnum.client.config.CassandraConfig
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig
 import cc.hawkbot.regnum.client.config.ServerConfig
+import cc.hawkbot.regnum.client.core.MessageCache
 import cc.hawkbot.regnum.client.core.discord.Discord
+import cc.hawkbot.regnum.client.core.discord.MessageWatcher
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
@@ -63,7 +65,8 @@ open class RegnumImpl(
         override val eventManager: IEventManager,
         val gameAnimatorConfig: GameAnimatorConfig,
         commandConfig: CommandConfig,
-        override val disabledFeatures: List<Feature>
+        override val disabledFeatures: List<Feature>,
+        override val messageCache: MessageCache
 ) : Regnum {
 
     private val log = Logger.getLogger()
@@ -101,6 +104,7 @@ open class RegnumImpl(
 
     protected fun events() {
         eventWaiter = EventWaiterImpl(eventManager)
+        eventManager.register(MessageWatcher(this))
     }
 
     protected fun cassandra(cassandraConfig: CassandraConfig) {

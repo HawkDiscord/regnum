@@ -23,7 +23,9 @@ import cc.hawkbot.regnum.client.config.CassandraConfig;
 import cc.hawkbot.regnum.client.config.CommandConfig;
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
+import cc.hawkbot.regnum.client.core.MessageCache;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
+import cc.hawkbot.regnum.client.core.internal.MemoryMessageCache;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
 import cc.hawkbot.regnum.io.database.CassandraSource;
 import com.google.common.base.Preconditions;
@@ -39,7 +41,7 @@ import java.util.List;
 /**
  * Builder for {@link Regnum} instances
  */
-@SuppressWarnings({"unused", "UnusedReturnValue", "WeakerAccess"})
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class RegnumBuilder {
 
     private ServerConfig serverConfig;
@@ -48,6 +50,7 @@ public class RegnumBuilder {
     private IEventManager eventManager = new AnnotatedEventManager();
     private CassandraConfig cassandraConfig;
     private List<Feature> disabledFeatures = new ArrayList<>();
+    private MessageCache messageCache = new MemoryMessageCache();
 
 
     /**
@@ -230,6 +233,24 @@ public class RegnumBuilder {
     }
 
     /**
+     * Returns the current message cache.
+     * @return the {@link MessageCache}
+     */
+    public MessageCache getMessageCache() {
+        return messageCache;
+    }
+
+    /**
+     * Sets the message cache
+     * @param messageCache the {@link MessageCache}
+     * @return the current builder
+     */
+    public RegnumBuilder setMessageCache(MessageCache messageCache) {
+        this.messageCache = messageCache;
+        return this;
+    }
+
+    /**
      * Build a new {@link Regnum} instance and connects to the server
      *
      * @return the instance
@@ -249,7 +270,8 @@ public class RegnumBuilder {
                 eventManager,
                 gameAnimatorConfig,
                 commandConfig,
-                disabledFeatures
+                disabledFeatures,
+                messageCache
         ).init(
                 serverConfig,
                 cassandraConfig,
