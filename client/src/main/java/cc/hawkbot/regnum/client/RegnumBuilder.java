@@ -25,7 +25,7 @@ import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.MessageCache;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
-import cc.hawkbot.regnum.client.core.internal.MemoryMessageCache;
+import cc.hawkbot.regnum.client.core.MemoryMessageCache;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
 import cc.hawkbot.regnum.io.database.CassandraSource;
 import com.google.common.base.Preconditions;

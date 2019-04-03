@@ -25,6 +25,11 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
+/**
+ * Listener which listen for MESSAGE events and updates the [cc.hawkbot.regnum.client.core.MessageCache].
+ * @param regnum the Regnum instance
+ * @constructor Constructs a new message watcher
+ */
 class MessageWatcher(
         regnum: Regnum
 ) {

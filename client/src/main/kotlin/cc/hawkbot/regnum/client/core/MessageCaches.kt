@@ -17,10 +17,11 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client.core.internal
+package cc.hawkbot.regnum.client.core
 
-import cc.hawkbot.regnum.client.core.MessageCache
-
+/**
+ * Implementation of [MessageCache] which caches all messages in a [MutableMap].
+ */
 class MemoryMessageCache: MessageCache {
 
     private val messages = mutableMapOf<Long, String>()

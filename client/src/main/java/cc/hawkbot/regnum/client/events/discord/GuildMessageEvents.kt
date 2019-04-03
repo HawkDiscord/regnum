@@ -17,6 +17,8 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package cc.hawkbot.regnum.client.events.discord
 
 import net.dv8tion.jda.api.JDA
@@ -25,6 +27,28 @@ import net.dv8tion.jda.api.entities.TextChannel
 import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent
 
-class GuildMessageUpdateEvent(api: JDA, responseNumber: Long, message: Message, oldMessage: String?) : GuildMessageUpdateEvent(api, responseNumber, message)
+/**
+ * Extension of [GuildMessageUpdateEvent] which allows you to get the content of the message before it got edited.
+ * @see GuildMessageUpdateEvent
+ * @see MessageCacheEvent
+ */
+class GuildMessageUpdateEvent(api: JDA, responseNumber: Long, message: Message, override val oldContentRaw: String?) : GuildMessageUpdateEvent(api, responseNumber, message), MessageCacheEvent
 
-class GuildMessageDeleteEvent(api: JDA, responseNumber: Long, messageId: Long, channel: TextChannel, oldMessage: String?) : GuildMessageDeleteEvent(api, responseNumber, messageId, channel)
+/**
+ * Extension of [GuildMessageDeleteEvent] which allows you to get the content of the message before it got deleted.
+ * @see GuildMessageDeleteEvent
+ * @see MessageCacheEvent
+ */
+class GuildMessageDeleteEvent(api: JDA, responseNumber: Long, messageId: Long, channel: TextChannel, override val oldContentRaw: String?) : GuildMessageDeleteEvent(api, responseNumber, messageId, channel), MessageCacheEvent
+
+/**
+ * Generic event that implements message cache support.
+ * @property oldContentRaw the content of the message before it got edited. Can be null if it isn't cached
+ */
+private interface MessageCacheEvent {
+
+    //TODO: Add MarkdownSanitizer support
+
+    val oldContentRaw: String?
+
+}
