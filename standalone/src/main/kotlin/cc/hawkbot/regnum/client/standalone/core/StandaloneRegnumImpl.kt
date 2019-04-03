@@ -39,8 +39,10 @@ class StandaloneRegnumImpl(
         eventManager,
         builder.gameAnimatorConfig,
         builder.commandConfig,
-        builder.disabledFeatures
+        builder.disabledFeatures,
+        builder.messageCache
 ) {
+
 
     override var websocket: WebsocketImpl
         get() = throw UnsupportedOperationException("Standalone Regnum client does not support websocket")
