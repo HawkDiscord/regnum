@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client.events.websocket;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 import org.java_websocket.handshake.ServerHandshake;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Event that is fired when a websocket connection got established.
@@ -39,7 +40,7 @@ public class WebSocketConnectedEvent extends WebSocketEvent {
      * @param handshake the handshake {@link ServerHandshake}
      * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
      */
-    public WebSocketConnectedEvent(Regnum regnum, Websocket websocket, ServerHandshake handshake) {
+    public WebSocketConnectedEvent(@NotNull Regnum regnum,@NotNull Websocket websocket,@NotNull ServerHandshake handshake) {
         super(regnum, websocket);
         this.handshake = handshake;
     }
@@ -49,6 +50,7 @@ public class WebSocketConnectedEvent extends WebSocketEvent {
      *
      * @return the handshake {@link ServerHandshake}
      */
+    @NotNull
     public ServerHandshake getHandshake() {
         return handshake;
     }

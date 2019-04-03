@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.events.websocket;
 
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Event that is fired when the websocket closes.
@@ -42,7 +43,7 @@ public class WebSocketCloseEvent extends WebSocketEvent {
      * @param remote    the remote thing
      * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
      */
-    public WebSocketCloseEvent(Regnum regnum, Websocket websocket, int code, String reason, boolean remote) {
+    public WebSocketCloseEvent(@NotNull Regnum regnum,@NotNull Websocket websocket,@NotNull int code,@NotNull String reason,@NotNull boolean remote) {
         super(regnum, websocket);
         this.code = code;
         this.reason = reason;
@@ -63,6 +64,7 @@ public class WebSocketCloseEvent extends WebSocketEvent {
      *
      * @return the close reason
      */
+    @NotNull
     public String getReason() {
         return reason;
     }

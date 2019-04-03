@@ -58,6 +58,7 @@ public class RegnumBuilder {
      *
      * @return the {@link ServerConfig}
      */
+    @NotNull
     public ServerConfig getServerConfig() {
         return serverConfig;
     }
@@ -68,7 +69,8 @@ public class RegnumBuilder {
      * @param config the {@link ServerConfig}
      * @return the current builder
      */
-    public RegnumBuilder setServerConfig(ServerConfig config) {
+    @NotNull
+    public RegnumBuilder setServerConfig(@NotNull ServerConfig config) {
         this.serverConfig = config;
         return this;
     }
@@ -78,6 +80,7 @@ public class RegnumBuilder {
      *
      * @return the {@link GameAnimatorConfig}
      */
+    @NotNull
     public GameAnimatorConfig getGameAnimatorConfig() {
         return gameAnimatorConfig;
     }
@@ -88,7 +91,8 @@ public class RegnumBuilder {
      * @param gameAnimatorConfig the {@link GameAnimatorConfig}
      * @return the current builder
      */
-    public RegnumBuilder setGameAnimatorConfig(GameAnimatorConfig gameAnimatorConfig) {
+    @NotNull
+    public RegnumBuilder setGameAnimatorConfig(@NotNull GameAnimatorConfig gameAnimatorConfig) {
         this.gameAnimatorConfig = gameAnimatorConfig;
         return this;
     }
@@ -99,6 +103,7 @@ public class RegnumBuilder {
      *
      * @return the {@link CommandConfig}
      */
+    @NotNull
     public CommandConfig getCommandConfig() {
         return commandConfig;
     }
@@ -110,7 +115,8 @@ public class RegnumBuilder {
      * @param commandConfig the {@link CommandConfig}
      * @return the current builder
      */
-    public RegnumBuilder setCommandConfig(CommandConfig commandConfig) {
+    @NotNull
+    public RegnumBuilder setCommandConfig(@NotNull CommandConfig commandConfig) {
         this.commandConfig = commandConfig;
         return this;
     }
@@ -120,6 +126,7 @@ public class RegnumBuilder {
      *
      * @return the current event manager {@link IEventManager}
      */
+    @NotNull
     public IEventManager getEventManager() {
         return eventManager;
     }
@@ -128,8 +135,10 @@ public class RegnumBuilder {
      * Sets the event manager {@link IEventManager} that is used by {@link Regnum} and the {@link cc.hawkbot.regnum.client.core.discord.Discord}.
      *
      * @param eventManager the event manager
+     *
      * @return the current builder
      */
+    @NotNull
     public RegnumBuilder setEventManager(@NotNull IEventManager eventManager) {
         this.eventManager = eventManager;
         return this;
@@ -140,6 +149,7 @@ public class RegnumBuilder {
      *
      * @return the current list of event listeners
      */
+    @NotNull
     public List<Object> getEventListeners() {
         return eventManager.getRegisteredListeners();
     }
@@ -151,7 +161,8 @@ public class RegnumBuilder {
      * @param listeners the listeners
      * @return the current builder
      */
-    public RegnumBuilder registerEvents(Object... listeners) {
+    @NotNull
+    public RegnumBuilder registerEvents(@NotNull Object... listeners) {
         for (Object listener : listeners) {
             eventManager.register(listener);
         }
@@ -164,7 +175,8 @@ public class RegnumBuilder {
      * @param listeners the listeners
      * @return the current builder
      */
-    public RegnumBuilder registerEvents(Collection<Object> listeners) {
+    @NotNull
+    public RegnumBuilder registerEvents(@NotNull Collection<Object> listeners) {
         return registerEvents(listeners.toArray());
     }
 
@@ -173,6 +185,7 @@ public class RegnumBuilder {
      *
      * @return the {@link CassandraConfig}
      */
+    @NotNull
     public CassandraConfig getCassandraConfig() {
         return cassandraConfig;
     }
@@ -183,7 +196,8 @@ public class RegnumBuilder {
      * @param cassandraConfig the {@link CassandraConfig}
      * @return the current builder
      */
-    public RegnumBuilder setCassandraConfig(CassandraConfig cassandraConfig) {
+    @NotNull
+    public RegnumBuilder setCassandraConfig(@NotNull CassandraConfig cassandraConfig) {
         this.cassandraConfig = cassandraConfig;
         return this;
     }
@@ -193,6 +207,7 @@ public class RegnumBuilder {
      *
      * @return the list.
      */
+    @NotNull
     public List<Feature> getDisabledFeatures() {
         return disabledFeatures;
     }
@@ -203,7 +218,8 @@ public class RegnumBuilder {
      * @param disabledFeatures the disabled features
      * @return the current builder
      */
-    public RegnumBuilder setDisabledFeatures(List<Feature> disabledFeatures) {
+    @NotNull
+    public RegnumBuilder setDisabledFeatures(@NotNull List<Feature> disabledFeatures) {
         this.disabledFeatures = disabledFeatures;
         return this;
     }
@@ -214,7 +230,8 @@ public class RegnumBuilder {
      * @param features an array of features {@link Feature} to disable
      * @return the current builder
      */
-    public RegnumBuilder disableFeatures(Feature... features) {
+    @NotNull
+    public RegnumBuilder disableFeatures(@NotNull Feature... features) {
         Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
         Collections.addAll(disabledFeatures, features);
         return this;
@@ -226,7 +243,8 @@ public class RegnumBuilder {
      * @param features a collection of features {@link Feature} to disable
      * @return the current builder
      */
-    public RegnumBuilder disableFeatures(Collection<Feature> features) {
+    @NotNull
+    public RegnumBuilder disableFeatures(@NotNull Collection<Feature> features) {
         Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
         disabledFeatures.addAll(features);
         return this;
@@ -236,6 +254,7 @@ public class RegnumBuilder {
      * Returns the current message cache.
      * @return the {@link MessageCache}
      */
+    @NotNull
     public MessageCache getMessageCache() {
         return messageCache;
     }
@@ -245,7 +264,8 @@ public class RegnumBuilder {
      * @param messageCache the {@link MessageCache}
      * @return the current builder
      */
-    public RegnumBuilder setMessageCache(MessageCache messageCache) {
+    @NotNull
+    public RegnumBuilder setMessageCache(@NotNull MessageCache messageCache) {
         this.messageCache = messageCache;
         return this;
     }
@@ -256,6 +276,7 @@ public class RegnumBuilder {
      * @return the instance
      * @throws NullPointerException When a required argument is null
      */
+    @NotNull
     public Regnum build() {
         // Null checks
         Preconditions.checkNotNull(serverConfig, "ServerConfig may not be null");

@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.events.websocket;
 
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Event that is fired when an error with the websocket occurred.
@@ -48,6 +49,7 @@ public class WebSocketErrorEvent extends WebSocketEvent {
      *
      * @return the error.
      */
+    @NotNull
     public Throwable getThrowable() {
         return throwable;
     }

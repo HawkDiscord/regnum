@@ -91,6 +91,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
      *
      * @return the {@link PermissionTarget}
      */
+    @NotNull
     public PermissionTarget getType() {
         return type;
     }
@@ -109,6 +110,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
      *
      * @return the node
      */
+    @NotNull
     public String getPermissionNode() {
         return permissionNode;
     }
@@ -133,6 +135,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
      * @return a {@link CompletionStage} which completes when the permission node got deleted
      */
     @Override
+    @NotNull
     public CompletionStage<Void> deleteAsync() {
         manager.deleteNode(this);
         return super.deleteAsync();
@@ -144,6 +147,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
      * @return a {@link CompletionStage} which completes when the permission node got updated
      */
     @Override
+    @NotNull
     public CompletionStage<Void> saveAsync() {
         manager.updateNode(this);
         return super.saveAsync();
@@ -164,6 +168,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
      *
      * @return the {@link PermissionManager}
      */
+    @NotNull
     public PermissionManager getManager() {
         return manager;
     }
@@ -173,7 +178,7 @@ public class PermissionNode extends SnowflakeCassandraEntity<PermissionNode> {
      *
      * @param permissionManager the {@link PermissionManager}
      */
-    public void setManager(PermissionManager permissionManager) {
+    public void setManager(@NotNull PermissionManager permissionManager) {
         this.manager = permissionManager;
     }
 
