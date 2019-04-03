@@ -46,7 +46,8 @@ public class FormatUtil {
      * @param embed The embed
      * @return The embed as plain text
      */
-    public static String stringifyEmbed(MessageEmbed embed) {
+    @NotNull
+    public static String stringifyEmbed(@NotNull MessageEmbed embed) {
         var builder = new StringBuilder();
         if (embed.getTitle() != null) {
             builder.append("**").append(embed.getTitle()).append("**").append("\n");
@@ -74,7 +75,8 @@ public class FormatUtil {
      * @return the formatted group
      * @see FormatUtil#generateCommandList(Collection)
      */
-    public static String generateCommandList(Group group, CommandParser parser) {
+    @NotNull
+    public static String generateCommandList(@NotNull Group group, @NotNull CommandParser parser) {
         return generateCommandList(group.commands(parser));
     }
 
@@ -84,7 +86,8 @@ public class FormatUtil {
      * @param commands a collection of commands
      * @return the formatted collection
      */
-    public static String generateCommandList(Collection<ICommand> commands) {
+    @NotNull
+    public static String generateCommandList(@NotNull Collection<ICommand> commands) {
         if (commands.isEmpty()) {
             return "";
         }

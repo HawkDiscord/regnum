@@ -23,6 +23,8 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.awt.*;
 
@@ -39,7 +41,8 @@ public class EmbedUtil {
      * @param embed the Embed {@link MessageEmbed}
      * @return the Message {@link Message}
      */
-    public static Message message(MessageEmbed embed) {
+    @NotNull
+    public static Message message(@NotNull MessageEmbed embed) {
         return new MessageBuilder().setEmbed(embed).build();
     }
 
@@ -51,7 +54,8 @@ public class EmbedUtil {
      * @return the Message {@link Message}
      * @see EmbedUtil#message(MessageEmbed)
      */
-    public static Message message(EmbedBuilder builder) {
+    @NotNull
+    public static Message message(@NotNull EmbedBuilder builder) {
         return message(builder.build());
     }
 
@@ -66,12 +70,13 @@ public class EmbedUtil {
      * @return the embed's builder
      */
     @SuppressWarnings("ConstantConditions")
+    @NotNull
     public static EmbedBuilder embed(
-            String title,
-            String description,
-            String footer,
-            String footerLink,
-            Color color
+            @Nullable String title,
+            @Nullable String description,
+            @Nullable String footer,
+            @Nullable String footerLink,
+            @Nullable Color color
     ) {
         var builder = new EmbedBuilder();
         if (title != null) {
@@ -87,6 +92,9 @@ public class EmbedUtil {
         if (color != null) {
             builder = builder.setColor(color);
         }
+        if (builder.isEmpty()) {
+            throw new IllegalArgumentException("You have to provide at least a title, footer or description");
+        }
         return builder;
     }
 
@@ -99,7 +107,8 @@ public class EmbedUtil {
      * @param color       the color of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder embed(String title, String description, String footer, Color color) {
+    @NotNull
+    public static EmbedBuilder embed(@Nullable String title, @Nullable String description, @Nullable String footer, @Nullable Color color) {
         return embed(title, description, footer, null, color);
     }
 
@@ -111,7 +120,8 @@ public class EmbedUtil {
      * @param color       the color of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder embed(String title, String description, Color color) {
+    @NotNull
+    public static EmbedBuilder embed(@Nullable String title, @Nullable String description, @Nullable Color color) {
         return embed(title, description, null, color);
     }
 
@@ -122,7 +132,8 @@ public class EmbedUtil {
      * @param color       the color of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder embed(String description, Color color) {
+    @NotNull
+    public static EmbedBuilder embed(@Nullable String description, @Nullable Color color) {
         return embed(null, description, color);
     }
 
@@ -133,7 +144,8 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder info(String title, String description) {
+    @NotNull
+    public static EmbedBuilder info(@Nullable String title, @Nullable String description) {
         return embed(
                 String.format("%s %s", Emotes.INFO, title),
                 description,
@@ -147,18 +159,9 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder info(String description) {
+    @NotNull
+    public static EmbedBuilder info(@Nullable String description) {
         return embed(description, Colors.BLUE);
-    }
-
-    /**
-     * Helper method for small success-embed.
-     *
-     * @param description the description of the embed
-     * @return the embed's builder
-     */
-    public static EmbedBuilder success(String description) {
-        return embed(description, Colors.DARK_GREEN);
     }
 
     /**
@@ -168,12 +171,24 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder success(String title, String description) {
+    @NotNull
+    public static EmbedBuilder success(@Nullable String title, @Nullable String description) {
         return embed(
                 String.format("%s %s", Emotes.SUCCESS, title),
                 description,
                 Colors.DARK_GREEN
         );
+    }
+
+    /**
+     * Helper method for small success-embed.
+     *
+     * @param description the description of the embed
+     * @return the embed's builder
+     */
+    @NotNull
+    public static EmbedBuilder success(@Nullable String description) {
+        return embed(description, Colors.DARK_GREEN);
     }
 
     /**
@@ -183,7 +198,8 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder error(String title, String description) {
+    @NotNull
+    public static EmbedBuilder error(@Nullable String title, @Nullable String description) {
         return embed(
                 String.format("%s %s", Emotes.ERROR, title),
                 description,
@@ -197,7 +213,8 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder error(String description) {
+    @NotNull
+    public static EmbedBuilder error(@Nullable String description) {
         return embed(description, Colors.DARK_RED);
     }
 
@@ -208,7 +225,8 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder warn(String title, String description) {
+    @NotNull
+    public static EmbedBuilder warn(@Nullable String title, @Nullable String description) {
         return embed(
                 String.format("%s %s", Emotes.WARN, title),
                 description,
@@ -222,7 +240,8 @@ public class EmbedUtil {
      * @param description the description of the embed
      * @return the embed's builder
      */
-    public static EmbedBuilder warn(String description) {
+    @NotNull
+    public static EmbedBuilder warn(@Nullable String description) {
         return embed(description, Colors.YELLOW);
     }
 

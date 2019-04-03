@@ -64,6 +64,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      * @return the prefix of the guild
      */
     @Transient
+    @NotNull
     public String getPrefix() {
         return prefix.equals(NO_PREFIX) ? regnum().getCommandParser().getDefaultPrefix() : prefix;
     }
@@ -73,7 +74,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @param prefix the new prefix
      */
-    public void setPrefix(String prefix) {
+    public void setPrefix(@NotNull String prefix) {
         this.prefix = prefix;
     }
 
@@ -82,6 +83,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @return the language tag
      */
+    @NotNull
     public String getLanguageTag() {
         return languageTag;
     }
@@ -189,6 +191,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @return the list
      */
+    @NotNull
     public List<Long> getBlacklistedChannels() {
         return blacklistedChannels;
     }
@@ -198,6 +201,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @return the list
      */
+    @NotNull
     public List<Long> getWhitelistedChannels() {
         return whitelistedChannels;
     }

@@ -43,7 +43,8 @@ public class HttpClient {
      * @param request the request
      * @return a completable future containing the response {@link Response}
      */
-    public static CompletableFuture<Response> executeRequestAsync(Request request) {
+    @NotNull
+    public static CompletableFuture<Response> executeRequestAsync(@NotNull Request request) {
         var future = new CompletableFuture<Response>();
         OK_HTTP_CLIENT.newCall(request).enqueue(new Callback() {
             @Override
@@ -66,7 +67,8 @@ public class HttpClient {
      * @return the response
      * @see HttpClient#executeRequestAsync(Request)
      */
-    public static Response executeRequest(Request request) {
+    @NotNull
+    public static Response executeRequest(@NotNull Request request) {
         return executeRequestAsync(request).join();
     }
 
@@ -76,7 +78,8 @@ public class HttpClient {
      * @param url the url
      * @return the request builder
      */
-    public static Request.Builder url(String url) {
+    @NotNull
+    public static Request.Builder url(@NotNull String url) {
         return new Request.Builder()
                 .url(url);
     }
@@ -87,7 +90,8 @@ public class HttpClient {
      * @param url the url
      * @return the request builder
      */
-    public static Request.Builder get(String url) {
+    @NotNull
+    public static Request.Builder get(@NotNull String url) {
         return url(url)
                 .get();
     }
@@ -99,7 +103,8 @@ public class HttpClient {
      * @param body the request boyd
      * @return the request builder
      */
-    public static Request.Builder post(String url, RequestBody body) {
+    @NotNull
+    public static Request.Builder post(@NotNull String url, @NotNull RequestBody body) {
         return url(url)
                 .post(body);
     }
@@ -110,7 +115,8 @@ public class HttpClient {
      * @param content the content
      * @return the body
      */
-    public static RequestBody plainBody(String content) {
+    @NotNull
+    public static RequestBody plainBody(@NotNull String content) {
         return RequestBody.create(null, content);
     }
 
@@ -120,7 +126,8 @@ public class HttpClient {
      * @param json the json
      * @return the body
      */
-    public static RequestBody jsonBody(String json) {
+    @NotNull
+    public static RequestBody jsonBody(@NotNull String json) {
         return RequestBody.create(MediaType.parse("application/json"), json);
     }
 }
