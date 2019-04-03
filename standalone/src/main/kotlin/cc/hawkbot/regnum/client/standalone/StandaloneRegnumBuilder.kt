@@ -46,7 +46,8 @@ class StandaloneRegnumBuilder() : RegnumBuilder() {
         throw UnsupportedOperationException("Standalone does not support server config")
     }
 
-    override fun setServerConfig(config: ServerConfig?): RegnumBuilder {
+
+    override fun setServerConfig(config: ServerConfig): RegnumBuilder {
         throw UnsupportedOperationException("Standalone does not support server config")
     }
 
