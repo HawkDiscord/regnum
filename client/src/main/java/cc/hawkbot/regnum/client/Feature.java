@@ -30,7 +30,7 @@ public enum Feature {
     PERMISSION_SYSTEM,
     /**
      * Cache of messages used in message events.
-     * **WARNING:** Disabling this feature will also disable GuildMessageUpdateEvent and GuildMessageDeleteEvent
+     * <strong>WARNING:</strong> Disabling this feature will also disable GuildMessageUpdateEvent and GuildMessageDeleteEvent
      */
     MESSAGE_CACHE
 }
