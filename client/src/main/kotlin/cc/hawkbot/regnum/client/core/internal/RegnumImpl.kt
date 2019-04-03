@@ -32,7 +32,9 @@ import cc.hawkbot.regnum.client.config.CassandraConfig
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig
 import cc.hawkbot.regnum.client.config.ServerConfig
+import cc.hawkbot.regnum.client.core.MessageCache
 import cc.hawkbot.regnum.client.core.discord.Discord
+import cc.hawkbot.regnum.client.core.discord.MessageWatcher
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
@@ -63,7 +65,8 @@ open class RegnumImpl(
         override val eventManager: IEventManager,
         val gameAnimatorConfig: GameAnimatorConfig,
         commandConfig: CommandConfig,
-        override val disabledFeatures: List<Feature>
+        override val disabledFeatures: List<Feature>,
+        private val _messageCache: MessageCache
 ) : Regnum {
 
     private val log = Logger.getLogger()
@@ -82,6 +85,8 @@ open class RegnumImpl(
     override var permissionManager: PermissionManager
         get() = _getPermissionManager()
         set(value) = _setPermissionManager(value)
+    override val messageCache: MessageCache
+        get() = _getMessageCache()
 
     /**
      * Initializes the Regnum client.
@@ -101,6 +106,9 @@ open class RegnumImpl(
 
     protected fun events() {
         eventWaiter = EventWaiterImpl(eventManager)
+        if (Feature.MESSAGE_CACHE !in disabledFeatures) {
+            eventManager.register(MessageWatcher(this))
+        }
     }
 
     protected fun cassandra(cassandraConfig: CassandraConfig) {
@@ -185,5 +193,12 @@ open class RegnumImpl(
 
     private fun _setPermissionManager(value: PermissionManager) {
         this._permissionManager = value
+    }
+
+    private fun _getMessageCache(): MessageCache {
+        if (Feature.MESSAGE_CACHE in disabledFeatures) {
+            throw UnsupportedOperationException("Message cache is disabled!")
+        }
+        return _messageCache
     }
 }

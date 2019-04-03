@@ -43,7 +43,7 @@ dependencies {
 
     // Discord
     @Suppress("SpellCheckingInspection")
-    compile("net.dv8tion:JDA:4.ALPHA.0_54")
+    compile("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
 
     // Regnum
     compile(project(":shared"))

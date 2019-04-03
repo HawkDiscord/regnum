@@ -17,20 +17,28 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.client;
+package cc.hawkbot.regnum.client.core
 
 /**
- * Enum that represents features which can be disabled.
+ * Implementation of [MessageCache] which caches all messages in a [MutableMap].
  */
-public enum Feature {
+class MemoryMessageCache: MessageCache {
 
-    /**
-     * Advanced permission system for permission nodes and negated permissions.
-     */
-    PERMISSION_SYSTEM,
-    /**
-     * Cache of messages used in message events.
-     * <strong>WARNING:</strong> Disabling this feature will also disable GuildMessageUpdateEvent and GuildMessageDeleteEvent
-     */
-    MESSAGE_CACHE
+    private val messages = mutableMapOf<Long, String>()
+
+    override fun delete(messageId: Long) {
+        messages.remove(messageId)
+    }
+
+    override fun update(messageId: Long, messageContent: String) {
+        messages.remove(messageId, messageContent)
+    }
+
+    override fun set(messageId: Long, messageContent: String) {
+        messages[messageId] = messageContent
+    }
+
+    override fun get(messageId: Long): String? {
+        return messages[messageId]
+    }
 }
