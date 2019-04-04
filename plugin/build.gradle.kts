@@ -27,9 +27,7 @@ dependencies {
     compile("de.foryasee:plugins:1.1.0")
 
     // Server
-    implementation("io.javalin:javalin:2.6.0")
-    @Suppress("SpellCheckingInspection")
-    implementation("net.dv8tion:JDA:4.ALPHA.0_50")
+    implementation("io.javalin", "javalin", project.ext["javalinVersion"] as String)
 
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")

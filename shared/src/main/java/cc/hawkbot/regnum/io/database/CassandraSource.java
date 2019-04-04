@@ -23,6 +23,7 @@ import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.CodecRegistry;
 import com.datastax.driver.core.PlainTextAuthProvider;
 import com.datastax.driver.core.Session;
+import com.datastax.driver.core.exceptions.NoHostAvailableException;
 import com.datastax.driver.mapping.MappingManager;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -123,19 +124,24 @@ public class CassandraSource {
     @SuppressWarnings("UnstableApiUsage")
     public CompletionStage<CassandraSource> connectAsync() {
         var future = new CompletableFuture<CassandraSource>();
-        Futures.addCallback(cluster.connectAsync(keyspace), new FutureCallback<>() {
-            @Override
-            public void onSuccess(Session result) {
-                session = result;
-                mappingManager = new MappingManager(session);
-                future.complete(CassandraSource.this);
-            }
+        try {
+            Futures.addCallback(cluster.connectAsync(keyspace), new FutureCallback<>() {
+                @Override
+                public void onSuccess(Session result) {
+                    session = result;
+                    mappingManager = new MappingManager(session);
+                    future.complete(CassandraSource.this);
+                }
 
-            @Override
-            public void onFailure(@NotNull Throwable t) {
-                future.completeExceptionally(t);
-            }
-        }, Executors.newSingleThreadExecutor(new DefaultThreadFactory("CassandraConnector")));
+                @Override
+                public void onFailure(@NotNull Throwable t) {
+                    System.out.println("ERROR");
+                    future.completeExceptionally(t);
+                }
+            }, Executors.newSingleThreadExecutor(new DefaultThreadFactory("CassandraConnector")));
+        } catch (NoHostAvailableException | IllegalStateException e) {
+            future.completeExceptionally(e);
+        }
         return future;
     }
 

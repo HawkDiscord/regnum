@@ -69,7 +69,7 @@ fun main(args: Array<String>) {
     val cmd = parser.parse(options, args)
 
     Configurator.setRootLevel(Level.toLevel(cmd.getOptionValue("L"), Level.INFO))
-    Configurator.initialize(ClassLoader.getSystemClassLoader(), ConfigurationSource(ClassLoader.getSystemResourceAsStream("log4j2.xml")))
+    Configurator.initialize(ClassLoader.getSystemClassLoader(), ConfigurationSource(Thread.currentThread().contextClassLoader.getResourceAsStream("log4j2.xml")))
 
     Logger.getLogger().info("[Launcher] Starting Regnum server!")
 

@@ -42,23 +42,23 @@ repositories {
 dependencies {
 
     // Logging
-    implementation("org.slf4j:slf4j-api:1.7.25")
+    implementation("org.slf4j", "slf4j-api", project.ext["slf4jVersion"] as String)
     // Only needed in server
-    implementation("org.apache.logging.log4j:log4j-core:2.11.0")
+    implementation("org.apache.logging.log4j", "log4j-core", project.ext["log4jVersion"] as String)
 
     @Suppress("SpellCheckingInspection")
-    compile("net.dv8tion:JDA:4.ALPHA.0_54")
+    compile("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
 
     // Util
     @Suppress("SpellCheckingInspection")
-    compile("com.electronwill.night-config:yaml:3.5.0")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.9.7")
+    compile("com.electronwill.night-config", "yaml", project.ext["nightconfigVersion"] as String)
+    compile("com.fasterxml.jackson.core", "jackson-databind", project.ext["jacksonVersion"] as String)
     compile("io.sentry:sentry:1.7.16")
 
     // Database
-    compile("com.datastax.cassandra:cassandra-driver-core:3.6.0")
-    compile("com.datastax.cassandra:cassandra-driver-mapping:3.6.0")
-    compile("com.datastax.cassandra:cassandra-driver-extras:3.6.0")
+    compile("com.datastax.cassandra", "cassandra-driver-core", project.ext["cassandraVersion"] as String)
+    compile("com.datastax.cassandra", "cassandra-driver-mapping", project.ext["cassandraVersion"] as String)
+    compile("com.datastax.cassandra", "cassandra-driver-extras", project.ext["cassandraVersion"] as String)
 
 
     // Kotlin

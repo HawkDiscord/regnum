@@ -41,18 +41,14 @@ repositories {
 
 dependencies {
 
-    // Discord
-    @Suppress("SpellCheckingInspection")
-    compile("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
-
     // Regnum
     compile(project(":shared"))
 
     // Server
-    implementation("org.java-websocket:Java-WebSocket:1.4.0")
+    implementation("org.java-websocket", "Java-WebSocket", project.ext["websocketVersion"] as String)
 
     // Util
-    compile("com.google.guava:guava:27.0.1-jre")
+    compile("com.google.guava", "guava",  project.ext["guavaVersion"] as String)
 
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))

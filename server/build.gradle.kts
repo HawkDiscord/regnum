@@ -30,7 +30,6 @@ plugins {
 group = "cc.hawkbot.regnum"
 version = "0.0.1"
 
-val log4jVersion = "2.11.2"
 val cliVersion = "1.4"
 
 repositories {
@@ -44,16 +43,16 @@ dependencies {
     implementation(project(":plugin"))
     implementation(project(":shared"))
 
-    implementation("de.foryasee:plugins:1.1.0")
+    implementation("de.foryasee", "plugins", project.ext["pluginsVersion"] as String)
 
     // Server
-    implementation("io.javalin:javalin:2.6.0")
-    @Suppress("SpellCheckingInspection")
-    implementation("net.dv8tion:JDA:4.ALPHA.0_50")
+    implementation("io.javalin", "javalin", project.ext["javalinVersion"] as String)
 
     // Logging
-    implementation(log4j("core"))
     implementation(log4j("slf4j-impl"))
+    implementation(log4j("core"))
+
+    compile("org.apache.commons", "commons-text", "1.6")
 
     // Util
     implementation("commons-cli:commons-cli:$cliVersion")
@@ -76,14 +75,14 @@ artifacts {
 tasks {
     val buildDir = File("../build/artifacts")
     "shadowJar"(ShadowJar::class) {
-        baseName = project.name
-        version = version
-        archiveName = "$baseName-$version.$extension"
-        destinationDir = buildDir
+        archiveBaseName.set(project.name)
+        archiveVersion.set(project.version as String)
+        archiveFileName.set("$archiveBaseName-$archiveVersion.$archiveExtension")
+        destinationDirectory.set(buildDir)
     }
     "jar"(Jar::class) {
-        classifier = "original"
-        destinationDir = buildDir
+        archiveClassifier.set("original")
+        destinationDirectory.set(buildDir)
     }
 }
 
@@ -102,6 +101,6 @@ tasks.withType<KotlinCompile> {
  * @param version the version of the dependency
  * @return the dependency notation
  */
-fun log4j(name: String, version: String = log4jVersion): String {
+fun log4j(name: String, version: String = project.ext["log4jVersion"] as String): String {
     return "org.apache.logging.log4j:log4j-$name:$version"
 }
