@@ -79,14 +79,14 @@ public class StandaloneLauncher {
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {
         public Command() {
-            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
+            super(Group.getEMPTY(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
         }
 
         @Override
         public void execute(@NotNull Arguments args, @NotNull Context context) {
             context.sendMessage(
                     "Mentions" + context.getMentions().list() + "\n" +
-                            "Args: " + String.join(" ", context.getArgs().array())
+                            "Args: " + String.join(" ", context.getArgs().getArray())
 
             ).queue();
             if (!args.isEmpty() && args.get(0).equals("error")) {
