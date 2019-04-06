@@ -19,7 +19,6 @@
 
 package cc.hawkbot.regnum.client.events.command;
 
-import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.command.CommandParser;
 import cc.hawkbot.regnum.client.command.ICommand;
 import cc.hawkbot.regnum.client.command.context.Context;

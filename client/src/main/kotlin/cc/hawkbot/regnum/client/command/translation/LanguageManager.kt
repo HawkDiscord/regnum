@@ -42,6 +42,10 @@ interface LanguageManager : RequiresRegnum {
      */
     val languages: Collection<Language>
 
+    /**
+     * Returns a list of all languages.
+     * @return a list of all languages
+     */
     @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("languages"))
     fun languages(): Collection<Language> {
         return languages

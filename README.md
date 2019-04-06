@@ -8,7 +8,7 @@ Regnum is an open-source Discord bot framework created for usage in [Hawk](https
  - [Plugin](https://github.com/HawkDiscord/regnum/tree/master/plugin)
  - [Shared](https://github.com/HawkDiscord/regnum/tree/master/shared)
 ## License
-```
+```text
 Regnum - A Discord bot clustering system made for Hawk 
 
 Copyright (C) 2019  Michael Rittmeister
