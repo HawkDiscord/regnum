@@ -65,7 +65,7 @@ bintray {
 tasks {
     dokka {
         outputFormat = "html"
-        outputDirectory = (project.ext["buildDir"] as File).absolutePath
+        outputDirectory = (project.ext["docsDir"] as File).absolutePath
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
