@@ -106,7 +106,7 @@ bintray {
 tasks {
     dokka {
         outputFormat = "html"
-        outputDirectory = "public"
+        outputDirectory = (project.ext["buildDir"] as File).absolutePath
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
@@ -126,7 +126,7 @@ tasks {
             url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
         })
     }
-    val buildDir = File("../build/artifacts")
+    val buildDir = project.ext["buildDir"] as File
     "sourcesJar"(Jar::class) {
         archiveClassifier.set("sources")
         destinationDirectory.set(buildDir)

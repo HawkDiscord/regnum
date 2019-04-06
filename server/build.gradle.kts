@@ -73,7 +73,7 @@ artifacts {
 }
 
 tasks {
-    val buildDir = File("../build/artifacts")
+    val buildDir = project.ext["buildDir"] as File
     "shadowJar"(ShadowJar::class) {
         archiveBaseName.set(project.name)
         archiveVersion.set(project.version as String)

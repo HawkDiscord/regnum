@@ -71,7 +71,7 @@ bintray {
 tasks {
     dokka {
         outputFormat = "html"
-        outputDirectory = "public"
+        outputDirectory = (project.ext["buildDir"] as File).absolutePath
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
@@ -98,7 +98,7 @@ tasks {
             packageListUrl = uri("https://gist.githubusercontent.com/DRSchlaubi/3d1d0aaa5c01963dcd4d0149c841c896/raw/22141759fbab1e38fd2381c3e4f97616ecb43fc8/package-list").toURL()
         })
     }
-    val buildDir = File("../build/artifacts")
+    val buildDir = project.ext["buildDir"] as File
     "sourcesJar"(Jar::class) {
         archiveClassifier.set("sources")
         destinationDirectory.set(buildDir)
