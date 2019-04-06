@@ -57,6 +57,7 @@ public class GroupBuilder {
 
     /**
      * Hides the {@link Group} from help commands.
+     *
      * @return the builder
      */
     @NotNull

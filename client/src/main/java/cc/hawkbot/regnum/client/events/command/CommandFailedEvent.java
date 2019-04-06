@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Event is fired when an error occurred while executing a command.
+ *
  * @see CommandEvent
  */
 @SuppressWarnings("unused")
@@ -33,8 +34,9 @@ public class CommandFailedEvent extends CommandEvent {
 
     /**
      * Constructs a new Command event.
+     *
      * @param context the context of the command
-     * @param error the throwable which was thrown
+     * @param error   the throwable which was thrown
      */
     public CommandFailedEvent(
             @NotNull Context context,
@@ -46,6 +48,7 @@ public class CommandFailedEvent extends CommandEvent {
 
     /**
      * Returns the error.
+     *
      * @return the {@link Throwable}
      */
     @NotNull

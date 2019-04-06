@@ -40,7 +40,7 @@ public class WebSocketConnectedEvent extends WebSocketEvent {
      * @param handshake the handshake {@link ServerHandshake}
      * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
      */
-    public WebSocketConnectedEvent(@NotNull Regnum regnum,@NotNull Websocket websocket,@NotNull ServerHandshake handshake) {
+    public WebSocketConnectedEvent(@NotNull Regnum regnum, @NotNull Websocket websocket, @NotNull ServerHandshake handshake) {
         super(regnum, websocket);
         this.handshake = handshake;
     }

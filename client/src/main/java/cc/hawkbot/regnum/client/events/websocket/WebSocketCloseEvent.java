@@ -43,7 +43,7 @@ public class WebSocketCloseEvent extends WebSocketEvent {
      * @param remote    the remote thing
      * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
      */
-    public WebSocketCloseEvent(@NotNull Regnum regnum,@NotNull Websocket websocket,@NotNull int code,@NotNull String reason,@NotNull boolean remote) {
+    public WebSocketCloseEvent(@NotNull Regnum regnum, @NotNull Websocket websocket, @NotNull int code, @NotNull String reason, @NotNull boolean remote) {
         super(regnum, websocket);
         this.code = code;
         this.reason = reason;

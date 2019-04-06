@@ -64,9 +64,9 @@ public class Misc {
      * @param value the value
      * @param <E>   the type of the keys
      * @param <T>   the type of the values
+     * @return an Optional {@link java.util.Optional} containing the key
      * @see Stream#findFirst()
      * @see Stream#filter(Predicate)
-     * @return an Optional {@link java.util.Optional} containing the key
      */
     @NotNull
     public static <E, T> Optional<E> getKeyByValue(@NotNull Map<E, T> map, @NotNull T value) {
@@ -81,9 +81,9 @@ public class Misc {
      * @param value the value
      * @param <E>   the type of the keys
      * @param <T>   the type of the values
+     * @return the found key or {@code null} if there was no key
      * @see Stream#findFirst()
      * @see Stream#filter(Predicate)
-     * @return the found key or {@code null} if there was no key
      */
     @Nullable
     public static <E, T> E getKeyOrNullByValue(@NotNull Map<E, T> map, @NotNull T value) {

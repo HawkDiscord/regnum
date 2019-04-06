@@ -22,7 +22,7 @@ package cc.hawkbot.regnum.client.core
 /**
  * Implementation of [MessageCache] which caches all messages in a [MutableMap].
  */
-class MemoryMessageCache: MessageCache {
+class MemoryMessageCache : MessageCache {
 
     private val messages = mutableMapOf<Long, String>()
 

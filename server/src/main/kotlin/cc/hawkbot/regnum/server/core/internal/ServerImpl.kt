@@ -128,7 +128,7 @@ class ServerImpl(
                     disableAPI = true
                     null
                 }
-                .toCompletableFuture().join()?: return
+                .toCompletableFuture().join() ?: return
         guildAccessor = cassandraSource.mappingManager.createAccessor(Guild.Accessor::class.java)
         userAccessor = cassandraSource.mappingManager.createAccessor(User.Accessor::class.java)
     }

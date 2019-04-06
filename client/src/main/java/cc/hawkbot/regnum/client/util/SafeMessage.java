@@ -149,7 +149,7 @@ public class SafeMessage {
      */
     @NotNull
     public static MessageAction editMessage(@NotNull Message previousMessage,
-                                            @NotNull MessageEmbed newMessage,@NotNull Runnable errorHandler) {
+                                            @NotNull MessageEmbed newMessage, @NotNull Runnable errorHandler) {
         return editMessage(previousMessage, new MessageBuilder().setEmbed(newMessage), errorHandler);
     }
 

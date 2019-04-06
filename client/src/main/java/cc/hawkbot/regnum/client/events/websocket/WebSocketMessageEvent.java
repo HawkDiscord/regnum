@@ -40,7 +40,7 @@ public class WebSocketMessageEvent extends WebSocketEvent {
      * @param message   the message
      * @see WebSocketEvent#WebSocketEvent(Regnum, Websocket)
      */
-    public WebSocketMessageEvent(@NotNull Regnum regnum,@NotNull Websocket websocket,@NotNull String message) {
+    public WebSocketMessageEvent(@NotNull Regnum regnum, @NotNull Websocket websocket, @NotNull String message) {
         super(regnum, websocket);
         this.message = message;
     }

@@ -40,7 +40,7 @@ public class WebSocketEvent extends Event {
      * @see Event#Event(Regnum)
      */
     @SuppressWarnings("WeakerAccess")
-    public WebSocketEvent(@NotNull Regnum regnum,@NotNull Websocket websocket) {
+    public WebSocketEvent(@NotNull Regnum regnum, @NotNull Websocket websocket) {
         super(regnum);
         this.websocket = websocket;
     }

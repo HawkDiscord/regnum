@@ -22,7 +22,7 @@ version '0.0.1'
 
 subprojects {
     ext {
-        jdaVersion = '4.ALPHA.0_67' 
+        jdaVersion = '4.ALPHA.0_67'
         slf4jVersion = '1.7.25'
         log4jVersion = '2.11.0'
         cassandraVersion = '3.6.0'

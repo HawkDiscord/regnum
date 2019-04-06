@@ -24,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * Event that is fired when a command gets executed.
+ *
  * @see CommandEvent
  */
 @SuppressWarnings("unused")
@@ -31,6 +32,7 @@ public class CommandExecutedEvent extends CommandEvent {
 
     /**
      * Constructs a new Command event.
+     *
      * @param context the context of the command
      */
     public CommandExecutedEvent(@NotNull Context context) {

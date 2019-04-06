@@ -37,6 +37,7 @@ public class CommandEvent extends JDAEvent {
 
     /**
      * Constructs a new Command event.
+     *
      * @param context the context of the command
      */
     public CommandEvent(@NotNull Context context) {
@@ -47,6 +48,7 @@ public class CommandEvent extends JDAEvent {
 
     /**
      * Returns the command parser.
+     *
      * @return the {@link CommandParser}
      */
     @NotNull
@@ -56,6 +58,7 @@ public class CommandEvent extends JDAEvent {
 
     /**
      * Returns the command which fired the event.
+     *
      * @return the {@link ICommand}
      */
     @NotNull
@@ -65,6 +68,7 @@ public class CommandEvent extends JDAEvent {
 
     /**
      * Returns the context of the command.
+     *
      * @return the {@link Context}
      */
     @NotNull

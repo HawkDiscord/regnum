@@ -33,7 +33,7 @@ public class JDAEvent extends Event {
      * Constructs a new Regnum event.
      *
      * @param regnum the Regnum instance
-     * @param jda the jda shard instance on which the event got fired
+     * @param jda    the jda shard instance on which the event got fired
      */
     public JDAEvent(@NotNull Regnum regnum, @NotNull JDA jda) {
         super(regnum);

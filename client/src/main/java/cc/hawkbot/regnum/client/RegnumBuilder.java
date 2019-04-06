@@ -135,7 +135,6 @@ public class RegnumBuilder {
      * Sets the event manager {@link IEventManager} that is used by {@link Regnum} and the {@link cc.hawkbot.regnum.client.core.discord.Discord}.
      *
      * @param eventManager the event manager
-     *
      * @return the current builder
      */
     @NotNull
@@ -252,6 +251,7 @@ public class RegnumBuilder {
 
     /**
      * Returns the current message cache.
+     *
      * @return the {@link MessageCache}
      */
     @NotNull
@@ -261,6 +261,7 @@ public class RegnumBuilder {
 
     /**
      * Sets the message cache
+     *
      * @param messageCache the {@link MessageCache}
      * @return the current builder
      */
