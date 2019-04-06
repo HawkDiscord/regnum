@@ -94,7 +94,7 @@ public class FormatUtil {
         StringBuilder builder = new StringBuilder();
         commands.stream().distinct().forEach(command ->
                 builder.append("`")
-                        .append(command.name())
+                        .append(command.getName())
                         .append("`")
                         .append(", "));
         // Replace last ,
@@ -154,10 +154,10 @@ public class FormatUtil {
         var buf = new StringBuilder();
         buf.append(guild.getPrefix());
         if (command instanceof SubCommand) {
-            buf.append(((SubCommand) command).getParent().name());
+            buf.append(((SubCommand) command).getParent().getName());
             buf.append(' ');
         }
-        buf.append(command.name());
+        buf.append(command.getName());
         buf.append(' ');
         buf.append(usage);
         if (command instanceof SubCommand) {

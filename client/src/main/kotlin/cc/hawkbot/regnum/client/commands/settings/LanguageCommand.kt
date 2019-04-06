@@ -69,13 +69,13 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
             ).queue()
         }
         val language = context.regnum.languageManager.getLanguageByTag(tag)
-        target.languageTag = language.languageTag()
+        target.languageTag = language.languageTag
         target.saveAsync().thenRun {
             context.sendMessage(
                     EmbedUtil.success(
                             context.translate("command.language.success.title"),
                             context.translate("command.language.success.description")
-                                    .format(language.displayName())
+                                    .format(language.displayName)
                     )
             ).queue()
         }
@@ -83,9 +83,9 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
 
     private fun formatLanguageList(languageManager: LanguageManager): String {
         val builder = StringBuilder()
-        languageManager.languages()
+        languageManager.languages
                 .forEach {
-                    builder.append(" - ").append(it.displayName()).append('(').append('`').append(it.languageTag()).append('`').append(')').appendln()
+                    builder.append(" - ").append(it.displayName).append('(').append('`').append(it.languageTag).append('`').append(')').appendln()
                 }
         return builder.toString()
     }
@@ -98,7 +98,7 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
                         EmbedUtil.info(
                                 context.translate("command.language.guild.current.title"),
                                 context.translate("command.language.guild.current.description")
-                                        .format(context.regnum.languageManager.getLanguageByTag(target.languageTag).displayName())
+                                        .format(context.regnum.languageManager.getLanguageByTag(target.languageTag).displayName)
                         )
                 ).queue()
             }
@@ -120,13 +120,13 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
                 ).queue()
             }
             val language = context.regnum.languageManager.getLanguageByTag(tag)
-            target.languageTag = language.languageTag()
+            target.languageTag = language.languageTag
             target.saveAsync().thenRun {
                 context.sendMessage(
                         EmbedUtil.success(
                                 context.translate("command.language.guild.success.title"),
                                 context.translate("command.language.guild.success.description")
-                                        .format(language.displayName())
+                                        .format(language.displayName)
                         )
                 ).queue()
             }
@@ -135,5 +135,5 @@ class LanguageCommand : Command(Group.SETTINGS, "Language", arrayOf("language", 
 }
 
 private fun LanguageManager.getLanguageByTag(tag: String): Language {
-    return this.languages().first { it.languageTag().equals(tag, true) }
+    return this.languages.first { it.languageTag.equals(tag, true) }
 }

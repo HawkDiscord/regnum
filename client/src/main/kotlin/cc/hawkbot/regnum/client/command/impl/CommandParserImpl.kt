@@ -57,18 +57,14 @@ class CommandParserImpl(
 
     private val log = Logger.getLogger()
 
-    private val commandAssociations = mutableMapOf<String, ICommand>()
-
-    override fun commands(): Map<String, ICommand> {
-        return commandAssociations
-    }
+    override val commandAssociations = mutableMapOf<String, ICommand>()
 
     override fun registerCommand(command: ICommand) {
         command.aliases.forEach { commandAssociations[it] = command }
     }
 
     override fun unregisterCommand(command: ICommand) {
-        commandAssociations.remove(command.name())
+        commandAssociations.remove(command.name)
     }
 
     @SubscribeEvent

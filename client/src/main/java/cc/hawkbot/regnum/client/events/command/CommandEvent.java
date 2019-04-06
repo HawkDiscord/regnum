@@ -40,7 +40,7 @@ public class CommandEvent extends JDAEvent {
      * @param context the context of the command
      */
     public CommandEvent(@NotNull Context context) {
-        super(context.getRegnum(), context.jda());
+        super(context.getRegnum(), context.getJda());
         this.command = context.getCommand();
         this.context = context;
     }

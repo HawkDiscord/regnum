@@ -34,16 +34,16 @@ open class DefaultLanguageManager(final override val defaultLanguage: Language) 
     /**
      * All languages.
      */
-    val languages: Collection<Language>
+    override val languages: Collection<Language>
         get() = languagesMap.values
 
     init {
-        languagesMap[defaultLanguage.languageTag()] = defaultLanguage
+        languagesMap[defaultLanguage.languageTag] = defaultLanguage
     }
 
     override fun registerLanguage(language: Language) {
         language.regnum(regnum)
-        languagesMap[language.languageTag()] = language
+        languagesMap[language.languageTag] = language
     }
 
     override fun getLanguageByUser(id: Long): Language {

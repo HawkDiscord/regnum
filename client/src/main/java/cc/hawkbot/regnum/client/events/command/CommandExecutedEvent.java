@@ -34,6 +34,6 @@ public class CommandExecutedEvent extends CommandEvent {
      * @param context the context of the command
      */
     public CommandExecutedEvent(@NotNull Context context) {
-        super(context.getRegnum(), context.jda(), context.getCommand(), context);
+        super(context);
     }
 }
