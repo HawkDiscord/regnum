@@ -21,7 +21,7 @@ package cc.hawkbot.regnum.client.events.websocket;
 
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
-import cc.hawkbot.regnum.entites.Payload;
+import cc.hawkbot.regnum.entities.Payload;
 import org.jetbrains.annotations.NotNull;
 
 /**

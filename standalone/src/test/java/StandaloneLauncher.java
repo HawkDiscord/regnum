@@ -30,7 +30,7 @@ import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
 import cc.hawkbot.regnum.client.standalone.StandaloneRegnumBuilder;
 import cc.hawkbot.regnum.client.standalone.config.StandaloneConfig;
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
+import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket;
 import cc.hawkbot.regnum.util.logging.Logger;
 import net.dv8tion.jda.api.hooks.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;

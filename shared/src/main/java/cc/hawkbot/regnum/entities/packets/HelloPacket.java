@@ -17,45 +17,47 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.entities.packets;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
- * Websocket IDENTIFY packet.
- * Used to authenticate nodes after connecting.
+ * Websocket HELLO packet.
+ * Packet that is sent after a successful authentication
  */
 @SuppressWarnings("unused")
-public class IdentifyPacket implements Packet {
+public class HelloPacket implements Packet {
 
     /**
      * Type identifier
      */
-    public static final String IDENTIFIER = "IDENTIFY";
+    public static final String IDENTIFIER = "HELLO";
 
-    private String token;
+    @JsonProperty("s")
+    private int heartbeatInterval;
 
     /**
-     * Constructs a IdentifyPacket
+     * Constructs a hello packet.
      *
-     * @param token the authentication token
+     * @param heartbeatInterval the heartbeat interval
      */
-    public IdentifyPacket(String token) {
-        this.token = token;
+    public HelloPacket(int heartbeatInterval) {
+        this.heartbeatInterval = heartbeatInterval;
     }
 
     /**
-     * Used for serialization
+     * Serialization
      */
-    @SuppressWarnings("WeakerAccess")
-    public IdentifyPacket() {
+    public HelloPacket() {
+
     }
 
     /**
-     * Returns the token for identification.
+     * Returns the heartbeat interval.
      *
-     * @return the token
+     * @return the heartbeat interval
      */
-    public String getToken() {
-        return token;
+    public int getHeartbeatInterval() {
+        return heartbeatInterval;
     }
 }

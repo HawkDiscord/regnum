@@ -21,17 +21,17 @@ package cc.hawkbot.regnum.client.entities.cache
 
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.entities.RequiresRegnum
-import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.SnowflakeCassandraEntity
 import com.datastax.driver.mapping.Result
 import java.util.concurrent.CompletionStage
 
 /**
- * Extension of [cc.hawkbot.regnum.entites.cassandra.CassandraEntity]
+ * Extension of [cc.hawkbot.regnum.entities.cassandra.CassandraEntity]
  * @see SnowflakeCassandraEntity
- * @see cc.hawkbot.regnum.entites.cassandra.CassandraEntity
+ * @see cc.hawkbot.regnum.entities.cassandra.CassandraEntity
  */
 // That looks strange Kotlin
-abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long) : SnowflakeCassandraEntity<T>(id), RequiresRegnum {
+abstract class CacheableCassandraEntity<T : CacheableCassandraEntity<T>>(id: Long) : SnowflakeCassandraEntity<T>(id), RequiresRegnum {
 
     @Transient
     private lateinit var cache: CassandraCache<T>
@@ -48,7 +48,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
 
     /**
      * Saves the entity.
-     * @see cc.hawkbot.regnum.entites.cassandra.CassandraEntity.saveAsync
+     * @see cc.hawkbot.regnum.entities.cassandra.CassandraEntity.saveAsync
      * @return a future that completes when the request ist finished
      */
     override fun saveAsync(): CompletionStage<Void> {
@@ -58,7 +58,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
 
     /**
      * Deletes the entity.
-     * @see cc.hawkbot.regnum.entites.cassandra.CassandraEntity.deleteAsync
+     * @see cc.hawkbot.regnum.entities.cassandra.CassandraEntity.deleteAsync
      * @return a future that completes when the request ist finished
      */
     @Suppress("UNCHECKED_CAST")
@@ -68,7 +68,7 @@ abstract class CachableCassandraEntity<T : CachableCassandraEntity<T>>(id: Long)
     }
 
     /**
-     * Interface for accessing a [CachableCassandraEntity] from cc.hawkbot.regnum.io.database
+     * Interface for accessing a [CacheableCassandraEntity] from cc.hawkbot.regnum.io.database
      */
     @com.datastax.driver.mapping.annotations.Accessor
     interface Accessor<T> {

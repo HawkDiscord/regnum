@@ -21,10 +21,10 @@ package cc.hawkbot.regnum.client.entities
 
 import cc.hawkbot.regnum.client.command.permission.IPermissionHolder
 import cc.hawkbot.regnum.client.command.permission.IPermissions
-import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity
+import cc.hawkbot.regnum.client.entities.cache.CacheableCassandraEntity
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.CassandraEntity
 import com.datastax.driver.mapping.Result
 import com.datastax.driver.mapping.annotations.Column
 import com.datastax.driver.mapping.annotations.Param
@@ -38,7 +38,7 @@ import java.util.concurrent.CompletionStage
  */
 @Suppress("unused")
 @Table(name = CassandraEntity.TABLE_PREFIX + "user")
-class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
+class RegnumUser : CacheableCassandraEntity<RegnumUser>, IPermissionHolder {
 
     /**
      * The language tag.
@@ -52,9 +52,17 @@ class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
     constructor() : this(-1)
 
     /**
+     * The locale of the user.
+     * Hopefully not be tracked by Cassandra PLS HELP MEEEEE
+     */
+    val locale: Locale
+        get() = Locale.forLanguageTag(languageTag)
+
+    /**
      * Returns the [Locale] of the user
      * @return the [Locale]
      */
+    @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("locale"))
     fun locale(): Locale {
         return Locale.forLanguageTag(languageTag)
     }
@@ -72,7 +80,7 @@ class RegnumUser : CachableCassandraEntity<RegnumUser>, IPermissionHolder {
     }
 
     @com.datastax.driver.mapping.annotations.Accessor
-    interface Accessor : CachableCassandraEntity.Accessor<RegnumUser> {
+    interface Accessor : CacheableCassandraEntity.Accessor<RegnumUser> {
         @Query("SELECT * FROM " + CassandraEntity.TABLE_PREFIX + "user WHERE id = :id")
         override fun get(@Param("id") id: Long): Result<RegnumUser>
     }

@@ -41,7 +41,7 @@ import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
 import cc.hawkbot.regnum.client.util._setRegnum
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.CassandraEntity
 import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.util.logging.Logger
 import cc.hawkbot.regnum.waiter.impl.EventWaiter

@@ -17,47 +17,39 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.entities.packets.discord;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import cc.hawkbot.regnum.entities.packets.Packet;
 
 /**
- * Websocket HELLO packet.
- * Packet that is sent after a successful authentication
+ * Discord ADD packet.
+ * Packet that is used to add another Discord shard to a node
  */
 @SuppressWarnings("unused")
-public class HelloPacket implements Packet {
+public class AddPacket implements Packet {
 
     /**
      * Type identifier
      */
-    public static final String IDENTIFIER = "HELLO";
+    public static final String IDENTIFIER = "ADD_SHARD";
 
-    @JsonProperty("s")
-    private int heartbeatInterval;
+    private final Integer[] shards;
 
     /**
-     * Constructs a hello packet.
+     * Constructs a new add packet
      *
-     * @param heartbeatInterval the heartbeat interval
+     * @param shards the null-based shard ids
      */
-    public HelloPacket(int heartbeatInterval) {
-        this.heartbeatInterval = heartbeatInterval;
+    public AddPacket(Integer[] shards) {
+        this.shards = shards;
     }
 
     /**
-     * Serialization
-     */
-    public HelloPacket() {
-
-    }
-
-    /**
-     * Returns the heartbeat interval.
+     * Returns the shard ids
      *
-     * @return the heartbeat interval
+     * @return the shard ids
      */
-    public int getHeartbeatInterval() {
-        return heartbeatInterval;
+    public Integer[] getShards() {
+        return shards;
     }
 }

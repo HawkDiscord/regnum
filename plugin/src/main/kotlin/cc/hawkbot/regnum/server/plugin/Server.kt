@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.plugin
 
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.sentry.SentryClient
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler

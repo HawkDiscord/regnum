@@ -229,7 +229,7 @@ fun checkMention(context: Context, action: (mention: IPermissionHolder) -> Unit)
 
 fun checkArgs(context: Context, action: (node: String) -> Unit) {
     val args = context.args
-    if (args.size() > 2) {
+    if (args.size > 2) {
         return context.sendMessage(
                 EmbedUtil.error(
                         context.translate("command.permissions.error.nodemissing.title"),

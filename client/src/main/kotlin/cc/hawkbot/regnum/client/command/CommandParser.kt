@@ -26,15 +26,35 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
  */
 interface CommandParser {
 
+    /**
+     * The prefix that is valid on all guilds.
+     */
     val defaultPrefix: String
 
+    /**
+     * A list of user ids who has all permissions.
+     */
     val owners: List<Long>
+
+    /**
+     * A map containing all aliases and its commands.
+     */
+    val commandAssociations: Map<String, ICommand>
+
+    /**
+     * A list of all commands.
+     */
+    val commands: List<ICommand>
+        get() = commandAssociations.values.distinct()
 
     /**
      * Returns all commands and its aliases in a map.
      * @return all commands and its aliases in a map
      */
-    fun commands(): Map<String, ICommand>
+    @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("commandAssociations"))
+    fun commands(): Map<String, ICommand> {
+        return commandAssociations
+    }
 
     /**
      * Registers a command

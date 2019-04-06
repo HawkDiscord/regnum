@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
-import cc.hawkbot.regnum.entites.packets.IdentifyPacket
+import cc.hawkbot.regnum.entities.packets.IdentifyPacket
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent

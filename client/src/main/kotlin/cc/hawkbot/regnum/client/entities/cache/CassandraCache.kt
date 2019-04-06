@@ -22,9 +22,9 @@ package cc.hawkbot.regnum.client.entities.cache
 import net.dv8tion.jda.api.entities.ISnowflake
 
 /**
- * A cache of [CachableCassandraEntity].
+ * A cache of [CacheableCassandraEntity].
  */
-interface CassandraCache<T : CachableCassandraEntity<T>> {
+interface CassandraCache<T : CacheableCassandraEntity<T>> {
 
     /**
      * Returns an entity by its [id].

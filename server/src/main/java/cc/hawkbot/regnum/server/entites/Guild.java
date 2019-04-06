@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.entites;
 
-import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity;
+import cc.hawkbot.regnum.entities.cassandra.SnowflakeCassandraEntity;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.Column;
 import com.datastax.driver.mapping.annotations.Param;
@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
+import static cc.hawkbot.regnum.entities.cassandra.CassandraEntity.TABLE_PREFIX;
 
 /**
  * Entity for guilds.

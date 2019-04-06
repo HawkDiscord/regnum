@@ -68,22 +68,39 @@ interface Language : RequiresRegnum {
         }
     }
 
+    /**
+     * The languages representative [Locale].
+     */
     val locale: Locale
+
+    /**
+     * The language tag of [locale].
+     */
+    val languageTag: String
+        get() = locale.toLanguageTag()
+
+    /**
+     * The display name of the [locale].
+     */
+    val displayName: String
+        get() = locale.displayName
 
     /**
      * Returns the language-tag.
      * @return the language-tag.
      */
+    @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("languageTag"))
     fun languageTag(): String {
-        return locale.toLanguageTag()
+        return languageTag
     }
 
     /**
      * Returns the display-name.
      * @return the display-name.
      */
+    @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("displayName"))
     fun displayName(): String {
-        return locale.displayName
+        return displayName
     }
 
     /**

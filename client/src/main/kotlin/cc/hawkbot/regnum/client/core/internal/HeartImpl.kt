@@ -22,10 +22,10 @@ package cc.hawkbot.regnum.client.core.internal
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.core.Heart
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket
-import cc.hawkbot.regnum.entites.packets.HeartBeatPacket
-import cc.hawkbot.regnum.entites.packets.HelloPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket
+import cc.hawkbot.regnum.entities.packets.HeartBeatPacket
+import cc.hawkbot.regnum.entities.packets.HelloPacket
 import cc.hawkbot.regnum.util.DefaultThreadFactory
 import cc.hawkbot.regnum.util.logging.Logger
 import java.util.concurrent.Executors

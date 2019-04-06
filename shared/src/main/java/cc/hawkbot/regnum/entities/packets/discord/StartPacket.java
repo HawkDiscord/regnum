@@ -17,9 +17,9 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets.discord;
+package cc.hawkbot.regnum.entities.packets.discord;
 
-import cc.hawkbot.regnum.entites.packets.Packet;
+import cc.hawkbot.regnum.entities.packets.Packet;
 
 /**
  * Discord START packet.

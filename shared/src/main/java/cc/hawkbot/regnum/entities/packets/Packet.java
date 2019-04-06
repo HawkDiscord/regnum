@@ -17,39 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets.discord;
+package cc.hawkbot.regnum.entities.packets;
 
-import cc.hawkbot.regnum.entites.packets.Packet;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
- * Discord ADD packet.
- * Packet that is used to add another Discord shard to a node
+ * Generic packet with nice annotation
  */
-@SuppressWarnings("unused")
-public class AddPacket implements Packet {
-
-    /**
-     * Type identifier
-     */
-    public static final String IDENTIFIER = "ADD_SHARD";
-
-    private final Integer[] shards;
-
-    /**
-     * Constructs a new add packet
-     *
-     * @param shards the null-based shard ids
-     */
-    public AddPacket(Integer[] shards) {
-        this.shards = shards;
-    }
-
-    /**
-     * Returns the shard ids
-     *
-     * @return the shard ids
-     */
-    public Integer[] getShards() {
-        return shards;
-    }
+@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
+public interface Packet {
 }

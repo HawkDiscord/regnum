@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.cassandra;
+package cc.hawkbot.regnum.entities.cassandra;
 
 import cc.hawkbot.regnum.io.database.CassandraSource;
 import cc.hawkbot.regnum.util.logging.Logger;

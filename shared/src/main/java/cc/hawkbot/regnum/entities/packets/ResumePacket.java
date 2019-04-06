@@ -17,13 +17,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
-
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
+package cc.hawkbot.regnum.entities.packets;
 
 /**
- * Generic packet with nice annotation
+ * Currently unused
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
-public interface Packet {
+@SuppressWarnings("unused")
+public class ResumePacket extends IdentifyPacket {
+
+    public static final String IDENTIFIER = "RESUME";
+
 }

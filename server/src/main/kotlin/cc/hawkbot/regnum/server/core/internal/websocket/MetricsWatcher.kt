@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.util.logging.Logger

@@ -20,8 +20,8 @@
 package cc.hawkbot.regnum.client.core.internal
 
 import cc.hawkbot.regnum.client.Regnum
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import java.io.Closeable
 import java.lang.management.ManagementFactory
 import java.util.concurrent.Executors

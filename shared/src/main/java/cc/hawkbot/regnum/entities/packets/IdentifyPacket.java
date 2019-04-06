@@ -17,17 +17,45 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.entities.packets;
+
 
 /**
- * Websocket HEARTBEAT_ACK packet.
- * Used to acknowledge websocket heartbeat.
- * Sent by client
+ * Websocket IDENTIFY packet.
+ * Used to authenticate nodes after connecting.
  */
-public class HeartBeatAckPacket implements Packet {
+@SuppressWarnings("unused")
+public class IdentifyPacket implements Packet {
 
     /**
      * Type identifier
      */
-    public static final String IDENTIFIER = "HEARTBEAT_ACK";
+    public static final String IDENTIFIER = "IDENTIFY";
+
+    private String token;
+
+    /**
+     * Constructs a IdentifyPacket
+     *
+     * @param token the authentication token
+     */
+    public IdentifyPacket(String token) {
+        this.token = token;
+    }
+
+    /**
+     * Used for serialization
+     */
+    @SuppressWarnings("WeakerAccess")
+    public IdentifyPacket() {
+    }
+
+    /**
+     * Returns the token for identification.
+     *
+     * @return the token
+     */
+    public String getToken() {
+        return token;
+    }
 }

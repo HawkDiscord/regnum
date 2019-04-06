@@ -27,8 +27,8 @@ import cc.hawkbot.regnum.client.events.websocket.WebSocketCloseEvent
 import cc.hawkbot.regnum.client.events.websocket.WebSocketConnectedEvent
 import cc.hawkbot.regnum.client.events.websocket.WebSocketErrorEvent
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.IdentifyPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.IdentifyPacket
 import cc.hawkbot.regnum.util.logging.Logger
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake

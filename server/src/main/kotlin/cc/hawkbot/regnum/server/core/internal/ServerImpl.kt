@@ -19,8 +19,8 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
-import cc.hawkbot.regnum.entites.json.Json
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.json.Json
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.sentry.SentryAppender
 import cc.hawkbot.regnum.sentry.SentryClient

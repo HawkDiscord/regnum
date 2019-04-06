@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.client.standalone.config
 
-import cc.hawkbot.regnum.entites.json.JsonObject
+import cc.hawkbot.regnum.entities.json.JsonObject
 import okhttp3.OkHttpClient
 import okhttp3.Request
 

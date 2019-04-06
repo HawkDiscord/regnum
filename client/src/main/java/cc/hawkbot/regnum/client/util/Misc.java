@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.client.util;
 
-import cc.hawkbot.regnum.entites.json.Json;
+import cc.hawkbot.regnum.entities.json.Json;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

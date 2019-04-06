@@ -21,8 +21,8 @@ package cc.hawkbot.regnum.client.entities.permission;
 
 import cc.hawkbot.regnum.client.command.permission.PermissionManager;
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache;
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity;
-import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity;
+import cc.hawkbot.regnum.entities.cassandra.CassandraEntity;
+import cc.hawkbot.regnum.entities.cassandra.SnowflakeCassandraEntity;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.*;
 import net.dv8tion.jda.api.entities.IPermissionHolder;

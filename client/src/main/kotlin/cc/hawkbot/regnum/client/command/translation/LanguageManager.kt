@@ -33,18 +33,22 @@ import net.dv8tion.jda.api.entities.User
 interface LanguageManager : RequiresRegnum {
 
     /**
-     * The fallback language
+     * The fallback language.
      */
     val defaultLanguage: Language
 
     /**
-     * A list of all languages.
-     * @return a list of all languages.
+     * List of all languages.
      */
-    fun languages(): Collection<Language>
+    val languages: Collection<Language>
+
+    @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("languages"))
+    fun languages(): Collection<Language> {
+        return languages
+    }
 
     /**
-     * Registers the [language]
+     * Registers the [language].
      * @param language the language
      */
     fun registerLanguage(language: Language)
@@ -56,7 +60,7 @@ interface LanguageManager : RequiresRegnum {
     fun isTranslated(languageTag: String): Boolean
 
     /**
-     * Registers the [languages]
+     * Registers the [languages].
      * @param languages the languages
      */
     fun registerLanguages(vararg languages: Language) {
@@ -64,7 +68,7 @@ interface LanguageManager : RequiresRegnum {
     }
 
     /**
-     * Registers the [languages]
+     * Registers the [languages].
      * @param languages the language
      */
     fun registerLanguages(languages: Collection<Language>) {
@@ -86,7 +90,7 @@ interface LanguageManager : RequiresRegnum {
     }
 
     /**
-     * Returns the language by a [snowflake]
+     * Returns the language by a [snowflake].
      * @return the language by a [snowflake]
      */
     fun getLanguageByUser(snowflake: ISnowflake): Language {

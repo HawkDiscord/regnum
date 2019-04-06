@@ -154,7 +154,7 @@ class CommandParserImpl(
         regnum.eventManager.handle(CommandFailedEvent(context, e))
         log.error("[CommandParser] An error occurred while executing command.", e)
         //TODO: Translations
-        val future = SafeMessage.sendMessage(EmbedUtil.error("An unknown error occurred", Emotes.LOADING + "Collecting information about the error"), context.channel()).submit()
+        val future = SafeMessage.sendMessage(EmbedUtil.error("An unknown error occurred", Emotes.LOADING + "Collecting information about the error"), context.channel).submit()
         try {
             collectErrorInformation(e, context, future)
         } catch (e: Exception) {
@@ -165,13 +165,13 @@ class CommandParserImpl(
 
     private fun collectErrorInformation(e: Exception, context: ContextImpl, future: CompletableFuture<Message>) {
         val information = StringBuilder()
-        val channel = context.channel()
+        val channel = context.channel
         information.append("TextChannel: ").append("#").append(channel.name)
                 .append("(").append(channel.id).append(")").appendln()
-        val guild = context.guild()
+        val guild = context.guild
         information.append("Guild: ").append(guild.name).append("(").append(guild.id)
                 .append(")").appendln()
-        val executor = context.author()
+        val executor = context.author
         information.append("Executor: ").append("@").append(executor.name).append("#")
                 .append(executor.discriminator).append("(").append(executor.id).append(")")
                 .appendln()

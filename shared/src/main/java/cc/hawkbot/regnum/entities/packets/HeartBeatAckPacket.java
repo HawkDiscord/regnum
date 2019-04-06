@@ -17,14 +17,17 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.entities.packets;
 
 /**
- * Currently unused
+ * Websocket HEARTBEAT_ACK packet.
+ * Used to acknowledge websocket heartbeat.
+ * Sent by client
  */
-@SuppressWarnings("unused")
-public class ResumePacket extends IdentifyPacket {
+public class HeartBeatAckPacket implements Packet {
 
-    public static final String IDENTIFIER = "RESUME";
-
+    /**
+     * Type identifier
+     */
+    public static final String IDENTIFIER = "HEARTBEAT_ACK";
 }

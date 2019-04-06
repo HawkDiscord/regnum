@@ -19,8 +19,8 @@
 
 package cc.hawkbot.regnum.server.entities
 
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
-import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.CassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.SnowflakeCassandraEntity
 import com.datastax.driver.mapping.Result
 import com.datastax.driver.mapping.annotations.Column
 import com.datastax.driver.mapping.annotations.Param

@@ -25,30 +25,33 @@ import cc.hawkbot.regnum.client.Regnum
  * Default implementation of [LanguageManager].
  * @param defaultLanguage the language that should be used as a fallback language
  */
+@Suppress("MemberVisibilityCanBePrivate")
 open class DefaultLanguageManager(final override val defaultLanguage: Language) : LanguageManager {
 
-    private val languages = mutableMapOf<String, Language>()
+    private val languagesMap = mutableMapOf<String, Language>()
     private lateinit var regnum: Regnum
 
-    init {
-        languages[defaultLanguage.languageTag()] = defaultLanguage
-    }
+    /**
+     * All languages.
+     */
+    val languages: Collection<Language>
+        get() = languagesMap.values
 
-    override fun languages(): Collection<Language> {
-        return languages.values
+    init {
+        languagesMap[defaultLanguage.languageTag()] = defaultLanguage
     }
 
     override fun registerLanguage(language: Language) {
         language.regnum(regnum)
-        languages[language.languageTag()] = language
+        languagesMap[language.languageTag()] = language
     }
 
     override fun getLanguageByUser(id: Long): Language {
-        return languages[regnum.user(id).languageTag]!!
+        return languagesMap[regnum.user(id).languageTag]!!
     }
 
     override fun getLanguageByGuild(id: Long): Language {
-        return languages[regnum.guild(id).languageTag]!!
+        return languagesMap[regnum.guild(id).languageTag]!!
     }
 
     override fun regnum(): Regnum {
@@ -61,6 +64,6 @@ open class DefaultLanguageManager(final override val defaultLanguage: Language) 
     }
 
     override fun isTranslated(languageTag: String): Boolean {
-        return languages.containsKey(languageTag)
+        return languagesMap.containsKey(languageTag)
     }
 }

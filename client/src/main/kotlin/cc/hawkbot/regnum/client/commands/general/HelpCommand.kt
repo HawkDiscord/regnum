@@ -44,7 +44,7 @@ class HelpCommand : Command(Group.GENERAL, "Help", arrayOf("help", "h"), Command
             return context.sendMessage(embed).queue()
         }
         val command = args[0]
-        if (!commandParser.commands().containsKey(command)) {
+        if (!commandParser.commandAssociations.containsKey(command)) {
             return context.sendMessage(
                     EmbedUtil.error(
                             context.translate("command.help.invalid.title"),
@@ -52,7 +52,7 @@ class HelpCommand : Command(Group.GENERAL, "Help", arrayOf("help", "h"), Command
                     )
             ).queue()
         }
-        val commandObject = commandParser.commands().getValue(command)
+        val commandObject = commandParser.commandAssociations.getValue(command)
         context.sendMessage(
                 FormatUtil.formatCommand(commandObject, context.regnumGuild(), context.regnum)
         ).queue()

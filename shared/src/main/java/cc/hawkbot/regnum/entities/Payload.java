@@ -17,10 +17,10 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites;
+package cc.hawkbot.regnum.entities;
 
-import cc.hawkbot.regnum.entites.json.Json;
-import cc.hawkbot.regnum.entites.packets.Packet;
+import cc.hawkbot.regnum.entities.json.Json;
+import cc.hawkbot.regnum.entities.packets.Packet;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.annotation.Nonnull;

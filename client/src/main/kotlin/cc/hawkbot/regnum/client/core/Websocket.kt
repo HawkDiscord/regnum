@@ -20,7 +20,7 @@
 package cc.hawkbot.regnum.client.core
 
 import cc.hawkbot.regnum.client.core.internal.WebsocketImpl
-import cc.hawkbot.regnum.entites.Payload
+import cc.hawkbot.regnum.entities.Payload
 import com.google.common.base.Preconditions
 import java.io.Closeable
 

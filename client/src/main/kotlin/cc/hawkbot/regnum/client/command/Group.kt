@@ -58,7 +58,7 @@ interface Group {
      * @return a list of all commands with that group
      */
     fun commands(commandParser: CommandParser): Collection<ICommand> {
-        return commandParser.commands().filter { it.value.group == this }.values
+        return commandParser.commandAssociations.filter { it.value.group == this }.values
     }
 
     companion object {
@@ -80,26 +80,30 @@ interface Group {
                 .setPermissions(GroupPermissions(node = "general", public = true))
                 .build()
 
+        @JvmStatic
+        val EMPTY = object : Group {
+            override val public: Boolean
+                get() = false
+            override val name: String
+                get() = "none"
+            override val description: String
+                get() = "none"
+            override val permissions = GroupPermissions(
+                    true,
+                    false,
+                    false,
+                    "none"
+            )
+        }
+
         /**
          * Returns an empty group.
          * @return an empty group
          */
         @JvmStatic
+        @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("EMPTY"))
         fun empty(): Group {
-            return object : Group {
-                override val public: Boolean
-                    get() = false
-                override val name: String
-                    get() = "none"
-                override val description: String
-                    get() = "none"
-                override val permissions = GroupPermissions(
-                        true,
-                        false,
-                        false,
-                        "none"
-                )
-            }
+            return EMPTY
         }
     }
 }

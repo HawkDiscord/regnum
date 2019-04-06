@@ -19,8 +19,8 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket.entities
 
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.entities.Pulse

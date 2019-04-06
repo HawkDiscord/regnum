@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.entites.packets;
+package cc.hawkbot.regnum.entities.packets;
 
 @SuppressWarnings("UnusedReturnValue")
 public class MetricsPacket implements Packet {
