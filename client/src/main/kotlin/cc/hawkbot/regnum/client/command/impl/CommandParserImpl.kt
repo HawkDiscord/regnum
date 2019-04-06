@@ -26,6 +26,8 @@ import cc.hawkbot.regnum.client.command.ISubCommand
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.events.command.CommandExecutedEvent
+import cc.hawkbot.regnum.client.events.command.CommandFailedEvent
 import cc.hawkbot.regnum.client.util.*
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.entities.Message
@@ -145,10 +147,11 @@ class CommandParserImpl(
         } catch (e: Exception) {
             handlerError(e, context)
         }
-
+        regnum.eventManager.handle(CommandExecutedEvent(context))
     }
 
     private fun handlerError(e: Exception, context: ContextImpl) {
+        regnum.eventManager.handle(CommandFailedEvent(context, e))
         log.error("[CommandParser] An error occurred while executing command.", e)
         //TODO: Translations
         val future = SafeMessage.sendMessage(EmbedUtil.error("An unknown error occurred", Emotes.LOADING + "Collecting information about the error"), context.channel()).submit()
