@@ -33,6 +33,7 @@ public interface RequiresRegnum {
      *
      * @return the Regnum instance
      */
+    @NotNull
     Regnum regnum();
 
     /**

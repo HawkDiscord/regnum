@@ -24,6 +24,9 @@ import cc.hawkbot.regnum.server.plugin.rest.RestHandler
 import io.javalin.Context
 import io.javalin.core.HandlerType
 
+/**
+ * Rest handler which redirects all requests from [endpoint] to the [destination] using [code].
+ */
 class RedirectHandler(endpoint: String, private val destination: String, private val code: Int = 301) : RestHandler(endpoint, HandlerType.GET) {
     override fun handle(token: String?, context: Context, server: Server) {
         context.redirect(destination, code)

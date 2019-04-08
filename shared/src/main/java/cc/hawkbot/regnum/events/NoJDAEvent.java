@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.events;
 
-import cc.hawkbot.regnum.entites.EmptyJDA;
+import cc.hawkbot.regnum.entities.EmptyJDA;
 import net.dv8tion.jda.api.events.Event;
 
 @SuppressWarnings("WeakerAccess")

@@ -19,8 +19,8 @@
 
 package cc.hawkbot.regnum.server.plugin.entities
 
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.Websocket
 import io.javalin.websocket.WsSession
 

@@ -126,7 +126,7 @@ abstract class ChannelBlockCommand(
     }
 
     protected fun formatChannels(context: Context, channels: Collection<Long>): String {
-        return channels.joinToString(prefix = "`", separator = "`, `", postfix = "`") { context.guild().getTextChannelById(it).name }
+        return channels.joinToString(prefix = "`", separator = "`, `", postfix = "`") { context.guild.getTextChannelById(it).name }
     }
 
     protected fun checkEnabled(

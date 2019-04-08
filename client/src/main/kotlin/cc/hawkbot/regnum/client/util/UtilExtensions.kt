@@ -20,7 +20,7 @@
 package cc.hawkbot.regnum.client.util
 
 /**
- * Filters for [predicate] matching elements and add non-matching elements to [destination]
+ * Filters for [predicate] matching elements and add non-matching elements to [destination].
  * @return the matching elements
  */
 inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterAndExtract(destination: C, predicate: (T) -> Boolean): MutableCollection<T> {

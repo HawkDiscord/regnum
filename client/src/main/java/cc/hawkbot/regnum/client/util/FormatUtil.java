@@ -46,7 +46,8 @@ public class FormatUtil {
      * @param embed The embed
      * @return The embed as plain text
      */
-    public static String stringifyEmbed(MessageEmbed embed) {
+    @NotNull
+    public static String stringifyEmbed(@NotNull MessageEmbed embed) {
         var builder = new StringBuilder();
         if (embed.getTitle() != null) {
             builder.append("**").append(embed.getTitle()).append("**").append("\n");
@@ -74,7 +75,8 @@ public class FormatUtil {
      * @return the formatted group
      * @see FormatUtil#generateCommandList(Collection)
      */
-    public static String generateCommandList(Group group, CommandParser parser) {
+    @NotNull
+    public static String generateCommandList(@NotNull Group group, @NotNull CommandParser parser) {
         return generateCommandList(group.commands(parser));
     }
 
@@ -84,14 +86,15 @@ public class FormatUtil {
      * @param commands a collection of commands
      * @return the formatted collection
      */
-    public static String generateCommandList(Collection<ICommand> commands) {
+    @NotNull
+    public static String generateCommandList(@NotNull Collection<ICommand> commands) {
         if (commands.isEmpty()) {
             return "";
         }
         StringBuilder builder = new StringBuilder();
         commands.stream().distinct().forEach(command ->
                 builder.append("`")
-                        .append(command.name())
+                        .append(command.getName())
                         .append("`")
                         .append(", "));
         // Replace last ,
@@ -119,9 +122,7 @@ public class FormatUtil {
         embedBuilder = embedBuilder.addField("Required permissions", parsePermissions(command.getPermissions()), false);
         if (!(command instanceof SubCommand) && !command.getSubCommandAssociations().isEmpty()) {
             var buf = new StringBuilder();
-            command.getSubCommandAssociations().values().stream().distinct().forEach(it -> {
-                buf.append(formatUsage(it.getUsage(), it, guild, regnum)).append(System.lineSeparator());
-            });
+            command.getSubCommandAssociations().values().stream().distinct().forEach(it -> buf.append(formatUsage(it.getUsage(), it, guild, regnum)).append(System.lineSeparator()));
             embedBuilder = embedBuilder.addField("Subcommands", buf.toString(), false);
         }
         return embedBuilder;
@@ -153,10 +154,10 @@ public class FormatUtil {
         var buf = new StringBuilder();
         buf.append(guild.getPrefix());
         if (command instanceof SubCommand) {
-            buf.append(((SubCommand) command).getParent().name());
+            buf.append(((SubCommand) command).getParent().getName());
             buf.append(' ');
         }
-        buf.append(command.name());
+        buf.append(command.getName());
         buf.append(' ');
         buf.append(usage);
         if (command instanceof SubCommand) {

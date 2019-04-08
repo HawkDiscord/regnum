@@ -46,6 +46,10 @@ public class SentryAppender extends AbstractAppender {
     private static SentryClient client;
     private final Level[] WHITELISTED_LEVELS = {Level.ERROR, Level.FATAL, Level.TRACE};
 
+    protected SentryAppender(String name, Filter filter, final Layout<? extends Serializable> layout) {
+        super(name, filter, layout);
+    }
+
     /**
      * Method that injects the {@link SentryClient}.
      *
@@ -53,24 +57,6 @@ public class SentryAppender extends AbstractAppender {
      */
     public static void injectSentry(SentryClient sentry) {
         client = sentry;
-    }
-
-    protected SentryAppender(String name, Filter filter, final Layout<? extends Serializable> layout) {
-        super(name, filter, layout);
-    }
-
-    @Override
-    public void append(LogEvent event) {
-        if (client == null) {
-            return;
-        }
-        if (event.getThrown() != null) {
-            client.sendException(event.getThrown());
-        }
-
-        if (Arrays.asList(WHITELISTED_LEVELS).contains(event.getLevel()) && event.getThrown() == null) {
-            client.sendMessage(event.getMessage().getFormattedMessage());
-        }
     }
 
     /**
@@ -88,5 +74,19 @@ public class SentryAppender extends AbstractAppender {
             @PluginElement("Layout") Layout<? extends Serializable> layout) {
         return new SentryAppender(name, filter, layout)
                 ;
+    }
+
+    @Override
+    public void append(LogEvent event) {
+        if (client == null) {
+            return;
+        }
+        if (event.getThrown() != null) {
+            client.sendException(event.getThrown());
+        }
+
+        if (Arrays.asList(WHITELISTED_LEVELS).contains(event.getLevel()) && event.getThrown() == null) {
+            client.sendMessage(event.getMessage().getFormattedMessage());
+        }
     }
 }

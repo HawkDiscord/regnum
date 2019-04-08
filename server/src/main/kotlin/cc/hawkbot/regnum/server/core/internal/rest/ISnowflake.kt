@@ -24,6 +24,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import net.dv8tion.jda.api.entities.ISnowflake
 import java.time.OffsetDateTime
 
+/**
+ * I snowflake mix-in to block some not needed methods from being serialized.
+ */
 @Suppress("unused", "RedundantModalityModifier")
 abstract interface ISnowflake : ISnowflake {
 

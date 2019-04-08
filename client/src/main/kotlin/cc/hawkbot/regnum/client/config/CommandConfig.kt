@@ -38,6 +38,7 @@ import java.util.concurrent.Executors
  * @property languageManager the language manager
  * @constructor constructs a new CommandConfig
  */
+@Suppress("unused")
 data class CommandConfig(
         val defaultPrefix: String,
         val permissionProvider: IPermissionProvider,

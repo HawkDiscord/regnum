@@ -17,7 +17,7 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-@file:Suppress("ObjectPropertyName", "FunctionName")
+@file:Suppress("ObjectPropertyName", "FunctionName", "unused")
 
 package cc.hawkbot.regnum.client.util
 

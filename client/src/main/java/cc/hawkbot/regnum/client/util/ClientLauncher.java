@@ -32,9 +32,6 @@ import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
-import cc.hawkbot.regnum.client.interaction.ConfirmationMessage;
-import cc.hawkbot.regnum.client.interaction.ConfirmationMessageBuilder;
-import cc.hawkbot.regnum.client.interaction.PaginatorBuilder;
 import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
 import cc.hawkbot.regnum.util.logging.Logger;
 import net.dv8tion.jda.api.hooks.SubscribeEvent;
@@ -55,10 +52,6 @@ public class ClientLauncher {
 
     private final Regnum regnum;
 
-    public static void main(String[] args) {
-        new ClientLauncher();
-    }
-
     private ClientLauncher() {
         Logger.LOG_LEVEL = Level.DEBUG;
         var builder = new RegnumBuilder()
@@ -77,6 +70,10 @@ public class ClientLauncher {
         regnum = builder.build();
     }
 
+    public static void main(String[] args) {
+        new ClientLauncher();
+    }
+
     @SubscribeEvent
     @SuppressWarnings("unused")
     private void onMessage(WebSocketMessageEvent event) {
@@ -87,11 +84,14 @@ public class ClientLauncher {
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {
         public Command() {
-            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
+            super(Group.getEMPTY(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
         }
 
         @Override
         public void execute(@NotNull Arguments args, @NotNull Context context) {
+            context.sendMessage(
+                    "Mentions" + context.getMentions().list() + "\n" +
+                            "Args: " + String.join(" ", context.getArgs().array())
 
             if (!args.isEmpty()) {
                 if (args.get(0).equals("error")) {

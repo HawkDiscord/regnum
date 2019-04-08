@@ -19,9 +19,9 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.HelloPacket
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.HelloPacket
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.server.core.internal.ServerImpl
 import cc.hawkbot.regnum.server.core.internal.websocket.entities.NodeImpl
 import cc.hawkbot.regnum.server.plugin.Server

@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.plugin.events.websocket;
 
-import cc.hawkbot.regnum.entites.Payload;
+import cc.hawkbot.regnum.entities.Payload;
 import cc.hawkbot.regnum.server.plugin.Server;
 import cc.hawkbot.regnum.server.plugin.Websocket;
 import io.javalin.websocket.WsSession;

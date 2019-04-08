@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client.util;
 import cc.hawkbot.regnum.client.Regnum;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.User;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Some translation utils.
@@ -37,7 +38,8 @@ public class TranslationUtil {
      * @param user   the user
      * @return the translated string
      */
-    public static String translate(Regnum regnum, String key, User user) {
+    @NotNull
+    public static String translate(@NotNull Regnum regnum, @NotNull String key, @NotNull User user) {
         return translate(regnum, key, user.getIdLong());
     }
 
@@ -49,7 +51,8 @@ public class TranslationUtil {
      * @param userId the id of the user
      * @return the translated string
      */
-    public static String translate(Regnum regnum, String key, String userId) {
+    @NotNull
+    public static String translate(@NotNull Regnum regnum, @NotNull String key, @NotNull String userId) {
         return translate(regnum, key, Long.parseUnsignedLong(userId));
     }
 
@@ -61,7 +64,8 @@ public class TranslationUtil {
      * @param userId the id of the user
      * @return the translated string
      */
-    public static String translate(Regnum regnum, String key, Long userId) {
+    @NotNull
+    public static String translate(@NotNull Regnum regnum, @NotNull String key, @NotNull Long userId) {
         return regnum.getLanguageManager().getLanguageByUser(userId).translate(key);
     }
 
@@ -73,7 +77,8 @@ public class TranslationUtil {
      * @param guild  the guild
      * @return the translated string
      */
-    public static String translateByGuild(Regnum regnum, String key, Guild guild) {
+    @NotNull
+    public static String translateByGuild(@NotNull Regnum regnum, @NotNull String key, @NotNull Guild guild) {
         return translateByGuild(regnum, key, guild.getIdLong());
     }
 
@@ -85,7 +90,8 @@ public class TranslationUtil {
      * @param guildId the if of the guild
      * @return the translated string
      */
-    public static String translateByGuild(Regnum regnum, String key, String guildId) {
+    @NotNull
+    public static String translateByGuild(@NotNull Regnum regnum, @NotNull String key, @NotNull String guildId) {
         return translateByGuild(regnum, key, Long.parseUnsignedLong(guildId));
     }
 
@@ -97,7 +103,8 @@ public class TranslationUtil {
      * @param guildId the if of the guild
      * @return the translated string
      */
-    public static String translateByGuild(Regnum regnum, String key, Long guildId) {
+    @NotNull
+    public static String translateByGuild(@NotNull Regnum regnum, @NotNull String key, @NotNull Long guildId) {
         return regnum.getLanguageManager().getLanguageByGuild(guildId).translate(key);
     }
 }

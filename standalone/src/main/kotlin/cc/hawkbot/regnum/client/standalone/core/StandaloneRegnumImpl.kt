@@ -28,6 +28,9 @@ import cc.hawkbot.regnum.client.standalone.config.StandaloneConfig
 import cc.hawkbot.regnum.client.util._setRegnum
 import net.dv8tion.jda.api.hooks.IEventManager
 
+/**
+ * Implementation of Regnum which does not connect to the websocket
+ */
 class StandaloneRegnumImpl(
         builder: StandaloneRegnumBuilder,
         eventManager: IEventManager
@@ -36,8 +39,10 @@ class StandaloneRegnumImpl(
         eventManager,
         builder.gameAnimatorConfig,
         builder.commandConfig,
-        builder.disabledFeatures
+        builder.disabledFeatures,
+        builder.messageCache
 ) {
+
 
     override var websocket: WebsocketImpl
         get() = throw UnsupportedOperationException("Standalone Regnum client does not support websocket")

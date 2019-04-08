@@ -27,10 +27,9 @@ plugins {
     application
 }
 
-group = "cc.hawkbot"
-version = "1.0-SNAPSHOT"
+group = "cc.hawkbot.regnum"
+version = "0.0.1"
 
-val log4jVersion = "2.11.2"
 val cliVersion = "1.4"
 
 repositories {
@@ -44,16 +43,16 @@ dependencies {
     implementation(project(":plugin"))
     implementation(project(":shared"))
 
-    implementation("de.foryasee:plugins:1.1.0")
+    implementation("de.foryasee", "plugins", project.ext["pluginsVersion"] as String)
 
     // Server
-    implementation("io.javalin:javalin:2.6.0")
-    @Suppress("SpellCheckingInspection")
-    implementation("net.dv8tion:JDA:4.ALPHA.0_50")
+    implementation("io.javalin", "javalin", project.ext["javalinVersion"] as String)
 
     // Logging
-    implementation(log4j("core"))
     implementation(log4j("slf4j-impl"))
+    implementation(log4j("core"))
+
+    compile("org.apache.commons", "commons-text", "1.6")
 
     // Util
     implementation("commons-cli:commons-cli:$cliVersion")
@@ -69,21 +68,32 @@ application {
     mainClassName = "cc.hawkbot.regnum.server.BootstrapperKt"
 }
 
+artifacts {
+    add("archives", tasks["shadowJar"])
+}
+
+tasks {
+    val buildDir = project.ext["buildDir"] as File
+    "shadowJar"(ShadowJar::class) {
+        archiveBaseName.set(project.name)
+        archiveVersion.set(project.version as String)
+        archiveFileName.set("$archiveBaseName-$archiveVersion.$archiveExtension")
+        destinationDirectory.set(buildDir)
+    }
+    "jar"(Jar::class) {
+        archiveClassifier.set("original")
+        destinationDirectory.set(buildDir)
+    }
+}
+
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_HIGHER
+    sourceCompatibility = JavaVersion.VERSION_12
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
 
-tasks {
-    "shadowJar"(ShadowJar::class) {
-        baseName = project.name
-        version = version
-        archiveName = "$baseName.$extension"
-    }
-}
 
 /**
  * Returns the dependency notation for a log4j dependency
@@ -91,6 +101,6 @@ tasks {
  * @param version the version of the dependency
  * @return the dependency notation
  */
-fun log4j(name: String, version: String = log4jVersion): String {
+fun log4j(name: String, version: String = project.ext["log4jVersion"] as String): String {
     return "org.apache.logging.log4j:log4j-$name:$version"
 }

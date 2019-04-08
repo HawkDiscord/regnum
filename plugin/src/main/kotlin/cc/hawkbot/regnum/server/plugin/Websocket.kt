@@ -19,8 +19,8 @@
 
 package cc.hawkbot.regnum.server.plugin
 
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import io.javalin.websocket.WsSession
 
@@ -35,6 +35,11 @@ interface Websocket {
      */
     val nodes: List<Node>
 
+    /**
+     * Returns a node by its [session].
+     * @param session the session
+     * @return the node
+     */
     fun getNode(session: WsSession): Node {
         return nodes.first { it.session == session }
     }

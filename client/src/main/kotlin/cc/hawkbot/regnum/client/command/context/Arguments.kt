@@ -26,6 +26,17 @@ package cc.hawkbot.regnum.client.command.context
 interface Arguments {
 
     /**
+     * An array containing all arguments.
+     */
+    val array: Array<String>
+
+    /**
+     * The size of the arguments.
+     */
+    val size: Int
+        get() = array.size
+
+    /**
      * Returns the element at the specified [index].
      * @param index the index
      * @see Array.get
@@ -37,8 +48,9 @@ interface Arguments {
      * Returns the amounts of arguments.
      * @return the amounts of arguments
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("size"))
     fun size(): Int {
-        return array().size
+        return size
     }
 
     /**
@@ -46,14 +58,17 @@ interface Arguments {
      * @return whether there are arguments or not
      */
     fun isEmpty(): Boolean {
-        return array().isEmpty()
+        return array.isEmpty()
     }
 
     /**
      * Converts the arguments into an array.
      * @return the arguments as an array
      */
-    fun array(): Array<String>
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("array"))
+    fun array(): Array<String> {
+        return array
+    }
 
     /**
      * Converts to arguments from the [start] to the [end] into an array.
@@ -63,7 +78,7 @@ interface Arguments {
      * @return the array
      */
     fun array(start: Int, end: Int): Array<String> {
-        return array().sliceArray(start until end)
+        return array.sliceArray(start until end)
     }
 
     /**
@@ -83,7 +98,7 @@ interface Arguments {
      * @return the array
      */
     fun arrayFrom(start: Int): Array<String> {
-        return array(start, size())
+        return array(start, size)
     }
 
     /**
@@ -93,7 +108,7 @@ interface Arguments {
      * elements will be appended, followed by the [truncated] string (which defaults to "...").
      */
     fun <T> string(separator: CharSequence = " ", prefix: CharSequence = "", postfix: CharSequence = "", limit: Int = -1, truncated: CharSequence = "...", transform: ((T) -> CharSequence)? = null): String {
-        return array().joinToString(separator, prefix, postfix, limit, truncated)
+        return array.joinToString(separator, prefix, postfix, limit, truncated)
     }
 
     /**

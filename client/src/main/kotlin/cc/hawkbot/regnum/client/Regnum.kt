@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client
 import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
+import cc.hawkbot.regnum.client.core.MessageCache
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.entities.RegnumGuild
@@ -99,6 +100,11 @@ interface Regnum {
      * The permission manager.
      */
     val permissionManager: PermissionManager
+
+    /**
+     * The message cache.
+     */
+    val messageCache: MessageCache
 
     /**
      * A list of all disabled features.

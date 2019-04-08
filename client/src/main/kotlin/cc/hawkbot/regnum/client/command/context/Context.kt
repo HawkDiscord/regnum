@@ -64,17 +64,68 @@ interface Context {
     val regnum: Regnum
 
     /**
+     * The message which invoked the command.
+     */
+    val message: Message
+        get() = event.message
+
+    /**
+     * The [author] of the command as a [Member].
+     */
+    val member: Member
+        get() = event.member
+
+    /**
+     * The author of the [message] which invoked the command.
+     */
+    val author: User
+        get() = event.author
+
+    /**
+     * The [Guild] on which the command got executed.
+     */
+    val guild: Guild
+        get() = event.guild
+
+    /**
+     * The [Member] of the bot on the [guild] where the command got executed
+     * @see Guild.getSelfMember
+     */
+    val me: Member
+        get() = guild.selfMember
+
+    /**
+     * The content of the [message].
+     */
+    val content: String
+        get() = message.contentRaw
+
+    /**
+     * The [TextChannel] in which the [message] got sent.
+     */
+    val channel: TextChannel
+        get() = event.channel
+
+    /**
+     * The [JDA] instance of the shard which received the command.
+     */
+    val jda: JDA
+        get() = event.jda
+
+    /**
      * Returns the (message)[Message].
      * @return the message
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("message"))
     fun message(): Message {
-        return event.message
+        return message
     }
 
     /**
      * Returns the author as a [Member].
      * @return the author as a [Member]
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("member"))
     fun member(): Member {
         return event.member
     }
@@ -83,6 +134,7 @@ interface Context {
      * Returns the (author)[User].
      * @return the (author)[User]
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("author"))
     fun author(): User {
         return event.author
     }
@@ -91,6 +143,7 @@ interface Context {
      * Returns the [Member] of the bot.
      * @return the [Member] of the bot
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("me"))
     fun me(): Member {
         return event.guild.selfMember
     }
@@ -99,6 +152,7 @@ interface Context {
      * Returns the [Guild] the command got executed on.
      * @return the [Guild] the command got executed on
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("guild"))
     fun guild(): Guild {
         return event.guild
     }
@@ -107,6 +161,7 @@ interface Context {
      * Returns the content of the message.
      * @return the content of the message
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("content"))
     fun content(): String {
         return event.message.contentRaw
     }
@@ -115,6 +170,7 @@ interface Context {
      * Returns the channel in which the command got executed.
      * @return the channel in which the command got executed
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("channel"))
     fun channel(): TextChannel {
         return event.channel
     }
@@ -123,6 +179,7 @@ interface Context {
      * Returns the JDA instance.
      * @return the JDA instance
      */
+    @Deprecated("We're moving fluent getters to Kotlin fields", ReplaceWith("jda"))
     fun jda(): JDA {
         return event.jda
     }
@@ -134,7 +191,7 @@ interface Context {
      * @return the resulting [MessageAction]
      */
     fun sendMessage(message: Message): MessageAction {
-        return SafeMessage.sendMessage(message, channel())
+        return SafeMessage.sendMessage(message, channel)
     }
 
     /**
@@ -144,7 +201,7 @@ interface Context {
      * @return the resulting [MessageAction]
      */
     fun sendMessage(message: MessageBuilder): MessageAction {
-        return SafeMessage.sendMessage(message, channel())
+        return SafeMessage.sendMessage(message, channel)
     }
 
     /**
@@ -154,7 +211,7 @@ interface Context {
      * @return the resulting [MessageAction]
      */
     fun sendMessage(message: String): MessageAction {
-        return SafeMessage.sendMessage(message, channel())
+        return SafeMessage.sendMessage(message, channel)
     }
 
     /**
@@ -164,7 +221,7 @@ interface Context {
      * @return the resulting [MessageAction]
      */
     fun sendMessage(embed: MessageEmbed): MessageAction {
-        return SafeMessage.sendMessage(embed, channel())
+        return SafeMessage.sendMessage(embed, channel)
     }
 
     /**
@@ -174,7 +231,7 @@ interface Context {
      * @return the resulting [MessageAction]
      */
     fun sendMessage(embed: EmbedBuilder): MessageAction {
-        return SafeMessage.sendMessage(embed, channel())
+        return SafeMessage.sendMessage(embed, channel)
     }
 
     /**
@@ -192,7 +249,7 @@ interface Context {
      * @return the string
      */
     fun translate(key: String): String {
-        return regnum.languageManager.getLanguageByUser(author()).translate(key)
+        return regnum.languageManager.getLanguageByUser(author).translate(key)
     }
 
     /**
@@ -200,7 +257,7 @@ interface Context {
      * @return the regnum guild
      */
     fun regnumGuild(): RegnumGuild {
-        return regnum.guild(guild())
+        return regnum.guild(guild)
     }
 
     /**
@@ -208,7 +265,7 @@ interface Context {
      * @return the regnum user
      */
     fun regnumUser(): RegnumUser {
-        return regnum.user(author())
+        return regnum.user(author)
     }
 
 }

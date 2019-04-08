@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.client.entities;
 
-import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity;
+import cc.hawkbot.regnum.client.entities.cache.CacheableCassandraEntity;
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache;
 import com.datastax.driver.mapping.Result;
 import com.datastax.driver.mapping.annotations.*;
@@ -29,14 +29,14 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import static cc.hawkbot.regnum.entites.cassandra.CassandraEntity.TABLE_PREFIX;
+import static cc.hawkbot.regnum.entities.cassandra.CassandraEntity.TABLE_PREFIX;
 
 /**
  * Entity for guilds.
  */
 @Table(name = TABLE_PREFIX + "guilds")
-@SuppressWarnings({"unused", "WeakerAccess"})
-public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
+@SuppressWarnings({"unused", "WeakerAccess", "CanBeFinal"})
+public class RegnumGuild extends CacheableCassandraEntity<RegnumGuild> {
 
     public static final String NO_PREFIX = "%NO%";
 
@@ -64,6 +64,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      * @return the prefix of the guild
      */
     @Transient
+    @NotNull
     public String getPrefix() {
         return prefix.equals(NO_PREFIX) ? regnum().getCommandParser().getDefaultPrefix() : prefix;
     }
@@ -73,7 +74,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @param prefix the new prefix
      */
-    public void setPrefix(String prefix) {
+    public void setPrefix(@NotNull String prefix) {
         this.prefix = prefix;
     }
 
@@ -82,6 +83,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @return the language tag
      */
+    @NotNull
     public String getLanguageTag() {
         return languageTag;
     }
@@ -189,6 +191,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @return the list
      */
+    @NotNull
     public List<Long> getBlacklistedChannels() {
         return blacklistedChannels;
     }
@@ -198,6 +201,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      *
      * @return the list
      */
+    @NotNull
     public List<Long> getWhitelistedChannels() {
         return whitelistedChannels;
     }
@@ -206,7 +210,7 @@ public class RegnumGuild extends CachableCassandraEntity<RegnumGuild> {
      * Internally used accessor
      */
     @com.datastax.driver.mapping.annotations.Accessor
-    public interface Accessor extends CachableCassandraEntity.Accessor<RegnumGuild> {
+    public interface Accessor extends CacheableCassandraEntity.Accessor<RegnumGuild> {
         @Query("SELECT * FROM " + TABLE_PREFIX + "guilds WHERE id = :id")
         @NotNull
         @Override

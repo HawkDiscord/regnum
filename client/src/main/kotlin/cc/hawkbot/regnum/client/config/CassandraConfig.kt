@@ -33,6 +33,7 @@ import java.util.*
  * @property defaultDatabases a list of cql queries which will be executed directly after connecting to cassandra
  * @constructor constructs a new Cassandra config
  */
+@Suppress("unused")
 data class CassandraConfig(
         var codecRegistry: CodecRegistry,
         var keyspace: String?,

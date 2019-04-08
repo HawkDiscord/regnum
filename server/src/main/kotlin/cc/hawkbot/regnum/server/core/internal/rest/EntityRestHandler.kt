@@ -60,5 +60,12 @@ abstract class EntityRestHandler<T>(endpoint: String, method: HandlerType, priva
         }
     }
 
+    /**
+     * Function that gets invoked when the handler gets executed.
+     * @param entity the entity
+     * @param token the token if provided
+     * @param context the context of the request
+     * @param server the server instance
+     */
     abstract fun handle(entity: T, token: String?, context: Context, server: Server)
 }

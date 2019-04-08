@@ -19,18 +19,18 @@
 
 package cc.hawkbot.regnum.server.entities
 
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
-import cc.hawkbot.regnum.entites.cassandra.SnowflakeCassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.CassandraEntity
+import cc.hawkbot.regnum.entities.cassandra.SnowflakeCassandraEntity
 import com.datastax.driver.mapping.Result
 import com.datastax.driver.mapping.annotations.Column
 import com.datastax.driver.mapping.annotations.Param
 import com.datastax.driver.mapping.annotations.Query
 import com.datastax.driver.mapping.annotations.Table
-import java.util.*
 
 /**
  * Entity for users.
  */
+@Suppress("unused")
 @Table(name = CassandraEntity.TABLE_PREFIX + "user")
 class User : SnowflakeCassandraEntity<User> {
 
