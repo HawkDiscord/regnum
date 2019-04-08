@@ -32,7 +32,9 @@ import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
+import cc.hawkbot.regnum.client.interaction.ConfirmationMessageBuilder;
+import cc.hawkbot.regnum.client.interaction.PaginatorBuilder;
+import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket;
 import cc.hawkbot.regnum.util.logging.Logger;
 import net.dv8tion.jda.api.hooks.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
@@ -42,7 +44,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Util which launches client just for testing.
@@ -87,11 +88,12 @@ public class ClientLauncher {
             super(Group.getEMPTY(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
         }
 
+        @SuppressWarnings("ResultOfMethodCallIgnored")
         @Override
         public void execute(@NotNull Arguments args, @NotNull Context context) {
             context.sendMessage(
                     "Mentions" + context.getMentions().list() + "\n" +
-                            "Args: " + String.join(" ", context.getArgs().array())
+                            "Args: " + String.join(" ", context.getArgs().getArray()));
 
             if (!args.isEmpty()) {
                 if (args.get(0).equals("error")) {
@@ -100,8 +102,8 @@ public class ClientLauncher {
                     new ConfirmationMessageBuilder(context.getRegnum())
                             .setYesConsumer(ctx -> ctx.channel().sendMessage("YESS").queue())
                             .setNoConsumer(ctx -> ctx.channel().sendMessage("NOOOO!").queue())
-                            .setAuthorizedUser(context.author())
-                            .setMessage(context.channel(),
+                            .setAuthorizedUser(context.getAuthor())
+                            .setMessage(context.getChannel(),
                     EmbedUtil.info(
                                     "ARE U SURE??",
                                     "ZEKRO STINKT!!"
@@ -111,16 +113,16 @@ public class ClientLauncher {
                     var builder = new PaginatorBuilder<String>(context.getRegnum())
                             .setTitle("NICE LIST BRA")
                             .setContent(List.of("HI", "HII", "HIII", "HIIII", "HIIIII"))
-                            .setChannel(context.channel())
+                            .setChannel(context.getChannel())
                             .setPageSize(2)
-                            .setAuthorizedUser(context.author())
+                            .setAuthorizedUser(context.getAuthor())
                             ;
                     builder.build();
                 }
             } else {
                 context.sendMessage(
                         "Mentions" + context.getMentions().list() + "\n" +
-                                "Args: " + String.join(" ", context.getArgs().array())
+                                "Args: " + String.join(" ", context.getArgs().getArray())
 
                 ).queue();
             }

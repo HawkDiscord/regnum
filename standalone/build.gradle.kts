@@ -109,33 +109,3 @@ configure<JavaPluginConvention> {
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }
-
-val sourcesJar by tasks.creating(Jar::class) {
-    classifier = "sources"
-    from(sourceSets["main"].allSource)
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            from(components["java"])
-            artifact(sourcesJar)
-        }
-    }
-}
-
-bintray {
-    user = "drschlaubi"
-    key = "1b56e7110a4d2d2983d988fa5f1736fff4f6a134"
-    setPublications("mavenJava")
-    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-        repo = "maven"
-        name = archivesBasename
-        userOrg = "drschlaubi"
-        setLicenses("GPL-3.0")
-        vcsUrl = "https://github.com/DRSchlaubi/regnum.git"
-        version(delegateClosureOf<BintrayExtension.VersionConfig> {
-            name = project.version as String
-        })
-    })
-}
