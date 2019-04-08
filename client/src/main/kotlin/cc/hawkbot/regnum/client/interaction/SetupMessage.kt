@@ -20,13 +20,14 @@
 package cc.hawkbot.regnum.client.interaction
 
 import cc.hawkbot.regnum.client.Regnum
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import java.util.concurrent.TimeUnit
 
-abstract class SetupMessage(regnum: Regnum, message: Message, users: List<User>, timeout: Long, timeunit: TimeUnit, removeReaction: Boolean, disableMessageListening: Boolean) : ReactableMessage(regnum, message, users, timeout, timeunit, removeReaction, disableMessageListening) {
+abstract class SetupMessage(regnum: Regnum, message: Message, users: List<User>, timeout: Long, timeunit: TimeUnit, neededPermissions: List<Permission> = emptyList(), removeReaction: Boolean, disableMessageListening: Boolean) : ReactableMessage(regnum, message, users, timeout, timeunit, neededPermissions, removeReaction, disableMessageListening) {
 
     private var step = 1
     private val user: User

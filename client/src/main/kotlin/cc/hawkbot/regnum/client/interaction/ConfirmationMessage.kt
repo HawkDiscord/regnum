@@ -23,6 +23,7 @@ import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.util.EmbedUtil
 import cc.hawkbot.regnum.client.util.SafeMessage
 import cc.hawkbot.regnum.client.util.TranslationUtil
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
@@ -43,7 +44,7 @@ class ConfirmationMessage(
         private val noKeyword: String,
         private val yes: Consumer<Context>,
         private val no: Consumer<Context>
-) : ReactableMessage(regnum, message, users, timeout, timeUnit, true, false) {
+) : ReactableMessage(regnum, message, users, timeout, timeUnit, listOf(Permission.MESSAGE_MANAGE, Permission.MESSAGE_WRITE, Permission.MESSAGE_ADD_REACTION), true, false) {
 
     init {
         CompletableFuture.allOf(

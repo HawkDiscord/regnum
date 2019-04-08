@@ -20,6 +20,7 @@
 package cc.hawkbot.regnum.client.interaction
 
 import cc.hawkbot.regnum.client.Regnum
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
@@ -34,9 +35,10 @@ abstract class ReactableMessage(
         users: List<User>,
         timeout: Long,
         timeunit: TimeUnit,
+        neededPermissions: List<Permission> = emptyList(),
         private val removeReaction: Boolean,
         private val disableMessageListening: Boolean
-) : InteractableMessage(regnum, message, users, timeout, timeunit) {
+) : InteractableMessage(regnum, message, users, timeout, timeunit, neededPermissions) {
 
     private lateinit var future: CompletionStage<GuildMessageReactionAddEvent>
 

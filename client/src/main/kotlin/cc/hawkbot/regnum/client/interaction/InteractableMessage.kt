@@ -20,11 +20,13 @@
 package cc.hawkbot.regnum.client.interaction
 
 import cc.hawkbot.regnum.client.Regnum
+import cc.hawkbot.regnum.client.util.EmbedUtil
 import cc.hawkbot.regnum.client.util.SafeMessage
 import cc.hawkbot.regnum.client.util.TranslationUtil
 import cc.hawkbot.regnum.util.DefaultThreadFactory
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.MessageBuilder
+import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.*
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
@@ -35,18 +37,38 @@ import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 
+@Suppress("MemberVisibilityCanBePrivate")
 abstract class InteractableMessage(
         protected val regnum: Regnum,
         protected val message: Message,
         protected val users: List<User>,
         protected val timeout: Long,
-        protected val timeunit: TimeUnit
+        protected val timeunit: TimeUnit,
+        neededPermissions: List<Permission> = emptyList()
 ) {
 
     private lateinit var future: CompletionStage<GuildMessageReceivedEvent>
 
     companion object {
-        val executor = Executors.newCachedThreadPool(DefaultThreadFactory("Interaction"))
+        val executor = Executors.newCachedThreadPool(DefaultThreadFactory("Interaction"))!!
+    }
+
+    init {
+        run {
+            if (!message.guild.selfMember.hasPermission(message.channel as GuildChannel, neededPermissions)) {
+                editMessage(
+                        EmbedUtil.error(
+                                translate("phrases.nopermission.title"),
+                                translate("phrases.nopermission.description")
+                                        .format(
+                                                neededPermissions.joinToString(prefix = "`", separator = "`, `", postfix = "`")
+                                                { it.toString() }
+                                        )
+                        )
+                ).queue()
+                return@run
+            }
+        }
     }
 
     abstract fun onMessage(event: GuildMessageReceivedEvent)
@@ -69,7 +91,7 @@ abstract class InteractableMessage(
 
     protected fun editMessage(message: Message): MessageAction {
         return SafeMessage.editMessage(this.message, message
-        ) { println("ERROR") }
+        ) { notifyUser() }
     }
 
     protected fun editMessage(messageBuilder: MessageBuilder): MessageAction {
@@ -102,6 +124,14 @@ abstract class InteractableMessage(
 
     protected open fun finish() {
         future.toCompletableFuture().cancel(true)
+    }
+
+    private fun notifyUser() {
+        users.forEach {
+            it.openPrivateChannel().queue {channel ->
+                channel.sendMessage("Could not handle your request please make sure that I have message permissions!").queue()
+            }
+        }
     }
 
     data class Context(

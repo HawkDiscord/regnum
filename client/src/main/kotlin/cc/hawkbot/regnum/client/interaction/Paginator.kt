@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit
 import java.util.function.Function
 import cc.hawkbot.regnum.client.util.EmbedUtil
 import net.dv8tion.jda.api.EmbedBuilder
+import net.dv8tion.jda.api.Permission
 
 
 class Paginator<T>(
@@ -48,6 +49,7 @@ class Paginator<T>(
         users,
         timeout,
         timeunit,
+        listOf(Permission.MESSAGE_MANAGE, Permission.MESSAGE_WRITE, Permission.MESSAGE_ADD_REACTION, Permission.MESSAGE_EMBED_LINKS),
         true,
         true
 ) {
