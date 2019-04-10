@@ -13,8 +13,7 @@ steps:
   - name: publish
     image: plugins/gh-pages
     settings:
-      username:
-        from_secret: SchlaubiBot
+      username: SchlaubiBot
       password:
         from_secret: github_password
       pages_directory: public/
