@@ -17,7 +17,7 @@ steps:
     image: openjdk:12-jdk-oraclelinux7
     commands:
         - ./gradlew compileJava compileKotlin
-  - name: restore
+  - name: rebuild
     image: plugins/s3-cache:1
     settings:
       pull: true
