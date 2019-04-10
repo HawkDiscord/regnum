@@ -3,6 +3,6 @@ name: checks
 
 steps:
   - name: compile
-    image: opendjdk:12-jdk-oraclelinux7
+    image: openjdk:12-jdk-oraclelinux7
     commands:
       - ./gradlew build
