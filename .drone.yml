@@ -2,30 +2,7 @@ kind: pipeline
 name: checks
 
 steps:
-  - name: restore
-    image: plugins/s3-cache:1
-    settings:
-      #endpoint: https://s3.eu-central-1.amazonaws.com
-      access_key:
-        from_secret: aws_secret_access_key
-      secret_key:
-        from_secret: aws_secret_key
-      restore: true
-      root: regnum-ci/cache
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     commands:
         - ./gradlew compileJava compileKotlin
-  - name: rebuild
-    image: plugins/s3-cache:1
-    settings:
-      #endpoint: https://s3.eu-central-1.amazonaws.com
-      access_key:
-        from_secret: aws_secret_access_key
-      secret_key:
-        from_secret: aws_secret_access_key_id
-      rebuild: true
-      root: regnum-ci/cache
-      mount:
-        - .gradle/wrapper
-        - .gradle/caches
