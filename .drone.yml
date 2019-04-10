@@ -5,7 +5,6 @@ steps:
   - name: restore
     image: plugins/s3-cache:1
     settings:
-      pull: true
       endpoint: https://s3.eu-central-1.amazonaws.com
       access_key:
         from_secret: aws_secret_access_key
@@ -20,7 +19,6 @@ steps:
   - name: rebuild
     image: plugins/s3-cache:1
     settings:
-      pull: true
       endpoint: https://s3.eu-central-1.amazonaws.com
       access_key:
         from_secret: aws_secret_access_key
