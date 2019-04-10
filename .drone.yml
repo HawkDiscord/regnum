@@ -5,11 +5,14 @@ steps:
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     commands:
-        - ./gradlew compileJava compileKotlin
+        - ./gradlew -Dorg.gradle.daemon=false compileJava compileKotlin
   - name: dokka
     image: openjdk:12-jdk-oraclelinux7
     commands:
-      - ./gradlew dokka
+      - ./gradlew -Dorg.gradle.daemon=false dokka
+    when:
+      branch:
+        - master
   - name: publish
     image: plugins/gh-pages
     settings:
