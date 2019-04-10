@@ -13,6 +13,9 @@ steps:
     when:
       branch:
         - master
+      event:
+        exclude:
+          - pull_request
   - name: publish
     image: plugins/gh-pages
     settings:
@@ -23,3 +26,6 @@ steps:
     when:
       branch:
         - master
+      event:
+        exclude:
+          - pull_request
