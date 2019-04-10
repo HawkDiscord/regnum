@@ -20,6 +20,6 @@ steps:
       password:
         from_secret: github_password
       pages_directory: public/
-      when:
-        branch:
-          - master
+    when:
+      branch:
+        - master
