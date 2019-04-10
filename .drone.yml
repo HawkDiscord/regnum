@@ -6,3 +6,15 @@ steps:
     image: openjdk:12-jdk-oraclelinux7
     commands:
         - ./gradlew compileJava compileKotlin
+  - name: dokka
+    image: openjdk:12-jdk-oraclelinux7
+    commands:
+      - ./gradlew dokka
+  - name: publish
+    image: plugins/gh-pages
+    settings:
+      username:
+        from_secret: SchlaubiBot
+      password:
+        from_secret: github_password
+      pages_directory: public/
