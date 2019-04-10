@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CommandParser - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command</a>&nbsp;/&nbsp;<a href="./index.html">CommandParser</a><br/>
+<br/>
+<h1>CommandParser</h1>
+<code><span class="keyword">interface </span><span class="identifier">CommandParser</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/CommandParser.kt#L27">(source)</a>
+<p>Regnum command parser</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="command-associations.html">commandAssociations</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">commandAssociations</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span></code>
+<p>A map containing all aliases and its commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="commands.html">commands</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">commands</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span></code>
+<p>A list of all commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="default-prefix.html">defaultPrefix</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">defaultPrefix</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The prefix that is valid on all guilds.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="owners.html">owners</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">owners</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code>
+<p>A list of user ids who has all permissions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="commands.html">commands</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><s><span class="identifier">commands</span></s><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span></code>
+<p>Returns all commands and its aliases in a map.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="receive-message.html">receiveMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">receiveMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.CommandParser$receiveMessage(net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageReceivedEvent.html"><span class="identifier">GuildMessageReceivedEvent</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that handles incoming messages.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-command.html">registerCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerCommand</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.CommandParser$registerCommand(cc.hawkbot.regnum.client.command.ICommand)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers a command</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-commands.html">registerCommands</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">registerCommands</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.command.CommandParser$registerCommands(kotlin.Array((cc.hawkbot.regnum.client.command.ICommand)))/commands">commands</span><span class="symbol">:</span>&nbsp;<a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers a command</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="unregister-command.html">unregisterCommand</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">unregisterCommand</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.CommandParser$unregisterCommand(cc.hawkbot.regnum.client.command.ICommand)/command">command</span><span class="symbol">:</span>&nbsp;<a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Un-registers a command</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.impl/-command-parser-impl/index.html">CommandParserImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">CommandParserImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CommandParser</span></a></code>
+<p>Implementation of <a href="./index.html">CommandParser</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

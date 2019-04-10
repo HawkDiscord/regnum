@@ -1,0 +1,125 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Group - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command</a>&nbsp;/&nbsp;<a href="./index.html">Group</a><br/>
+<br/>
+<h1>Group</h1>
+<code><span class="keyword">interface </span><span class="identifier">Group</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/Group.kt#L34">(source)</a>
+<p>Interface for commands groups.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="description.html">description</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The description of the group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="name.html">name</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">name</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the group.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="permissions.html">permissions</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">permissions</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.permission/-i-permissions/index.html"><span class="identifier">IPermissions</span></a></code>
+<p>Group wide command permissions</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="public.html">public</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">public</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Whether the group should be visible in the help or not.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="commands.html">commands</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">commands</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.Group$commands(cc.hawkbot.regnum.client.command.CommandParser)/commandParser">commandParser</span><span class="symbol">:</span>&nbsp;<a href="../-command-parser/index.html"><span class="identifier">CommandParser</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="../-i-command/index.html"><span class="identifier">ICommand</span></a><span class="symbol">&gt;</span></code>
+<p>Returns a list of all commands with that group.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-e-m-p-t-y.html">EMPTY</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">EMPTY</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Group</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-g-e-n-e-r-a-l.html">GENERAL</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">GENERAL</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Group</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-s-e-t-t-i-n-g-s.html">SETTINGS</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">SETTINGS</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Group</span></a></code>
+<p>Settings group</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="empty.html">empty</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">empty</span></s><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Group</span></a></code>
+<p>Returns an empty group.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.command.impl/-group-impl/index.html">GroupImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">GroupImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Group</span></a></code>
+<p>Implementation of <a href="./index.html">Group</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

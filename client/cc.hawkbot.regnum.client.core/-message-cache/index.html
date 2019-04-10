@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>MessageCache - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.core</a>&nbsp;/&nbsp;<a href="./index.html">MessageCache</a><br/>
+<br/>
+<h1>MessageCache</h1>
+<code><span class="keyword">interface </span><span class="identifier">MessageCache</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/core/MessageCache.kt#L26">(source)</a>
+<p>Cache of messages to provide them on MESSAGE_UPDATE and MESSAGE_DELETE.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../../cc.hawkbot.regnum.client.core.discord/-message-watcher/index.html">cc.hawkbot.regnum.client.core.discord.MessageWatcher</a></p>
+</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="delete.html">delete</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">delete</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.MessageCache$delete(kotlin.Long)/messageId">messageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Deletes the message with the specified <a href="delete.html#cc.hawkbot.regnum.client.core.MessageCache$delete(kotlin.Long)/messageId">messageId</a> from the cache.
+    * This fires an <a href="../../cc.hawkbot.regnum.client.events.discord/-guild-message-delete-event/index.html">cc.hawkbot.regnum.client.events.discord.GuildMessageDeleteEvent</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.MessageCache$get(kotlin.Long)/messageId">messageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Reads the message with the specified <a href="get.html#cc.hawkbot.regnum.client.core.MessageCache$get(kotlin.Long)/messageId">messageId</a> from cache.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set.html">set</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">set</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.MessageCache$set(kotlin.Long, kotlin.String)/messageId">messageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.core.MessageCache$set(kotlin.Long, kotlin.String)/messageContent">messageContent</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds the message with the specified <a href="set.html#cc.hawkbot.regnum.client.core.MessageCache$set(kotlin.Long, kotlin.String)/messageId">messageId</a> and <a href="set.html#cc.hawkbot.regnum.client.core.MessageCache$set(kotlin.Long, kotlin.String)/messageContent">messageContent</a> to the cache.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update.html">update</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">update</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.MessageCache$update(kotlin.Long, kotlin.String)/messageId">messageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.core.MessageCache$update(kotlin.Long, kotlin.String)/messageContent">messageContent</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Updated the message with the specified <a href="update.html#cc.hawkbot.regnum.client.core.MessageCache$update(kotlin.Long, kotlin.String)/messageId">messageId</a> and <a href="update.html#cc.hawkbot.regnum.client.core.MessageCache$update(kotlin.Long, kotlin.String)/messageContent">messageContent</a> to the cache.
+This fires an <a href="../../cc.hawkbot.regnum.client.events.discord/-guild-message-update-event/index.html">cc.hawkbot.regnum.client.events.discord.GuildMessageUpdateEvent</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-memory-message-cache/index.html">MemoryMessageCache</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">MemoryMessageCache</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">MessageCache</span></a></code>
+<p>Implementation of <a href="./index.html">MessageCache</a> which caches all messages in a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/index.html">MutableMap</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

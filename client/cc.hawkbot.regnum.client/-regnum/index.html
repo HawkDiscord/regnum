@@ -1,0 +1,186 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Regnum - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client</a>&nbsp;/&nbsp;<a href="./index.html">Regnum</a><br/>
+<br/>
+<h1>Regnum</h1>
+<code><span class="keyword">interface </span><span class="identifier">Regnum</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/Regnum.kt#L41">(source)</a>
+<p>Main class of Regnum client instance.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="cassandra.html">cassandra</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">cassandra</span><span class="symbol">: </span><span class="identifier">CassandraSource</span></code>
+<p>The cassandra source.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="command-parser.html">commandParser</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">commandParser</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command/-command-parser/index.html"><span class="identifier">CommandParser</span></a></code>
+<p>The command parser.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="disabled-features.html">disabledFeatures</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">disabledFeatures</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-feature/index.html"><span class="identifier">Feature</span></a><span class="symbol">&gt;</span></code>
+<p>A list of all disabled features.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="discord.html">discord</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">discord</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.core.discord/-discord/index.html"><span class="identifier">Discord</span></a></code>
+<p>The discord instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="event-manager.html">eventManager</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">eventManager</span><span class="symbol">: </span><a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/hooks/IEventManager.html"><span class="identifier">IEventManager</span></a></code>
+<p>The event manager.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="event-waiter.html">eventWaiter</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">eventWaiter</span><span class="symbol">: </span><span class="identifier">EventWaiter</span></code>
+<p>The event waiter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="guild-cache.html">guildCache</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">guildCache</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities.cache/-cassandra-cache/index.html"><span class="identifier">CassandraCache</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-guild/index.html"><span class="identifier">RegnumGuild</span></a><span class="symbol">&gt;</span></code>
+<p>The guild cache.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="language-manager.html">languageManager</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">languageManager</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.translation/-language-manager/index.html"><span class="identifier">LanguageManager</span></a></code>
+<p>The language manager.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="message-cache.html">messageCache</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">messageCache</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.core/-message-cache/index.html"><span class="identifier">MessageCache</span></a></code>
+<p>The message cache.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="owners.html">owners</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">owners</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">&gt;</span></code>
+<p>Ids of users with owner permissions.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="permission-manager.html">permissionManager</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">permissionManager</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.command.permission/-permission-manager/index.html"><span class="identifier">PermissionManager</span></a></code>
+<p>The permission manager.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="token.html">token</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">token</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The token used for authentication.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="user-cache.html">userCache</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">userCache</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities.cache/-cassandra-cache/index.html"><span class="identifier">CassandraCache</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html"><span class="identifier">RegnumUser</span></a><span class="symbol">&gt;</span></code>
+<p>The user cache.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="websocket.html">websocket</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">websocket</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html"><span class="identifier">Websocket</span></a></code>
+<p>The websocket instance.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="guild.html">guild</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">guild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.Regnum$guild(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-guild/index.html"><span class="identifier">RegnumGuild</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">guild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.Regnum$guild(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-guild/index.html"><span class="identifier">RegnumGuild</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">guild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.Regnum$guild(net.dv8tion.jda.api.entities.Guild)/guild">guild</span><span class="symbol">:</span>&nbsp;<span class="identifier">Guild</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-guild/index.html"><span class="identifier">RegnumGuild</span></a></code>
+<p>Returns a Regnum guild from the cache.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="user.html">user</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">user</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.Regnum$user(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html"><span class="identifier">RegnumUser</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">user</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.Regnum$user(kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html"><span class="identifier">RegnumUser</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">user</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.Regnum$user(net.dv8tion.jda.api.entities.User)/user">user</span><span class="symbol">:</span>&nbsp;<span class="identifier">User</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html"><span class="identifier">RegnumUser</span></a></code>
+<p>Returns the Regnum user grom the cache</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.core.internal/-regnum-impl/index.html">RegnumImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Regnum</span></a></code>
+<p>Implementation of <a href="./index.html">Regnum</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

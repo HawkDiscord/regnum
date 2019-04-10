@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PermissionManager - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command.permission</a>&nbsp;/&nbsp;<a href="./index.html">PermissionManager</a><br/>
+<br/>
+<h1>PermissionManager</h1>
+<code><span class="keyword">interface </span><span class="identifier">PermissionManager</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/permission/PermissionManager.kt#L33">(source)</a>
+<p>Manager for permissions.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-permission-info-container/index.html">PermissionInfoContainer</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">PermissionInfoContainer</span></code>
+<p>Container class for information about <a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html">PermissionNode</a>s</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="create-permission-node.html">createPermissionNode</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">createPermissionNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(kotlin.Long, kotlin.Long, kotlin.String, cc.hawkbot.regnum.client.entities.permission.PermissionNode.PermissionTarget, kotlin.Boolean)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(kotlin.Long, kotlin.Long, kotlin.String, cc.hawkbot.regnum.client.entities.permission.PermissionNode.PermissionTarget, kotlin.Boolean)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(kotlin.Long, kotlin.Long, kotlin.String, cc.hawkbot.regnum.client.entities.permission.PermissionNode.PermissionTarget, kotlin.Boolean)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(kotlin.Long, kotlin.Long, kotlin.String, cc.hawkbot.regnum.client.entities.permission.PermissionNode.PermissionTarget, kotlin.Boolean)/type">type</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/-permission-target/index.html"><span class="identifier">PermissionNode.PermissionTarget</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(kotlin.Long, kotlin.Long, kotlin.String, cc.hawkbot.regnum.client.entities.permission.PermissionNode.PermissionTarget, kotlin.Boolean)/negated">negated</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">createPermissionNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String, kotlin.Boolean)/holder">holder</span><span class="symbol">:</span>&nbsp;<span class="identifier">IPermissionHolder</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String, kotlin.Boolean)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$createPermissionNode(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String, kotlin.Boolean)/negated">negated</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Creates a new permission node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete-node.html">deleteNode</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deleteNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$deleteNode(cc.hawkbot.regnum.client.entities.permission.PermissionNode)/node">node</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Deletes a node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-node.html">getNode</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNode(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String)/snowflake">snowflake</span><span class="symbol">:</span>&nbsp;<span class="identifier">IPermissionHolder</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNode(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNode(kotlin.Long, kotlin.Long, kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNode(kotlin.Long, kotlin.Long, kotlin.String)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNode(kotlin.Long, kotlin.Long, kotlin.String)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNode(cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer)/info">info</span><span class="symbol">:</span>&nbsp;<a href="-permission-info-container/index.html"><span class="identifier">PermissionManager.PermissionInfoContainer</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a></code>
+<p>Returns a permission node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-nodes.html">getNodes</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getNodes</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$getNodes(net.dv8tion.jda.api.entities.IPermissionHolder)/permissionHolder">permissionHolder</span><span class="symbol">:</span>&nbsp;<span class="identifier">IPermissionHolder</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Returns all permission nodes of a holder in a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-permission.html">hasPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hasPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermission(kotlin.Long, kotlin.Long, kotlin.String, kotlin.Boolean)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermission(kotlin.Long, kotlin.Long, kotlin.String, kotlin.Boolean)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermission(kotlin.Long, kotlin.Long, kotlin.String, kotlin.Boolean)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermission(kotlin.Long, kotlin.Long, kotlin.String, kotlin.Boolean)/public">public</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">hasPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermission(cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer)/info">info</span><span class="symbol">:</span>&nbsp;<a href="-permission-info-container/index.html"><span class="identifier">PermissionManager.PermissionInfoContainer</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Checks whether a holder has the specified permission or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-permissions.html">hasPermissions</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">hasPermissions</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermissions(cc.hawkbot.regnum.client.command.permission.IPermissions, net.dv8tion.jda.api.entities.IPermissionHolder)/permissions">permissions</span><span class="symbol">:</span>&nbsp;<a href="../-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermissions(cc.hawkbot.regnum.client.command.permission.IPermissions, net.dv8tion.jda.api.entities.IPermissionHolder)/permissionHolder">permissionHolder</span><span class="symbol">:</span>&nbsp;<span class="identifier">IPermissionHolder</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether a holder has a permission or not.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">hasPermissions</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermissions(cc.hawkbot.regnum.client.command.permission.IPermissions, net.dv8tion.jda.api.entities.Member)/permissions">permissions</span><span class="symbol">:</span>&nbsp;<a href="../-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasPermissions(cc.hawkbot.regnum.client.command.permission.IPermissions, net.dv8tion.jda.api.entities.Member)/member">member</span><span class="symbol">:</span>&nbsp;<span class="identifier">Member</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether a member has a permission or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-wildcard.html">hasWildcard</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">hasWildcard</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasWildcard(net.dv8tion.jda.api.entities.IPermissionHolder)/permissionHolder">permissionHolder</span><span class="symbol">:</span>&nbsp;<span class="identifier">IPermissionHolder</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">hasWildcard</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasWildcard(kotlin.Long, kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$hasWildcard(kotlin.Long, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether a holder has all permissions or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="node-exists.html">nodeExists</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">nodeExists</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$nodeExists(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String)/snowflake">snowflake</span><span class="symbol">:</span>&nbsp;<span class="identifier">IPermissionHolder</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$nodeExists(net.dv8tion.jda.api.entities.IPermissionHolder, kotlin.String)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">nodeExists</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$nodeExists(kotlin.Long, kotlin.Long, kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$nodeExists(kotlin.Long, kotlin.Long, kotlin.String)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$nodeExists(kotlin.Long, kotlin.Long, kotlin.String)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">nodeExists</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$nodeExists(cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer)/info">info</span><span class="symbol">:</span>&nbsp;<a href="-permission-info-container/index.html"><span class="identifier">PermissionManager.PermissionInfoContainer</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether the node exists or node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="retrieve-permissions.html">retrievePermissions</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">retrievePermissions</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$retrievePermissions(cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer)/info">info</span><span class="symbol">:</span>&nbsp;<a href="-permission-info-container/index.html"><span class="identifier">PermissionManager.PermissionInfoContainer</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Result</span><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">retrievePermissions</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$retrievePermissions(kotlin.Long, kotlin.Long, kotlin.String)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$retrievePermissions(kotlin.Long, kotlin.Long, kotlin.String)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$retrievePermissions(kotlin.Long, kotlin.Long, kotlin.String)/node">node</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Result</span><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Retrieves the permissions from the cc.hawkbot.regnum.io.database.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update-node.html">updateNode</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">updateNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$updateNode(cc.hawkbot.regnum.client.entities.permission.PermissionNode)/node">node</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code><br/>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">updateNode</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$updateNode(cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer, cc.hawkbot.regnum.client.entities.permission.PermissionNode)/info">info</span><span class="symbol">:</span>&nbsp;<a href="-permission-info-container/index.html"><span class="identifier">PermissionManager.PermissionInfoContainer</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.PermissionManager$updateNode(cc.hawkbot.regnum.client.command.permission.PermissionManager.PermissionInfoContainer, cc.hawkbot.regnum.client.entities.permission.PermissionNode)/node">node</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Updates a node in cache.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-permission-manager-impl/index.html">PermissionManagerImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">PermissionManagerImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">PermissionManager</span></a></code>
+<p>Implementation of <a href="./index.html">PermissionManager</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

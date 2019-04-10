@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>GuildMessageDeleteEvent - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.events.discord</a>&nbsp;/&nbsp;<a href="./index.html">GuildMessageDeleteEvent</a><br/>
+<br/>
+<h1>GuildMessageDeleteEvent</h1>
+<code><span class="keyword">class </span><span class="identifier">GuildMessageDeleteEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageDeleteEvent.html"><span class="identifier">GuildMessageDeleteEvent</span></a><span class="symbol">, </span><span class="identifier">MessageCacheEvent</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/events/discord/GuildMessageEvents.kt#L42">(source)</a>
+<p>Extension of <a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageDeleteEvent.html">GuildMessageDeleteEvent</a> which allows you to get the content of the message before it got deleted.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageDeleteEvent.html">GuildMessageDeleteEvent</a></p>
+<p><a href="#">MessageCacheEvent</a></p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">GuildMessageDeleteEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.GuildMessageDeleteEvent$<init>(net.dv8tion.jda.api.JDA, kotlin.Long, kotlin.Long, net.dv8tion.jda.api.entities.TextChannel, kotlin.String)/api">api</span><span class="symbol">:</span>&nbsp;<span class="identifier">JDA</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.GuildMessageDeleteEvent$<init>(net.dv8tion.jda.api.JDA, kotlin.Long, kotlin.Long, net.dv8tion.jda.api.entities.TextChannel, kotlin.String)/responseNumber">responseNumber</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.GuildMessageDeleteEvent$<init>(net.dv8tion.jda.api.JDA, kotlin.Long, kotlin.Long, net.dv8tion.jda.api.entities.TextChannel, kotlin.String)/messageId">messageId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.GuildMessageDeleteEvent$<init>(net.dv8tion.jda.api.JDA, kotlin.Long, kotlin.Long, net.dv8tion.jda.api.entities.TextChannel, kotlin.String)/channel">channel</span><span class="symbol">:</span>&nbsp;<span class="identifier">TextChannel</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.GuildMessageDeleteEvent$<init>(net.dv8tion.jda.api.JDA, kotlin.Long, kotlin.Long, net.dv8tion.jda.api.entities.TextChannel, kotlin.String)/oldContentRaw">oldContentRaw</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">)</span></code>
+<p>Extension of <a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageDeleteEvent.html">GuildMessageDeleteEvent</a> which allows you to get the content of the message before it got deleted.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="old-content-raw.html">oldContentRaw</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">oldContentRaw</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>the content of the message before it got edited. Can be null if it isn't cached</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

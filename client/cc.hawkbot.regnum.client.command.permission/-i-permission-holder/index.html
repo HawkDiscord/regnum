@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>IPermissionHolder - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command.permission</a>&nbsp;/&nbsp;<a href="./index.html">IPermissionHolder</a><br/>
+<br/>
+<h1>IPermissionHolder</h1>
+<code><span class="keyword">interface </span><span class="identifier">IPermissionHolder</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/permission/IPermissionHolder.kt#L29">(source)</a>
+<p>Class that represents entities which can hold permissions</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="assign-negated-permission.html">assignNegatedPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">assignNegatedPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignNegatedPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignNegatedPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Assigned a negated permission to a holder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="assign-permission.html">assignPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">assignPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long, kotlin.Boolean)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long, kotlin.Boolean)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$assignPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long, kotlin.Boolean)/negated">negated</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a>&nbsp;<span class="symbol">=</span>&nbsp;false<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities.permission/-permission-node/index.html"><span class="identifier">PermissionNode</span></a><span class="symbol">&gt;</span></code>
+<p>Assigned a permission to a holder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete-permission-assignment.html">deletePermissionAssignment</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">deletePermissionAssignment</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$deletePermissionAssignment(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$deletePermissionAssignment(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletionStage.html"><span class="identifier">CompletionStage</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code>
+<p>Deletes a permission.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="has-permission.html">hasPermission</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">hasPermission</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$hasPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/permission">permission</span><span class="symbol">:</span>&nbsp;<a href="../-i-permissions/index.html"><span class="identifier">IPermissions</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.permission.IPermissionHolder$hasPermission(cc.hawkbot.regnum.client.command.permission.IPermissions, kotlin.Long)/guildId">guildId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether an entity has a permission or not.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html">RegnumUser</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">RegnumUser</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.entities.cache/-cacheable-cassandra-entity/index.html"><span class="identifier">CacheableCassandraEntity</span></a><span class="symbol">&lt;</span><a href="../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html"><span class="identifier">RegnumUser</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><a href="./index.html"><span class="identifier">IPermissionHolder</span></a></code>
+<p>Entity for users.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

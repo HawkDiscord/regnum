@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Node - plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">plugin</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.server.plugin.entities</a>&nbsp;/&nbsp;<a href="./index.html">Node</a><br/>
+<br/>
+<h1>Node</h1>
+<code><span class="keyword">interface </span><span class="identifier">Node</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/kotlin/cc/hawkbot/regnum/server/plugin/entities/Node.kt#L31">(source)</a>
+<p>Representation of a connected Regnum node.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="id.html">id</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">id</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The WSSession id.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="metrics.html">metrics</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">metrics</span><span class="symbol">: </span><span class="identifier">MetricsPacket</span></code>
+<p>The latest received metrics packet.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="pulse.html">pulse</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">pulse</span><span class="symbol">: </span><a href="../-pulse/index.html"><span class="identifier">Pulse</span></a></code>
+<p>The nodes pulse.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="session.html">session</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">session</span><span class="symbol">: </span><span class="identifier">WsSession</span></code>
+<p>The websocket session.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="shards.html">shards</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">shards</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code>
+<p>The range of all shards on this node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="websocket.html">websocket</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">websocket</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin/-websocket/index.html"><span class="identifier">Websocket</span></a></code>
+<p>The current websocket instance.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-shards.html">addShards</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addShards</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.entities.Node$addShards(kotlin.Array((kotlin.Int)))/shards">shards</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Stops a new shard on the node.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="disconnect.html">disconnect</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disconnect</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Disconnects the node using <a href="#">WsSession.disconnect</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="send.html">send</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">send</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.entities.Node$send(kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a <a href="send.html#cc.hawkbot.regnum.server.plugin.entities.Node$send(kotlin.String)/message">message</a> to this node</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">send</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.entities.Node$send(cc.hawkbot.regnum.entities.Payload)/payload">payload</span><span class="symbol">:</span>&nbsp;<span class="identifier">Payload</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sends a <a href="send.html#cc.hawkbot.regnum.server.plugin.entities.Node$send(cc.hawkbot.regnum.entities.Payload)/payload">payload</a> to this node</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="start-shards.html">startShards</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">startShards</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.entities.Node$startShards(kotlin.Array((kotlin.Int)))/shards">shards</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Starts a new shard on the node.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

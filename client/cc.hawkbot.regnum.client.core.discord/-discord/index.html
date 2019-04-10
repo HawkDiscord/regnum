@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Discord - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.core.discord</a>&nbsp;/&nbsp;<a href="./index.html">Discord</a><br/>
+<br/>
+<h1>Discord</h1>
+<code><span class="keyword">interface </span><span class="identifier">Discord</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/core/discord/Discord.kt#L28">(source)</a>
+<p>Class that represents the connection to the Discord API.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="game-animator.html">gameAnimator</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">gameAnimator</span><span class="symbol">: </span><a href="../-game-animator/index.html"><span class="identifier">GameAnimator</span></a></code>
+<p>The <a href="../-game-animator/index.html">GameAnimator</a></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="shard-manager.html">shardManager</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">shardManager</span><span class="symbol">: </span><span class="identifier">ShardManager</span></code>
+<p>The <a href="#">ShardManager</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-shards.html">addShards</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">addShards</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.core.discord.Discord$addShards(kotlin.Array((kotlin.Int)))/shards">shards</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Starts all new shards in the array</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="shutdown.html">shutdown</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">shutdown</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Forces all shards to shutdown</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.core.discord.impl/-discord-impl/index.html">DiscordImpl</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">DiscordImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">Discord</span></a></code>
+<p>Implementation of <a href="./index.html">Discord</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

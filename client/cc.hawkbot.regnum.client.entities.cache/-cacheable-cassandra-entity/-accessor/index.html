@@ -1,0 +1,50 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CacheableCassandraEntity.Accessor - client</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">client</a>&nbsp;/&nbsp;<a href="../../index.html">cc.hawkbot.regnum.client.entities.cache</a>&nbsp;/&nbsp;<a href="../index.html">CacheableCassandraEntity</a>&nbsp;/&nbsp;<a href="./index.html">Accessor</a><br/>
+<br/>
+<h1>Accessor</h1>
+<code><span class="keyword">interface </span><span class="identifier">Accessor</span><span class="symbol">&lt;</span><span class="identifier">T</span><span class="symbol">&gt;</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/entities/cache/CacheableCassandraEntity.kt#L74">(source)</a>
+<p>Interface for accessing a <a href="../index.html">CacheableCassandraEntity</a> from cc.hawkbot.regnum.io.database</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">operator</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.entities.cache.CacheableCassandraEntity.Accessor$get(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Result</span><span class="symbol">&lt;</span><a href="index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code>
+<p>Methods that needs to be overridden in order to fetch entity by its id.
+Please annotate with <a href="#">com.datastax.driver.mapping.annotations.Query</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../../cc.hawkbot.regnum.client.entities/-regnum-user/-accessor/index.html">Accessor</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Accessor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CacheableCassandraEntity.Accessor</span></a><span class="symbol">&lt;</span><a href="../../../cc.hawkbot.regnum.client.entities/-regnum-user/index.html"><span class="identifier">RegnumUser</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../../../cc.hawkbot.regnum.client.entities/-regnum-guild/-accessor/index.html">Accessor</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Accessor</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">CacheableCassandraEntity.Accessor</span></a><span class="symbol">&lt;</span><a href="../../../cc.hawkbot.regnum.client.entities/-regnum-guild/index.html"><span class="identifier">RegnumGuild</span></a><span class="symbol">!</span><span class="symbol">&gt;</span></code>
+<p>Internally used accessor</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AutoLoadingLanguageManager - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.command.translation</a>&nbsp;/&nbsp;<a href="./index.html">AutoLoadingLanguageManager</a><br/>
+<br/>
+<h1>AutoLoadingLanguageManager</h1>
+<code><span class="keyword">class </span><span class="identifier">AutoLoadingLanguageManager</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-default-language-manager/index.html"><span class="identifier">DefaultLanguageManager</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/command/translation/AutoLoadingLanguageManager.kt#L36">(source)</a>
+<p>Implementation of <a href="../-language-manager/index.html">LanguageManager</a> that will automatically load all languages in a specified folder.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">AutoLoadingLanguageManager</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.Language, java.nio.charset.Charset)/path">path</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.Language, java.nio.charset.Charset)/defaultLanguage">defaultLanguage</span><span class="symbol">:</span>&nbsp;<a href="../-language/index.html"><span class="identifier">Language</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$<init>(kotlin.String, cc.hawkbot.regnum.client.command.translation.Language, java.nio.charset.Charset)/encoding">encoding</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html"><span class="identifier">Charset</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Charsets.UTF_8<span class="symbol">)</span></code><code><span class="identifier">AutoLoadingLanguageManager</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$<init>(java.io.File, cc.hawkbot.regnum.client.command.translation.Language, java.nio.charset.Charset)/path">path</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$<init>(java.io.File, cc.hawkbot.regnum.client.command.translation.Language, java.nio.charset.Charset)/defaultLanguage">defaultLanguage</span><span class="symbol">:</span>&nbsp;<a href="../-language/index.html"><span class="identifier">Language</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$<init>(java.io.File, cc.hawkbot.regnum.client.command.translation.Language, java.nio.charset.Charset)/encoding">encoding</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html"><span class="identifier">Charset</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Charsets.UTF_8<span class="symbol">)</span></code>
+<p>Constructs a new auto loading language manager</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-default-language-manager/default-language.html">defaultLanguage</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">defaultLanguage</span><span class="symbol">: </span><a href="../-language/index.html"><span class="identifier">Language</span></a></code>
+<p>the language that should be used as a fallback language</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-default-language-manager/languages.html">languages</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">languages</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="../-language/index.html"><span class="identifier">Language</span></a><span class="symbol">&gt;</span></code>
+<p>All languages.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="regnum.html">regnum</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">regnum</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.AutoLoadingLanguageManager$regnum(cc.hawkbot.regnum.client.Regnum)/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-default-language-manager/get-language-by-guild.html">getLanguageByGuild</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLanguageByGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.DefaultLanguageManager$getLanguageByGuild(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-language/index.html"><span class="identifier">Language</span></a></code>
+<p>Returns the language by a guilds <a href="../-language-manager/get-language-by-guild.html#cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByGuild(kotlin.Long)/id">id</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-default-language-manager/get-language-by-user.html">getLanguageByUser</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getLanguageByUser</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.DefaultLanguageManager$getLanguageByUser(kotlin.Long)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../-language/index.html"><span class="identifier">Language</span></a></code>
+<p>Returns the language by a users <a href="../-language-manager/get-language-by-user.html#cc.hawkbot.regnum.client.command.translation.LanguageManager$getLanguageByUser(kotlin.Long)/id">id</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-default-language-manager/is-translated.html">isTranslated</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">isTranslated</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.DefaultLanguageManager$isTranslated(kotlin.String)/languageTag">languageTag</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code>
+<p>Returns whether a language is translated or not.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-default-language-manager/register-language.html">registerLanguage</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">registerLanguage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.command.translation.DefaultLanguageManager$registerLanguage(cc.hawkbot.regnum.client.command.translation.Language)/language">language</span><span class="symbol">:</span>&nbsp;<a href="../-language/index.html"><span class="identifier">Language</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers the <a href="../-language-manager/register-language.html#cc.hawkbot.regnum.client.command.translation.LanguageManager$registerLanguage(cc.hawkbot.regnum.client.command.translation.Language)/language">language</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-default-language-manager/regnum.html">regnum</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">regnum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
