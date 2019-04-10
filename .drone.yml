@@ -18,16 +18,16 @@ steps:
     commands:
         - ./gradlew compileJava compileKotlin
   - name: restore
-      image: plugins/s3-cache:1
-      settings:
-        pull: true
-        endpoint:
-        access_key:
-          from_secret: aws_secret_access_key
-        secret_key:
-          from_secret: aws_secret_access_key_id
-        rebuild: true
-        root: regnum-ci/cache
-        mount:
-          - .gradle/wrapper
-          - .gradle/caches
+    image: plugins/s3-cache:1
+    settings:
+      pull: true
+      endpoint:
+      access_key:
+        from_secret: aws_secret_access_key
+      secret_key:
+        from_secret: aws_secret_access_key_id
+      rebuild: true
+      root: regnum-ci/cache
+      mount:
+        - .gradle/wrapper
+        - .gradle/caches
