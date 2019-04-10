@@ -6,7 +6,7 @@ steps:
     image: plugins/s3-cache:1
     settings:
       pull: true
-      endpoint:
+      endpoint: s3.eu-central-1.amazonaws.com
       access_key:
         from_secret: aws_secret_access_key
       secret_key:
@@ -21,7 +21,7 @@ steps:
     image: plugins/s3-cache:1
     settings:
       pull: true
-      endpoint:
+      endpoint: s3.eu-central-1.amazonaws.com
       access_key:
         from_secret: aws_secret_access_key
       secret_key:
