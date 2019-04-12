@@ -5,13 +5,13 @@ steps:
   - name: restore
     image: plugins/s3-cache
     settings:
-      pull: true
+      root: hawkbot.s3.amazonaws.com
       access_key:
         from_secret: aws_access_key_id
       secret_key:
         from_secret: aws_secret_access_key
       restore: true
-      path: hawkbot/regnum-ci/cache
+      path: regnum-ci/cache
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     commands:
@@ -42,13 +42,13 @@ steps:
   - name: rebuild
     image: plugins/s3-cache
     settings:
-      pull: true
+      root: hawkbot.s3.amazonaws.com
       access_key:
         from_secret: aws_access_key_id
       secret_key:
         from_secret: aws_secret_access_key
       rebuild: true
-      path: hawkbot/regnum-ci/cache
+      path: regnum-ci/cache
       mount:
         - .gradle/wrapper
         - .gradle/caches
