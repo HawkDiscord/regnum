@@ -6,7 +6,7 @@ steps:
     image: plugins/s3-cache
     settings:
       pull: true
-      endpoint: http://minio.company.com
+      endpoint: https://hawkbot.s3.amazonaws.com/
       access_key:
         from_secret: aws_access_key_id
       secret_key:
@@ -43,9 +43,12 @@ steps:
     image: plugins/s3-cache
     settings:
       pull: true
-      endpoint: http://minio.company.com
+      endpoint: https://hawkbot.s3.amazonaws.com/
       access_key:
         from_secret: aws_access_key_id
       secret_key:
         from_secret: aws_secret_access_key
       rebuild: true
+      mount:
+        - .gradle/wrapper
+        - .gradle/caches
