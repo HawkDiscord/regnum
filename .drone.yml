@@ -12,14 +12,16 @@ steps:
       path: hawk-ci/regnum-ci/cache
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
+    environment: &gradle
+      GRADLE_USER_HOME: "`pwd`/.gradle"
+      GRADLE_CLI_OPTS: -Dorg.gradle.daemon=false
     commands:
-        - export GRADLE_USER_HOME=`pwd`/.gradle
-        - ./gradlew -Dorg.gradle.daemon=false compileJava compileKotlin
+        - ./gradlew $GRADLE_CLI_OPTS compileJava compileKotlin
   - name: dokka
     image: openjdk:12-jdk-oraclelinux7
+    environment: *gradle
     commands:
-      - export GRADLE_USER_HOME=`pwd`/.gradle
-      - ./gradlew -Dorg.gradle.daemon=false dokka
+      - ./gradlew $GRADLE_CLI_OPTS dokka
     when:
       branch:
         - master
