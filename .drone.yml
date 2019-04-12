@@ -2,6 +2,10 @@ kind: pipeline
 name: checks
 
 steps:
+  - name: prepare
+    image: alpine
+    commands:
+      - export GRADLE_USER_HOME=`pwd`/.gradle
   - name: restore
     image: homerovalle/drone-gcs-cache
     settings:
