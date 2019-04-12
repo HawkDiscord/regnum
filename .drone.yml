@@ -5,7 +5,7 @@ steps:
   - name: restore
     image: plugins/s3-cache
     settings:
-      root: hawkbot.s3.amazonaws.com
+      root: s3.amazonaws.com
       access_key:
         from_secret: aws_access_key_id
       secret_key:
@@ -42,7 +42,7 @@ steps:
   - name: rebuild
     image: plugins/s3-cache
     settings:
-      root: hawkbot.s3.amazonaws.com
+      root: s3.amazonaws.com
       access_key:
         from_secret: aws_access_key_id
       secret_key:
