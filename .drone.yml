@@ -12,6 +12,7 @@ steps:
       secret_key:
         from_secret: aws_secret_access_key
       restore: true
+      path: regnum-ci/cache
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     commands:
@@ -49,6 +50,7 @@ steps:
       secret_key:
         from_secret: aws_secret_access_key
       rebuild: true
+      path: regnum-ci/cache
       mount:
         - .gradle/wrapper
         - .gradle/caches
