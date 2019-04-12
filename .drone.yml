@@ -6,7 +6,7 @@ steps:
     image: plugins/s3-cache
     settings:
       pull: true
-      endpoint: https://hawkbot.s3.amazonaws.com
+      endpoint: https://s3.amazonaws.com
       access_key:
         from_secret: aws_access_key_id
       secret_key:
@@ -43,7 +43,7 @@ steps:
     image: plugins/s3-cache
     settings:
       pull: true
-      endpoint: https://hawkbot.s3.amazonaws.com
+      endpoint: https://s3.amazonaws.com
       access_key:
         from_secret: aws_access_key_id
       secret_key:
