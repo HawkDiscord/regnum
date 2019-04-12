@@ -5,6 +5,7 @@ steps:
   - name: restore
     image: homerovalle/drone-gcs-cache
     settings:
+      bucket: hawk-ci
       json_key:
         from_secret: gcs_cache_json_key
       restore: true
