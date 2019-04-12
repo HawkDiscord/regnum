@@ -5,11 +5,10 @@ steps:
   - name: restore
     image: homerovalle/drone-gcs-cache
     settings:
-      bucket: hawk-ci
       json_key:
         from_secret: gcs_cache_json_key
       restore: true
-      path: regnum-ci/cache
+      path: hawk-ci/regnum-ci/cache
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     commands:
@@ -45,6 +44,6 @@ steps:
       json_key:
         from_secret: gcs_cache_json_key
       rebuild: true
-      path: regnum-ci/cache
+      path: hawk-ci/regnum-ci/cache
       mount:
         - .gradle/
