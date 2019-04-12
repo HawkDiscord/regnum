@@ -3,13 +3,11 @@ name: checks
 
 steps:
   - name: restore
-    image: plugins/s3-cache
+    image: homerovalle/drone-gcs-cache
     settings:
-      root: s3.amazonaws.com
-      access_key:
-        from_secret: aws_access_key_id
-      secret_key:
-        from_secret: aws_secret_access_key
+      bucket: hawk-ci
+      json_key:
+        from_secret: gcs_cache_json_key
       restore: true
       path: regnum-ci/cache
   - name: compile
@@ -41,12 +39,11 @@ steps:
           - pull_request
   - name: rebuild
     image: plugins/s3-cache
+    image: homerovalle/drone-gcs-cache
     settings:
-      root: s3.amazonaws.com
-      access_key:
-        from_secret: aws_access_key_id
-      secret_key:
-        from_secret: aws_secret_access_key
+      bucket: hawk-ci
+      json_key:
+        from_secret: gcs_cache_json_key
       rebuild: true
       path: regnum-ci/cache
       mount:
