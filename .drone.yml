@@ -47,5 +47,4 @@ steps:
       rebuild: true
       path: regnum-ci/cache
       mount:
-        - .gradle/wrapper
-        - .gradle/caches
+        - .gradle/
