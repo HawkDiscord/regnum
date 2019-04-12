@@ -2,6 +2,16 @@ kind: pipeline
 name: checks
 
 steps:
+  - name: restore
+    image: plugins/s3-cache
+    settings:
+      pull: true
+      endpoint: http://minio.company.com
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+      restore: true
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     commands:
@@ -29,3 +39,13 @@ steps:
       event:
         exclude:
           - pull_request
+  - name: rebuild
+    image: plugins/s3-cache
+    settings:
+      pull: true
+      endpoint: http://minio.company.com
+      access_key:
+        from_secret: aws_access_key_id
+      secret_key:
+        from_secret: aws_secret_access_key
+      rebuild: true
