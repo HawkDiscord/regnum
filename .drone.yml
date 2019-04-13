@@ -6,6 +6,7 @@ steps:
     image: alpine
     commands:
       - ls
+      - pwd
   - name: restore
     image: homerovalle/drone-gcs-cache
     settings:
