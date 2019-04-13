@@ -15,6 +15,7 @@ steps:
     commands:
       - apk update
       - apk add tree -y
+      - tree
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     environment: &gradle
