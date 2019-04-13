@@ -63,8 +63,9 @@ steps:
       GOOGLE_APPLICATION_CREDENTIALS_CONTENTS:
         from_secret: gcs_cache_json_key
     settings:
+      bucket: hawk-ci
       source: build/artifacts/**
-      target: hawk-ci/regnum-ci/artifacts
+      target: regnum-ci/artifacts
       acl: public
     #when: *release
   - name: rebuild
