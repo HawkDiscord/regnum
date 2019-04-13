@@ -19,7 +19,7 @@ steps:
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     environment: &gradle
-      GRADLE_USER_HOME: "`pwd`/.gradle"
+      GRADLE_USER_HOME: ".gradle"
       GRADLE_CLI_OPTS: -Dorg.gradle.daemon=false
     commands:
         - ./gradlew $GRADLE_CLI_OPTS compileJava compileKotlin
