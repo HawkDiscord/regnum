@@ -11,14 +11,16 @@ steps:
       restore: true
       path: hawk-ci/regnum-ci/cache
   - name: debug
-    image: nate/dockviz
+    image: alpine
+    commands:
+      - apk update
+      - apk add tree -y
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     environment: &gradle
       GRADLE_USER_HOME: "`pwd`/.gradle"
       GRADLE_CLI_OPTS: -Dorg.gradle.daemon=false
     commands:
-        - 
         - ./gradlew $GRADLE_CLI_OPTS compileJava compileKotlin
   - name: dokka
     image: openjdk:12-jdk-oraclelinux7
