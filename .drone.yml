@@ -57,16 +57,17 @@ steps:
     commands:
       - ls
       - pwd
+      - apk update
+      - apk add tree
+      - tree build/
   - name: artifacts_deploy
-    image: wyattjoh/drone-gcs
-    environment:
-      GOOGLE_APPLICATION_CREDENTIALS_CONTENTS:
-        from_secret: gcs_cache_json_key
+    image: plugins/gcs
     settings:
-      bucket: hawk-ci
       source: build/artifacts/**
-      target: regnum-ci/artifacts
-      acl: public
+      target: hawk-ci/regnum-ci/artifacts
+      acl: allUsers:READER
+      token:
+        from_secret: gcs_cache_json_key
     #when: *release
   - name: rebuild
     image: homerovalle/drone-gcs-cache
