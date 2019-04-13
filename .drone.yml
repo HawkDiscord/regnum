@@ -39,6 +39,7 @@ steps:
   - name: build_artifacts
     image: openjdk:12-jdk-oraclelinux7
     environment: *gradle
+    #when: *release
     commands:
       - ./gradlew $GRADLE_CLI_OPTS buildArtifacts
   - name: github_release
@@ -47,7 +48,7 @@ steps:
       api_key:
         from_secret: github_api_key
       files: build/artifacts/*
-    when: *release
+    #when: *release
   - name: rebuild
     image: homerovalle/drone-gcs-cache
     settings:
