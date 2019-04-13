@@ -2,11 +2,6 @@ kind: pipeline
 name: checks
 
 steps:
-  - name: debug
-    image: alpine
-    commands:
-      - ls
-      - pwd
   - name: restore
     image: homerovalle/drone-gcs-cache
     settings:
@@ -56,7 +51,12 @@ steps:
     when:
       event:
         include:
-          - tag
+        - tag
+  - name: debug
+    image: alpine
+    commands:
+      - ls
+      - pwd
   - name: artifacts_deploy
     image: plugins/gcs
     settings:
