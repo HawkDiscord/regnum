@@ -59,7 +59,7 @@ steps:
       target: hawk-ci/regnum-ci/artifacts
       acl: allUsers:READER
       token:
-        from_secret: gcs_cache_token
+        from_secret: gcs_cache_json_key
     #when: *release
   - name: rebuild
     image: homerovalle/drone-gcs-cache
