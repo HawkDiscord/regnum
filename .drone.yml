@@ -48,7 +48,7 @@ steps:
       api_key:
         from_secret: github_api_key
       files: build/artifacts/**/*
-    when: *release
+    when:
       event:
         include:
           - tag
