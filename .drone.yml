@@ -55,7 +55,7 @@ steps:
   - name: artifacts_deploy
     image: plugins/gcs
     settings:
-      source: build/artifacts/*
+      source: ../../build/artifacts/*
       target: hawk-ci/regnum-ci/artifacts
       acl: allUsers:READER
       token:
