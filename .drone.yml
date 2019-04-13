@@ -58,13 +58,14 @@ steps:
       - ls
       - pwd
   - name: artifacts_deploy
-    image: plugins/gcs
-    settings:
-      source: ../../build/artifacts/*
-      target: hawk-ci/regnum-ci/artifacts
-      acl: allUsers:READER
-      token:
+    image: wyattjoh/drone-gcs
+    environment:
+      GOOGLE_APPLICATION_CREDENTIALS_CONTENTS:
         from_secret: gcs_cache_json_key
+    settings:
+      source: build/artifacts/**
+      target: hawk-ci/regnum-ci/artifacts
+      acl: public
     #when: *release
   - name: rebuild
     image: homerovalle/drone-gcs-cache
