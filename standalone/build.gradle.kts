@@ -62,7 +62,9 @@ bintray {
     })
 }
 
+
 tasks {
+    task("buildArtifacts")
     dokka {
         outputFormat = "html"
         outputDirectory = (project.ext["docsDir"] as File).absolutePath
@@ -99,6 +101,9 @@ tasks {
     }
     "jar"(Jar::class) {
         destinationDirectory.set(buildDir)
+    }
+    "buildArtifacts"(Task::class) {
+        dependsOn(sourcesJar, dokkaJar, jar)
     }
 }
 

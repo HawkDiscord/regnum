@@ -10,51 +10,45 @@ steps:
         from_secret: gcs_cache_json_key
       restore: true
       path: hawk-ci/regnum-ci/cache
-  - name: debug
-    image: alpine
-    commands:
-      - apk update
-      - apk add tree -y
-      - tree
   - name: compile
     image: openjdk:12-jdk-oraclelinux7
     environment: &gradle
       GRADLE_USER_HOME: ".gradle"
       GRADLE_CLI_OPTS: -Dorg.gradle.daemon=false
     commands:
-        - ./gradlew $GRADLE_CLI_OPTS compileJava compileKotlin
+      - ./gradlew $GRADLE_CLI_OPTS compileJava compileKotlin
   - name: dokka
     image: openjdk:12-jdk-oraclelinux7
     environment: *gradle
     commands:
       - ./gradlew $GRADLE_CLI_OPTS dokka
-    when:
+    when: &release
       branch:
         - master
       event:
         exclude:
           - pull_request
-  - name: publish
+  - name: publish_docs
     image: plugins/gh-pages
     settings:
       username: SchlaubiBot
       password:
         from_secret: github_password
       pages_directory: public/
-    when:
-      branch:
-        - master
-      event:
-        exclude:
-          - pull_request
-  - name: debug2
-    image: alpine
+    when: *release
+  - name: build_artifacts
+    image: openjdk:12-jdk-oraclelinux7
+    environment: *gradle
     commands:
-      - apk update
-      - apk add tree -y
-      - tree        
+      - ./gradlew $GRADLE_CLI_OPTS buildArtifacts
+  - name: github_release
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_api_key
+      files: build/artifacts/*
+    when: *release
   - name: rebuild
-    image: plugins/s3-cache
     image: homerovalle/drone-gcs-cache
     settings:
       bucket: hawk-ci

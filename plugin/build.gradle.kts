@@ -113,6 +113,7 @@ tasks {
     "jar"(Jar::class) {
         destinationDirectory.set(buildDir)
     }
+    ""
 }
 
 configure<JavaPluginExtension> {
