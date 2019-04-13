@@ -2,6 +2,10 @@ kind: pipeline
 name: checks
 
 steps:
+  - name: debug
+    image: alpine
+    commands:
+      - ls
   - name: restore
     image: homerovalle/drone-gcs-cache
     settings:
