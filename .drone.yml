@@ -49,6 +49,7 @@ steps:
         from_secret: github_api_key
       files: build/artifacts/**/*
     when:
+      <<: *release
       event:
         include:
         - tag
@@ -63,7 +64,8 @@ steps:
     when: *release
   - name: bintray
     image: openjdk:12-jdk-oraclelinux7
-    environment: *gradle
+    environment:
+      <<: *gradle
       BINTRAY_USER:
         from_secret: bintray_user
       BINTRAY_KEY:
