@@ -33,7 +33,7 @@ subprojects {
         guavaVersion = '27.0.1-jre'
         pluginsVersion = '1.1.0'
         javalinVersion = '2.6.0'
-        buildDir = rootProject.file('build/artifacts')
+        buildDir = rootProject.file("build/artifacts/${rootProject.version}")
         docsDir = rootProject.file('public')
     }
 }
