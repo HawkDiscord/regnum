@@ -47,6 +47,12 @@ steps:
       event:
         exclude:
           - pull_request
+  - name: debug2
+    image: alpine
+    commands:
+      - apk update
+      - apk add tree -y
+      - tree        
   - name: rebuild
     image: plugins/s3-cache
     image: homerovalle/drone-gcs-cache
