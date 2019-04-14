@@ -29,6 +29,10 @@ import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
 
+/**
+ * Extension of [InteractableMessage] which allows you to also accept reaction based interactions.
+ * @see ReactableMessageBuilder
+ */
 abstract class ReactableMessage(
         regnum: Regnum,
         message: Message,
@@ -64,7 +68,7 @@ abstract class ReactableMessage(
                 it.reaction.removeReaction(it.user).queue()
             }
             handleReaction(it)
-        }, InteractableMessage.executor)
+        }, executor)
     }
 
     override fun finish() {
@@ -72,6 +76,10 @@ abstract class ReactableMessage(
         super.finish()
     }
 
+    /**
+     * Method that gets invoked whenever the user performs a reaction-based interaction.
+     * @param event the event of the reaction
+     */
     abstract fun handleReaction(event: GuildMessageReactionAddEvent)
 
     override fun isUserAllowed(context: Context): Boolean {

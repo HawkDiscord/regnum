@@ -44,8 +44,14 @@ abstract class SetupMessage(regnum: Regnum, message: Message, users: List<User>,
         handleStep(event, step)
     }
 
+    /**
+     * Method that handles a reaction step by the message [event] at the specified [step].
+     */
     abstract fun handleStep(event: GuildMessageReceivedEvent, step: Int)
 
+    /**
+     * Method that handles a reaction step by the reaction [event] at the specified [step].
+     */
     abstract fun handleStep(event: GuildMessageReactionAddEvent, step: Int)
 
     protected fun next(step: Int = 1) {
