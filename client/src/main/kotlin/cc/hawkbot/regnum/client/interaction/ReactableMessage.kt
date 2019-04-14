@@ -60,6 +60,7 @@ abstract class ReactableMessage(
         )
         future.thenAcceptAsync(Consumer {
             if (removeReaction) {
+
                 it.reaction.removeReaction(it.user).queue()
             }
             handleReaction(it)

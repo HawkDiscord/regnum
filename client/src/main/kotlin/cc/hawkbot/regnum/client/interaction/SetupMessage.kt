@@ -27,6 +27,9 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
 import java.util.concurrent.TimeUnit
 
+/**
+ * An generic implementation of [InteractableMessage] to build interactive setups.
+ */
 abstract class SetupMessage(regnum: Regnum, message: Message, users: List<User>, timeout: Long, timeunit: TimeUnit, neededPermissions: List<Permission> = emptyList(), removeReaction: Boolean, disableMessageListening: Boolean) : ReactableMessage(regnum, message, users, timeout, timeunit, neededPermissions, removeReaction, disableMessageListening) {
 
     private var step = 1

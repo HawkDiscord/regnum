@@ -32,6 +32,10 @@ import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.Permission
 
 
+/**
+ * An Paginator implementation of [InteractableMessage]
+ * @see PaginatorBuilder
+ */
 class Paginator<T>(
         regnum: Regnum,
         message: Message,

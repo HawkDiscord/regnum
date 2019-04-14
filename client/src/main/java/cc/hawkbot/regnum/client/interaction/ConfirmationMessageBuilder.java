@@ -23,11 +23,14 @@ import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.util.TranslationUtil;
 import com.google.common.base.Preconditions;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.util.function.Consumer;
 
+/**
+ * Builder for {@link ConfirmationMessage}.
+ * @see ConfirmationMessage
+ */
 public class ConfirmationMessageBuilder extends ReactableMessageBuilder<ConfirmationMessage, ConfirmationMessageBuilder> {
 
     private String yesEmote = "✅";
@@ -36,41 +39,81 @@ public class ConfirmationMessageBuilder extends ReactableMessageBuilder<Confirma
     private String noKeyword = "no";
     private Consumer<InteractableMessage.Context> yesConsumer;
     private Consumer<InteractableMessage.Context> noConsumer;
-    
+
+    /**
+     * Constructs a new ConfirmationMessageBuidlder.
+     * @param regnum the current Regnum instanec
+     */
     public ConfirmationMessageBuilder(Regnum regnum) {
         super(regnum);
     }
 
+    /**
+     * Sets the emote that indicates that the user confirms the action.
+     * @param yesEmote the unicode of the emote
+     * @return the current builder
+     */
     public ConfirmationMessageBuilder setYesEmote(String yesEmote) {
         this.yesEmote = yesEmote;
         return this;
     }
 
+    /**
+     * Sets the keyword that indicates that the user confirms the action.
+     * @param yesKeyword the keyword
+     * @return the current builder
+     */
     public ConfirmationMessageBuilder setYesKeyword(String yesKeyword) {
         this.yesKeyword = yesKeyword;
         return this;
     }
 
+    /**
+     * Sets the emote that indicates that the user does not confirm the action.
+     * @param noEmote the unicode of the emote
+     * @return the current builder
+     */
     public ConfirmationMessageBuilder setNoEmote(String noEmote) {
         this.noEmote = noEmote;
         return this;
     }
 
+    /**
+     * Sets the keyword that indicates that the user does not confirm the action.
+     * @param noKeyword the keyword
+     * @return the current builder
+     */
     public ConfirmationMessageBuilder setNoKeyword(String noKeyword) {
         this.noKeyword = noKeyword;
         return this;
     }
 
+    /**
+     * Sets the Runnable that gets executed whenever the user confirms the action.
+     * @param yesConsumer the consumer
+     * @return the current builder
+     */
     public ConfirmationMessageBuilder setYesConsumer(Consumer<InteractableMessage.Context> yesConsumer) {
         this.yesConsumer = yesConsumer;
         return this;
     }
 
+    /**
+     * Sets the Runnable that gets executed whenever the user denies the action.
+     * @param noConsumer the consumer
+     * @return the current builder
+     */
     public ConfirmationMessageBuilder setNoConsumer(Consumer<InteractableMessage.Context> noConsumer) {
         this.noConsumer = noConsumer;
         return this;
     }
 
+    /**
+     * Sends and sets the message on which the bot should listen on.
+     * @param channel the channel in which the message should be sent
+     * @param builder the content of the message
+     * @return the current builder
+     */
     @Override
     public ConfirmationMessageBuilder setMessage(TextChannel channel, EmbedBuilder builder) {
         Preconditions.checkState(!getAuthorizedUsers().isEmpty(), "Authorized users may not be empty");
@@ -90,6 +133,10 @@ public class ConfirmationMessageBuilder extends ReactableMessageBuilder<Confirma
         super.checks();
     }
 
+    /**
+     * Builds the confirmation message.
+     * @return the {@link ConfirmationMessage}
+     */
     @Override
     public ConfirmationMessage build() {
         checks();

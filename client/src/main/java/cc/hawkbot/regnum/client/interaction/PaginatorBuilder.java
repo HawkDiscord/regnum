@@ -32,6 +32,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 
+/**
+ * Builder for {@link Paginator}.
+ * @param <T> type of the paginator content
+ */
 @SuppressWarnings("unused")
 public class PaginatorBuilder<T> extends ReactableMessageBuilder<Paginator<T>, PaginatorBuilder<T>> {
 

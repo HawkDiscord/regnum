@@ -24,6 +24,7 @@ import cc.hawkbot.regnum.client.util.EmbedUtil
 import cc.hawkbot.regnum.client.util.SafeMessage
 import cc.hawkbot.regnum.client.util.TranslationUtil
 import cc.hawkbot.regnum.util.DefaultThreadFactory
+import cc.hawkbot.regnum.waiter.EventWaiter
 import net.dv8tion.jda.api.EmbedBuilder
 import net.dv8tion.jda.api.MessageBuilder
 import net.dv8tion.jda.api.Permission
@@ -36,7 +37,17 @@ import java.util.concurrent.CompletionStage
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
+import java.util.function.Function
 
+/**
+ * Message which listens for interactions from the user.
+ * @property regnum the current regnum instance
+ * @property message the message which should be listened on
+ * @property users a list of users who are allowed to interact with the message
+ * @property timeout the time after the message should stop to listen for interaction
+ * @property timeunit the unit for the timeout
+ * @param neededPermissions a list of permissions the message needs to run
+ */
 @Suppress("MemberVisibilityCanBePrivate")
 abstract class InteractableMessage(
         protected val regnum: Regnum,
@@ -50,6 +61,9 @@ abstract class InteractableMessage(
     private lateinit var future: CompletionStage<GuildMessageReceivedEvent>
 
     companion object {
+        /**
+         * Scheduler for interactable messages
+         */
         val executor = Executors.newCachedThreadPool(DefaultThreadFactory("Interaction"))!!
     }
 
@@ -71,8 +85,15 @@ abstract class InteractableMessage(
         }
     }
 
+    /**
+     * Method that gets invoked whenever the user performs a message interaction.
+     * @param event the event of the message
+     */
     abstract fun onMessage(event: GuildMessageReceivedEvent)
 
+    /**
+     * Method that waits for user interaction
+     */
     protected open fun waitForInteraction() {
         future = regnum.eventWaiter.waitFor(
                 GuildMessageReceivedEvent::class.java,
@@ -83,6 +104,18 @@ abstract class InteractableMessage(
         future.thenAcceptAsync(Consumer {
             onMessage(it)
         }, executor)
+        future.exceptionallyAsync (Function {
+            if (it is EventWaiter.TimeoutException) {
+                editMessage(
+                        EmbedUtil.error(
+                                translate("phrases.interactable.timeout.title"),
+                                translate("phrases.interactable.timeout.description")
+                        )
+                ).queue()
+            }
+            null
+        },
+                executor)
     }
 
     protected open fun retry() {
@@ -134,6 +167,9 @@ abstract class InteractableMessage(
         }
     }
 
+    /**
+     * Container for [member], [message] and [reaction] of an interaction
+     */
     data class Context(
             val member: Member,
             val message: Message,
@@ -146,23 +182,58 @@ abstract class InteractableMessage(
                 event.reaction
         )
 
+        /**
+         * The author of the interaction.
+         */
+        @Suppress("unused")
+        val author: User
+            get() = member.user
+
+        /**
+         * The guild the interaction was performed on.
+         */
+        val guild: Guild
+            get() = member.guild
+
+        /**
+         * The channel the interaction was performed in.
+         */
+        val channel: TextChannel
+            get() = message.channel as TextChannel
+
+        /**
+         * The author of the interaction.
+         */
+        @Deprecated("We moving from fluent getters to Kotlin fields", ReplaceWith("author"))
         fun author(): User {
             return member.user
         }
 
+        /**
+         * The guild the interaction was performed on.
+         */
+        @Deprecated("We moving from fluent getters to Kotlin fields", ReplaceWith("guild"))
         fun guild(): Guild {
             return member.guild
         }
 
+        /**
+         * The channel the interaction was performed in.
+         */
+        @Deprecated("We moving from fluent getters to Kotlin fields", ReplaceWith("channel"))
         fun channel(): TextChannel {
             return message.channel as TextChannel
         }
 
+        /**
+         * @return a RestAction which deletes the reaction
+         */
+        @Suppress("unused")
         fun deleteReaction(): RestAction<Void> {
             if (reaction == null) {
                 throw UnsupportedOperationException("You cannot use reactions in a non reaction based message.")
             }
-            return reaction.removeReaction(author())
+            return reaction.removeReaction(author)
         }
     }
 
