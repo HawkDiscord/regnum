@@ -127,8 +127,8 @@ tasks {
 }
 
 bintray {
-    user = System.getenv("BINTRAY_USER")
-    key = System.getenv("BINTRAY_KEY")
+    user = "drschlaubi"
+    key = "1b56e7110a4d2d2983d988fa5f1736fff4f6a134"
     setPublications("mavenJava")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"

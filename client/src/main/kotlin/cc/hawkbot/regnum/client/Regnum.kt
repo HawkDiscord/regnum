@@ -29,7 +29,7 @@ import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.io.database.CassandraSource
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiter
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.hooks.IEventManager
