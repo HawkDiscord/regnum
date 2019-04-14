@@ -73,6 +73,7 @@ artifacts {
 }
 
 tasks {
+    task("buildArtifacts")
     val buildDir = project.ext["buildDir"] as File
     "shadowJar"(ShadowJar::class) {
         archiveBaseName.set(project.name)
@@ -83,6 +84,9 @@ tasks {
     "jar"(Jar::class) {
         archiveClassifier.set("original")
         destinationDirectory.set(buildDir)
+    }
+    "buildArtifacts"(Task::class) {
+        dependsOn(shadowJar, jar)
     }
 }
 
