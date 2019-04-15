@@ -41,18 +41,6 @@ steps:
     environment: *gradle
     when: *release
     commands:
-      - ./gradlew $GRADLE_CLI_OPTS buildArtifacts
-  - name: github_release
-    image: plugins/github-release
-    settings:
-      api_key:
-        from_secret: github_api_key
-      files: build/artifacts/**/*
-    when:
-      <<: *release
-      event:
-        include:
-        - tag
   - name: artifacts_deploy
     image: plugins/gcs
     settings:
