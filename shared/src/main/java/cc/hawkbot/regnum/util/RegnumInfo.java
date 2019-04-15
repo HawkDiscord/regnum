@@ -1,5 +1,5 @@
 /*
- * Regnum - A Discord bot clustering system made for Hawk 
+ * Regnum - A Discord bot clustering system made for Hawk
  *
  * Copyright (C) 2019  Michael Rittmeister
  *
@@ -17,23 +17,13 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-group 'cc.hawkbot.regnum'
-version '0.0.2'
+package cc.hawkbot.regnum.util;
 
-subprojects {
-    ext {
-        jdaVersion = '4.ALPHA.0_67'
-        slf4jVersion = '1.7.25'
-        log4jVersion = '2.11.0'
-        cassandraVersion = '3.6.0'
-        nightconfigVersion = '3.5.0'
-        jacksonVersion = '2.9.7'
-        sentryVersion = '1.7.16'
-        websocketVersion = '1.4.0'
-        guavaVersion = '27.0.1-jre'
-        pluginsVersion = '1.1.0'
-        javalinVersion = '2.6.0'
-        buildDir = rootProject.file("build/artifacts/${rootProject.version}")
-        docsDir = rootProject.file('public')
-    }
+/**
+ * Class containing Regnum library info.
+ */
+public class RegnumInfo {
+
+    public static final String VERSION = "0.0.2";
+    public static final String GITHUB_URL = "https://github.com/HawkDiscord/regnum";
 }
