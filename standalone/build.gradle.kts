@@ -13,8 +13,7 @@ plugins {
 
 group = "cc.hawkbot.regnum.client"
 val archivesBasename = "standalone"
-version = "0.0.2"
-
+version = "0.0.3"
 repositories {
     mavenCentral()
     jcenter()
