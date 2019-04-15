@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.plugin
 
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.sentry.SentryClient
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
@@ -28,7 +28,7 @@ import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import cc.hawkbot.regnum.server.plugin.io.config.Config
 import cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.rest.RestHandler
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiter
 import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.IEventManager
 import okhttp3.OkHttpClient

@@ -22,6 +22,7 @@ package cc.hawkbot.regnum.client.events.websocket;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.client.core.Websocket;
 import cc.hawkbot.regnum.client.events.Event;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Generic event for {@link Websocket}.
@@ -39,7 +40,7 @@ public class WebSocketEvent extends Event {
      * @see Event#Event(Regnum)
      */
     @SuppressWarnings("WeakerAccess")
-    public WebSocketEvent(Regnum regnum, Websocket websocket) {
+    public WebSocketEvent(@NotNull Regnum regnum, @NotNull Websocket websocket) {
         super(regnum);
         this.websocket = websocket;
     }
@@ -49,6 +50,7 @@ public class WebSocketEvent extends Event {
      *
      * @return the {@link Websocket} instance
      */
+    @NotNull
     public Websocket getWebsocket() {
         return websocket;
     }

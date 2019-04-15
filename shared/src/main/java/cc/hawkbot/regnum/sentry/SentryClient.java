@@ -164,5 +164,6 @@ public class SentryClient {
          */
         public String getName() {
             return name;
-        }}
+        }
+    }
 }

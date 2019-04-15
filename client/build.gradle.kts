@@ -31,7 +31,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "0.0.1"
+version = "0.0.2"
 val archivesBasename = "regnum.client"
 
 repositories {
@@ -41,18 +41,14 @@ repositories {
 
 dependencies {
 
-    // Discord
-    @Suppress("SpellCheckingInspection")
-    compile("net.dv8tion:JDA:4.ALPHA.0_54")
-
     // Regnum
     compile(project(":shared"))
 
     // Server
-    implementation("org.java-websocket:Java-WebSocket:1.4.0")
+    implementation("org.java-websocket", "Java-WebSocket", project.ext["websocketVersion"] as String)
 
     // Util
-    compile("com.google.guava:guava:27.0.1-jre")
+    compile("com.google.guava", "guava", project.ext["guavaVersion"] as String)
 
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
@@ -80,9 +76,10 @@ artifacts {
 
 
 tasks {
+    task("buildArtifacts")
     dokka {
         outputFormat = "html"
-        outputDirectory = "public"
+        outputDirectory = (project.ext["docsDir"] as File).absolutePath
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
@@ -109,7 +106,7 @@ tasks {
             packageListUrl = uri("https://gist.githubusercontent.com/DRSchlaubi/3d1d0aaa5c01963dcd4d0149c841c896/raw/22141759fbab1e38fd2381c3e4f97616ecb43fc8/package-list").toURL()
         })
     }
-    val buildDir = File("../build/artifacts")
+    val buildDir = project.ext["buildDir"] as File
     "sourcesJar"(Jar::class) {
         archiveClassifier.set("sources")
         destinationDirectory.set(buildDir)
@@ -124,11 +121,14 @@ tasks {
     "jar"(Jar::class) {
         destinationDirectory.set(buildDir)
     }
+    "buildArtifacts"(Task::class) {
+        dependsOn(sourcesJar, dokkaJar, jar)
+    }
 }
 
 bintray {
-    user = System.getenv("BINTRAY_USER")
-    key = System.getenv("BINTRAY_KEY")
+    user = "drschlaubi"
+    key = "1b56e7110a4d2d2983d988fa5f1736fff4f6a134"
     setPublications("mavenJava")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "maven"

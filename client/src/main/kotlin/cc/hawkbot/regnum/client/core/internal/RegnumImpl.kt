@@ -32,18 +32,20 @@ import cc.hawkbot.regnum.client.config.CassandraConfig
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig
 import cc.hawkbot.regnum.client.config.ServerConfig
+import cc.hawkbot.regnum.client.core.MessageCache
 import cc.hawkbot.regnum.client.core.discord.Discord
+import cc.hawkbot.regnum.client.core.discord.MessageWatcher
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.client.entities.cache.impl.CassandraCacheImpl
-import cc.hawkbot.regnum.entites.cassandra.CassandraEntity
 import cc.hawkbot.regnum.client.entities.permission.PermissionNode
-import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.client.util._setRegnum
+import cc.hawkbot.regnum.entities.cassandra.CassandraEntity
+import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.util.logging.Logger
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
+import cc.hawkbot.regnum.waiter.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiterImpl
 import com.datastax.driver.extras.codecs.enums.EnumNameCodec
 import net.dv8tion.jda.api.hooks.IEventManager
 
@@ -63,7 +65,8 @@ open class RegnumImpl(
         override val eventManager: IEventManager,
         val gameAnimatorConfig: GameAnimatorConfig,
         commandConfig: CommandConfig,
-        override val disabledFeatures: List<Feature>
+        override val disabledFeatures: List<Feature>,
+        private val _messageCache: MessageCache
 ) : Regnum {
 
     private val log = Logger.getLogger()
@@ -82,7 +85,15 @@ open class RegnumImpl(
     override var permissionManager: PermissionManager
         get() = _getPermissionManager()
         set(value) = _setPermissionManager(value)
+    override val messageCache: MessageCache
+        get() = _getMessageCache()
 
+    /**
+     * Initializes the Regnum client.
+     * @param serverConfig the server configuration
+     * @param cassandraConfig the cassandra Configuration
+     * @param commandConfig the command configuration
+     */
     fun init(serverConfig: ServerConfig, cassandraConfig: CassandraConfig, commandConfig: CommandConfig): Regnum {
         _setRegnum(this)
         events()
@@ -95,6 +106,9 @@ open class RegnumImpl(
 
     protected fun events() {
         eventWaiter = EventWaiterImpl(eventManager)
+        if (Feature.MESSAGE_CACHE !in disabledFeatures) {
+            eventManager.register(MessageWatcher(this))
+        }
     }
 
     protected fun cassandra(cassandraConfig: CassandraConfig) {
@@ -130,12 +144,8 @@ open class RegnumImpl(
         log.info("[Regnum] Successfully connected to Cassandra cluster")
         log.info("[Regnum] Generating Cassandra databases")
         generators.forEach {
-            try {
-                val statement = source.session.prepare(it).bind()
-                source.session.executeAsync(statement).get()
-            } catch (e: Exception) {
-                log.error("[Regnum] Error while generating default cc.hawkbot.regnum.io.database", e)
-            }
+            val statement = source.session.prepare(it).bind()
+            source.session.executeAsync(statement).get()
         }
         log.info("[Regnum] Generated databases. Initializing caches")
     }
@@ -175,13 +185,20 @@ open class RegnumImpl(
     }
 
     private fun _getPermissionManager(): PermissionManager {
-        if (Feature.PERMISSION_SYSTEM !in disabledFeatures) {
+        if (Feature.PERMISSION_SYSTEM in disabledFeatures) {
             throw IllegalStateException("You have to enable Feature.PERMISSION_SYSTEM in order to use that feature.")
         }
-        return permissionManager
+        return _permissionManager
     }
 
     private fun _setPermissionManager(value: PermissionManager) {
         this._permissionManager = value
+    }
+
+    private fun _getMessageCache(): MessageCache {
+        if (Feature.MESSAGE_CACHE in disabledFeatures) {
+            throw UnsupportedOperationException("Message cache is disabled!")
+        }
+        return _messageCache
     }
 }

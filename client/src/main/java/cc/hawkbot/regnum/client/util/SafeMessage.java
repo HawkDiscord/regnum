@@ -25,6 +25,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 import net.dv8tion.jda.internal.requests.restaction.MessageActionImpl;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -48,7 +49,7 @@ public class SafeMessage {
     public static int DEFAULT_DELETE_TIME = -1;
     private static ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
-    private static Boolean hasPermission(
+    private static boolean hasPermission(
             Guild guild,
             GuildChannel channel,
             Permission... permissions
@@ -56,8 +57,9 @@ public class SafeMessage {
         return guild.getSelfMember().hasPermission(channel, permissions);
     }
 
-    private static MessageAction checkPermissions(Message message, TextChannel channel,
-                                                  Runnable errorHandler, BiFunction<Message, TextChannel, MessageAction> processor) {
+    @NotNull
+    private static MessageAction checkPermissions(@NotNull Message message, @NotNull TextChannel channel,
+                                                  @NotNull Runnable errorHandler, @NotNull BiFunction<Message, TextChannel, MessageAction> processor) {
         var guild = channel.getGuild();
         if (!message.getEmbeds().isEmpty()) {
             if (hasPermission(guild, channel, Permission.MESSAGE_WRITE, Permission.MESSAGE_EMBED_LINKS)) {
@@ -88,8 +90,9 @@ public class SafeMessage {
      *                        the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage, Message newMessage,
-                                            Runnable errorHandler) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage, @NotNull Message newMessage,
+                                            @NotNull Runnable errorHandler) {
         var channel = ((TextChannel) previousMessage.getChannel());
         return checkPermissions(newMessage, channel, errorHandler,
                 (message, textChannel) -> previousMessage.editMessage(message));
@@ -102,7 +105,8 @@ public class SafeMessage {
      * @param newMessage      the new content of the message the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage, Message newMessage) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage, @NotNull Message newMessage) {
         return editMessage(previousMessage, newMessage, DEFAULT_ERROR_HANDLER);
     }
 
@@ -115,8 +119,9 @@ public class SafeMessage {
      *                        the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage,
-                                            MessageBuilder newMessage, Runnable errorHandler) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage,
+                                            @NotNull MessageBuilder newMessage, @NotNull Runnable errorHandler) {
         return editMessage(previousMessage, newMessage.build(), errorHandler);
     }
 
@@ -127,8 +132,9 @@ public class SafeMessage {
      * @param newMessage      the new content of the message the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage,
-                                            MessageBuilder newMessage) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage,
+                                            @NotNull MessageBuilder newMessage) {
         return editMessage(previousMessage, newMessage, DEFAULT_ERROR_HANDLER);
     }
 
@@ -141,8 +147,9 @@ public class SafeMessage {
      *                        the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage,
-                                            MessageEmbed newMessage, Runnable errorHandler) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage,
+                                            @NotNull MessageEmbed newMessage, @NotNull Runnable errorHandler) {
         return editMessage(previousMessage, new MessageBuilder().setEmbed(newMessage), errorHandler);
     }
 
@@ -153,7 +160,8 @@ public class SafeMessage {
      * @param newMessage      the new content of the message the message
      * @return a future containing the edited {@link Message} the message
      */
-    public static MessageAction editMessage(Message previousMessage, MessageEmbed newMessage) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage, @NotNull MessageEmbed newMessage) {
         return editMessage(previousMessage, newMessage, DEFAULT_ERROR_HANDLER);
     }
 
@@ -166,8 +174,9 @@ public class SafeMessage {
      *                        the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage,
-                                            EmbedBuilder newMessage, Runnable errorHandler) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage,
+                                            @NotNull EmbedBuilder newMessage, @NotNull Runnable errorHandler) {
         return editMessage(previousMessage, newMessage.build(), errorHandler);
     }
 
@@ -178,8 +187,9 @@ public class SafeMessage {
      * @param newMessage      the new content of the message the message
      * @return a future containing the edited {@link Message} the message
      */
-    public static MessageAction editMessage(Message previousMessage,
-                                            EmbedBuilder newMessage) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage,
+                                            @NotNull EmbedBuilder newMessage) {
         return editMessage(previousMessage, newMessage, DEFAULT_ERROR_HANDLER);
     }
 
@@ -192,8 +202,9 @@ public class SafeMessage {
      *                        the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage,
-                                            String newMessage, Runnable errorHandler) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage,
+                                            @NotNull String newMessage, @NotNull Runnable errorHandler) {
         return editMessage(previousMessage, new MessageBuilder().setContent(newMessage), errorHandler);
     }
 
@@ -204,7 +215,8 @@ public class SafeMessage {
      * @param newMessage      the new content of the message the message
      * @return a future containing the edited {@link Message}
      */
-    public static MessageAction editMessage(Message previousMessage, String newMessage) {
+    @NotNull
+    public static MessageAction editMessage(@NotNull Message previousMessage, @NotNull String newMessage) {
         return editMessage(previousMessage, newMessage, DEFAULT_ERROR_HANDLER);
     }
 
@@ -218,11 +230,12 @@ public class SafeMessage {
      *                     message
      * @return the future of the API Request
      */
+    @NotNull
     public static MessageAction sendMessage(
-            Message content,
-            TextChannel channel,
+            @NotNull Message content,
+            @NotNull TextChannel channel,
             int deleteTime,
-            Runnable errorHandler
+            @NotNull Runnable errorHandler
     ) {
         return delete(checkPermissions(content, channel, errorHandler,
                 (message, textChannel) -> textChannel.sendMessage(message)), deleteTime);
@@ -238,9 +251,10 @@ public class SafeMessage {
      * @return the future of the API Request
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
+    @NotNull
     public static MessageAction sendMessage(
-            Message content,
-            TextChannel channel,
+            @NotNull Message content,
+            @NotNull TextChannel channel,
             int deleteTime
     ) {
         return sendMessage(content, channel, deleteTime, DEFAULT_ERROR_HANDLER);
@@ -255,7 +269,8 @@ public class SafeMessage {
      * @return the future of the API Request
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
-    public static MessageAction sendMessage(Message content, TextChannel channel) {
+    @NotNull
+    public static MessageAction sendMessage(@NotNull Message content, @NotNull TextChannel channel) {
         return sendMessage(content, channel, DEFAULT_DELETE_TIME, DEFAULT_ERROR_HANDLER);
     }
 
@@ -270,11 +285,12 @@ public class SafeMessage {
      * @return the future of the API Request
      * @see SafeMessage#sendMessage(Message, TextChannel, int, Runnable)
      */
+    @NotNull
     public static MessageAction sendMessage(
-            MessageBuilder content,
-            TextChannel channel,
+            @NotNull MessageBuilder content,
+            @NotNull TextChannel channel,
             int deleteTime,
-            Runnable errorHandler
+            @NotNull Runnable errorHandler
     ) {
         return sendMessage(content.build(), channel, deleteTime, errorHandler);
     }
@@ -291,8 +307,8 @@ public class SafeMessage {
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
     public static MessageAction sendMessage(
-            MessageBuilder content,
-            TextChannel channel,
+            @NotNull MessageBuilder content,
+            @NotNull TextChannel channel,
             int deleteTime
     ) {
         return sendMessage(content, channel, deleteTime, DEFAULT_ERROR_HANDLER);
@@ -308,7 +324,8 @@ public class SafeMessage {
      * @see SafeMessage#sendMessage(Message, TextChannel, int, Runnable)
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
-    public static MessageAction sendMessage(MessageBuilder content, TextChannel channel) {
+    @NotNull
+    public static MessageAction sendMessage(@NotNull MessageBuilder content, @NotNull TextChannel channel) {
         return sendMessage(content, channel, DEFAULT_DELETE_TIME, DEFAULT_ERROR_HANDLER);
     }
 
@@ -323,11 +340,12 @@ public class SafeMessage {
      * @return the future of the API Request
      * @see SafeMessage#sendMessage(MessageBuilder, TextChannel, int, Runnable)
      */
+    @NotNull
     public static MessageAction sendMessage(
-            MessageEmbed content,
-            TextChannel channel,
+            @NotNull MessageEmbed content,
+            @NotNull TextChannel channel,
             int deleteTime,
-            Runnable errorHandler
+            @NotNull Runnable errorHandler
     ) {
         return sendMessage(new MessageBuilder().setEmbed(content), channel, deleteTime, errorHandler);
     }
@@ -343,9 +361,10 @@ public class SafeMessage {
      * @see SafeMessage#sendMessage(MessageBuilder, TextChannel, int, Runnable)
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
+    @NotNull
     public static MessageAction sendMessage(
-            MessageEmbed content,
-            TextChannel channel,
+            @NotNull MessageEmbed content,
+            @NotNull TextChannel channel,
             int deleteTime
     ) {
         return sendMessage(
@@ -366,7 +385,8 @@ public class SafeMessage {
      * @see SafeMessage#sendMessage(MessageBuilder, TextChannel, int, Runnable)
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
-    public static MessageAction sendMessage(MessageEmbed content, TextChannel channel) {
+    @NotNull
+    public static MessageAction sendMessage(@NotNull MessageEmbed content, @NotNull TextChannel channel) {
         return sendMessage(
                 new MessageBuilder().setEmbed(content),
                 channel,
@@ -386,11 +406,12 @@ public class SafeMessage {
      * @return the future of the API Request
      * @see SafeMessage#sendMessage(MessageEmbed, TextChannel, int, Runnable)
      */
+    @NotNull
     public static MessageAction sendMessage(
-            EmbedBuilder content,
-            TextChannel channel,
+            @NotNull EmbedBuilder content,
+            @NotNull TextChannel channel,
             int deleteTime,
-            Runnable errorHandler
+            @NotNull Runnable errorHandler
     ) {
         return sendMessage(content.build(), channel, deleteTime, errorHandler);
     }
@@ -407,8 +428,8 @@ public class SafeMessage {
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
     public static MessageAction sendMessage(
-            EmbedBuilder content,
-            TextChannel channel,
+            @NotNull EmbedBuilder content,
+            @NotNull TextChannel channel,
             int deleteTime
     ) {
         return sendMessage(content.build(), channel, deleteTime, DEFAULT_ERROR_HANDLER);
@@ -424,7 +445,8 @@ public class SafeMessage {
      * @see SafeMessage#sendMessage(MessageEmbed, TextChannel, int, Runnable)
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
-    public static MessageAction sendMessage(EmbedBuilder content, TextChannel channel) {
+    @NotNull
+    public static MessageAction sendMessage(@NotNull EmbedBuilder content, @NotNull TextChannel channel) {
         try {
             return sendMessage(content.build(), channel, DEFAULT_DELETE_TIME, DEFAULT_ERROR_HANDLER);
         } catch (Exception e) {
@@ -445,11 +467,12 @@ public class SafeMessage {
      * @return the future of the API Request
      * @see SafeMessage#sendMessage(MessageBuilder, TextChannel, int, Runnable)
      */
+    @NotNull
     public static MessageAction sendMessage(
-            String content,
-            TextChannel channel,
+            @NotNull String content,
+            @NotNull TextChannel channel,
             int deleteTime,
-            Runnable errorHandler
+            @NotNull Runnable errorHandler
     ) {
         return sendMessage(
                 new MessageBuilder().setContent(content).build(),
@@ -470,9 +493,10 @@ public class SafeMessage {
      * @see SafeMessage#sendMessage(MessageBuilder, TextChannel, int, Runnable)
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
+    @NotNull
     public static MessageAction sendMessage(
-            String content,
-            TextChannel channel,
+            @NotNull String content,
+            @NotNull TextChannel channel,
             int deleteTime
     ) {
         return sendMessage(content, channel, deleteTime, DEFAULT_ERROR_HANDLER);
@@ -488,7 +512,8 @@ public class SafeMessage {
      * @see SafeMessage#sendMessage(MessageBuilder, TextChannel, int, Runnable)
      * @see SafeMessage#DEFAULT_ERROR_HANDLER
      */
-    public static MessageAction sendMessage(String content, TextChannel channel) {
+    @NotNull
+    public static MessageAction sendMessage(@NotNull String content, @NotNull TextChannel channel) {
         return sendMessage(content, channel, DEFAULT_DELETE_TIME, DEFAULT_ERROR_HANDLER);
     }
 

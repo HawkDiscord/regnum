@@ -24,6 +24,9 @@ import cc.hawkbot.regnum.server.plugin.rest.RestHandler
 import io.javalin.Context
 import io.javalin.core.HandlerType
 
+/**
+ * Default rest handler which always returns a json serialized [reference] at the specified [endpoint].
+ */
 class InfoHandler<T : Any>(endpoint: String, private val reference: () -> T) : RestHandler(endpoint, HandlerType.GET) {
     override fun handle(token: String?, context: Context, server: Server) {
         context.json(reference())

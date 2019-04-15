@@ -23,5 +23,6 @@ package cc.hawkbot.regnum.server
  * Converts an [IntProgression] into an array.
  * @return the converted array
  */
+@Suppress("unused")
 fun IntProgression.toArray() =
         IntArray(this.count()).also { forEachIndexed { index, i -> it[index] = i } }

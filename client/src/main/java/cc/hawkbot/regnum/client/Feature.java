@@ -23,8 +23,14 @@ package cc.hawkbot.regnum.client;
  * Enum that represents features which can be disabled.
  */
 public enum Feature {
+
     /**
-     *  Disabled advanced permission system.
+     * Advanced permission system for permission nodes and negated permissions.
      */
-    PERMISSION_SYSTEM
+    PERMISSION_SYSTEM,
+    /**
+     * Cache of messages used in message events.
+     * <strong>WARNING:</strong> Disabling this feature will also disable GuildMessageUpdateEvent and GuildMessageDeleteEvent
+     */
+    MESSAGE_CACHE
 }

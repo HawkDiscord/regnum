@@ -21,10 +21,10 @@ package cc.hawkbot.regnum.client.core.internal
 
 import cc.hawkbot.regnum.client.core.discord.impl.DiscordImpl
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent
-import cc.hawkbot.regnum.entites.Payload
-import cc.hawkbot.regnum.entites.packets.HelloPacket
-import cc.hawkbot.regnum.entites.packets.discord.AddPacket
-import cc.hawkbot.regnum.entites.packets.discord.StartPacket
+import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.entities.packets.HelloPacket
+import cc.hawkbot.regnum.entities.packets.discord.AddPacket
+import cc.hawkbot.regnum.entities.packets.discord.StartPacket
 import net.dv8tion.jda.api.hooks.SubscribeEvent
 
 /**

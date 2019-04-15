@@ -13,7 +13,7 @@ plugins {
 
 group = "cc.hawkbot.regnum.client"
 val archivesBasename = "standalone"
-version = "0.0.1"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
@@ -62,10 +62,12 @@ bintray {
     })
 }
 
+
 tasks {
+    task("buildArtifacts")
     dokka {
         outputFormat = "html"
-        outputDirectory = "public"
+        outputDirectory = (project.ext["docsDir"] as File).absolutePath
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
@@ -85,7 +87,7 @@ tasks {
             url = uri("http://fasterxml.github.io/jackson-databind/javadoc/2.9/").toURL()
         })
     }
-    val buildDir = File("../build/artifacts")
+    val buildDir = project.ext["buildDir"] as File
     "sourcesJar"(Jar::class) {
         archiveClassifier.set("sources")
         destinationDirectory.set(buildDir)
@@ -100,11 +102,15 @@ tasks {
     "jar"(Jar::class) {
         destinationDirectory.set(buildDir)
     }
+    "buildArtifacts"(Task::class) {
+        dependsOn(sourcesJar, dokkaJar, jar)
+    }
 }
 
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_12
 }
+
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
 }

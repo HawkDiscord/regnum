@@ -20,7 +20,6 @@
 package cc.hawkbot.regnum.client.core.discord
 
 import cc.hawkbot.regnum.client.Regnum
-import cc.hawkbot.regnum.client.config.GameAnimatorConfig
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
@@ -79,6 +78,7 @@ class GameAnimator(
              * @param game the string
              * @return the compiled game
              */
+            @JvmStatic
             fun compile(game: String): Game {
                 val args = game.split(":")
                 val type = Activity.ActivityType.fromKey(args[1].toInt())

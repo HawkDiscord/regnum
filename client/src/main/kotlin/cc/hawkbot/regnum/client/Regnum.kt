@@ -22,13 +22,14 @@ package cc.hawkbot.regnum.client
 import cc.hawkbot.regnum.client.command.CommandParser
 import cc.hawkbot.regnum.client.command.permission.PermissionManager
 import cc.hawkbot.regnum.client.command.translation.LanguageManager
+import cc.hawkbot.regnum.client.core.MessageCache
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.entities.RegnumGuild
 import cc.hawkbot.regnum.client.entities.RegnumUser
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.io.database.CassandraSource
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiter
 import net.dv8tion.jda.api.entities.Guild
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.hooks.IEventManager
@@ -99,6 +100,11 @@ interface Regnum {
      * The permission manager.
      */
     val permissionManager: PermissionManager
+
+    /**
+     * The message cache.
+     */
+    val messageCache: MessageCache
 
     /**
      * A list of all disabled features.

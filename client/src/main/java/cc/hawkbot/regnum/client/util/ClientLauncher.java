@@ -32,7 +32,9 @@ import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
+import cc.hawkbot.regnum.client.interaction.ConfirmationMessageBuilder;
+import cc.hawkbot.regnum.client.interaction.PaginatorBuilder;
+import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket;
 import cc.hawkbot.regnum.util.logging.Logger;
 import net.dv8tion.jda.api.hooks.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
@@ -50,10 +52,6 @@ import java.util.Locale;
 public class ClientLauncher {
 
     private final Regnum regnum;
-
-    public static void main(String[] args) {
-        new ClientLauncher();
-    }
 
     private ClientLauncher() {
         Logger.LOG_LEVEL = Level.DEBUG;
@@ -73,6 +71,10 @@ public class ClientLauncher {
         regnum = builder.build();
     }
 
+    public static void main(String[] args) {
+        new ClientLauncher();
+    }
+
     @SubscribeEvent
     @SuppressWarnings("unused")
     private void onMessage(WebSocketMessageEvent event) {
@@ -83,18 +85,46 @@ public class ClientLauncher {
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {
         public Command() {
-            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
+            super(Group.getEMPTY(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
         }
 
+        @SuppressWarnings("ResultOfMethodCallIgnored")
         @Override
         public void execute(@NotNull Arguments args, @NotNull Context context) {
             context.sendMessage(
                     "Mentions" + context.getMentions().list() + "\n" +
-                            "Args: " + String.join(" ", context.getArgs().array())
+                            "Args: " + String.join(" ", context.getArgs().getArray()));
 
-            ).queue();
-            if (!args.isEmpty() && args.get(0).equals("error")) {
-                Integer.parseInt("OMA");
+            if (!args.isEmpty()) {
+                if (args.get(0).equals("error")) {
+                    Integer.parseInt("OMA");
+                } else if (args.get(0).equals("confirmation")) {
+                    new ConfirmationMessageBuilder(context.getRegnum())
+                            .setYesConsumer(ctx -> ctx.channel().sendMessage("YESS").queue())
+                            .setNoConsumer(ctx -> ctx.channel().sendMessage("NOOOO!").queue())
+                            .setAuthorizedUser(context.getAuthor())
+                            .setMessage(context.getChannel(),
+                    EmbedUtil.info(
+                                    "ARE U SURE??",
+                                    "ZEKRO STINKT!!"
+                                    ))
+                            .build();
+                } else if (args.get(0).equals("list")) {
+                    var builder = new PaginatorBuilder<String>(context.getRegnum())
+                            .setTitle("NICE LIST BRA")
+                            .setContent(List.of("HI", "HII", "HIII", "HIIII", "HIIIII"))
+                            .setChannel(context.getChannel())
+                            .setPageSize(2)
+                            .setAuthorizedUser(context.getAuthor())
+                            ;
+                    builder.build();
+                }
+            } else {
+                context.sendMessage(
+                        "Mentions" + context.getMentions().list() + "\n" +
+                                "Args: " + String.join(" ", context.getArgs().getArray())
+
+                ).queue();
             }
         }
     }

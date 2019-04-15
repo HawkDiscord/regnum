@@ -70,6 +70,12 @@ interface ICommand {
     val subCommandAssociations: MutableMap<String, ISubCommand>
 
     /**
+     * The name of the command.
+     */
+    val name: String
+        get() = aliases[0]
+
+    /**
      * The method that gets executed when the command gets invoked
      */
     fun execute(args: Arguments, context: Context)
@@ -78,8 +84,9 @@ interface ICommand {
      * Returns the name of the command.
      * @return the name of the command
      */
+    @Deprecated("We're replacing fluent getters with Kotlin fields", ReplaceWith("name"))
     fun name(): String {
-        return aliases[0]
+        return name
     }
 
     /**

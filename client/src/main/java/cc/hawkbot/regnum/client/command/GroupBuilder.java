@@ -49,11 +49,18 @@ public class GroupBuilder {
      * @param _public whether the group should be listed in help messages or not
      * @return the builder
      */
+    @NotNull
     public GroupBuilder setPublic(boolean _public) {
         this._public = _public;
         return this;
     }
 
+    /**
+     * Hides the {@link Group} from help commands.
+     *
+     * @return the builder
+     */
+    @NotNull
     public GroupBuilder hide() {
         setPublic(false);
         return this;
@@ -64,6 +71,7 @@ public class GroupBuilder {
      *
      * @return the name of the group
      */
+    @NotNull
     public String getName() {
         return name;
     }
@@ -74,7 +82,8 @@ public class GroupBuilder {
      * @param name the name
      * @return the builder
      */
-    public GroupBuilder setName(String name) {
+    @NotNull
+    public GroupBuilder setName(@NotNull String name) {
         this.name = name;
         return this;
     }
@@ -84,6 +93,7 @@ public class GroupBuilder {
      *
      * @return the description of the group
      */
+    @NotNull
     public String getDescription() {
         return description;
     }
@@ -94,7 +104,8 @@ public class GroupBuilder {
      * @param description the description
      * @return the builder
      */
-    public GroupBuilder setDescription(String description) {
+    @NotNull
+    public GroupBuilder setDescription(@NotNull String description) {
         this.description = description;
         return this;
     }
@@ -104,6 +115,7 @@ public class GroupBuilder {
      *
      * @return the groups permissions {@link IPermissions}
      */
+    @NotNull
     public IPermissions getPermissions() {
         return permissions;
     }
@@ -114,7 +126,8 @@ public class GroupBuilder {
      * @param permissions the permissions
      * @return the builder
      */
-    public GroupBuilder setPermissions(IPermissions permissions) {
+    @NotNull
+    public GroupBuilder setPermissions(@NotNull IPermissions permissions) {
         this.permissions = permissions;
         return this;
     }

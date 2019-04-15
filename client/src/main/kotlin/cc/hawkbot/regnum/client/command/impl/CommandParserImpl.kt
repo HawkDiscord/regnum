@@ -26,6 +26,8 @@ import cc.hawkbot.regnum.client.command.ISubCommand
 import cc.hawkbot.regnum.client.command.permission.IPermissionProvider
 import cc.hawkbot.regnum.client.config.CommandConfig
 import cc.hawkbot.regnum.client.entities.RegnumGuild
+import cc.hawkbot.regnum.client.events.command.CommandExecutedEvent
+import cc.hawkbot.regnum.client.events.command.CommandFailedEvent
 import cc.hawkbot.regnum.client.util.*
 import cc.hawkbot.regnum.util.logging.Logger
 import net.dv8tion.jda.api.entities.Message
@@ -39,7 +41,6 @@ import java.util.concurrent.ExecutorService
 
 /**
  * Implementation of [CommandParser].
- * @param defaultPrefix the default prefix
  * @property permissionProvider the [IPermissionProvider]
  * @property regnum the Regnum instance
  * @property executor the [ExecutorService] used for executing commands
@@ -56,18 +57,14 @@ class CommandParserImpl(
 
     private val log = Logger.getLogger()
 
-    private val commandAssociations = mutableMapOf<String, ICommand>()
-
-    override fun commands(): Map<String, ICommand> {
-        return commandAssociations
-    }
+    override val commandAssociations = mutableMapOf<String, ICommand>()
 
     override fun registerCommand(command: ICommand) {
         command.aliases.forEach { commandAssociations[it] = command }
     }
 
     override fun unregisterCommand(command: ICommand) {
-        commandAssociations.remove(command.name())
+        commandAssociations.remove(command.name)
     }
 
     @SubscribeEvent
@@ -146,13 +143,14 @@ class CommandParserImpl(
         } catch (e: Exception) {
             handlerError(e, context)
         }
-
+        regnum.eventManager.handle(CommandExecutedEvent(context))
     }
 
     private fun handlerError(e: Exception, context: ContextImpl) {
+        regnum.eventManager.handle(CommandFailedEvent(context, e))
         log.error("[CommandParser] An error occurred while executing command.", e)
         //TODO: Translations
-        val future = SafeMessage.sendMessage(EmbedUtil.error("An unknown error occurred", Emotes.LOADING + "Collecting information about the error"), context.channel()).submit()
+        val future = SafeMessage.sendMessage(EmbedUtil.error("An unknown error occurred", Emotes.LOADING + "Collecting information about the error"), context.channel).submit()
         try {
             collectErrorInformation(e, context, future)
         } catch (e: Exception) {
@@ -163,13 +161,13 @@ class CommandParserImpl(
 
     private fun collectErrorInformation(e: Exception, context: ContextImpl, future: CompletableFuture<Message>) {
         val information = StringBuilder()
-        val channel = context.channel()
+        val channel = context.channel
         information.append("TextChannel: ").append("#").append(channel.name)
                 .append("(").append(channel.id).append(")").appendln()
-        val guild = context.guild()
+        val guild = context.guild
         information.append("Guild: ").append(guild.name).append("(").append(guild.id)
                 .append(")").appendln()
-        val executor = context.author()
+        val executor = context.author
         information.append("Executor: ").append("@").append(executor.name).append("#")
                 .append(executor.discriminator).append("(").append(executor.id).append(")")
                 .appendln()

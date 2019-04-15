@@ -19,8 +19,13 @@
 
 package cc.hawkbot.regnum.client.util;
 
-import cc.hawkbot.regnum.entites.json.Json;
+import cc.hawkbot.regnum.entities.json.Json;
+import com.google.common.base.Preconditions;
 import io.netty.util.concurrent.DefaultThreadFactory;
+import net.dv8tion.jda.api.entities.Emote;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.requests.RestAction;
+import net.dv8tion.jda.internal.utils.Helpers;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -68,9 +73,27 @@ public class Misc {
      * @see Stream#findFirst()
      * @see Stream#filter(Predicate)
      */
-    public static <E, T> Optional<E> getKeyByValue(Map<E, T> map, T value) {
+    @NotNull
+    public static <E, T> Optional<E> getKeyByValue(@NotNull Map<E, T> map, @NotNull T value) {
         return map.entrySet().stream().filter(entry -> entry.getValue().equals(value))
                 .map(Map.Entry::getKey).findFirst();
+    }
+
+    /**
+     * Returns an key of a map by its value.
+     *
+     * @param map   the map
+     * @param value the value
+     * @param <E>   the type of the keys
+     * @param <T>   the type of the values
+     * @return the found key or {@code null} if there was no key
+     * @see Stream#findFirst()
+     * @see Stream#filter(Predicate)
+     */
+    @Nullable
+    public static <E, T> E getKeyOrNullByValue(@NotNull Map<E, T> map, @NotNull T value) {
+        return map.entrySet().stream().filter(entry -> entry.getValue().equals(value))
+                .map(Map.Entry::getKey).findFirst().orElse(null);
     }
 
     /**
@@ -79,7 +102,8 @@ public class Misc {
      * @param throwable the exception
      * @return the string
      */
-    public static String stringifyException(Throwable throwable) {
+    @NotNull
+    public static String stringifyException(@NotNull Throwable throwable) {
         var stringWriter = new StringWriter();
         var printWriter = new PrintWriter(stringWriter);
         throwable.printStackTrace(printWriter);
@@ -90,9 +114,10 @@ public class Misc {
      * Parses a string like 1s into it's timestamp.
      *
      * @param date The string
-     * @return The date as an {@link java.time.OffsetDateTime}
+     * @return The date as an {@link java.time.OffsetDateTime} or {@code null} if it couldn't parse the date
      */
-    public static OffsetDateTime parseDate(String date) {
+    @Nullable
+    public static OffsetDateTime parseDate(@NotNull String date) {
         int amount = parseInt(date);
         if (amount == 0) {
             return null;
@@ -150,8 +175,9 @@ public class Misc {
      * @param message The content of the document
      * @return A future containing the url
      */
+    @NotNull
     @SuppressWarnings("ConstantConditions")
-    public static CompletableFuture<String> postToHastebinAsync(String message) {
+    public static CompletableFuture<String> postToHastebinAsync(@NotNull String message) {
         var body = HttpClient.plainBody(message);
         var request = HttpClient.post(HASTEBIN_URL + "/documents", body)
                 .build();
@@ -179,8 +205,28 @@ public class Misc {
      * @return the url of the document
      * @see Misc#postToHastebinAsync(String)
      */
-    public static String postToHastebin(String message) {
+    @NotNull
+    public static String postToHastebin(@NotNull String message) {
         return postToHastebinAsync(message).join();
+    }
+
+    /**
+     * Adds and custom or unicode emote to a message.
+     *
+     * @param emoji   the id of the custom emote or unicode of the normal emote
+     * @param message the message to react on
+     * @throws NullPointerException When there is no emote with the given id
+     * @see Message#addReaction(Emote)
+     * @return a restaction which adds the emote
+     */
+    @NotNull
+    public static RestAction<Void> addReaction(String emoji, Message message) {
+        if (Helpers.isNumeric(emoji)) {
+            var emote = message.getJDA().getEmoteById(emoji);
+            Preconditions.checkNotNull(emote, "Emote id may not be invalid");
+            return message.addReaction(emote);
+        }
+        return message.addReaction(emoji);
     }
 
 }

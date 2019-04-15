@@ -19,9 +19,9 @@
 
 package cc.hawkbot.regnum.test;
 
-import cc.hawkbot.regnum.entites.json.JsonArray;
-import cc.hawkbot.regnum.entites.json.JsonObject;
-import cc.hawkbot.regnum.entites.json.RegnumJsonNode;
+import cc.hawkbot.regnum.entities.json.JsonArray;
+import cc.hawkbot.regnum.entities.json.JsonObject;
+import cc.hawkbot.regnum.entities.json.RegnumJsonNode;
 import org.junit.Test;
 
 @SuppressWarnings({"FieldCanBeLocal", "SpellCheckingInspection"})

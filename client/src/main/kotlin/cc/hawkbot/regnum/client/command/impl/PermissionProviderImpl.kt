@@ -38,9 +38,6 @@ class PermissionProviderImpl : IPermissionProvider {
 
     override fun hasPermission(permissions: IPermissions, member: Member): Boolean {
         // Public command
-        /*if (permissions.public) {
-            return true
-        }*/
 
         // Check lateinit var
         if (!this::regnum.isInitialized) {
@@ -61,6 +58,7 @@ class PermissionProviderImpl : IPermissionProvider {
         if (isAdmin) {
             return true
         }
+
         if (Feature.PERMISSION_SYSTEM in regnum.disabledFeatures) {
             return permissions.public
         }

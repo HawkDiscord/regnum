@@ -1,6 +1,5 @@
 import com.jfrog.bintray.gradle.BintrayExtension
 import org.jetbrains.dokka.DokkaConfiguration
-import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.gradle.LinkMapping
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -14,7 +13,7 @@ plugins {
 
 group = "cc.hawkbot.regnum.server"
 val archivesBasename = "plugin"
-version = "0.0.1"
+version = "0.0.2"
 
 repositories {
     mavenCentral()
@@ -28,9 +27,7 @@ dependencies {
     compile("de.foryasee:plugins:1.1.0")
 
     // Server
-    implementation("io.javalin:javalin:2.6.0")
-    @Suppress("SpellCheckingInspection")
-    implementation("net.dv8tion:JDA:4.ALPHA.0_50")
+    implementation("io.javalin", "javalin", project.ext["javalinVersion"] as String)
 
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")
@@ -72,9 +69,10 @@ bintray {
 }
 
 tasks {
+    task("buildArtifacts")
     dokka {
         outputFormat = "html"
-        outputDirectory = "public"
+        outputDirectory = (project.ext["docsDir"] as File).absolutePath
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
@@ -101,7 +99,7 @@ tasks {
             packageListUrl = uri("https://gist.githubusercontent.com/DRSchlaubi/3d1d0aaa5c01963dcd4d0149c841c896/raw/22141759fbab1e38fd2381c3e4f97616ecb43fc8/package-list").toURL()
         })
     }
-    val buildDir = File("../build/artifacts")
+    val buildDir = project.ext["buildDir"] as File
     "sourcesJar"(Jar::class) {
         archiveClassifier.set("sources")
         destinationDirectory.set(buildDir)
@@ -115,6 +113,9 @@ tasks {
     }
     "jar"(Jar::class) {
         destinationDirectory.set(buildDir)
+    }
+    "buildArtifacts"(Task::class) {
+        dependsOn(sourcesJar, dokkaJar, jar)
     }
 }
 

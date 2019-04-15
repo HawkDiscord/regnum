@@ -18,7 +18,6 @@
  */
 
 import cc.hawkbot.regnum.client.Regnum;
-import cc.hawkbot.regnum.client.RegnumBuilder;
 import cc.hawkbot.regnum.client.command.Group;
 import cc.hawkbot.regnum.client.command.context.Arguments;
 import cc.hawkbot.regnum.client.command.context.Context;
@@ -27,12 +26,11 @@ import cc.hawkbot.regnum.client.command.translation.defaults.PropertyLanguage;
 import cc.hawkbot.regnum.client.config.CassandraConfig;
 import cc.hawkbot.regnum.client.config.CommandConfig;
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
-import cc.hawkbot.regnum.client.config.ServerConfig;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent;
 import cc.hawkbot.regnum.client.standalone.StandaloneRegnumBuilder;
 import cc.hawkbot.regnum.client.standalone.config.StandaloneConfig;
-import cc.hawkbot.regnum.entites.packets.HeartBeatAckPacket;
+import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket;
 import cc.hawkbot.regnum.util.logging.Logger;
 import net.dv8tion.jda.api.hooks.SubscribeEvent;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +39,6 @@ import org.slf4j.event.Level;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.Locale;
 
 /**
@@ -51,10 +48,6 @@ import java.util.Locale;
 public class StandaloneLauncher {
 
     private final Regnum regnum;
-
-    public static void main(String[] args) {
-        new StandaloneLauncher(args[0]);
-    }
 
     private StandaloneLauncher(String token) {
         Logger.LOG_LEVEL = Level.DEBUG;
@@ -72,6 +65,10 @@ public class StandaloneLauncher {
         regnum = builder.build();
     }
 
+    public static void main(String[] args) {
+        new StandaloneLauncher(args[0]);
+    }
+
     @SubscribeEvent
     @SuppressWarnings("unused")
     private void onMessage(WebSocketMessageEvent event) {
@@ -82,14 +79,14 @@ public class StandaloneLauncher {
 
     private static class Command extends cc.hawkbot.regnum.client.command.Command {
         public Command() {
-            super(Group.Companion.empty(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
+            super(Group.getEMPTY(), "test", new String[]{"test"}, new CommandPermissions(false, false, true, "test"), "", "", "");
         }
 
         @Override
         public void execute(@NotNull Arguments args, @NotNull Context context) {
             context.sendMessage(
                     "Mentions" + context.getMentions().list() + "\n" +
-                            "Args: " + String.join(" ", context.getArgs().array())
+                            "Args: " + String.join(" ", context.getArgs().getArray())
 
             ).queue();
             if (!args.isEmpty() && args.get(0).equals("error")) {

@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.client.command
 
+import cc.hawkbot.regnum.client.command.Group.Companion.EMPTY
 import cc.hawkbot.regnum.client.command.permission.IPermissions
 
 /**
@@ -34,7 +35,7 @@ import cc.hawkbot.regnum.client.command.permission.IPermissions
  */
 @Suppress("unused")
 abstract class Command(
-        override val group: Group = Group.empty(),
+        override val group: Group = EMPTY,
         override val displayName: String,
         override val aliases: Array<String>,
         override val permissions: IPermissions,

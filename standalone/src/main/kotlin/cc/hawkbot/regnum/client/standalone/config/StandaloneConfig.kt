@@ -19,10 +19,16 @@
 
 package cc.hawkbot.regnum.client.standalone.config
 
-import cc.hawkbot.regnum.entites.json.JsonObject
+import cc.hawkbot.regnum.entities.json.JsonObject
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
+/**
+ * Configuration for standalone needed keys.
+ * @param token the Discord token
+ * @param shardsTotal the total Discord shard count
+ * @param shardIds the Discord shard ids
+ */
 class StandaloneConfig(
         val token: String,
         val shardsTotal: Int,
@@ -30,6 +36,12 @@ class StandaloneConfig(
 ) {
 
     companion object {
+
+        /**
+         * Method that calculates shard config automatically.
+         * @param token the Discord token
+         */
+        @JvmStatic
         fun auto(token: String): StandaloneConfig {
             val request = Request.Builder()
                     .addHeader("Authorization", token)

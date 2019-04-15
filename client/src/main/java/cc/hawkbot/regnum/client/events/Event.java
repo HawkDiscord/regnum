@@ -22,6 +22,8 @@ package cc.hawkbot.regnum.client.events;
 import cc.hawkbot.regnum.client.Regnum;
 import cc.hawkbot.regnum.events.NoJDAEvent;
 import net.dv8tion.jda.api.JDA;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Generic event for Regnum.
@@ -36,7 +38,7 @@ public class Event extends NoJDAEvent {
      *
      * @param regnum the Regnum instance
      */
-    public Event(Regnum regnum) {
+    public Event(@NotNull Regnum regnum) {
         this.regnum = regnum;
     }
 
@@ -45,10 +47,12 @@ public class Event extends NoJDAEvent {
      *
      * @return the {@link Regnum} instance
      */
+    @NotNull
     public Regnum getRegnum() {
         return regnum;
     }
 
+    @Nullable
     @Override
     public JDA getJDA() {
         throw new UnsupportedOperationException("Regnum events does not support JDA getter");

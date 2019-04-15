@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.util;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.*;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;
@@ -50,9 +51,9 @@ public class EntityResolver {
      */
     @Nullable
     public static <T> T resolveEntity(
-            String identifier,
-            Function<Long, T> resolver,
-            Function<String, T> nameResolver
+            @NotNull String identifier,
+            @NotNull Function<Long, T> resolver,
+            @NotNull Function<String, T> nameResolver
     ) {
         long id;
         if (Misc.isNumeric(identifier)) {
@@ -76,7 +77,7 @@ public class EntityResolver {
      * @return The User
      */
     @Nullable
-    public static User resolveUser(JDA jda, String identifier) {
+    public static User resolveUser(@NotNull JDA jda, @NotNull String identifier) {
         return resolveEntity(
                 identifier,
                 jda::getUserById,
@@ -93,7 +94,7 @@ public class EntityResolver {
      * @return The Member
      */
     @Nullable
-    public static Member resolveMember(JDA jda, long guildId, String identifier) {
+    public static Member resolveMember(@NotNull JDA jda, long guildId, @NotNull String identifier) {
         var guild = jda.getGuildById(guildId);
         return resolveEntity(
                 identifier,
@@ -111,7 +112,7 @@ public class EntityResolver {
      * @return The Member
      */
     @Nullable
-    public static Member resolveMember(JDA jda, Guild guild, String identifier) {
+    public static Member resolveMember(@NotNull JDA jda, @NotNull Guild guild, @NotNull String identifier) {
         return resolveMember(jda, guild.getIdLong(), identifier);
     }
 
@@ -125,7 +126,7 @@ public class EntityResolver {
      * @return The TextChannel
      */
     @Nullable
-    public static TextChannel resolveTextChannel(JDA jda, long guildId, String identifier) {
+    public static TextChannel resolveTextChannel(@NotNull JDA jda, long guildId, @NotNull String identifier) {
         var guild = jda.getGuildById(guildId);
         return resolveEntity(identifier,
                 guild::getTextChannelById
@@ -143,7 +144,7 @@ public class EntityResolver {
      * @return The TextChannel
      */
     @Nullable
-    public static TextChannel resolveTextChannel(JDA jda, Guild guild, String identifier) {
+    public static TextChannel resolveTextChannel(@NotNull JDA jda, @NotNull Guild guild, @NotNull String identifier) {
         return resolveTextChannel(jda, guild.getIdLong(), identifier);
     }
 
@@ -156,7 +157,7 @@ public class EntityResolver {
      * @return The Role
      */
     @Nullable
-    public static Role resolveRole(JDA jda, long guildId, String identifier) {
+    public static Role resolveRole(@NotNull JDA jda, long guildId, @NotNull String identifier) {
         var guild = jda.getGuildById(guildId);
         return resolveEntity(
                 identifier,
@@ -174,7 +175,7 @@ public class EntityResolver {
      * @return The Role
      */
     @Nullable
-    public static Role resolveRole(JDA jda, Guild guild, String identifier) {
+    public static Role resolveRole(@NotNull JDA jda, @NotNull Guild guild, @NotNull String identifier) {
         return resolveRole(jda, guild.getIdLong(), identifier);
     }
 }

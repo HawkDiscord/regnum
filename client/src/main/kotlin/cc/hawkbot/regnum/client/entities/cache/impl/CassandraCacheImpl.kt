@@ -20,7 +20,7 @@
 package cc.hawkbot.regnum.client.entities.cache.impl
 
 import cc.hawkbot.regnum.client.Regnum
-import cc.hawkbot.regnum.client.entities.cache.CachableCassandraEntity
+import cc.hawkbot.regnum.client.entities.cache.CacheableCassandraEntity
 import cc.hawkbot.regnum.client.entities.cache.CassandraCache
 import cc.hawkbot.regnum.io.database.CassandraSource
 import com.google.common.cache.CacheBuilder
@@ -37,10 +37,10 @@ import kotlin.reflect.full.findAnnotation
  * @param accessorClazz the class of the accessor
  * @property T The type of the entity
  */
-class CassandraCacheImpl<T : CachableCassandraEntity<T>>(
+class CassandraCacheImpl<T : CacheableCassandraEntity<T>>(
         val regnum: Regnum,
         private val clazz: KClass<T>,
-        accessorClazz: Class<out CachableCassandraEntity.Accessor<T>>
+        accessorClazz: Class<out CacheableCassandraEntity.Accessor<T>>
 ) : CassandraCache<T> {
 
     private val accessor = CassandraSource.getInstance().mappingManager.createAccessor(accessorClazz)

@@ -29,7 +29,7 @@ import cc.hawkbot.regnum.client.command.context.Arguments
  */
 @Suppress("unused")
 class ArgumentsImpl(
-        private val array: Array<String>
+        override val array: Array<String>
 ) : Arguments {
 
     /**
@@ -37,12 +37,5 @@ class ArgumentsImpl(
      */
     override fun get(index: Int): String {
         return array[index]
-    }
-
-    /**
-     * @see Arguments.array
-     */
-    override fun array(): Array<String> {
-        return array
     }
 }

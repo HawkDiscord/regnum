@@ -19,8 +19,8 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
-import cc.hawkbot.regnum.entites.json.Json
-import cc.hawkbot.regnum.entites.packets.MetricsPacket
+import cc.hawkbot.regnum.entities.json.Json
+import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.io.database.CassandraSource
 import cc.hawkbot.regnum.sentry.SentryAppender
 import cc.hawkbot.regnum.sentry.SentryClient
@@ -43,14 +43,15 @@ import cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer
 import cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.rest.RestHandler
 import cc.hawkbot.regnum.util.logging.Logger
-import cc.hawkbot.regnum.waiter.impl.EventWaiter
-import cc.hawkbot.regnum.waiter.impl.EventWaiterImpl
+import cc.hawkbot.regnum.waiter.EventWaiter
+import cc.hawkbot.regnum.waiter.EventWaiterImpl
 import io.javalin.Javalin
 import io.javalin.json.JavalinJackson
 import net.dv8tion.jda.api.entities.ISnowflake
 import net.dv8tion.jda.api.hooks.AnnotatedEventManager
 import net.dv8tion.jda.api.hooks.IEventManager
 import okhttp3.OkHttpClient
+import org.apache.commons.lang3.RandomStringUtils
 
 const val DOCS_URL = "http://docs.hawkbot.cc"
 
@@ -66,7 +67,7 @@ class ServerImpl(
         override val dev: Boolean,
         noDiscord: Boolean,
         noSentry: Boolean,
-        disableAPI: Boolean
+        private var disableAPI: Boolean
 ) : Server {
     private val log = Logger.getLogger()
 
@@ -85,7 +86,6 @@ class ServerImpl(
     private lateinit var pluginManager: PluginManager
     private lateinit var guildAccessor: Guild.Accessor
     private lateinit var userAccessor: User.Accessor
-    private val apiInfo = APIInfo()
     override lateinit var averageMetrics: MetricsPacket
 
     init {
@@ -95,6 +95,7 @@ class ServerImpl(
         initSentry(noSentry)
         shutdownHook()
         plugins()
+        hashes()
         initWebsocket()
         if (!disableAPI) {
             initCassandra()
@@ -123,10 +124,11 @@ class ServerImpl(
         )
                 .connectAsync()
                 .exceptionally {
-                    log.error("[Server] Could not connect to cassandra", it)
+                    log.error("[Server] Could not connect to Cassandra aborting api startup", it)
+                    disableAPI = true
                     null
                 }
-                .toCompletableFuture().join()
+                .toCompletableFuture().join() ?: return
         guildAccessor = cassandraSource.mappingManager.createAccessor(Guild.Accessor::class.java)
         userAccessor = cassandraSource.mappingManager.createAccessor(User.Accessor::class.java)
     }
@@ -135,6 +137,14 @@ class ServerImpl(
         Runtime.getRuntime().addShutdownHook(Thread {
             close()
         })
+    }
+
+    private fun hashes() {
+        val hashes = mutableListOf<String>()
+        for (i in 0 until 40) {
+            hashes.add(RandomStringUtils.randomAlphabetic(55))
+        }
+        log.info("[Launcher] Launch is in progress here are some random tokens {}", hashes.joinToString())
     }
 
     private fun initWebsocket() {
@@ -146,11 +156,12 @@ class ServerImpl(
     }
 
     private fun initAPI() {
+        if (disableAPI) return
         Json.JACKSON.addMixIn(ISnowflake::class.java, cc.hawkbot.regnum.server.core.internal.rest.ISnowflake::class.java)
         restAuthorizationHandler.server = this
         eventManager.register(MetricsWatcher())
         registerRestHandler(InfoHandler("/") {
-            apiInfo
+            APIInfo.INSTANCE
         })
         registerRestHandler(RedirectHandler("/docs", DOCS_URL))
         registerRestHandler(RestInfoHandler("guilds") { id, _ ->

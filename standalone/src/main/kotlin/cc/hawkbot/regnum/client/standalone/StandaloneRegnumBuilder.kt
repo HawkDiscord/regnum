@@ -25,10 +25,14 @@ import cc.hawkbot.regnum.client.config.ServerConfig
 import cc.hawkbot.regnum.client.standalone.config.StandaloneConfig
 import cc.hawkbot.regnum.client.standalone.core.StandaloneRegnumImpl
 import com.google.common.base.Preconditions
-import java.lang.UnsupportedOperationException
 
+/**
+ * Builder for standalone Regnum.
+ * @constructor Constructs a [StandaloneRegnumBuilder]
+ */
 class StandaloneRegnumBuilder() : RegnumBuilder() {
 
+    @Suppress("unused")
     constructor(old: RegnumBuilder) : this() {
         gameAnimatorConfig = old.gameAnimatorConfig
         commandConfig = old.commandConfig
@@ -42,7 +46,8 @@ class StandaloneRegnumBuilder() : RegnumBuilder() {
         throw UnsupportedOperationException("Standalone does not support server config")
     }
 
-    override fun setServerConfig(config: ServerConfig?): RegnumBuilder {
+
+    override fun setServerConfig(config: ServerConfig): RegnumBuilder {
         throw UnsupportedOperationException("Standalone does not support server config")
     }
 

@@ -19,7 +19,7 @@
 
 package cc.hawkbot.regnum.server.core.internal
 
-import cc.hawkbot.regnum.entites.json.JsonObject
+import cc.hawkbot.regnum.entities.json.JsonObject
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.entities.Node
