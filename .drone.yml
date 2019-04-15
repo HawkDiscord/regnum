@@ -41,7 +41,7 @@ steps:
     environment: *gradle
     when: *release
     commands:
-      - ./gradlew buildArtifacts
+      - ./gradlew $GRADLE_CLI_OPTS buildArtifacts
   - name: artifacts_deploy
     image: plugins/gcs
     settings:
@@ -61,7 +61,7 @@ steps:
         from_secret: bintray_key
     when: *release
     commands:
-      - ./gradlew bintrayPublish
+      - ./gradlew $GRADLE_CLI_OPTS bintrayUpload bintrayPublish
   - name: rebuild
     image: homerovalle/drone-gcs-cache
     settings:
