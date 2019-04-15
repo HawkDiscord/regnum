@@ -30,6 +30,7 @@ import com.datastax.driver.mapping.annotations.Column
 import com.datastax.driver.mapping.annotations.Param
 import com.datastax.driver.mapping.annotations.Query
 import com.datastax.driver.mapping.annotations.Table
+import com.datastax.driver.mapping.annotations.Transient
 import java.util.*
 import java.util.concurrent.CompletionStage
 
@@ -56,7 +57,7 @@ class RegnumUser : CacheableCassandraEntity<RegnumUser>, IPermissionHolder {
      * Hopefully not be tracked by Cassandra PLS HELP MEEEEE
      */
     val locale: Locale
-        get() = Locale.forLanguageTag(languageTag)
+        @Transient get() = Locale.forLanguageTag(languageTag)
 
     /**
      * Returns the [Locale] of the user
