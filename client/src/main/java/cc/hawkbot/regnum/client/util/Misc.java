@@ -20,7 +20,12 @@
 package cc.hawkbot.regnum.client.util;
 
 import cc.hawkbot.regnum.entities.json.Json;
+import com.google.common.base.Preconditions;
 import io.netty.util.concurrent.DefaultThreadFactory;
+import net.dv8tion.jda.api.entities.Emote;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.requests.RestAction;
+import net.dv8tion.jda.internal.utils.Helpers;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -203,6 +208,25 @@ public class Misc {
     @NotNull
     public static String postToHastebin(@NotNull String message) {
         return postToHastebinAsync(message).join();
+    }
+
+    /**
+     * Adds and custom or unicode emote to a message.
+     *
+     * @param emoji   the id of the custom emote or unicode of the normal emote
+     * @param message the message to react on
+     * @throws NullPointerException When there is no emote with the given id
+     * @see Message#addReaction(Emote)
+     * @return a restaction which adds the emote
+     */
+    @NotNull
+    public static RestAction<Void> addReaction(String emoji, Message message) {
+        if (Helpers.isNumeric(emoji)) {
+            var emote = message.getJDA().getEmoteById(emoji);
+            Preconditions.checkNotNull(emote, "Emote id may not be invalid");
+            return message.addReaction(emote);
+        }
+        return message.addReaction(emoji);
     }
 
 }
