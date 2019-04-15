@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>InteractableMessage.Context - client</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">client</a>&nbsp;/&nbsp;<a href="../../index.html">cc.hawkbot.regnum.client.interaction</a>&nbsp;/&nbsp;<a href="../index.html">InteractableMessage</a>&nbsp;/&nbsp;<a href="./index.html">Context</a><br/>
+<br/>
+<h1>Context</h1>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Context</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/interaction/InteractableMessage.kt#L173">(source)</a>
+<p>Container for <a href="member.html">member</a>, <a href="message.html">message</a> and <a href="reaction.html">reaction</a> of an interaction</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Context</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage.Context$<init>(net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageReceivedEvent.html"><span class="identifier">GuildMessageReceivedEvent</span></a><span class="symbol">)</span></code><br/>
+<code><span class="identifier">Context</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage.Context$<init>(net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/react/GuildMessageReactionAddEvent.html"><span class="identifier">GuildMessageReactionAddEvent</span></a><span class="symbol">)</span></code><code><span class="identifier">Context</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage.Context$<init>(net.dv8tion.jda.api.entities.Member, net.dv8tion.jda.api.entities.Message, net.dv8tion.jda.api.entities.MessageReaction)/member">member</span><span class="symbol">:</span>&nbsp;<span class="identifier">Member</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage.Context$<init>(net.dv8tion.jda.api.entities.Member, net.dv8tion.jda.api.entities.Message, net.dv8tion.jda.api.entities.MessageReaction)/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">Message</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage.Context$<init>(net.dv8tion.jda.api.entities.Member, net.dv8tion.jda.api.entities.Message, net.dv8tion.jda.api.entities.MessageReaction)/reaction">reaction</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageReaction</span><span class="symbol">?</span><span class="symbol">)</span></code>
+<p>Container for <a href="member.html">member</a>, <a href="message.html">message</a> and <a href="reaction.html">reaction</a> of an interaction</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="author.html">author</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">author</span><span class="symbol">: </span><span class="identifier">User</span></code>
+<p>The author of the interaction.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="channel.html">channel</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">channel</span><span class="symbol">: </span><span class="identifier">TextChannel</span></code>
+<p>The channel the interaction was performed in.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="guild.html">guild</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">guild</span><span class="symbol">: </span><span class="identifier">Guild</span></code>
+<p>The guild the interaction was performed on.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="member.html">member</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">member</span><span class="symbol">: </span><span class="identifier">Member</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="message.html">message</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">message</span><span class="symbol">: </span><span class="identifier">Message</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="reaction.html">reaction</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">reaction</span><span class="symbol">: </span><span class="identifier">MessageReaction</span><span class="symbol">?</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="author.html">author</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">author</span></s><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">User</span></code>
+<p>The author of the interaction.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="channel.html">channel</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">channel</span></s><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">TextChannel</span></code>
+<p>The channel the interaction was performed in.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="delete-reaction.html">deleteReaction</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">deleteReaction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/requests/RestAction.html"><span class="identifier">RestAction</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Void.html"><span class="identifier">Void</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="guild.html">guild</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><s><span class="identifier">guild</span></s><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Guild</span></code>
+<p>The guild the interaction was performed on.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

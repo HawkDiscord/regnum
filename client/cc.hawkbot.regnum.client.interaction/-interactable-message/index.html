@@ -1,0 +1,182 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>InteractableMessage - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.interaction</a>&nbsp;/&nbsp;<a href="./index.html">InteractableMessage</a><br/>
+<br/>
+<h1>InteractableMessage</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">InteractableMessage</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/interaction/InteractableMessage.kt#L52">(source)</a>
+<p>Message which listens for interactions from the user.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-context/index.html">Context</a></p>
+</td>
+<td>
+<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">Context</span></code>
+<p>Container for <a href="-context/member.html">member</a>, <a href="-context/message.html">message</a> and <a href="-context/reaction.html">reaction</a> of an interaction</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">InteractableMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.collections.List((net.dv8tion.jda.api.Permission)))/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.collections.List((net.dv8tion.jda.api.Permission)))/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">Message</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.collections.List((net.dv8tion.jda.api.Permission)))/users">users</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">User</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.collections.List((net.dv8tion.jda.api.Permission)))/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.collections.List((net.dv8tion.jda.api.Permission)))/timeunit">timeunit</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html"><span class="identifier">TimeUnit</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.collections.List((net.dv8tion.jda.api.Permission)))/neededPermissions">neededPermissions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">Permission</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">=</span>&nbsp;emptyList()<span class="symbol">)</span></code>
+<p>Message which listens for interactions from the user.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="message.html">message</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">message</span><span class="symbol">: </span><span class="identifier">Message</span></code>
+<p>the message which should be listened on</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="regnum.html">regnum</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">regnum</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code>
+<p>the current regnum instance</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="timeout.html">timeout</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">timeout</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></code>
+<p>the time after the message should stop to listen for interaction</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="timeunit.html">timeunit</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">timeunit</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html"><span class="identifier">TimeUnit</span></a></code>
+<p>the unit for the timeout</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="users.html">users</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">users</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">User</span><span class="symbol">&gt;</span></code>
+<p>a list of users who are allowed to interact with the message</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="edit-message.html">editMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">editMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$editMessage(net.dv8tion.jda.api.entities.Message)/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">Message</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageAction</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">editMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$editMessage(net.dv8tion.jda.api.MessageBuilder)/messageBuilder">messageBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageBuilder</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageAction</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">editMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$editMessage(kotlin.String)/content">content</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageAction</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">editMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$editMessage(net.dv8tion.jda.api.entities.MessageEmbed)/embed">embed</span><span class="symbol">:</span>&nbsp;<span class="identifier">MessageEmbed</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageAction</span></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">editMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$editMessage(net.dv8tion.jda.api.EmbedBuilder)/embedBuilder">embedBuilder</span><span class="symbol">:</span>&nbsp;<span class="identifier">EmbedBuilder</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">MessageAction</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="finish.html">finish</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">finish</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="is-user-allowed.html">isUserAllowed</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">isUserAllowed</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$isUserAllowed(cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="-context/index.html"><span class="identifier">InteractableMessage.Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-message.html">onMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">onMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$onMessage(net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageReceivedEvent.html"><span class="identifier">GuildMessageReceivedEvent</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that gets invoked whenever the user performs a message interaction.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="retry.html">retry</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">retry</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="translate.html">translate</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">translate</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.InteractableMessage$translate(kotlin.String)/key">key</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="wait-for-interaction.html">waitForInteraction</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">waitForInteraction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that waits for user interaction</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="executor.html">executor</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">executor</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html"><span class="identifier">ExecutorService</span></a></code>
+<p>Scheduler for interactable messages</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-reactable-message/index.html">ReactableMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">ReactableMessage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">InteractableMessage</span></a></code>
+<p>Extension of <a href="./index.html">InteractableMessage</a> which allows you to also accept reaction based interactions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

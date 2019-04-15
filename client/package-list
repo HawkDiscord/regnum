@@ -24,4 +24,5 @@ cc.hawkbot.regnum.client.events
 cc.hawkbot.regnum.client.events.command
 cc.hawkbot.regnum.client.events.discord
 cc.hawkbot.regnum.client.events.websocket
+cc.hawkbot.regnum.client.interaction
 cc.hawkbot.regnum.client.util

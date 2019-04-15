@@ -12,4 +12,4 @@ cc.hawkbot.regnum.io.database
 cc.hawkbot.regnum.sentry
 cc.hawkbot.regnum.util
 cc.hawkbot.regnum.util.logging
-cc.hawkbot.regnum.waiter.impl
+cc.hawkbot.regnum.waiter

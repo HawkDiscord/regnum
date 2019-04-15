@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ConfirmationMessage - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.interaction</a>&nbsp;/&nbsp;<a href="./index.html">ConfirmationMessage</a><br/>
+<br/>
+<h1>ConfirmationMessage</h1>
+<code><span class="keyword">class </span><span class="identifier">ConfirmationMessage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-reactable-message/index.html"><span class="identifier">ReactableMessage</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/interaction/ConfirmationMessage.kt#L39">(source)</a>
+<p>Implementation of <a href="../-interactable-message/index.html">InteractableMessage</a> which is able to handle yes/no questions.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="../-confirmation-message-builder/index.html">ConfirmationMessageBuilder</a></p>
+</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ConfirmationMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/message">message</span><span class="symbol">:</span>&nbsp;<span class="identifier">Message</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/users">users</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><span class="identifier">User</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/timeout">timeout</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/timeUnit">timeUnit</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/TimeUnit.html"><span class="identifier">TimeUnit</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/yesEmote">yesEmote</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/yesKeyword">yesKeyword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/noEmote">noEmote</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/noKeyword">noKeyword</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/yes">yes</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html"><span class="identifier">Consumer</span></a><span class="symbol">&lt;</span><a href="../-interactable-message/-context/index.html"><span class="identifier">InteractableMessage.Context</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$<init>(cc.hawkbot.regnum.client.Regnum, net.dv8tion.jda.api.entities.Message, kotlin.collections.List((net.dv8tion.jda.api.entities.User)), kotlin.Long, java.util.concurrent.TimeUnit, kotlin.String, kotlin.String, kotlin.String, kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)), java.util.function.Consumer((cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)))/no">no</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html"><span class="identifier">Consumer</span></a><span class="symbol">&lt;</span><a href="../-interactable-message/-context/index.html"><span class="identifier">InteractableMessage.Context</span></a><span class="symbol">&gt;</span><span class="symbol">)</span></code>
+<p>Implementation of <a href="../-interactable-message/index.html">InteractableMessage</a> which is able to handle yes/no questions.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="handle-reaction.html">handleReaction</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">handleReaction</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$handleReaction(net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/react/GuildMessageReactionAddEvent.html"><span class="identifier">GuildMessageReactionAddEvent</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that gets invoked whenever the user performs a reaction-based interaction.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-message.html">onMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ConfirmationMessage$onMessage(net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://ci.dv8tion.net/job/JDA4-Alpha/javadoc/net/dv8tion/jda/api/events/message/guild/GuildMessageReceivedEvent.html"><span class="identifier">GuildMessageReceivedEvent</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that gets invoked whenever the user performs a message interaction.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-reactable-message/finish.html">finish</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">finish</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-reactable-message/is-user-allowed.html">isUserAllowed</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">isUserAllowed</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.interaction.ReactableMessage$isUserAllowed(cc.hawkbot.regnum.client.interaction.InteractableMessage.Context)/context">context</span><span class="symbol">:</span>&nbsp;<a href="../-interactable-message/-context/index.html"><span class="identifier">InteractableMessage.Context</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-reactable-message/wait-for-interaction.html">waitForInteraction</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">waitForInteraction</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that waits for user interaction</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
