@@ -20,11 +20,13 @@
 package cc.hawkbot.regnum.client.interaction
 
 import cc.hawkbot.regnum.client.Regnum
+import cc.hawkbot.regnum.client.util.SafeMessage
 import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
 import net.dv8tion.jda.api.entities.User
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.events.message.guild.react.GuildMessageReactionAddEvent
+import net.dv8tion.jda.api.exceptions.ErrorResponseException
 import java.util.concurrent.CompletionStage
 import java.util.concurrent.TimeUnit
 import java.util.function.Consumer
@@ -47,7 +49,7 @@ abstract class ReactableMessage(
     private lateinit var future: CompletionStage<GuildMessageReactionAddEvent>
 
     override fun onMessage(event: GuildMessageReceivedEvent) {
-
+        future.toCompletableFuture().cancel(true)
     }
 
     override fun waitForInteraction() {
@@ -57,7 +59,14 @@ abstract class ReactableMessage(
         future = regnum.eventWaiter.waitFor(
                 GuildMessageReactionAddEvent::class,
                 {
-                    isUserAllowed(Context(it))
+                    val message = try {
+                        it.channel.retrieveMessageById(it.messageIdLong).complete()
+                    } catch (e: ErrorResponseException) {
+                        SafeMessage.sendMessage("It looks like your message got deleted so the Interaction flow will get destroyed", it.channel).queue()
+                        finish()
+                        return@waitFor false
+                    }
+                    isUserAllowed(Context(it, message))
                 },
                 timeout,
                 timeunit
@@ -67,13 +76,16 @@ abstract class ReactableMessage(
 
                 it.reaction.removeReaction(it.user).queue()
             }
+            super.finish()
             handleReaction(it)
         }, executor)
     }
 
     override fun finish() {
         future.toCompletableFuture().cancel(true)
-        super.finish()
+        if (!disableMessageListening) {
+            super.finish()
+        }
     }
 
     /**
@@ -81,6 +93,8 @@ abstract class ReactableMessage(
      * @param event the event of the reaction
      */
     abstract fun handleReaction(event: GuildMessageReactionAddEvent)
+
+
 
     override fun isUserAllowed(context: Context): Boolean {
         if (context.reaction != null && context.reaction.messageIdLong != message.idLong) {

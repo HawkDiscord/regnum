@@ -59,7 +59,7 @@ class ConfirmationMessage(
 
     override fun handleReaction(event: GuildMessageReactionAddEvent) {
         val emote = event.reactionEmote.name
-        val context = Context(event)
+        val context = Context(event, event.channel.retrieveMessageById(event.messageId).complete())
         when (emote) {
             yesEmote -> finish(yes, context)
             noEmote -> finish(no, context)

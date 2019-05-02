@@ -97,7 +97,7 @@ abstract class InteractableMessage(
     protected open fun waitForInteraction() {
         future = regnum.eventWaiter.waitFor(
                 GuildMessageReceivedEvent::class.java,
-                { isUserAllowed(Context(it)) },
+                { isUserAllowed(Context(it)) && !it.message.isWebhookMessage && it.member == null },
                 timeout,
                 timeunit
         )
@@ -176,9 +176,9 @@ abstract class InteractableMessage(
             val reaction: MessageReaction?
     ) {
         constructor(event: GuildMessageReceivedEvent) : this(event.member, event.message, null)
-        constructor(event: GuildMessageReactionAddEvent) : this(
+        constructor(event: GuildMessageReactionAddEvent, message: Message) : this(
                 event.member,
-                event.channel.retrieveMessageById(event.messageIdLong).complete(),
+                message,
                 event.reaction
         )
 
