@@ -519,8 +519,8 @@ public class SafeMessage {
 
     private static MessageAction delete(MessageAction future, int deleteTime) {
         if (deleteTime != -1) {
-            future.queue(msg -> scheduler.schedule(
-                    (msg::delete), deleteTime, TimeUnit.SECONDS));
+            future.queue(msg -> msg.delete().queueAfter(
+                    deleteTime, TimeUnit.SECONDS));
         }
         return future;
 
