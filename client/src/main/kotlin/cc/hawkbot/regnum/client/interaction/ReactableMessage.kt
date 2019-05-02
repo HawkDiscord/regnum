@@ -49,7 +49,7 @@ abstract class ReactableMessage(
     private lateinit var future: CompletionStage<GuildMessageReactionAddEvent>
 
     override fun onMessage(event: GuildMessageReceivedEvent) {
-
+        future.toCompletableFuture().cancel(true)
     }
 
     override fun waitForInteraction() {
@@ -76,6 +76,7 @@ abstract class ReactableMessage(
 
                 it.reaction.removeReaction(it.user).queue()
             }
+            super.finish()
             handleReaction(it)
         }, executor)
     }
@@ -90,6 +91,8 @@ abstract class ReactableMessage(
      * @param event the event of the reaction
      */
     abstract fun handleReaction(event: GuildMessageReactionAddEvent)
+
+
 
     override fun isUserAllowed(context: Context): Boolean {
         if (context.reaction != null && context.reaction.messageIdLong != message.idLong) {
