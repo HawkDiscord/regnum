@@ -83,7 +83,9 @@ abstract class ReactableMessage(
 
     override fun finish() {
         future.toCompletableFuture().cancel(true)
-        super.finish()
+        if (!disableMessageListening) {
+            super.finish()
+        }
     }
 
     /**
