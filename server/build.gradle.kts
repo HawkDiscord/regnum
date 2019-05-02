@@ -19,6 +19,7 @@
 
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.File
 
 plugins {
     kotlin("jvm").version("1.3.21")
@@ -77,7 +78,7 @@ tasks {
     "shadowJar"(ShadowJar::class) {
         archiveBaseName.set(project.name)
         archiveVersion.set(project.version as String)
-        archiveFileName.set("$archiveBaseName-$archiveVersion.$archiveExtension")
+        archiveFileName.set("${archiveBaseName.orNull}-${archiveVersion.orNull}.${archiveExtension.orNull}")
         destinationDirectory.set(buildDir)
     }
     "jar"(Jar::class) {
