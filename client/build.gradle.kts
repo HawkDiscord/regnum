@@ -31,7 +31,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "0.0.4"
+version = "0.0.5"
 val archivesBasename = "regnum.client"
 
 repositories {

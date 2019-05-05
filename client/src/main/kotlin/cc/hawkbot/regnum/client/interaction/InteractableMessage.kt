@@ -97,7 +97,7 @@ abstract class InteractableMessage(
     protected open fun waitForInteraction() {
         future = regnum.eventWaiter.waitFor(
                 GuildMessageReceivedEvent::class.java,
-                { isUserAllowed(Context(it)) && !it.message.isWebhookMessage && it.member == null },
+                { !it.message.isWebhookMessage && it.member == null && isUserAllowed(Context(it)) },
                 timeout,
                 timeunit
         )
