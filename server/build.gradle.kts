@@ -29,7 +29,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "0.0.3"
+version = "0.0.4"
 val cliVersion = "1.4"
 
 repositories {

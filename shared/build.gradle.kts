@@ -32,7 +32,7 @@ plugins {
 
 group = "cc.hawkbot.regnum"
 val archivesBasename = "shared"
-version = "0.0.3"
+version = "0.0.4"
 repositories {
     mavenCentral()
     jcenter()
