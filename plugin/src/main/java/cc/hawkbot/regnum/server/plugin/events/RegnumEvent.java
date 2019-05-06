@@ -19,15 +19,15 @@
 
 package cc.hawkbot.regnum.server.plugin.events;
 
-import cc.hawkbot.regnum.events.NoJDAEvent;
 import cc.hawkbot.regnum.server.plugin.Server;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.events.Event;
 
 /**
  * Generic Regnum event.
  */
 @SuppressWarnings("UnusedReturnValue")
-public class RegnumEvent extends NoJDAEvent {
+public class RegnumEvent extends Event {
 
     private final Server server;
 
@@ -38,6 +38,7 @@ public class RegnumEvent extends NoJDAEvent {
      */
     @SuppressWarnings("WeakerAccess")
     public RegnumEvent(Server server) {
+        super(server.getDiscordBot().getJda(), 200);
         this.server = server;
     }
 

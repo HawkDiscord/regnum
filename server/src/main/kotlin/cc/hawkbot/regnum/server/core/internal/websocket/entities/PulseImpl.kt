@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.server.core.internal.websocket.entities
 
 import cc.hawkbot.regnum.entities.Payload
 import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket
+import cc.hawkbot.regnum.entities.packets.HeartBeatPacket
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.entities.Node
 import cc.hawkbot.regnum.server.plugin.entities.Pulse
@@ -38,7 +39,7 @@ import java.util.concurrent.TimeUnit
 class PulseImpl(private val server: Server, private val node: Node) : Pulse {
 
     companion object {
-        const val MARGIN = 500
+        const val MARGIN = 200
     }
 
     override var lastHeartbeat: Long = System.currentTimeMillis()
@@ -50,9 +51,8 @@ class PulseImpl(private val server: Server, private val node: Node) : Pulse {
 
     private fun waitForHeartbeat() {
         val future = server.eventWaiter.waitFor(WebSocketMessageEvent::class.java, {
-            it.session == node.session
+            it.session == node.session && it.payload.type == HeartBeatPacket.IDENTIFIER
         }, (server.config.get<Long>(Config.SOCKET_HEARTBEAT) + MARGIN), TimeUnit.SECONDS)
-
         future.exceptionally {
             @Suppress("SpellCheckingInspection")
             log.warn("[WS] Disconnecting node ${node.session.id} for not sending heartbeat")

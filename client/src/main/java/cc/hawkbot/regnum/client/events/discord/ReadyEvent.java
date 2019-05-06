@@ -19,13 +19,14 @@
 
 package cc.hawkbot.regnum.client.events.discord;
 
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.sharding.ShardManager;
+import cc.hawkbot.regnum.client.Regnum;
+import cc.hawkbot.regnum.client.core.discord.ShardManager;
+import cc.hawkbot.regnum.client.events.Event;
 
 /**
  * Event that is fired when all Discord shards are connected and received READY event.
  */
-public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
+public class ReadyEvent extends Event {
 
     private final int availableGuilds;
     private final int unavailableGuilds;
@@ -36,11 +37,10 @@ public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
      * @param shardManager      the shard manager
      * @param availableGuilds   the count of available guilds
      * @param unavailableGuilds the count of unavailable guilds
-     * @see net.dv8tion.jda.api.events.ReadyEvent#ReadyEvent(JDA, long)
      */
     @SuppressWarnings("unused")
-    public ReadyEvent(ShardManager shardManager, int availableGuilds, int unavailableGuilds) {
-        super(shardManager.getShards().get(0), 200);
+    public ReadyEvent(Regnum regnum, ShardManager shardManager, int availableGuilds, int unavailableGuilds) {
+        super(regnum);
         this.availableGuilds = availableGuilds;
         this.unavailableGuilds = unavailableGuilds;
     }
@@ -50,9 +50,7 @@ public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
      * Returns the count of available guilds.
      *
      * @return the count of available guilds
-     * @see net.dv8tion.jda.api.events.ReadyEvent#getGuildAvailableCount()
      */
-    @Override
     public int getGuildAvailableCount() {
         return availableGuilds;
     }
@@ -61,9 +59,7 @@ public class ReadyEvent extends net.dv8tion.jda.api.events.ReadyEvent {
      * Returns the count of unavailable guilds.
      *
      * @return the count of unavailable guilds
-     * @see net.dv8tion.jda.api.events.ReadyEvent#getGuildUnavailableCount()
      */
-    @Override
     public int getGuildUnavailableCount() {
         return unavailableGuilds;
     }

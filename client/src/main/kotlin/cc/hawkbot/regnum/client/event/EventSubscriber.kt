@@ -17,13 +17,12 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.util;
+package cc.hawkbot.regnum.client.event
 
 /**
- * Class containing Regnum library info.
+ * Annotation that marks an event listener method.
  */
-public class RegnumInfo {
-
-    public static final String VERSION = "1.0.0";
-    public static final String GITHUB_URL = "https://github.com/HawkDiscord/regnum";
-}
+@Target(AnnotationTarget.FUNCTION)
+@MustBeDocumented
+@Retention(AnnotationRetention.RUNTIME)
+annotation class EventSubscriber

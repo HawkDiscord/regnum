@@ -22,14 +22,13 @@ package cc.hawkbot.regnum.client.core.discord.impl
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.core.discord.Discord
 import cc.hawkbot.regnum.client.core.discord.GameAnimator
-import cc.hawkbot.regnum.client.core.discord.ShardWatcher
+import cc.hawkbot.regnum.client.core.discord.ShardManager
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl
+import cc.hawkbot.regnum.client.event.EventSubscriber
+import cc.hawkbot.regnum.client.events.discord.ReadyEvent
 import cc.hawkbot.regnum.util.logging.Logger
-import net.dv8tion.jda.api.OnlineStatus
-import net.dv8tion.jda.api.entities.Activity
-import net.dv8tion.jda.api.hooks.SubscribeEvent
-import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder
-import net.dv8tion.jda.api.sharding.ShardManager
+import kotlin.reflect.KClass
+import kotlin.reflect.full.primaryConstructor
 
 /**
  * Implementation of [Discord].
@@ -43,30 +42,23 @@ import net.dv8tion.jda.api.sharding.ShardManager
 @Suppress("UNSAFE_CAST", "unused")
 class DiscordImpl(
         val regnum: Regnum,
+        shardManagerClass: KClass<out ShardManager>,
         token: String,
         shards: Array<Int>,
         shardsTotal: Int
 ) : Discord {
 
     private val log = Logger.getLogger()
-    override val shardManager: ShardManager
+    override val shardManager: ShardManager = shardManagerClass.primaryConstructor!!.call()
     override val gameAnimator: GameAnimator
     private var availableGuilds: Int = 0
     private var unavailableGuilds: Int = 0
 
     init {
         (regnum as RegnumImpl).discord = this
+        regnum.eventManager.register(this)
         log.info("[Discord] Starting shards ${shards.joinToString()} total $shardsTotal")
-        val builder = DefaultShardManagerBuilder()
-                .setToken(token)
-                .setShardsTotal(shardsTotal)
-                .setShards(shards.toList())
-                .setEventManagerProvider { regnum.eventManager }
-                .addEventListeners(this, ShardWatcher(regnum, shards.size))
-                .setActivity(Activity.playing("Starting ..."))
-                .setStatus(OnlineStatus.DO_NOT_DISTURB)
-
-        shardManager = builder.build()
+        shardManager.start(token, shards, shardsTotal, regnum)
         gameAnimator = GameAnimator(regnum)
     }
 
@@ -76,13 +68,13 @@ class DiscordImpl(
     override fun addShards(shards: Array<out Int>) {
         log.info("[Discord] Adding $shards because a other node needs to be replaced")
         shards.forEach {
-            shardManager.start(it)
+            shardManager.addShard(it)
         }
     }
 
-    @SubscribeEvent
+    @EventSubscriber
     @Suppress("unused")
-    private fun whenReady(event: cc.hawkbot.regnum.client.events.discord.ReadyEvent) {
+    private fun whenReady(event: ReadyEvent) {
         log.info("[Discord] Connected to discord with ${event.guildAvailableCount}/${event.guildUnavailableCount} available/unavailable guilds.")
         gameAnimator.start()
     }

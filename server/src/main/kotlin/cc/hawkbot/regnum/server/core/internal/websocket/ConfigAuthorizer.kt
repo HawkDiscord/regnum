@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
+import cc.hawkbot.regnum.entities.json.Json
 import cc.hawkbot.regnum.entities.packets.IdentifyPacket
 import cc.hawkbot.regnum.server.plugin.Server
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
@@ -53,7 +54,7 @@ class ConfigAuthorizer : AuthorizationHandler {
             val token = config.get<String>(Config.SOCKET_TOKEN)
             val payload = it.payload
             if (payload.type == IdentifyPacket.IDENTIFIER) {
-                val identify = payload.packet as IdentifyPacket
+                val identify = Json.fromJson(IdentifyPacket::class.java, payload.packet)
                 if (token == identify.token) {
                     connectFuture.complete(wsSession)
                 } else {

@@ -29,7 +29,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "0.0.3"
+version = rootProject.version
 val cliVersion = "1.4"
 
 repositories {
@@ -44,7 +44,7 @@ dependencies {
     implementation(project(":shared"))
 
     implementation("de.foryasee", "plugins", project.ext["pluginsVersion"] as String)
-
+    
     // Server
     implementation("io.javalin", "javalin", project.ext["javalinVersion"] as String)
 

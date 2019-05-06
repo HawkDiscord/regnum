@@ -19,18 +19,16 @@
 
 package cc.hawkbot.regnum.client;
 
-import cc.hawkbot.regnum.client.config.CassandraConfig;
-import cc.hawkbot.regnum.client.config.CommandConfig;
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
-import cc.hawkbot.regnum.client.core.MemoryMessageCache;
-import cc.hawkbot.regnum.client.core.MessageCache;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
+import cc.hawkbot.regnum.client.core.discord.ShardManager;
+import cc.hawkbot.regnum.client.core.discord.impl.JDAShardManager;
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl;
-import cc.hawkbot.regnum.io.database.CassandraSource;
+import cc.hawkbot.regnum.client.event.EventManager;
+import cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger;
 import com.google.common.base.Preconditions;
-import net.dv8tion.jda.api.hooks.AnnotatedEventManager;
-import net.dv8tion.jda.api.hooks.IEventManager;
+import kotlin.jvm.JvmClassMappingKt;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -46,11 +44,9 @@ public class RegnumBuilder {
 
     private ServerConfig serverConfig;
     private GameAnimatorConfig gameAnimatorConfig;
-    private CommandConfig commandConfig;
-    private IEventManager eventManager = new AnnotatedEventManager();
-    private CassandraConfig cassandraConfig;
+    private EventManager eventManager = new AnnotatedEventManger();
     private List<Feature> disabledFeatures = new ArrayList<>();
-    private MessageCache messageCache = new MemoryMessageCache();
+    private Class<? extends ShardManager> shardManager = JDAShardManager.class;
 
 
     /**
@@ -98,47 +94,22 @@ public class RegnumBuilder {
     }
 
     /**
-     * Returns the configuration used by the {@link cc.hawkbot.regnum.client.command.CommandParser} and other parts of
-     * the commands system.
+     * Returns the current event manager {@link EventManager}.
      *
-     * @return the {@link CommandConfig}
+     * @return the current event manager {@link EventManager}
      */
-    @NotNull
-    public CommandConfig getCommandConfig() {
-        return commandConfig;
-    }
-
-    /**
-     * Sets the configuration used by the {@link cc.hawkbot.regnum.client.command.CommandParser} and other parts of
-     * the commands system.
-     *
-     * @param commandConfig the {@link CommandConfig}
-     * @return the current builder
-     */
-    @NotNull
-    public RegnumBuilder setCommandConfig(@NotNull CommandConfig commandConfig) {
-        this.commandConfig = commandConfig;
-        return this;
-    }
-
-    /**
-     * Returns the current event manager {@link IEventManager}.
-     *
-     * @return the current event manager {@link IEventManager}
-     */
-    @NotNull
-    public IEventManager getEventManager() {
+    public EventManager getEventManager() {
         return eventManager;
     }
 
     /**
-     * Sets the event manager {@link IEventManager} that is used by {@link Regnum} and the {@link cc.hawkbot.regnum.client.core.discord.Discord}.
+     * Sets the event manager {@link EventManager} that is used by {@link Regnum} and the {@link cc.hawkbot.regnum.client.core.discord.Discord}.
      *
      * @param eventManager the event manager
      * @return the current builder
      */
     @NotNull
-    public RegnumBuilder setEventManager(@NotNull IEventManager eventManager) {
+    public RegnumBuilder setEventManager(EventManager eventManager) {
         this.eventManager = eventManager;
         return this;
     }
@@ -149,7 +120,7 @@ public class RegnumBuilder {
      * @return the current list of event listeners
      */
     @NotNull
-    public List<Object> getEventListeners() {
+    public List getEventListeners() {
         return eventManager.getRegisteredListeners();
     }
 
@@ -162,9 +133,7 @@ public class RegnumBuilder {
      */
     @NotNull
     public RegnumBuilder registerEvents(@NotNull Object... listeners) {
-        for (Object listener : listeners) {
-            eventManager.register(listener);
-        }
+        eventManager.register(listeners);
         return this;
     }
 
@@ -177,28 +146,6 @@ public class RegnumBuilder {
     @NotNull
     public RegnumBuilder registerEvents(@NotNull Collection<Object> listeners) {
         return registerEvents(listeners.toArray());
-    }
-
-    /**
-     * Returns the configuration used by {@link CassandraSource}.
-     *
-     * @return the {@link CassandraConfig}
-     */
-    @NotNull
-    public CassandraConfig getCassandraConfig() {
-        return cassandraConfig;
-    }
-
-    /**
-     * Sets the configuration used by {@link CassandraSource}.
-     *
-     * @param cassandraConfig the {@link CassandraConfig}
-     * @return the current builder
-     */
-    @NotNull
-    public RegnumBuilder setCassandraConfig(@NotNull CassandraConfig cassandraConfig) {
-        this.cassandraConfig = cassandraConfig;
-        return this;
     }
 
     /**
@@ -250,28 +197,6 @@ public class RegnumBuilder {
     }
 
     /**
-     * Returns the current message cache.
-     *
-     * @return the {@link MessageCache}
-     */
-    @NotNull
-    public MessageCache getMessageCache() {
-        return messageCache;
-    }
-
-    /**
-     * Sets the message cache
-     *
-     * @param messageCache the {@link MessageCache}
-     * @return the current builder
-     */
-    @NotNull
-    public RegnumBuilder setMessageCache(@NotNull MessageCache messageCache) {
-        this.messageCache = messageCache;
-        return this;
-    }
-
-    /**
      * Build a new {@link Regnum} instance and connects to the server
      *
      * @return the instance
@@ -282,8 +207,6 @@ public class RegnumBuilder {
         // Null checks
         Preconditions.checkNotNull(serverConfig, "ServerConfig may not be null");
         Preconditions.checkNotNull(gameAnimatorConfig, "GameAnimator config may not be null");
-        Preconditions.checkNotNull(commandConfig, "CommandSettings may not be null");
-        Preconditions.checkNotNull(cassandraConfig, "CassandraConfig may not be null");
         Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
 
         // Build
@@ -291,13 +214,9 @@ public class RegnumBuilder {
                 serverConfig,
                 eventManager,
                 gameAnimatorConfig,
-                commandConfig,
                 disabledFeatures,
-                messageCache
-        ).init(
-                serverConfig,
-                cassandraConfig,
-                commandConfig
+                JvmClassMappingKt.getKotlinClass(shardManager),
+                List.of()
         );
     }
 }

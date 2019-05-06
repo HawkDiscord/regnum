@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client.core
 
 import cc.hawkbot.regnum.client.core.internal.WebsocketImpl
 import cc.hawkbot.regnum.entities.Payload
+import cc.hawkbot.regnum.net.PacketProcessor
 import com.google.common.base.Preconditions
 import java.io.Closeable
 
@@ -33,6 +34,8 @@ interface Websocket : Closeable {
      * The [Heart].
      */
     val heart: Heart
+
+    val packetProcessor: PacketProcessor
 
     /**
      * Connects to the websocket.
@@ -49,9 +52,7 @@ interface Websocket : Closeable {
      * Sends a payload to the server.
      * @param payload the payload
      */
-    fun send(payload: Payload) {
-        sendMessage(payload.toJson())
-    }
+    fun send(payload: Payload) = sendMessage(payload.toJson())
 
     /**
      * Returns the last ping between the client and server heartbeat.

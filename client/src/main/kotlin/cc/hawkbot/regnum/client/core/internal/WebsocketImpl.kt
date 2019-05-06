@@ -29,6 +29,7 @@ import cc.hawkbot.regnum.client.events.websocket.WebSocketErrorEvent
 import cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent
 import cc.hawkbot.regnum.entities.Payload
 import cc.hawkbot.regnum.entities.packets.IdentifyPacket
+import cc.hawkbot.regnum.net.PacketProcessor
 import cc.hawkbot.regnum.util.logging.Logger
 import org.java_websocket.client.WebSocketClient
 import org.java_websocket.handshake.ServerHandshake
@@ -47,7 +48,16 @@ class WebsocketImpl(
 ) : WebSocketClient(location), Websocket {
 
     private val log = Logger.getLogger()
+    override val packetProcessor: PacketProcessor = PacketProcessor()
     override lateinit var heart: Heart
+
+    init {
+        packetProcessor.registerPackets(
+                HelloHandler(regnum),
+                StartHandler(regnum),
+                AddHandler(regnum)
+        )
+    }
 
     /**
      * Websocket client
@@ -73,6 +83,7 @@ class WebsocketImpl(
 
     override fun onMessage(message: String) {
         log.info("[WS] Websocket message received: {}", message)
+        packetProcessor.processMessage(message)
         callEventAsync(WebSocketMessageEvent(regnum, this, message))
     }
 
@@ -81,12 +92,10 @@ class WebsocketImpl(
         callEventAsync(WebSocketErrorEvent(regnum, this, ex))
     }
 
-    override fun start() {
-        super.connect()
-    }
+    override fun start() = super.connect()
 
     private fun callEvent(event: Event) {
-        regnum.eventManager.handle(event)
+        regnum.eventManager.fireEvent(event)
     }
 
     private fun authorize() {
@@ -95,24 +104,16 @@ class WebsocketImpl(
         send(identify)
     }
 
-    override fun sendMessage(message: String) {
-        this.send(message)
-    }
+    override fun sendMessage(message: String) = this.send(message)
 
-    private fun callEventAsync(event: Event) {
-        regnum.eventManager.handle(event)
-    }
+    private fun callEventAsync(event: Event) = regnum.eventManager.fireEvent(event)
 
-    override fun close() {
-        super.close()
-    }
+    override fun close() = super.close()
 
     /**
      * Returns whether the [heart] is initialized or not.
      * @return whether the [heart] is initialized or not
      */
-    fun isHeartInitialized(): Boolean {
-        return this::heart.isInitialized
-    }
+    fun isHeartInitialized() = this::heart.isInitialized
 
 }

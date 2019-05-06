@@ -20,9 +20,7 @@
 package cc.hawkbot.regnum.client.core.discord
 
 import cc.hawkbot.regnum.client.Regnum
-import net.dv8tion.jda.api.events.DisconnectEvent
-import net.dv8tion.jda.api.events.ReadyEvent
-import net.dv8tion.jda.api.hooks.SubscribeEvent
+import cc.hawkbot.regnum.client.events.discord.ReadyEvent
 
 /**
  * Listener that watches shards to fire [cc.hawkbot.regnum.client.events.discord.ReadyEvent]
@@ -34,39 +32,19 @@ class ShardWatcher(private val regnum: Regnum, private val shardsTotal: Int) {
     private var unavailableGuilds = 0
     private var ready = false
 
-    @Suppress("unused")
-    @SubscribeEvent
-    private fun shardReady(event: ReadyEvent) {
-        checkReady {
-            shardsConnected++
-            availableGuilds += event.guildAvailableCount
-            unavailableGuilds += event.guildUnavailableCount
-
-            if (shardsConnected == shardsTotal) {
-                ready = true
-                regnum.eventManager.handle(cc.hawkbot.regnum.client.events.discord.ReadyEvent(regnum.discord.shardManager,
-                        availableGuilds, unavailableGuilds))
-                regnum.eventManager.unregister(this)
-            }
+    fun shardReady(guildAvailableCount: Int, guildUnavailableCount: Int) {
+        shardsConnected++
+        availableGuilds += guildAvailableCount
+        unavailableGuilds += guildUnavailableCount
+        if (shardsConnected == shardsTotal) {
+            ready = true
+            regnum.eventManager.fireEvent(ReadyEvent(regnum, regnum.discord.shardManager, guildAvailableCount, guildUnavailableCount))
         }
     }
 
-    @Suppress("unused")
-    @SubscribeEvent
-    private fun shardDisconnected(@Suppress("UNUSED_PARAMETER") event: DisconnectEvent) {
-        checkReady {
-            shardsConnected--
-            availableGuilds -= event.jda.guilds.size
-            // Why is there no way to fetch unavailable guilds @Minn?
-            //unavailableGuilds -= event.jda.
-        }
-    }
-
-    private fun checkReady(action: () -> Unit) {
-        if (ready) {
-            regnum.eventManager.unregister(this)
-        } else {
-            action()
-        }
+    fun shardDisconnected(guildAvailableCount: Int, guildUnavailableCount: Int) {
+        shardsConnected--
+        availableGuilds -= guildAvailableCount
+        unavailableGuilds -= guildUnavailableCount
     }
 }

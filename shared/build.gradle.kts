@@ -32,7 +32,7 @@ plugins {
 
 group = "cc.hawkbot.regnum"
 val archivesBasename = "shared"
-version = "0.0.3"
+version = rootProject.version
 repositories {
     mavenCentral()
     jcenter()
@@ -44,10 +44,7 @@ dependencies {
     implementation("org.slf4j", "slf4j-api", project.ext["slf4jVersion"] as String)
     // Only needed in server
     implementation("org.apache.logging.log4j", "log4j-core", project.ext["log4jVersion"] as String)
-
-    @Suppress("SpellCheckingInspection")
-    compile("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
-
+    
     // Util
     @Suppress("SpellCheckingInspection")
     compile("com.electronwill.night-config", "yaml", project.ext["nightconfigVersion"] as String)

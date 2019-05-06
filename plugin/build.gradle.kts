@@ -13,7 +13,7 @@ plugins {
 
 group = "cc.hawkbot.regnum.server"
 val archivesBasename = "plugin"
-version = "0.0.3"
+version = rootProject.version
 repositories {
     mavenCentral()
     jcenter()
@@ -27,6 +27,11 @@ dependencies {
 
     // Server
     implementation("io.javalin", "javalin", project.ext["javalinVersion"] as String)
+
+    // Discord
+    @Suppress("SpellCheckingInspection")
+    compile("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
+
 
     implementation(kotlin("stdlib-jdk8"))
     testCompile("junit", "junit", "4.12")

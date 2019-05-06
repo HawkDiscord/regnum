@@ -17,13 +17,31 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.util;
+package cc.hawkbot.regnum.client.core
+
+import cc.hawkbot.regnum.client.Regnum
 
 /**
- * Class containing Regnum library info.
+ * Class that represents an extension of the Regnum client.
+ * @property regnum the Regnum instance.
  */
-public class RegnumInfo {
+@Suppress("unused")
+abstract class Extension(
+        protected val regnum: Regnum
+) {
 
-    public static final String VERSION = "1.0.0";
-    public static final String GITHUB_URL = "https://github.com/HawkDiscord/regnum";
+    /**
+     * This method get's invoked after instantiating Regnum.
+     */
+    open fun initializing() {
+
+    }
+
+    /**
+     * This method gets invoked when Regnum got initialized.
+     */
+    open fun initialized() {
+
+    }
+
 }

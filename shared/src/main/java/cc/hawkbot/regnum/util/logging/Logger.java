@@ -53,17 +53,20 @@ public class Logger {
         SLF4J_FOUND = temp;
     }
 
+    public static org.slf4j.Logger getLogger() {
+        return getLogger(StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass());
+    }
+
     /**
      * Gets a logger instance for the class where the method got invoked
      *
      * @return the logger
      */
     @SuppressWarnings("UnusedReturnValue")
-    public static org.slf4j.Logger getLogger() {
-        var callerClazz = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).getCallerClass();
+    public static org.slf4j.Logger getLogger(Class clazz) {
         if (SLF4J_FOUND)
-            return LoggerFactory.getLogger(callerClazz);
-        return getFallbackLogger(callerClazz);
+            return LoggerFactory.getLogger(clazz);
+        return getFallbackLogger(clazz);
     }
 
     private static org.slf4j.Logger getFallbackLogger(Class clazz) {

@@ -38,8 +38,6 @@ interface Heart {
      * Returns the heartbeat as an [OffsetDateTime].
      * @return the heartbeat as an [OffsetDateTime]
      */
-    fun lastHeartbeat(): OffsetDateTime {
-        return OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())
-    }
+    fun lastHeartbeat() = OffsetDateTime.ofInstant(Instant.ofEpochMilli(lastHeartbeat), ZoneId.systemDefault())!!
 
 }

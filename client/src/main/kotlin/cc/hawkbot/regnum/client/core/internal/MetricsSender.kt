@@ -49,10 +49,10 @@ class MetricsSender(private val regnum: Regnum) : Closeable {
         val users: Long
         if ((regnum as RegnumImpl).discordInitialized()) {
             val discord = regnum.discord.shardManager
-            restPing = discord.shards[0].restPing.complete()
-            wsPing = discord.averageGatewayPing.toLong()
-            guilds = discord.guildCache.size()
-            users = discord.userCache.size()
+            restPing = discord.averageRestPing
+            wsPing = discord.averageGatewayPing
+            guilds = discord.guildsSize.toLong()
+            users = discord.userSize.toLong()
         } else {
             restPing = 0
             wsPing = 0
@@ -68,7 +68,5 @@ class MetricsSender(private val regnum: Regnum) : Closeable {
         regnum.websocket.send(Payload.of(MetricsPacket(restPing, wsPing, usedMemory, memory, cpuUsage, cpus, guilds, users), MetricsPacket.IDENTIFIER))
     }
 
-    override fun close() {
-        scheduler.shutdown()
-    }
+    override fun close() = scheduler.shutdown()
 }

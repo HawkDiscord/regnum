@@ -20,14 +20,10 @@
 package cc.hawkbot.regnum.server.plugin
 
 import cc.hawkbot.regnum.entities.packets.MetricsPacket
-import cc.hawkbot.regnum.io.database.CassandraSource
-import cc.hawkbot.regnum.sentry.SentryClient
 import cc.hawkbot.regnum.server.plugin.core.AuthorizationHandler
 import cc.hawkbot.regnum.server.plugin.core.LoadBalancer
 import cc.hawkbot.regnum.server.plugin.discord.DiscordBot
 import cc.hawkbot.regnum.server.plugin.io.config.Config
-import cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler
-import cc.hawkbot.regnum.server.plugin.rest.RestHandler
 import cc.hawkbot.regnum.waiter.EventWaiter
 import io.javalin.Javalin
 import net.dv8tion.jda.api.hooks.IEventManager
@@ -75,11 +71,6 @@ interface Server : Closeable {
     val eventWaiter: EventWaiter
 
     /**
-     * The event manager.
-     */
-    val eventManager: IEventManager
-
-    /**
      * The authorization handler.
      */
     var authorizationHandler: AuthorizationHandler
@@ -90,33 +81,18 @@ interface Server : Closeable {
     val loadBalancer: LoadBalancer
 
     /**
-     * The HTTP client used for requests.
-     */
-    val httpClient: OkHttpClient
-
-    /**
-     * Sentry client.
-     */
-    val sentry: SentryClient
-
-    /**
-     * The cassandra client.
-     */
-    val cassandraSource: CassandraSource
-
-    /**
-     * Authorization handler for rest api.
-     */
-    var restAuthorizationHandler: RestAuthorizationHandler
-
-    /**
      * The average metrics of all node.
      */
     var averageMetrics: MetricsPacket
 
     /**
-     * Registers a new [RestHandler].
-     * @param handler the handler
+     * The httpClient.
      */
-    fun registerRestHandler(handler: RestHandler)
+    val httpClient: OkHttpClient
+
+    /**
+     * The event manager.
+     */
+    val eventManager: IEventManager
+
 }

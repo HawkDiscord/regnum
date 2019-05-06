@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "0.0.3"
+version = rootProject.version
 repositories {
     jcenter()
     mavenCentral()

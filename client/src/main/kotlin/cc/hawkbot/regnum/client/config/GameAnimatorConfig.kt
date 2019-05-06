@@ -72,23 +72,19 @@ data class GameAnimatorConfig(
     /**
      * Adds all [games] to the game animator.
      */
-    fun registerGames(vararg games: GameAnimator.Game) {
-        this.games.addAll(games)
-    }
+    fun registerGames(vararg games: GameAnimator.Game)  = this.games.addAll(games)
 
     /**
      * Adds all [games] to the game animator.
      */
-    fun registerGames(games: Collection<GameAnimator.Game>) {
-        this.games.addAll(games)
-    }
+    fun registerGames(games: Collection<GameAnimator.Game>)  = this.games.addAll(games)
 
 }
 
 /* default translator */
 private fun translate(regnum: Regnum, raw: String): String {
-    val jda = regnum.discord.shardManager
-    return raw.replace("%servers%", jda.guilds.size.toString())
-            .replace("%users%", jda.users.size.toString())
+    val shardManager = regnum.discord.shardManager
+    return raw.replace("%servers%", shardManager.guildsSize.toString())
+            .replace("%users%", shardManager.userSize.toString())
 }
 

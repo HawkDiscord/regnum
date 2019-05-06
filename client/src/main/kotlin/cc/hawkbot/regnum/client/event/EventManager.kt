@@ -17,13 +17,40 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.util;
+package cc.hawkbot.regnum.client.event
 
 /**
- * Class containing Regnum library info.
+ * Fires and dispatches events
  */
-public class RegnumInfo {
+interface EventManager {
 
-    public static final String VERSION = "1.0.0";
-    public static final String GITHUB_URL = "https://github.com/HawkDiscord/regnum";
+    /**
+     * An immutable list of all registred listeners
+     */
+    val registeredListeners: List<*>
+
+    /**
+     * Registers all [listeners].
+     */
+    fun register(vararg listeners: Any) = listeners.forEach(this::register)
+
+    /**
+     * Registers all [listeners].
+     */
+    fun register(listeners: Collection<Any>) = listeners.forEach(this::register)
+
+    /**
+     * Registers the [listener].
+     */
+    fun register(listener: Any)
+
+    /**
+     *  Unregisters the [listener].
+     */
+    fun unregister(listener: Any)
+
+    /**
+     * Fires the [event].
+     */
+    fun fireEvent(event: Any)
 }

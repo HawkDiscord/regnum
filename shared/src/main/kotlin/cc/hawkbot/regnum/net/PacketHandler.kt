@@ -17,13 +17,14 @@
  * along with this program.  If not, see https://www.gnu.org/licenses/.
  */
 
-package cc.hawkbot.regnum.util;
+package cc.hawkbot.regnum.net
 
-/**
- * Class containing Regnum library info.
- */
-public class RegnumInfo {
+import cc.hawkbot.regnum.entities.packets.Packet
+import kotlin.reflect.KClass
 
-    public static final String VERSION = "1.0.0";
-    public static final String GITHUB_URL = "https://github.com/HawkDiscord/regnum";
+abstract class PacketHandler<T : Packet>(
+        val packetIdentifier: String,
+        val packetClass: KClass<T>
+) {
+    abstract fun processPacket(packet: T)
 }

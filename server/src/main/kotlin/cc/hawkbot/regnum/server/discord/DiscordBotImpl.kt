@@ -53,7 +53,5 @@ class DiscordBotImpl(token: String) : DiscordBot {
         presence.activity = Activity.playing("With my little brother Hawk")
     }
 
-    override fun close() {
-        jda.shutdownNow()
-    }
+    override fun close() = jda.shutdownNow()
 }

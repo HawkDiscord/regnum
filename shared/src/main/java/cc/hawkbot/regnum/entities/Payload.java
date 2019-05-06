@@ -22,8 +22,8 @@ package cc.hawkbot.regnum.entities;
 import cc.hawkbot.regnum.entities.json.Json;
 import cc.hawkbot.regnum.entities.packets.Packet;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import org.jetbrains.annotations.NotNull;
 
-import javax.annotation.Nonnull;
 
 /**
  * Entity that represents any kind of payload sent by the server or client.
@@ -34,11 +34,11 @@ public class Payload {
     @JsonProperty("t")
     private String type;
     @JsonProperty("d")
-    private Packet packet;
+    private String packet;
 
-    private Payload(@Nonnull String type, @Nonnull Packet packet) {
+    private Payload(@NotNull String type, @NotNull Packet packet) {
         this.type = type;
-        this.packet = packet;
+        this.packet = Json.toJson(packet);
     }
 
     /**
@@ -88,11 +88,11 @@ public class Payload {
     }
 
     /**
-     * Returns the packet of the payload.
+     * Returns the packet of the payload in JSON.
      *
      * @return the packet
      */
-    public Packet getPacket() {
+    public String getPacket() {
         return packet;
     }
 }

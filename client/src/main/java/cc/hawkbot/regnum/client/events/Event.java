@@ -20,16 +20,13 @@
 package cc.hawkbot.regnum.client.events;
 
 import cc.hawkbot.regnum.client.Regnum;
-import cc.hawkbot.regnum.events.NoJDAEvent;
-import net.dv8tion.jda.api.JDA;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * Generic event for Regnum.
  */
 @SuppressWarnings("unused")
-public class Event extends NoJDAEvent {
+public class Event {
 
     private final Regnum regnum;
 
@@ -52,14 +49,4 @@ public class Event extends NoJDAEvent {
         return regnum;
     }
 
-    @Nullable
-    @Override
-    public JDA getJDA() {
-        throw new UnsupportedOperationException("Regnum events does not support JDA getter");
-    }
-
-    @Override
-    public long getResponseNumber() {
-        throw new UnsupportedOperationException("Regnum events does not support response number");
-    }
 }

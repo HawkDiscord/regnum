@@ -21,8 +21,6 @@ package cc.hawkbot.regnum.client.core.discord
 
 import cc.hawkbot.regnum.client.Regnum
 import cc.hawkbot.regnum.client.core.internal.RegnumImpl
-import net.dv8tion.jda.api.OnlineStatus
-import net.dv8tion.jda.api.entities.Activity
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadLocalRandom
 import java.util.concurrent.TimeUnit
@@ -51,55 +49,27 @@ class GameAnimator(
     /**
      * Starts the game animator
      */
-    fun start() {
-        scheduler.scheduleAtFixedRate(this::change, 0, interval, TimeUnit.SECONDS)
-    }
+    fun start() = scheduler.scheduleAtFixedRate(this::change, 0, interval, TimeUnit.SECONDS).run { Unit }
 
-    private fun change() {
-        games[ThreadLocalRandom.current().nextInt(games.size)].apply(this)
-    }
+    private fun change() = games[ThreadLocalRandom.current().nextInt(games.size)].apply(this)
 
     /**
      * Class that represents a game for the game animator
-     * @property type the [Activity.ActivityType] of the game
-     * @property status the [OnlineStatus] that will be activated when the game is shown
+     * @property type the activity type of the game. [**REFERENCE**](https://discordapp.com/developers/docs/topics/gateway#activity-object-activity-types)
+     * @property status the OnlineStatus that will be activated when the game is shown. [**REFERENCE**](https://discordapp.com/developers/docs/topics/gateway#update-status)
      * @property content the text that is displayed in the Discord client
      */
     @Suppress("unused")
     class Game(
-            private val type: Activity.ActivityType,
-            private val status: OnlineStatus,
-            private val content: String
+            val type: Int,
+            val status: String,
+            val content: String
     ) {
-        companion object {
-
-            /**
-             * Compiles a game from a string in the following format TYPE:ACTIVITY:CONTENT e.g ONLINE:0:playing
-             * @param game the string
-             * @return the compiled game
-             */
-            @JvmStatic
-            fun compile(game: String): Game {
-                val args = game.split(":")
-                val type = Activity.ActivityType.fromKey(args[1].toInt())
-                val status = OnlineStatus.fromKey(args[0])
-                val content = args.subList(2, args.size).joinToString(separator = " ")
-                return Game(type, status, content)
-            }
-        }
 
         /**
          * Apply a game to with the game animator
          * @param gameAnimator the game animator instance
          */
-        fun apply(gameAnimator: GameAnimator) {
-            gameAnimator.shardManager.setGame(toActivity(gameAnimator))
-            gameAnimator.shardManager.setStatus(status)
-        }
-
-        private fun toActivity(gameAnimator: GameAnimator): Activity {
-            val content = gameAnimator.translator(gameAnimator.regnum, content)
-            return Activity.of(type, content)
-        }
+        fun apply(gameAnimator: GameAnimator) = gameAnimator.shardManager.applyGame(this)
     }
 }

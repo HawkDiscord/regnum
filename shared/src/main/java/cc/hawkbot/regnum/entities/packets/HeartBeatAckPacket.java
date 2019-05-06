@@ -26,6 +26,8 @@ package cc.hawkbot.regnum.entities.packets;
  */
 public class HeartBeatAckPacket implements Packet {
 
+    public long timestamp = System.currentTimeMillis();
+
     /**
      * Type identifier
      */

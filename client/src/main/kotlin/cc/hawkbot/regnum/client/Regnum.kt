@@ -19,20 +19,10 @@
 
 package cc.hawkbot.regnum.client
 
-import cc.hawkbot.regnum.client.command.CommandParser
-import cc.hawkbot.regnum.client.command.permission.PermissionManager
-import cc.hawkbot.regnum.client.command.translation.LanguageManager
-import cc.hawkbot.regnum.client.core.MessageCache
 import cc.hawkbot.regnum.client.core.Websocket
 import cc.hawkbot.regnum.client.core.discord.Discord
-import cc.hawkbot.regnum.client.entities.RegnumGuild
-import cc.hawkbot.regnum.client.entities.RegnumUser
-import cc.hawkbot.regnum.client.entities.cache.CassandraCache
-import cc.hawkbot.regnum.io.database.CassandraSource
+import cc.hawkbot.regnum.client.event.EventManager
 import cc.hawkbot.regnum.waiter.EventWaiter
-import net.dv8tion.jda.api.entities.Guild
-import net.dv8tion.jda.api.entities.User
-import net.dv8tion.jda.api.hooks.IEventManager
 
 /**
  * Main class of Regnum client instance.
@@ -53,7 +43,7 @@ interface Regnum {
     /**
      * The event manager.
      */
-    val eventManager: IEventManager
+    val eventManager: EventManager
 
     /**
      * The token used for authentication.
@@ -61,108 +51,13 @@ interface Regnum {
     val token: String
 
     /**
-     * The command parser.
-     */
-    val commandParser: CommandParser
-
-    /**
-     * The language manager.
-     */
-    val languageManager: LanguageManager
-
-    /**
-     * The cassandra source.
-     */
-    val cassandra: CassandraSource
-
-    /**
-     * Ids of users with owner permissions.
-     */
-    val owners: List<Long>
-
-
-    /**
-     * The guild cache.
-     */
-    val guildCache: CassandraCache<RegnumGuild>
-
-    /**
-     * The user cache.
-     */
-    val userCache: CassandraCache<RegnumUser>
-
-    /**
      * The event waiter.
      */
     val eventWaiter: EventWaiter
 
     /**
-     * The permission manager.
-     */
-    val permissionManager: PermissionManager
-
-    /**
-     * The message cache.
-     */
-    val messageCache: MessageCache
-
-    /**
      * A list of all disabled features.
      */
     val disabledFeatures: List<Feature>
-
-    /**
-     * Returns a Regnum guild from the cache.
-     * @param id the id of the guild
-     * @return a Regnum guild from the cache
-     */
-    fun guild(id: Long): RegnumGuild {
-        return guildCache[id]
-    }
-
-    /**
-     * Returns a Regnum guild from the cache.
-     * @param id the id of the guild
-     * @return a Regnum guild from the cache
-     */
-    fun guild(id: String): RegnumGuild {
-        return guildCache[id]
-    }
-
-    /**
-     * Returns a Regnum guild from the cache.
-     * @param guild the guild
-     * @return a Regnum guild from the cache
-     */
-    fun guild(guild: Guild): RegnumGuild {
-        return guildCache[guild]
-    }
-
-    /**
-     * Returns the Regnum user grom the cache
-     * @param id the id of the user
-     * @return the user
-     */
-    fun user(id: Long): RegnumUser {
-        return userCache[id]
-    }
-
-    /**
-     * Returns the Regnum user grom the cache
-     * @param id the id of the user
-     * @return the user
-     */
-    fun user(id: String): RegnumUser {
-        return userCache[id]
-    }
-
-    /**
-     * Returns the Regnum user grom the cache
-     * @param user the user
-     * @return the user
-     */
-    fun user(user: User): RegnumUser {
-        return userCache[user]
-    }
 
 }

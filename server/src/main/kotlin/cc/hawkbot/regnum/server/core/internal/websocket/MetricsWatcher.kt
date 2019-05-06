@@ -19,6 +19,7 @@
 
 package cc.hawkbot.regnum.server.core.internal.websocket
 
+import cc.hawkbot.regnum.entities.json.Json
 import cc.hawkbot.regnum.entities.packets.MetricsPacket
 import cc.hawkbot.regnum.server.plugin.Websocket
 import cc.hawkbot.regnum.server.plugin.events.websocket.WebSocketMessageEvent
@@ -38,7 +39,7 @@ class MetricsWatcher {
         val payload = event.payload
         if (payload.type == MetricsPacket.IDENTIFIER) {
             log.info("[Metrics] Received METRICS from ${event.node.id}")
-            val metrics = payload.packet as MetricsPacket
+            val metrics = Json.fromJson(MetricsPacket::class.java, payload.packet)
             (event.websocket as WebsocketImpl).metrics[event.node] = metrics
             val average = calculateMetrics(event.websocket)
             event.server.averageMetrics = average

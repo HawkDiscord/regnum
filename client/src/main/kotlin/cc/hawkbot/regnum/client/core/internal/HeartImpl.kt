@@ -26,12 +26,11 @@ import cc.hawkbot.regnum.entities.Payload
 import cc.hawkbot.regnum.entities.packets.HeartBeatAckPacket
 import cc.hawkbot.regnum.entities.packets.HeartBeatPacket
 import cc.hawkbot.regnum.entities.packets.HelloPacket
-import cc.hawkbot.regnum.util.DefaultThreadFactory
 import cc.hawkbot.regnum.util.logging.Logger
+import cc.hawkbot.regnum.waiter.EventWaiter
 import java.util.concurrent.Executors
 import java.util.concurrent.ScheduledFuture
 import java.util.concurrent.TimeUnit
-import java.util.concurrent.TimeoutException
 
 /**
  * Implementation of [Heart].
@@ -48,7 +47,7 @@ class HeartImpl(
     }
 
     private val log = Logger.getLogger()
-    private val scheduler = Executors.newSingleThreadScheduledExecutor(DefaultThreadFactory("HeartBeat"))
+    private val scheduler = Executors.newSingleThreadScheduledExecutor()
     private val future: ScheduledFuture<*>
 
     override var lastHeartbeat: Long = -1
@@ -66,7 +65,7 @@ class HeartImpl(
         regnum.websocket.send(Payload.of(HeartBeatPacket(), HeartBeatPacket.IDENTIFIER))
         val event = regnum.eventWaiter.waitFor(WebSocketMessageEvent::class.java, { it.payload().type == HeartBeatAckPacket.IDENTIFIER }, MARGIN, TimeUnit.SECONDS)
         event.exceptionally {
-            if (it is TimeoutException) {
+            if (it is EventWaiter.TimeoutException) {
                 scheduler.shutdownNow()
                 log.error("[WS] Closing websocket connection! Didn't received HEARTBEAT in time")
                 regnum.websocket.close()

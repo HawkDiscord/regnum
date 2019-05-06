@@ -31,7 +31,7 @@ plugins {
 }
 
 group = "cc.hawkbot.regnum"
-version = "0.0.3"
+version = rootProject.version
 val archivesBasename = "regnum.client"
 
 repositories {
@@ -43,6 +43,8 @@ dependencies {
 
     // Regnum
     compile(project(":shared"))
+    @Suppress("SpellCheckingInspection")
+    implementation("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
 
     // Server
     implementation("org.java-websocket", "Java-WebSocket", project.ext["websocketVersion"] as String)
@@ -53,6 +55,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
     testCompile("junit", "junit", "4.12")
+    @Suppress("SpellCheckingInspection")
+    testCompile("net.dv8tion", "JDA", project.ext["jdaVersion"] as String)
 }
 
 val dokkaJar by tasks.creating(Jar::class)

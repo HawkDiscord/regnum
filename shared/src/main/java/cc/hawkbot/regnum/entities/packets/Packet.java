@@ -19,11 +19,9 @@
 
 package cc.hawkbot.regnum.entities.packets;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 /**
  * Generic packet with nice annotation
  */
-@JsonTypeInfo(use = JsonTypeInfo.Id.CLASS)
 public interface Packet {
 }

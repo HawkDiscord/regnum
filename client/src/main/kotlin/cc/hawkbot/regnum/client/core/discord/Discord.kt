@@ -19,8 +19,6 @@
 
 package cc.hawkbot.regnum.client.core.discord
 
-import net.dv8tion.jda.api.sharding.ShardManager
-
 /**
  * Class that represents the connection to the Discord API.
  */
@@ -40,9 +38,7 @@ interface Discord {
     /**
      * Forces all shards to shutdown
      */
-    fun shutdown() {
-        shardManager.shutdown()
-    }
+    fun shutdown() = shardManager.shutdown()
 
     /**
      * Starts all new shards in the array
