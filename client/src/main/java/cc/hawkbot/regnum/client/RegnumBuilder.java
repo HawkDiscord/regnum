@@ -21,6 +21,7 @@ package cc.hawkbot.regnum.client;
 
 import cc.hawkbot.regnum.client.config.GameAnimatorConfig;
 import cc.hawkbot.regnum.client.config.ServerConfig;
+import cc.hawkbot.regnum.client.core.Extension;
 import cc.hawkbot.regnum.client.core.discord.GameAnimator;
 import cc.hawkbot.regnum.client.core.discord.ShardManager;
 import cc.hawkbot.regnum.client.core.discord.impl.JDAShardManager;
@@ -47,6 +48,7 @@ public class RegnumBuilder {
     private EventManager eventManager = new AnnotatedEventManger();
     private List<Feature> disabledFeatures = new ArrayList<>();
     private Class<? extends ShardManager> shardManager = JDAShardManager.class;
+    private List<Class<? extends Extension>> extensions = new ArrayList<>();
 
 
     /**
@@ -178,8 +180,7 @@ public class RegnumBuilder {
      */
     @NotNull
     public RegnumBuilder disableFeatures(@NotNull Feature... features) {
-        Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
-        Collections.addAll(disabledFeatures, features);
+        Collections.addAll(Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null"), features);
         return this;
     }
 
@@ -191,8 +192,42 @@ public class RegnumBuilder {
      */
     @NotNull
     public RegnumBuilder disableFeatures(@NotNull Collection<Feature> features) {
-        Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
-        disabledFeatures.addAll(features);
+        disabledFeatures.addAll(Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null"));
+        return this;
+    }
+
+    /**
+     * Sets the list of all extensions
+     * @param extensions a list containing all {@link Extension}s
+     * @return the current builder
+     */
+    @NotNull
+    public RegnumBuilder setExtensions(List<Class<? extends Extension>> extensions) {
+        this.extensions = extensions;
+        return this;
+    }
+
+
+    /**
+     * Registers extensions
+     * @param extensions an array containing {@link Extension}s
+     * @return the current builder
+     */
+    @SafeVarargs
+    @NotNull
+    public final RegnumBuilder addExtensions(@NotNull Class<? extends Extension>... extensions) {
+        Collections.addAll(this.extensions, Preconditions.checkNotNull(extensions, "DisabledFeatures may not be null"));
+        return this;
+    }
+
+    /**
+     * Registers extensions
+     * @param extensions an array containing {@link Extension}s
+     * @return the current builder
+     */
+    @NotNull
+    public RegnumBuilder addExtensions(@NotNull Collection<Class<? extends Extension>> extensions) {
+        this.extensions.addAll(Preconditions.checkNotNull(extensions, "DisabledFeatures may not be null"));
         return this;
     }
 
@@ -204,19 +239,15 @@ public class RegnumBuilder {
      */
     @NotNull
     public Regnum build() {
-        // Null checks
-        Preconditions.checkNotNull(serverConfig, "ServerConfig may not be null");
-        Preconditions.checkNotNull(gameAnimatorConfig, "GameAnimator config may not be null");
-        Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null");
 
         // Build
         return new RegnumImpl(
-                serverConfig,
+                Preconditions.checkNotNull(serverConfig, "ServerConfig may not be null"),
                 eventManager,
-                gameAnimatorConfig,
-                disabledFeatures,
+                Preconditions.checkNotNull(gameAnimatorConfig, "GameAnimator config may not be null"),
+                Preconditions.checkNotNull(disabledFeatures, "DisabledFeatures may not be null"),
                 JvmClassMappingKt.getKotlinClass(shardManager),
-                List.of()
+                extensions
         );
     }
 }

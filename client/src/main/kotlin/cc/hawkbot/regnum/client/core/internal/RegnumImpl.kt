@@ -48,7 +48,7 @@ open class RegnumImpl(
         val gameAnimatorConfig: GameAnimatorConfig,
         override val disabledFeatures: List<Feature>,
         val shardManagerClass: KClass<out ShardManager>,
-        extensions: List<Extension>
+        extensionsClasses: List<Class<out Extension>>
 ) : Regnum {
 
     private val log = Logger.getLogger()
@@ -59,6 +59,7 @@ open class RegnumImpl(
     lateinit var metricsSender: MetricsSender
 
     init {
+        val extensions = extensionsClasses.map { it.constructors.first().newInstance(this) as Extension }
         extensions.forEach(Extension::initializing)
         events()
         websocket(serverConfig)
