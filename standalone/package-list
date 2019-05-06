@@ -1,6 +1,0 @@
-$dokka.format:html
-$dokka.linkExtension:html
-
-cc.hawkbot.regnum.client.standalone
-cc.hawkbot.regnum.client.standalone.config
-cc.hawkbot.regnum.client.standalone.core

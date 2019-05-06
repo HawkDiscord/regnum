@@ -8,7 +8,7 @@
 <a href="../../index.html">plugin</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.server.plugin</a>&nbsp;/&nbsp;<a href="./index.html">Server</a><br/>
 <br/>
 <h1>Server</h1>
-<code><span class="keyword">interface </span><span class="identifier">Server</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html"><span class="identifier">Closeable</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/kotlin/cc/hawkbot/regnum/server/plugin/Server.kt#L40">(source)</a>
+<code><span class="keyword">interface </span><span class="identifier">Server</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html"><span class="identifier">Closeable</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/kotlin/cc/hawkbot/regnum/server/plugin/Server.kt#L36">(source)</a>
 <p>Representation of the Regnum server.</p>
 <h3>Properties</h3>
 <table>
@@ -29,15 +29,6 @@
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">averageMetrics</span><span class="symbol">: </span><span class="identifier">MetricsPacket</span></code>
 <p>The average metrics of all node.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="cassandra-source.html">cassandraSource</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">cassandraSource</span><span class="symbol">: </span><span class="identifier">CassandraSource</span></code>
-<p>The cassandra client.</p>
 </td>
 </tr>
 <tr>
@@ -91,7 +82,7 @@
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">httpClient</span><span class="symbol">: </span><span class="identifier">OkHttpClient</span></code>
-<p>The HTTP client used for requests.</p>
+<p>The httpClient.</p>
 </td>
 </tr>
 <tr>
@@ -123,43 +114,11 @@
 </tr>
 <tr>
 <td>
-<p><a href="rest-authorization-handler.html">restAuthorizationHandler</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">restAuthorizationHandler</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="identifier">RestAuthorizationHandler</span></a></code>
-<p>Authorization handler for rest api.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="sentry.html">sentry</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">sentry</span><span class="symbol">: </span><span class="identifier">SentryClient</span></code>
-<p>Sentry client.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="websocket.html">websocket</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">websocket</span><span class="symbol">: </span><a href="../-websocket/index.html"><span class="identifier">Websocket</span></a></code>
 <p>The websocket instance.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="register-rest-handler.html">registerRestHandler</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerRestHandler</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.Server$registerRestHandler(cc.hawkbot.regnum.server.plugin.rest.RestHandler)/handler">handler</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.server.plugin.rest/-rest-handler/index.html"><span class="identifier">RestHandler</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Registers a new <a href="../../cc.hawkbot.regnum.server.plugin.rest/-rest-handler/index.html">RestHandler</a>.</p>
 </td>
 </tr>
 </tbody>

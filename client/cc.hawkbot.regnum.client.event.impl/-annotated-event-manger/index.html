@@ -1,0 +1,100 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AnnotatedEventManger - client</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.event.impl</a>&nbsp;/&nbsp;<a href="./index.html">AnnotatedEventManger</a><br/>
+<br/>
+<h1>AnnotatedEventManger</h1>
+<code><span class="keyword">class </span><span class="identifier">AnnotatedEventManger</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-event-manager/index.html"><span class="identifier">AbstractEventManager</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/kotlin/cc/hawkbot/regnum/client/event/impl/AnnotatedEventManger.kt#L38">(source)</a>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">AnnotatedEventManger</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger$<init>(java.util.concurrent.ExecutorService)/executor">executor</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html"><span class="identifier">ExecutorService</span></a>&nbsp;<span class="symbol">=</span>&nbsp;Executors.newCachedThreadPool(DefaultThreadFactory("EventManager"))<span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="executor.html">executor</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">executor</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html"><span class="identifier">ExecutorService</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="listeners.html">listeners</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">listeners</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CopyOnWriteArrayList.html"><span class="identifier">CopyOnWriteArrayList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="registered-listeners.html">registeredListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">registeredListeners</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>An immutable list of all registred listeners</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="fire-event.html">fireEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">fireEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger$fireEvent(kotlin.Any)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Fires the <a href="../../cc.hawkbot.regnum.client.event/-event-manager/fire-event.html#cc.hawkbot.regnum.client.event.EventManager$fireEvent(kotlin.Any)/event">event</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register.html">register</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">register</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger$register(kotlin.Any)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers the <a href="../../cc.hawkbot.regnum.client.event/-event-manager/register.html#cc.hawkbot.regnum.client.event.EventManager$register(kotlin.Any)/listener">listener</a>.</p>
+<code><span class="keyword">fun </span><span class="identifier">register</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger$register(kotlin.Array((kotlin.Any)))/listeners">listeners</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">register</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger$register(kotlin.collections.Collection((kotlin.Any)))/listeners">listeners</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><span class="identifier">Collection</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Registers all <a href="../../cc.hawkbot.regnum.client.event/-event-manager/register.html#cc.hawkbot.regnum.client.event.EventManager$register(kotlin.Array((kotlin.Any)))/listeners">listeners</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="unregister.html">unregister</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">unregister</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AnnotatedEventManger$unregister(kotlin.Any)/listener">listener</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Unregisters the <a href="../../cc.hawkbot.regnum.client.event/-event-manager/unregister.html#cc.hawkbot.regnum.client.event.EventManager$unregister(kotlin.Any)/listener">listener</a>.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-event-manager/fire-event.html">fireEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">fireEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AbstractEventManager$fireEvent(kotlin.Function0((kotlin.Unit)), kotlin.Function1((kotlin.Throwable, )))/action">action</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.event.impl.AbstractEventManager$fireEvent(kotlin.Function0((kotlin.Unit)), kotlin.Function1((kotlin.Throwable, )))/errorProcessor">errorProcessor</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-throwable/index.html"><span class="identifier">Throwable</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ it }<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

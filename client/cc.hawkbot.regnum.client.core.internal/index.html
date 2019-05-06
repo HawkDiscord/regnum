@@ -13,12 +13,33 @@
 <tbody>
 <tr>
 <td>
+<p><a href="-add-handler/index.html">AddHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">AddHandler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-client-packet-handler/index.html"><span class="identifier">ClientPacketHandler</span></a><span class="symbol">&lt;</span><span class="identifier">AddPacket</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-client-packet-handler/index.html">ClientPacketHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">sealed</span> <span class="keyword">class </span><span class="identifier">ClientPacketHandler</span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Packet</span><span class="symbol">&gt;</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">PacketHandler</span><span class="symbol">&lt;</span><a href="-client-packet-handler/index.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-heart-impl/index.html">HeartImpl</a></p>
 </td>
 <td>
 <code><span class="keyword">class </span><span class="identifier">HeartImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../cc.hawkbot.regnum.client.core/-heart/index.html"><span class="identifier">Heart</span></a></code>
 <p>Implementation of <a href="../cc.hawkbot.regnum.client.core/-heart/index.html">Heart</a>.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="-hello-handler/index.html">HelloHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HelloHandler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-client-packet-handler/index.html"><span class="identifier">ClientPacketHandler</span></a><span class="symbol">&lt;</span><span class="identifier">HelloPacket</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
@@ -31,21 +52,19 @@
 </tr>
 <tr>
 <td>
-<p><a href="-packet-handler/index.html">PacketHandler</a></p>
-</td>
-<td>
-<code><span class="keyword">class </span><span class="identifier">PacketHandler</span></code>
-<p>Listener for websocket packets</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-regnum-impl/index.html">RegnumImpl</a></p>
 </td>
 <td>
 <code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumImpl</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code>
 <p>Implementation of <a href="../cc.hawkbot.regnum.client/-regnum/index.html">Regnum</a></p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="-start-handler/index.html">StartHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">StartHandler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-client-packet-handler/index.html"><span class="identifier">ClientPacketHandler</span></a><span class="symbol">&lt;</span><span class="identifier">StartPacket</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>

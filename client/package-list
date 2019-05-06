@@ -1,28 +1,15 @@
 $dokka.format:html
 $dokka.linkExtension:html
-$dokka.location:cc.hawkbot.regnum.client.util$filterAndExtract(kotlin.collections.Iterable((cc.hawkbot.regnum.client.util.filterAndExtract.T)), cc.hawkbot.regnum.client.util.filterAndExtract.C, kotlin.Function1((cc.hawkbot.regnum.client.util.filterAndExtract.T, kotlin.Boolean)))cc.hawkbot.regnum.client.util/kotlin.collections.-iterable/filter-and-extract.html
-$dokka.location:cc.hawkbot.regnum.client.util$regnum#net.dv8tion.jda.api.JDAcc.hawkbot.regnum.client.util/net.dv8tion.jda.api.-j-d-a/regnum.html
+
 cc.hawkbot.regnum.client
-cc.hawkbot.regnum.client.command
-cc.hawkbot.regnum.client.command.context
-cc.hawkbot.regnum.client.command.impl
-cc.hawkbot.regnum.client.command.permission
-cc.hawkbot.regnum.client.command.translation
-cc.hawkbot.regnum.client.command.translation.defaults
-cc.hawkbot.regnum.client.commands.general
-cc.hawkbot.regnum.client.commands.settings
 cc.hawkbot.regnum.client.config
 cc.hawkbot.regnum.client.core
 cc.hawkbot.regnum.client.core.discord
 cc.hawkbot.regnum.client.core.discord.impl
 cc.hawkbot.regnum.client.core.internal
-cc.hawkbot.regnum.client.entities
-cc.hawkbot.regnum.client.entities.cache
-cc.hawkbot.regnum.client.entities.cache.impl
-cc.hawkbot.regnum.client.entities.permission
+cc.hawkbot.regnum.client.event
+cc.hawkbot.regnum.client.event.impl
 cc.hawkbot.regnum.client.events
-cc.hawkbot.regnum.client.events.command
 cc.hawkbot.regnum.client.events.discord
 cc.hawkbot.regnum.client.events.websocket
-cc.hawkbot.regnum.client.interaction
 cc.hawkbot.regnum.client.util

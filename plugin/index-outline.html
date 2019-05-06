@@ -65,21 +65,6 @@
 </BODY>
 </HTML>
 </ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/index.html"><span class="keyword">class </span><span class="identifier">ConfigRestAuthorizer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="identifier">RestAuthorizationHandler</span></a></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/-init-.html"><span class="identifier">ConfigRestAuthorizer</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/authorize-guild.html"><span class="keyword">fun </span><span class="identifier">authorizeGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/server.html"><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">server</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.discord/-discord-bot/index.html"><span class="keyword">interface </span><span class="identifier">DiscordBot</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/io/Closeable.html"><span class="identifier">Closeable</span></a></a></a><br/>
 <ul>
 <HTML>
@@ -174,7 +159,7 @@
 </BODY>
 </HTML>
 </ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">NoJDAEvent</span></a></a><br/>
+<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Event</span></a></a><br/>
 <ul>
 <HTML>
 <HEAD>
@@ -190,7 +175,7 @@
 </BODY>
 </HTML>
 </ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">NoJDAEvent</span></a></a><br/>
+<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Event</span></a></a><br/>
 <ul>
 <HTML>
 <HEAD>
@@ -251,52 +236,6 @@
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-regnum-plugin/inject-server.html"><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">injectServer</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.RegnumPlugin$injectServer(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.io.config.PluginConfig)/server">server</span><span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.RegnumPlugin$injectServer(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.io.config.PluginConfig)/config">config</span><span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin.io.config/-plugin-config/index.html"><span class="identifier">PluginConfig</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-regnum-plugin/on-disable.html"><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onDisable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-regnum-plugin/on-enable.html"><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onEnable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="keyword">interface </span><span class="identifier">RestAuthorizationHandler</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/authorize-guild.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">authorizeGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/server.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">server</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/index.html"><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">RestError</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/-init-.html"><span class="identifier">RestError</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestError$<init>(kotlin.Int, kotlin.String, kotlin.String)/code">code</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestError$<init>(kotlin.Int, kotlin.String, kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestError$<init>(kotlin.Int, kotlin.String, kotlin.String)/description">description</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/code.html"><span class="keyword">val </span><span class="identifier">code</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/description.html"><span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/message.html"><span class="keyword">val </span><span class="identifier">message</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/index.html"><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">RestHandler</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/-init-.html"><span class="identifier">RestHandler</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$<init>(kotlin.String, io.javalin.core.HandlerType)/endpoint">endpoint</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$<init>(kotlin.String, io.javalin.core.HandlerType)/method">method</span><span class="symbol">:</span>&nbsp;<span class="identifier">HandlerType</span><span class="symbol">)</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/endpoint.html"><span class="keyword">val </span><span class="identifier">endpoint</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/handle.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">handle</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/server">server</span><span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/method.html"><span class="keyword">val </span><span class="identifier">method</span><span class="symbol">: </span><span class="identifier">HandlerType</span></a></a><br/>
 </BODY>
 </HTML>
 </ul>
@@ -311,7 +250,6 @@
 <BODY>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/authorization-handler.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">authorizationHandler</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.core/-authorization-handler/index.html"><span class="identifier">AuthorizationHandler</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/average-metrics.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">averageMetrics</span><span class="symbol">: </span><span class="identifier">MetricsPacket</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/cassandra-source.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">cassandraSource</span><span class="symbol">: </span><span class="identifier">CassandraSource</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/config.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">config</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.io.config/-config/index.html"><span class="identifier">Config</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/dev.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">dev</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/discord-bot.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">discordBot</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.discord/-discord-bot/index.html"><span class="identifier">DiscordBot</span></a></a></a><br/>
@@ -321,9 +259,6 @@
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/javalin.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">javalin</span><span class="symbol">: </span><span class="identifier">Javalin</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/launched-at.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">launchedAt</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/load-balancer.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">loadBalancer</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.core/-load-balancer/index.html"><span class="identifier">LoadBalancer</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/register-rest-handler.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerRestHandler</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.Server$registerRestHandler(cc.hawkbot.regnum.server.plugin.rest.RestHandler)/handler">handler</span><span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/index.html"><span class="identifier">RestHandler</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/rest-authorization-handler.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">restAuthorizationHandler</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="identifier">RestAuthorizationHandler</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/sentry.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">sentry</span><span class="symbol">: </span><span class="identifier">SentryClient</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/websocket.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">websocket</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin/-websocket/index.html"><span class="identifier">Websocket</span></a></a></a><br/>
 </BODY>
 </HTML>
@@ -612,7 +547,6 @@
 <BODY>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/authorization-handler.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">authorizationHandler</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.core/-authorization-handler/index.html"><span class="identifier">AuthorizationHandler</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/average-metrics.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">averageMetrics</span><span class="symbol">: </span><span class="identifier">MetricsPacket</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/cassandra-source.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">cassandraSource</span><span class="symbol">: </span><span class="identifier">CassandraSource</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/config.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">config</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.io.config/-config/index.html"><span class="identifier">Config</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/dev.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">dev</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/discord-bot.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">discordBot</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.discord/-discord-bot/index.html"><span class="identifier">DiscordBot</span></a></a></a><br/>
@@ -622,9 +556,6 @@
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/javalin.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">javalin</span><span class="symbol">: </span><span class="identifier">Javalin</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/launched-at.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">launchedAt</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/load-balancer.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">loadBalancer</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.core/-load-balancer/index.html"><span class="identifier">LoadBalancer</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/register-rest-handler.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">registerRestHandler</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.Server$registerRestHandler(cc.hawkbot.regnum.server.plugin.rest.RestHandler)/handler">handler</span><span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/index.html"><span class="identifier">RestHandler</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/rest-authorization-handler.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">restAuthorizationHandler</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="identifier">RestAuthorizationHandler</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/sentry.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">sentry</span><span class="symbol">: </span><span class="identifier">SentryClient</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin/-server/websocket.html"><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">websocket</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin/-websocket/index.html"><span class="identifier">Websocket</span></a></a></a><br/>
 </BODY>
 </HTML>
@@ -773,7 +704,7 @@
 <link rel="stylesheet" href="../style.css">
 </HEAD>
 <BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">NoJDAEvent</span></a></a><br/>
+<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Event</span></a></a><br/>
 <ul>
 <HTML>
 <HEAD>
@@ -789,7 +720,7 @@
 </BODY>
 </HTML>
 </ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">NoJDAEvent</span></a></a><br/>
+<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.events/-regnum-event/index.html"><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Event</span></a></a><br/>
 <ul>
 <HTML>
 <HEAD>
@@ -1079,79 +1010,6 @@
 <BODY>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.io.config/-plugin-config/-init-.html"><span class="identifier">PluginConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.io.config.PluginConfig$<init>(kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.server.plugin.io.config.PluginConfig)))/path">path</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.io.config.PluginConfig$<init>(kotlin.String, java.util.function.Consumer((cc.hawkbot.regnum.server.plugin.io.config.PluginConfig)))/defaultsMethod">defaultsMethod</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/util/function/Consumer.html"><span class="identifier">Consumer</span></a><span class="symbol">&lt;</span><a href="cc.hawkbot.regnum.server.plugin.io.config/-plugin-config/index.html"><span class="identifier">PluginConfig</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span><span class="symbol">)</span></a></a><br/>
 <a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.io.config/-plugin-config/defaults.html"><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">defaults</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/index.html"><span class="keyword">package</span>&nbsp;<span class="identifier">cc.hawkbot.regnum.server.plugin.rest</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/index.html"><span class="keyword">class </span><span class="identifier">ConfigRestAuthorizer</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="identifier">RestAuthorizationHandler</span></a></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/-init-.html"><span class="identifier">ConfigRestAuthorizer</span><span class="symbol">(</span><span class="symbol">)</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/authorize-guild.html"><span class="keyword">fun </span><span class="identifier">authorizeGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.ConfigRestAuthorizer$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-config-rest-authorizer/server.html"><span class="keyword">lateinit</span> <span class="keyword">var </span><span class="identifier">server</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/index.html"><span class="keyword">interface </span><span class="identifier">RestAuthorizationHandler</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/authorize-guild.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">authorizeGuild</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html"><span class="identifier">Long</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestAuthorizationHandler$authorizeGuild(kotlin.Long, kotlin.String, io.javalin.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-authorization-handler/server.html"><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">server</span><span class="symbol">: </span><a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/index.html"><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">RestError</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/-init-.html"><span class="identifier">RestError</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestError$<init>(kotlin.Int, kotlin.String, kotlin.String)/code">code</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestError$<init>(kotlin.Int, kotlin.String, kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestError$<init>(kotlin.Int, kotlin.String, kotlin.String)/description">description</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/code.html"><span class="keyword">val </span><span class="identifier">code</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/description.html"><span class="keyword">val </span><span class="identifier">description</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-error/message.html"><span class="keyword">val </span><span class="identifier">message</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
-</BODY>
-</HTML>
-</ul>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/index.html"><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">RestHandler</span></a></a><br/>
-<ul>
-<HTML>
-<HEAD>
-<meta charset="UTF-8">
-<title>Module Contents</title>
-<link rel="stylesheet" href="../style.css">
-</HEAD>
-<BODY>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/-init-.html"><span class="identifier">RestHandler</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$<init>(kotlin.String, io.javalin.core.HandlerType)/endpoint">endpoint</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$<init>(kotlin.String, io.javalin.core.HandlerType)/method">method</span><span class="symbol">:</span>&nbsp;<span class="identifier">HandlerType</span><span class="symbol">)</span></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/endpoint.html"><span class="keyword">val </span><span class="identifier">endpoint</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/handle.html"><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">handle</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/token">token</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.rest.RestHandler$handle(kotlin.String, io.javalin.Context, cc.hawkbot.regnum.server.plugin.Server)/server">server</span><span class="symbol">:</span>&nbsp;<a href="cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></a></a><br/>
-<a href="/drone/src/public/plugin/index"><a href="cc.hawkbot.regnum.server.plugin.rest/-rest-handler/method.html"><span class="keyword">val </span><span class="identifier">method</span><span class="symbol">: </span><span class="identifier">HandlerType</span></a></a><br/>
 </BODY>
 </HTML>
 </ul>

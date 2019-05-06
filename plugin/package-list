@@ -8,4 +8,3 @@ cc.hawkbot.regnum.server.plugin.entities
 cc.hawkbot.regnum.server.plugin.events
 cc.hawkbot.regnum.server.plugin.events.websocket
 cc.hawkbot.regnum.server.plugin.io.config
-cc.hawkbot.regnum.server.plugin.rest
