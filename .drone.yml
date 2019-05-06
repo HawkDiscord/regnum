@@ -1,0 +1,75 @@
+kind: pipeline
+name: checks
+
+steps:
+  - name: restore
+    image: homerovalle/drone-gcs-cache
+    settings:
+      bucket: hawk-ci
+      json_key:
+        from_secret: gcs_cache_json_key
+      restore: true
+      path: hawk-ci/regnum-ci/cache
+  - name: compile
+    image: openjdk:12-jdk-oraclelinux7
+    environment: &gradle
+      GRADLE_USER_HOME: ".gradle"
+      GRADLE_CLI_OPTS: -Dorg.gradle.daemon=false
+    commands:
+      - ./gradlew $GRADLE_CLI_OPTS compileJava compileKotlin
+  - name: dokka
+    image: openjdk:12-jdk-oraclelinux7
+    environment: *gradle
+    commands:
+      - ./gradlew $GRADLE_CLI_OPTS dokka
+    when: &release
+      branch:
+        - master
+      event:
+        exclude:
+          - pull_request
+  - name: publish_docs
+    image: plugins/gh-pages
+    settings:
+      username: SchlaubiBot
+      password:
+        from_secret: github_password
+      pages_directory: public/
+    when: *release
+  - name: build_artifacts
+    image: openjdk:12-jdk-oraclelinux7
+    environment: *gradle
+    when: *release
+    commands:
+      - ./gradlew $GRADLE_CLI_OPTS buildArtifacts
+  - name: artifacts_deploy
+    image: plugins/gcs
+    settings:
+      acl: allUsers:READER
+      source: build/artifacts/
+      target: hawk-ci/regnum-ci/artifacts
+      token:
+        from_secret: gcs_cache_json_key
+    when: *release
+  - name: bintray
+    image: openjdk:12-jdk-oraclelinux7
+    environment:
+      <<: *gradle
+      BINTRAY_USER:
+        from_secret: bintray_user
+      BINTRAY_KEY:
+        from_secret: bintray_key
+    when: *release
+    commands:
+      - ./gradlew $GRADLE_CLI_OPTS bintrayUpload bintrayPublish
+  - name: rebuild
+    image: homerovalle/drone-gcs-cache
+    settings:
+      bucket: hawk-ci
+      json_key:
+        from_secret: gcs_cache_json_key
+      rebuild: true
+      path: hawk-ci/regnum-ci/cache
+      mount:
+        - .gradle/wrapper
+        - .gradle/caches

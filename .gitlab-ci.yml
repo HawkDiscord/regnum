@@ -1,0 +1,84 @@
+image: gradle:jdk11
+
+variables:
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+before_script:
+  - export GRADLE_USER_HOME=`pwd`/.gradle
+
+stages:
+  - build
+  - pages
+  - deploy
+
+cache:
+  paths:
+    - "build"
+    - "out"
+    - ".gradle"
+
+shared_build:
+  stage: build
+  script: gradle :shared:jar
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+      - out
+  artifacts:
+    paths:
+      - shared/build/libs/*.jar
+    expire_in: 1 week
+server_build:
+  stage: build
+  script: gradle :server:shadowJar
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+      - out
+  artifacts:
+    paths:
+      - server/build/libs/*.jar
+    expire_in: 1 week
+client_build:
+  stage: build
+  script: gradle :client:jar
+  cache:
+    key: "$CI_COMMIT_REF_NAME"
+    policy: push
+    paths:
+      - build
+      - .gradle
+      - out
+  artifacts:
+    paths:
+      - client/build/libs/*.jar
+    expire_in: 1 week
+pages:
+  stage: pages
+  script:
+    - "gradle dokka"
+    - "mv shared/build/javadoc public/shared"
+    - "ls public/shared"
+    - "mv client/build/javadoc public/client"
+    - "ls public/client"
+  artifacts:
+    paths:
+      - "public"
+  only:
+    - master
+deploy:
+  stage: deploy
+  script: echo Automatic bintray deploy is coming soon just want to have a deploy job
+  only:
+    - master
+#bintray:
+#  stage: deploy
+#  script: gradle bintrayUpload
+#  only:
+#    - master
