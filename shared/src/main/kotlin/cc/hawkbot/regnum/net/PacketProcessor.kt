@@ -54,7 +54,7 @@ class PacketProcessor {
         } catch (e: JsonMappingException) {
             log.warn("[PacketProcessor] Packet could not be processed due to a mapping error", e)
             return
-        }
+        } ?: return
         handler.processPacket(packet)
     }
 }

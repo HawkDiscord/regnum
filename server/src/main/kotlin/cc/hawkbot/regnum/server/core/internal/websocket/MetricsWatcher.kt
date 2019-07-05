@@ -40,7 +40,7 @@ class MetricsWatcher {
         if (payload.type == MetricsPacket.IDENTIFIER) {
             log.info("[Metrics] Received METRICS from ${event.node.id}")
             val metrics = Json.fromJson(MetricsPacket::class.java, payload.packet)
-            (event.websocket as WebsocketImpl).metrics[event.node] = metrics
+            (event.websocket as WebsocketImpl).metrics[event.node] = metrics ?: return
             val average = calculateMetrics(event.websocket)
             event.server.averageMetrics = average
         }

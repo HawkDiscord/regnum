@@ -54,7 +54,7 @@ class ConfigAuthorizer : AuthorizationHandler {
             val token = config.get<String>(Config.SOCKET_TOKEN)
             val payload = it.payload
             if (payload.type == IdentifyPacket.IDENTIFIER) {
-                val identify = Json.fromJson(IdentifyPacket::class.java, payload.packet)
+                val identify = Json.fromJson(IdentifyPacket::class.java, payload.packet) ?: return@thenAccept
                 if (token == identify.token) {
                     connectFuture.complete(wsSession)
                 } else {

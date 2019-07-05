@@ -41,13 +41,12 @@ import java.util.function.Predicate;
  * @see Json
  */
 @SuppressWarnings("unused")
-class RegnumJsonNode extends JsonNode {
+public class RegnumJsonNode extends JsonNode {
 
-    protected final JsonNode jsonNode;
+    final JsonNode jsonNode;
 
     RegnumJsonNode(String json) {
-        var parsedJson = Json.readJson(json);
-        this.jsonNode = parsedJson;
+        this.jsonNode = Json.readJson(json);
     }
 
     /**
