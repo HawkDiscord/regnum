@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.node.JsonNodeType;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -40,12 +41,13 @@ import java.util.function.Predicate;
  * @see Json
  */
 @SuppressWarnings("unused")
-public class RegnumJsonNode extends JsonNode {
+class RegnumJsonNode extends JsonNode {
 
-    private final JsonNode jsonNode;
+    protected final JsonNode jsonNode;
 
     RegnumJsonNode(String json) {
-        this.jsonNode = Json.readJson(json);
+        var parsedJson = Json.readJson(json);
+        this.jsonNode = parsedJson;
     }
 
     /**

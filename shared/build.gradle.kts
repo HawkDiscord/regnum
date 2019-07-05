@@ -51,12 +51,6 @@ dependencies {
     compile("com.fasterxml.jackson.core", "jackson-databind", project.ext["jacksonVersion"] as String)
     compile("io.sentry:sentry:1.7.16")
 
-    // Database
-    compile("com.datastax.cassandra", "cassandra-driver-core", project.ext["cassandraVersion"] as String)
-    compile("com.datastax.cassandra", "cassandra-driver-mapping", project.ext["cassandraVersion"] as String)
-    compile("com.datastax.cassandra", "cassandra-driver-extras", project.ext["cassandraVersion"] as String)
-
-
     // Kotlin
     implementation(kotlin("stdlib-jdk8"))
 
@@ -107,7 +101,7 @@ tasks {
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
-        sourceDirs = files("src/main/kotlin", "src/main/java")
+        /*sourceDirs = files("src/main/kotlin", "src/main/java")
         sourceDirs.forEach {
             val relativePath = rootDir.toPath().relativize(it.toPath()).toString()
             linkMapping(delegateClosureOf<LinkMapping> {
@@ -115,7 +109,7 @@ tasks {
                 url = "https://github.com/DRSchlaubi/regnum/tree/master/$relativePath"
                 suffix = "#L"
             })
-        }
+        }*/
         externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("https://www.slf4j.org/api/").toURL()
         })

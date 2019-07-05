@@ -47,11 +47,8 @@ class DiscordBotImpl(token: String) : DiscordBot {
 
     @SubscribeEvent
     @Suppress("unused")
-    private fun whenReady(event: ReadyEvent) {
-        val presence = event.jda.presence
-        presence.status = OnlineStatus.ONLINE
-        presence.activity = Activity.playing("With my little brother Hawk")
-    }
+    private fun whenReady(event: ReadyEvent) =
+        event.jda.presence.setPresence(OnlineStatus.ONLINE, Activity.playing("With my little brother Hawk"))
 
     override fun close() = jda.shutdownNow()
 }

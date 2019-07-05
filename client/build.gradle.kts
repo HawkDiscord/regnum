@@ -87,15 +87,15 @@ tasks {
         jdkVersion = 8
         reportUndocumented = true
         impliedPlatforms = mutableListOf("JVM")
-        sourceDirs = files("src/main/kotlin", "src/main/java")
-        sourceDirs.forEach {
-            val relativePath = rootDir.toPath().relativize(it.toPath()).toString()
-            linkMapping(delegateClosureOf<LinkMapping> {
-                dir = it.absolutePath
-                url = "https://github.com/DRSchlaubi/regnum/tree/master/$relativePath"
-                suffix = "#L"
-            })
-        }
+//        sourceDirs = files("src/main/kotlin", "src/main/java")
+//        sourceDirs.forEach {
+//            val relativePath = rootDir.toPath().relativize(it.toPath()).toString()
+//            linkMapping(delegateClosureOf<LinkMapping> {
+//                dir = it.absolutePath.replace("\\", "/")
+//                url = "https://github.com/DRSchlaubi/regnum/tree/master/$relativePath"
+//                suffix = "#L"
+//            })
+//        }
         externalDocumentationLink(delegateClosureOf<DokkaConfiguration.ExternalDocumentationLink.Builder> {
             url = uri("https://www.slf4j.org/api/").toURL()
         })

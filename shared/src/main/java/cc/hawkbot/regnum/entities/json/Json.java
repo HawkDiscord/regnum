@@ -25,6 +25,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.IOException;
 
@@ -76,7 +78,8 @@ public class Json {
      * @return the json in a string
      * @see Json#toJson(ObjectWriter, Object)
      */
-    public static String toPrettyJson(Object obj) {
+    @Nullable
+    public static String toPrettyJson(@NotNull Object obj) {
         return toJson(JACKSON.writerWithDefaultPrettyPrinter(), obj);
     }
 
@@ -89,7 +92,8 @@ public class Json {
      *                            of type {@link JsonParser} supports (JSON for default case)
      */
     @SuppressWarnings("JavaDoc")
-    public static JsonNode readJson(String json) {
+    @Nullable
+    public static JsonNode readJson(@NotNull String json) {
         try {
             return JACKSON.readTree(json);
         } catch (IOException e) {
@@ -106,7 +110,8 @@ public class Json {
      * @param <T>  the object type
      * @return the generated object
      */
-    public static <T> T fromJson(Class<T> type, String json) {
+    @Nullable
+    public static <T> T fromJson(@NotNull Class<T> type, @NotNull String json) {
         try {
             return JACKSON.readValue(json, type);
         } catch (IOException e) {
@@ -121,7 +126,8 @@ public class Json {
      * @param json the json object
      * @return the json node
      */
-    public static JsonNode parseJson(String json) {
+    @Nullable
+    public static JsonNode parseJson(@NotNull String json) {
         try {
             return JACKSON.readTree(json);
         } catch (IOException e) {

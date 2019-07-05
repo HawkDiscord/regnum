@@ -22,24 +22,41 @@ package cc.hawkbot.regnum.entities.json;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.util.RawValue;
+import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Collection;
 import java.util.function.Predicate;
 
 /**
  * Class that represents an json-array.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class JsonArray extends RegnumJsonNode {
 
+    private static final String EMPTY_ARRAY = "[]";
+
     /**
-     * Constructs a new JsonObject.
+     * Constructs a new empty JsonArray.
+     *
+     * @see JsonArray#JsonArray(String)
+     */
+    public JsonArray() {
+        this(EMPTY_ARRAY);
+    }
+
+    /**
+     * Constructs a new JsonArray.
      *
      * @param json the json in a string
-     * @throws JsonParseException if underlying input contains invalid content
+     * @throws JsonParseException if underlying inadd contains invalid content
      *                            of type {@link JsonParser} supports (JSON for default case)
      */
     @SuppressWarnings("JavaDoc")
-    public JsonArray(String json) {
+    public JsonArray(@NotNull String json) {
         super(json);
         if (!isArray()) {
             throw new IllegalArgumentException("Provided json does contain an object instead of an array.");
@@ -53,6 +70,7 @@ public class JsonArray extends RegnumJsonNode {
      * @return the value
      * @see JsonNode#asText()
      */
+    @NotNull
     public String getString(int index) {
         return get(index, JsonNode::isTextual, "string").asText();
     }
@@ -65,7 +83,8 @@ public class JsonArray extends RegnumJsonNode {
      * @return the value
      * @see JsonNode#asText(String)
      */
-    public String getString(int index, String defaultValue) {
+    @NotNull
+    public String getString(int index, @NotNull String defaultValue) {
         return get(index, JsonNode::isTextual, "string").asText(defaultValue);
     }
 
@@ -161,18 +180,141 @@ public class JsonArray extends RegnumJsonNode {
         return get(index, JsonNode::isLong, "long").asLong(defaultValue);
     }
 
-    public JsonNode get(int index, Predicate<JsonNode> predicate, String name) {
+    private JsonNode get(int index, Predicate<JsonNode> predicate, String name) {
         var object = get(index);
         return check(object, predicate, name);
     }
 
     @Override
     public JsonNode get(int index) {
-        throw new UnsupportedOperationException("Fields are not supported in json arrays");
+        return jsonNode.get(index);
     }
 
     @Override
     public JsonNode path(int index) {
-        throw new UnsupportedOperationException("Fields are not supported in json arrays");
+        return jsonNode.path(index);
+    }
+
+    protected ArrayNode mutable() {
+        if (!(jsonNode instanceof ArrayNode)) {
+            throw new IllegalStateException("This Json node is immutable");
+        }
+        return ((ArrayNode) jsonNode);
+    }
+
+    @NotNull
+    protected JsonArray add(int v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull Integer v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(long v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull Long v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(short v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull Short v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(float v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull Float v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull BigInteger v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull BigDecimal v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(double v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull Double v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(boolean v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull Boolean v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull byte[] v) {
+        mutable().add(v);
+        return this;
+    }
+
+    @NotNull
+    protected JsonArray add(@NotNull String v) {
+        mutable().add(v);
+        return this;
+    }
+
+    public JsonArray addAll(Collection<? extends JsonNode> other) {
+        mutable().addAll(other);
+        return this;
+    }
+
+    public JsonArray addAll(ArrayNode other) {
+        mutable().addAll(other);
+        return this;
+    }
+
+    public JsonArray addNull() {
+        mutable().addNull();
+        return this;
+    }
+
+    public JsonArray addRawValue(RawValue rawValue) {
+        mutable().addRawValue(rawValue);
+        return this;
     }
 }

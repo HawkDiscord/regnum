@@ -18,17 +18,15 @@
  */
 
 group 'cc.hawkbot.regnum'
-version '1.0.0'
+version '1.1.0'
 
 subprojects {
     ext {
-        jdaVersion = '4.ALPHA.0_67'
+        jdaVersion = '4.BETA.0_19'
         slf4jVersion = '1.7.25'
         log4jVersion = '2.11.0'
-        cassandraVersion = '3.6.0'
         nightconfigVersion = '3.5.0'
         jacksonVersion = '2.9.7'
-        sentryVersion = '1.7.16'
         websocketVersion = '1.4.0'
         guavaVersion = '27.0.1-jre'
         pluginsVersion = '1.1.0'

@@ -22,7 +22,12 @@ package cc.hawkbot.regnum.entities.json;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.jetbrains.annotations.NotNull;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Map;
 import java.util.function.Predicate;
 
 /**
@@ -30,6 +35,17 @@ import java.util.function.Predicate;
  */
 @SuppressWarnings("unused")
 public class JsonObject extends RegnumJsonNode {
+
+    private static final String EMPTY_OBJECT = "{}";
+
+    /**
+     * Constructs an JsonObject,
+     *
+     * @see JsonObject#JsonObject(String)
+     */
+    public JsonObject() {
+        this(EMPTY_OBJECT);
+    }
 
     /**
      * Constructs a new JsonObject.
@@ -175,4 +191,126 @@ public class JsonObject extends RegnumJsonNode {
     public JsonNode path(int index) {
         throw new UnsupportedOperationException("Indexes are not supported in json objects");
     }
+
+    private ObjectNode mutable() {
+        if (!(jsonNode instanceof ObjectNode)) {
+            throw new IllegalStateException("This Json node is immutable");
+        }
+        return ((ObjectNode) jsonNode);
+    }
+
+    @NotNull
+    protected RegnumJsonNode set(@NotNull String fieldName, @NotNull JsonNode value) {
+        mutable().set(fieldName, value);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode setAll(@NotNull Map<String, ? extends JsonNode> properties) {
+        mutable().setAll(properties);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode setAll(@NotNull ObjectNode other) {
+        mutable().setAll(other);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, int v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull Integer v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, long v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull Long v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, short v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull Short v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, float v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull Float v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull BigInteger v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull BigDecimal v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, double v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull Double v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, boolean v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull Boolean v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, byte[] v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
+    @NotNull
+    protected RegnumJsonNode put(@NotNull String fieldName, @NotNull String v) {
+        mutable().put(fieldName, v);
+        return this;
+    }
+
 }
