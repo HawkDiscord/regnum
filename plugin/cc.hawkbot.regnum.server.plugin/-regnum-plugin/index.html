@@ -8,10 +8,125 @@
 <a href="../../index.html">plugin</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.server.plugin</a>&nbsp;/&nbsp;<a href="./index.html">RegnumPlugin</a><br/>
 <br/>
 <h1>RegnumPlugin</h1>
-<a name="cc.hawkbot.regnum.server.plugin.RegnumPlugin"></a>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">RegnumPlugin</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Plugin</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/java/cc/hawkbot/regnum/server/plugin/RegnumPlugin.java#L34">(source)</a><br/>
-<a name="cc.hawkbot.regnum.server.plugin.RegnumPlugin"></a>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">RegnumPlugin</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Plugin</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/java/cc/hawkbot/regnum/server/plugin/RegnumPlugin.java#L34">(source)</a>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">RegnumPlugin</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Plugin</span></code>
 <p>Interface for Regnum plugins.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RegnumPlugin</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Interface for Regnum plugins.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="config-defaults.html">configDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">configDefaults</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.RegnumPlugin$configDefaults(cc.hawkbot.regnum.io.config.GenericConfig)/config">config</span><span class="symbol">:</span>&nbsp;<span class="identifier">GenericConfig</span><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that gets invoked after loading the config file to set default</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-config.html">getConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getConfig</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin.io.config/-plugin-config/index.html"><span class="identifier">PluginConfig</span></a><span class="symbol">!</span></code>
+<p>Returns the plugin specific config.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-data-folder.html">getDataFolder</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDataFolder</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">!</span></code>
+<p>Returns the plugin specific folder.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-discord.html">getDiscord</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDiscord</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin.discord/-discord-bot/index.html"><span class="identifier">DiscordBot</span></a><span class="symbol">!</span></code>
+<p>Returns the Discord bot instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-global-config.html">getGlobalConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGlobalConfig</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin.io.config/-config/index.html"><span class="identifier">Config</span></a><span class="symbol">!</span></code>
+<p>Returns the config of the server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-name.html">getName</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">getName</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code>
+<p>Method that returns the name of the plugin.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-server.html">getServer</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getServer</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-server/index.html"><span class="identifier">Server</span></a><span class="symbol">!</span></code>
+<p>Returns the server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-websocket.html">getWebsocket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getWebsocket</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-websocket/index.html"><span class="identifier">Websocket</span></a><span class="symbol">!</span></code>
+<p>Returns the websocket.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="inject-server.html">injectServer</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">injectServer</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.RegnumPlugin$injectServer(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.io.config.PluginConfig)/server">server</span><span class="symbol">:</span>&nbsp;<a href="../-server/index.html"><span class="identifier">Server</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.RegnumPlugin$injectServer(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.io.config.PluginConfig)/config">config</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.server.plugin.io.config/-plugin-config/index.html"><span class="identifier">PluginConfig</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that is used internally to inject the <code><a href="../-server/index.html">Server</a></code> instance.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-disable.html">onDisable</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onDisable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that is invoked when unloading the plugin.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-enable.html">onEnable</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onEnable</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Method that is invoked when loading the plugin.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

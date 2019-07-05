@@ -8,10 +8,90 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.events.websocket</a>&nbsp;/&nbsp;<a href="./index.html">WebSocketEvent</a><br/>
 <br/>
 <h1>WebSocketEvent</h1>
-<a name="cc.hawkbot.regnum.client.events.websocket.WebSocketEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/events/websocket/WebSocketEvent.java#L31">(source)</a><br/>
-<a name="cc.hawkbot.regnum.client.events.websocket.WebSocketEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/events/websocket/WebSocketEvent.java#L31">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a></code>
 <p>Generic event for <code><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html">Websocket</a></code>.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">WebSocketEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.events.websocket.WebSocketEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.Websocket)/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.websocket.WebSocketEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.Websocket)/websocket">websocket</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html"><span class="identifier">Websocket</span></a><span class="symbol">)</span></code>
+<p>Constructs a new websocket event.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-websocket.html">getWebsocket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getWebsocket</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html"><span class="identifier">Websocket</span></a></code>
+<p>Returns the <code><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html">Websocket</a></code> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.events/-event/get-regnum.html">getRegnum</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRegnum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code>
+<p>Returns the <code><a href="../../cc.hawkbot.regnum.client/-regnum/index.html">Regnum</a></code> instance.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-web-socket-close-event/index.html">WebSocketCloseEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketCloseEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">WebSocketEvent</span></a></code>
+<p>Event that is fired when the websocket closes.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-web-socket-connected-event/index.html">WebSocketConnectedEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketConnectedEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">WebSocketEvent</span></a></code>
+<p>Event that is fired when a websocket connection got established.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-web-socket-error-event/index.html">WebSocketErrorEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketErrorEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">WebSocketEvent</span></a></code>
+<p>Event that is fired when an error with the websocket occurred.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-web-socket-message-event/index.html">WebSocketMessageEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketMessageEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">WebSocketEvent</span></a></code>
+<p>Event that is fired when a websocket message got received.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

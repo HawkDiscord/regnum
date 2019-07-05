@@ -8,12 +8,44 @@
 <a href="../../index.html">plugin</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.server.plugin.events.websocket</a>&nbsp;/&nbsp;<a href="./index.html">WebsocketAuthorizedEvent</a><br/>
 <br/>
 <h1>WebsocketAuthorizedEvent</h1>
-<a name="cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebsocketAuthorizedEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-web-socket-session-event/index.html"><span class="identifier">WebSocketSessionEvent</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/java/cc/hawkbot/regnum/server/plugin/events/websocket/WebsocketAuthorizedEvent.java#L31">(source)</a><br/>
-<a name="cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebsocketAuthorizedEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-web-socket-session-event/index.html"><span class="identifier">WebSocketSessionEvent</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/plugin/src/main/java/cc/hawkbot/regnum/server/plugin/events/websocket/WebsocketAuthorizedEvent.java#L31">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebsocketAuthorizedEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-web-socket-session-event/index.html"><span class="identifier">WebSocketSessionEvent</span></a></code>
 <p>Event that indicates that a node has sent a valid IDENTIFY.</p>
 <p><strong>See Also</strong><br/>
 <a href="../-web-socket-session-event/index.html">WebSocketSessionEvent</a></p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">WebsocketAuthorizedEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent$<init>(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.Websocket, io.javalin.websocket.WsSession)/server">server</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.server.plugin/-server/index.html"><span class="identifier">Server</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent$<init>(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.Websocket, io.javalin.websocket.WsSession)/websocket">websocket</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.server.plugin/-websocket/index.html"><span class="identifier">Websocket</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.server.plugin.events.websocket.WebsocketAuthorizedEvent$<init>(cc.hawkbot.regnum.server.plugin.Server, cc.hawkbot.regnum.server.plugin.Websocket, io.javalin.websocket.WsSession)/session">session</span><span class="symbol">:</span>&nbsp;<span class="identifier">WsSession</span><span class="symbol">!</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-web-socket-session-event/get-node.html">getNode</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getNode</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.server.plugin.entities/-node/index.html"><span class="identifier">Node</span></a><span class="symbol">!</span></code>
+<p>Returns the <code><a href="../../cc.hawkbot.regnum.server.plugin.entities/-node/index.html">Node</a></code> corresponding to the session.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-web-socket-session-event/get-session.html">getSession</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getSession</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">WsSession</span><span class="symbol">!</span></code>
+<p>Returns the websocket session.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

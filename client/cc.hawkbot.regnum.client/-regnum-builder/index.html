@@ -8,10 +8,155 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client</a>&nbsp;/&nbsp;<a href="./index.html">RegnumBuilder</a><br/>
 <br/>
 <h1>RegnumBuilder</h1>
-<a name="cc.hawkbot.regnum.client.RegnumBuilder"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumBuilder</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/RegnumBuilder.java#L44">(source)</a><br/>
-<a name="cc.hawkbot.regnum.client.RegnumBuilder"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumBuilder</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/RegnumBuilder.java#L44">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">RegnumBuilder</span></code>
 <p>Builder for <code><a href="../-regnum/index.html">Regnum</a></code> instances</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RegnumBuilder</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Builder for <code><a href="../-regnum/index.html">Regnum</a></code> instances</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add-extensions.html">addExtensions</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">addExtensions</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$addExtensions(kotlin.Array((java.lang.Class((cc.hawkbot.regnum.client.core.Extension)))))/extensions">extensions</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.core/-extension/index.html"><span class="identifier">Extension</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">addExtensions</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$addExtensions(kotlin.collections.MutableCollection((java.lang.Class((cc.hawkbot.regnum.client.core.Extension)))))/extensions">extensions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><span class="identifier">MutableCollection</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.core/-extension/index.html"><span class="identifier">Extension</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Registers extensions</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="build.html">build</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">build</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../-regnum/index.html"><span class="identifier">Regnum</span></a></code>
+<p>Build a new <code><a href="../-regnum/index.html">Regnum</a></code> instance and connects to the server</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="disable-features.html">disableFeatures</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disableFeatures</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$disableFeatures(kotlin.Array((cc.hawkbot.regnum.client.Feature)))/features">features</span><span class="symbol">:</span>&nbsp;<a href="../-feature/index.html"><span class="identifier">Feature</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">disableFeatures</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$disableFeatures(kotlin.collections.MutableCollection((cc.hawkbot.regnum.client.Feature)))/features">features</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><span class="identifier">MutableCollection</span></a><span class="symbol">&lt;</span><a href="../-feature/index.html"><span class="identifier">Feature</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Disables features.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-disabled-features.html">getDisabledFeatures</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getDisabledFeatures</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="../-feature/index.html"><span class="identifier">Feature</span></a><span class="symbol">!</span><span class="symbol">&gt;</span></code>
+<p>Returns a list of all disabled features.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-event-listeners.html">getEventListeners</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getEventListeners</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">?</span><span class="symbol">&gt;</span></code>
+<p>Returns the current list of event listeners.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-event-manager.html">getEventManager</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getEventManager</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.event/-event-manager/index.html"><span class="identifier">EventManager</span></a><span class="symbol">!</span></code>
+<p>Returns the current event manager <code><a href="../../cc.hawkbot.regnum.client.event/-event-manager/index.html">EventManager</a></code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-game-animator-config.html">getGameAnimatorConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGameAnimatorConfig</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.config/-game-animator-config/index.html"><span class="identifier">GameAnimatorConfig</span></a></code>
+<p>Returns the configuration used by the <code><a href="../../cc.hawkbot.regnum.client.core.discord/-game-animator/index.html">GameAnimator</a></code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-server-config.html">getServerConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getServerConfig</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.config/-server-config/index.html"><span class="identifier">ServerConfig</span></a></code>
+<p>Returns the configuration used by <code><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html">cc.hawkbot.regnum.client.core.Websocket</a></code> to connect to the Regnum server.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="register-events.html">registerEvents</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">registerEvents</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$registerEvents(kotlin.Array((kotlin.Any)))/listeners">listeners</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">registerEvents</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$registerEvents(kotlin.collections.MutableCollection((kotlin.Any)))/listeners">listeners</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><span class="identifier">MutableCollection</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Registers event listeners.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-disabled-features.html">setDisabledFeatures</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setDisabledFeatures</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$setDisabledFeatures(kotlin.collections.MutableList((cc.hawkbot.regnum.client.Feature)))/disabledFeatures">disabledFeatures</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="../-feature/index.html"><span class="identifier">Feature</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Sets the list of disabled features.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-event-manager.html">setEventManager</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setEventManager</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$setEventManager(cc.hawkbot.regnum.client.event.EventManager)/eventManager">eventManager</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.event/-event-manager/index.html"><span class="identifier">EventManager</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Sets the event manager <code><a href="../../cc.hawkbot.regnum.client.event/-event-manager/index.html">EventManager</a></code> that is used by <code><a href="../-regnum/index.html">Regnum</a></code> and the <code><a href="../../cc.hawkbot.regnum.client.core.discord/-discord/index.html">cc.hawkbot.regnum.client.core.discord.Discord</a></code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-extensions.html">setExtensions</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setExtensions</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$setExtensions(kotlin.collections.MutableList((java.lang.Class((cc.hawkbot.regnum.client.core.Extension)))))/extensions">extensions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><span class="identifier">MutableList</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.core/-extension/index.html"><span class="identifier">Extension</span></a><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span><span class="symbol">&gt;</span><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Sets the list of all extensions</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-game-animator-config.html">setGameAnimatorConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setGameAnimatorConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$setGameAnimatorConfig(cc.hawkbot.regnum.client.config.GameAnimatorConfig)/gameAnimatorConfig">gameAnimatorConfig</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.config/-game-animator-config/index.html"><span class="identifier">GameAnimatorConfig</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Sets the configuration used by the <code><a href="../../cc.hawkbot.regnum.client.core.discord/-game-animator/index.html">GameAnimator</a></code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="set-server-config.html">setServerConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">setServerConfig</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.RegnumBuilder$setServerConfig(cc.hawkbot.regnum.client.config.ServerConfig)/config">config</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.config/-server-config/index.html"><span class="identifier">ServerConfig</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">RegnumBuilder</span></a></code>
+<p>Sets the configuration used by <code><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html">cc.hawkbot.regnum.client.core.Websocket</a></code> to connect to the Regnum server.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

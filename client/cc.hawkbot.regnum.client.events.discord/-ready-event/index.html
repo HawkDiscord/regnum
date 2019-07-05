@@ -8,10 +8,58 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.events.discord</a>&nbsp;/&nbsp;<a href="./index.html">ReadyEvent</a><br/>
 <br/>
 <h1>ReadyEvent</h1>
-<a name="cc.hawkbot.regnum.client.events.discord.ReadyEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ReadyEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/events/discord/ReadyEvent.java#L29">(source)</a><br/>
-<a name="cc.hawkbot.regnum.client.events.discord.ReadyEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ReadyEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/events/discord/ReadyEvent.java#L29">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ReadyEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a></code>
 <p>Event that is fired when all Discord shards are connected and received READY event.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ReadyEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.ReadyEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.discord.ShardManager, kotlin.Int, kotlin.Int)/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.ReadyEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.discord.ShardManager, kotlin.Int, kotlin.Int)/shardManager">shardManager</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.core.discord/-shard-manager/index.html"><span class="identifier">ShardManager</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.ReadyEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.discord.ShardManager, kotlin.Int, kotlin.Int)/availableGuilds">availableGuilds</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.discord.ReadyEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.discord.ShardManager, kotlin.Int, kotlin.Int)/unavailableGuilds">unavailableGuilds</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span></code>
+<p>Constructs a new ready event.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-guild-available-count.html">getGuildAvailableCount</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGuildAvailableCount</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns the count of available guilds.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-guild-unavailable-count.html">getGuildUnavailableCount</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getGuildUnavailableCount</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code>
+<p>Returns the count of unavailable guilds.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../cc.hawkbot.regnum.client.events/-event/get-regnum.html">getRegnum</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getRegnum</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a></code>
+<p>Returns the <code><a href="../../cc.hawkbot.regnum.client/-regnum/index.html">Regnum</a></code> instance.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

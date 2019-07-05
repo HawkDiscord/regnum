@@ -8,10 +8,82 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.event</a>&nbsp;/&nbsp;<a href="./index.html">ListenerAdapter</a><br/>
 <br/>
 <h1>ListenerAdapter</h1>
-<a name="cc.hawkbot.regnum.client.event.ListenerAdapter"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ListenerAdapter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.event.impl/-event-listener/index.html"><span class="identifier">EventListener</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/event/ListenerAdapter.java#L32">(source)</a><br/>
-<a name="cc.hawkbot.regnum.client.event.ListenerAdapter"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ListenerAdapter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.event.impl/-event-listener/index.html"><span class="identifier">EventListener</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/event/ListenerAdapter.java#L32">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">ListenerAdapter</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.event.impl/-event-listener/index.html"><span class="identifier">EventListener</span></a></code>
 <p>Continence class which adapts all possible events when using <code><a href="../../cc.hawkbot.regnum.client.event.impl/-interfaced-event-manager/index.html">cc.hawkbot.regnum.client.event.impl.InterfacedEventManager</a></code></p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">ListenerAdapter</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Continence class which adapts all possible events when using <code><a href="../../cc.hawkbot.regnum.client.event.impl/-interfaced-event-manager/index.html">cc.hawkbot.regnum.client.event.impl.InterfacedEventManager</a></code></p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="on-event.html">onEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onEvent(kotlin.Any)/event">event</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-generic-event.html">onGenericEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onGenericEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onGenericEvent(cc.hawkbot.regnum.client.events.Event)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events/-event/index.html"><span class="identifier">Event</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-ready.html">onReady</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onReady</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onReady(cc.hawkbot.regnum.client.events.discord.ReadyEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events.discord/-ready-event/index.html"><span class="identifier">ReadyEvent</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-websocket-close.html">onWebsocketClose</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onWebsocketClose</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onWebsocketClose(cc.hawkbot.regnum.client.events.websocket.WebSocketCloseEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events.websocket/-web-socket-close-event/index.html"><span class="identifier">WebSocketCloseEvent</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-websocket-error.html">onWebsocketError</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onWebsocketError</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onWebsocketError(cc.hawkbot.regnum.client.events.websocket.WebSocketErrorEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events.websocket/-web-socket-error-event/index.html"><span class="identifier">WebSocketErrorEvent</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-websocket-event.html">onWebsocketEvent</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onWebsocketEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onWebsocketEvent(cc.hawkbot.regnum.client.events.websocket.WebSocketEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events.websocket/-web-socket-event/index.html"><span class="identifier">WebSocketEvent</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-websocket-message.html">onWebsocketMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onWebsocketMessage</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onWebsocketMessage(cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events.websocket/-web-socket-message-event/index.html"><span class="identifier">WebSocketMessageEvent</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="on-websocket-open.html">onWebsocketOpen</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onWebsocketOpen</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.event.ListenerAdapter$onWebsocketOpen(cc.hawkbot.regnum.client.events.websocket.WebSocketConnectedEvent)/event">event</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.events.websocket/-web-socket-connected-event/index.html"><span class="identifier">WebSocketConnectedEvent</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

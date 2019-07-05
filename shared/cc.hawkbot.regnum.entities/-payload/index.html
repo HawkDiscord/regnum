@@ -8,10 +8,71 @@
 <a href="../../index.html">shared</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.entities</a>&nbsp;/&nbsp;<a href="./index.html">Payload</a><br/>
 <br/>
 <h1>Payload</h1>
-<a name="cc.hawkbot.regnum.entities.Payload"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Payload</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/shared/src/main/java/cc/hawkbot/regnum/entities/Payload.java#L32">(source)</a><br/>
-<a name="cc.hawkbot.regnum.entities.Payload"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Payload</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/shared/src/main/java/cc/hawkbot/regnum/entities/Payload.java#L32">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Payload</span></code>
 <p>Entity that represents any kind of payload sent by the server or client.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Payload</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Used for serialization</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="from-json.html">fromJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">fromJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.Payload$fromJson(kotlin.String)/json">json</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Payload</span></a><span class="symbol">!</span></code>
+<p>Creates a <code><a href="./index.html">Payload</a></code> from a json object.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-packet.html">getPacket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getPacket</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code>
+<p>Returns the packet of the payload in JSON.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get-type.html">getType</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getType</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code>
+<p>Returns the type of the payload.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="of.html">of</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">of</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.Payload$of(cc.hawkbot.regnum.entities.packets.Packet, kotlin.String)/packet">packet</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.entities.packets/-packet.html"><span class="identifier">Packet</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.entities.Payload$of(cc.hawkbot.regnum.entities.packets.Packet, kotlin.String)/identifier">identifier</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">Payload</span></a><span class="symbol">!</span></code>
+<p>Creates a payload.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="to-json.html">toJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">toJson</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code>
+<p>Converts a payload into json.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

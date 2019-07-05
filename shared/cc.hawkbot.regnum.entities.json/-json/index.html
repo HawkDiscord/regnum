@@ -8,10 +8,87 @@
 <a href="../../index.html">shared</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.entities.json</a>&nbsp;/&nbsp;<a href="./index.html">Json</a><br/>
 <br/>
 <h1>Json</h1>
-<a name="cc.hawkbot.regnum.entities.json.Json"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Json</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/shared/src/main/java/cc/hawkbot/regnum/entities/json/Json.java#L35">(source)</a><br/>
-<a name="cc.hawkbot.regnum.entities.json.Json"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Json</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/shared/src/main/java/cc/hawkbot/regnum/entities/json/Json.java#L35">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">Json</span></code>
 <p>Class with some useful Json helper methods</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">Json</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Class with some useful Json helper methods</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-j-a-c-k-s-o-n.html">JACKSON</a></p>
+</td>
+<td>
+<code><span class="keyword">static</span> <span class="keyword">var </span><span class="identifier">JACKSON</span><span class="symbol">: </span><a href="http://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectMapper.html"><span class="identifier">ObjectMapper</span></a><span class="symbol">!</span></code>
+<p>Jackson mapper used for serialization</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="from-json.html">fromJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">&gt;</span> <span class="identifier">fromJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$fromJson(java.lang.Class((cc.hawkbot.regnum.entities.json.Json.fromJson.T)), kotlin.String)/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Class.html"><span class="identifier">Class</span></a><span class="symbol">&lt;</span><a href="from-json.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$fromJson(java.lang.Class((cc.hawkbot.regnum.entities.json.Json.fromJson.T)), kotlin.String)/json">json</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="from-json.html#T"><span class="identifier">T</span></a><span class="symbol">?</span></code>
+<p>Converts a json object into it's entity object.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="parse-json.html">parseJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">parseJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$parseJson(kotlin.String)/json">json</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="http://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/JsonNode.html"><span class="identifier">JsonNode</span></a><span class="symbol">?</span></code>
+<p>Parses a json string into a <code><a href="http://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/JsonNode.html">JsonNode</a></code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="read-json.html">readJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">readJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$readJson(kotlin.String)/json">json</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="http://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/JsonNode.html"><span class="identifier">JsonNode</span></a><span class="symbol">?</span></code>
+<p>Parses a <code><a href="http://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/JsonNode.html">JsonNode</a></code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="to-json.html">toJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">toJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$toJson(com.fasterxml.jackson.databind.ObjectWriter, kotlin.Any)/writer">writer</span><span class="symbol">:</span>&nbsp;<a href="http://fasterxml.github.io/jackson-databind/javadoc/2.9/com/fasterxml/jackson/databind/ObjectWriter.html"><span class="identifier">ObjectWriter</span></a><span class="symbol">!</span><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$toJson(com.fasterxml.jackson.databind.ObjectWriter, kotlin.Any)/obj">obj</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code>
+<p>Converts a object into json.</p>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">toJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$toJson(kotlin.Any)/obj">obj</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">!</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">!</span></code>
+<p>Encodes an <code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html">Object</a></code> into json.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="to-pretty-json.html">toPrettyJson</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">toPrettyJson</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.entities.json.Json$toPrettyJson(kotlin.Any)/obj">obj</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span></code>
+<p>Encodes an <code><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Object.html">Object</a></code> into prettily formatted json.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

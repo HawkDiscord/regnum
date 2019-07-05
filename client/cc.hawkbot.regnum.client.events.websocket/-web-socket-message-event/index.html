@@ -8,10 +8,56 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.events.websocket</a>&nbsp;/&nbsp;<a href="./index.html">WebSocketMessageEvent</a><br/>
 <br/>
 <h1>WebSocketMessageEvent</h1>
-<a name="cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketMessageEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-web-socket-event/index.html"><span class="identifier">WebSocketEvent</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/events/websocket/WebSocketMessageEvent.java#L31">(source)</a><br/>
-<a name="cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketMessageEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-web-socket-event/index.html"><span class="identifier">WebSocketEvent</span></a></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/events/websocket/WebSocketMessageEvent.java#L31">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">WebSocketMessageEvent</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-web-socket-event/index.html"><span class="identifier">WebSocketEvent</span></a></code>
 <p>Event that is fired when a websocket message got received.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">WebSocketMessageEvent</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.Websocket, kotlin.String)/regnum">regnum</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client/-regnum/index.html"><span class="identifier">Regnum</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.Websocket, kotlin.String)/websocket">websocket</span><span class="symbol">:</span>&nbsp;<a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html"><span class="identifier">Websocket</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.events.websocket.WebSocketMessageEvent$<init>(cc.hawkbot.regnum.client.Regnum, cc.hawkbot.regnum.client.core.Websocket, kotlin.String)/message">message</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span></code>
+<p>Constructs a new websocket message event.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="get-message.html">getMessage</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getMessage</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Returns the message.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="payload.html">payload</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">payload</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Payload</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-web-socket-event/get-websocket.html">getWebsocket</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">getWebsocket</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html"><span class="identifier">Websocket</span></a></code>
+<p>Returns the <code><a href="../../cc.hawkbot.regnum.client.core/-websocket/index.html">Websocket</a></code> instance</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>

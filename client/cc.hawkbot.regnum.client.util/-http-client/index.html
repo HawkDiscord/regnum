@@ -8,10 +8,103 @@
 <a href="../../index.html">client</a>&nbsp;/&nbsp;<a href="../index.html">cc.hawkbot.regnum.client.util</a>&nbsp;/&nbsp;<a href="./index.html">HttpClient</a><br/>
 <br/>
 <h1>HttpClient</h1>
-<a name="cc.hawkbot.regnum.client.util.HttpClient"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HttpClient</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/util/HttpClient.java#L32">(source)</a><br/>
-<a name="cc.hawkbot.regnum.client.util.HttpClient"></a>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HttpClient</span></code> <a href="https://github.com/DRSchlaubi/regnum/tree/master/client/src/main/java/cc/hawkbot/regnum/client/util/HttpClient.java#L32">(source)</a>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HttpClient</span></code>
 <p>Some useful HTTP methods.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">HttpClient</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Some useful HTTP methods.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-o-k_-h-t-t-p_-c-l-i-e-n-t.html">OK_HTTP_CLIENT</a></p>
+</td>
+<td>
+<code><span class="keyword">static</span> <span class="keyword">var </span><span class="identifier">OK_HTTP_CLIENT</span><span class="symbol">: </span><span class="identifier">OkHttpClient</span><span class="symbol">!</span></code>
+<p>The HTTP client <code><a href="#">OkHttpClient</a></code> used by Regnum.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="execute-request.html">executeRequest</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">executeRequest</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$executeRequest(okhttp3.Request)/request">request</span><span class="symbol">:</span>&nbsp;<span class="identifier">Request</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Response</span></code>
+<p>Executes a HTTP Request synchronously.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="execute-request-async.html">executeRequestAsync</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">executeRequestAsync</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$executeRequestAsync(okhttp3.Request)/request">request</span><span class="symbol">:</span>&nbsp;<span class="identifier">Request</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html"><span class="identifier">CompletableFuture</span></a><span class="symbol">&lt;</span><span class="identifier">Response</span><span class="symbol">!</span><span class="symbol">&gt;</span></code>
+<p>Executes a HTTP request asynchronously.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="get.html">get</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">get</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$get(kotlin.String)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code>
+<p>Returns a get request to the specified url.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="json-body.html">jsonBody</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">jsonBody</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$jsonBody(kotlin.String)/json">json</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">RequestBody</span></code>
+<p>Returns a json body.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="plain-body.html">plainBody</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">plainBody</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$plainBody(kotlin.String)/content">content</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">RequestBody</span></code>
+<p>Returns a plain text body.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="post.html">post</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">post</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$post(kotlin.String, okhttp3.RequestBody)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$post(kotlin.String, okhttp3.RequestBody)/body">body</span><span class="symbol">:</span>&nbsp;<span class="identifier">RequestBody</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code>
+<p>Returns a post request to the specified url.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="url.html">url</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">static</span> <span class="keyword">fun </span><span class="identifier">url</span><span class="symbol">(</span><span class="identifier" id="cc.hawkbot.regnum.client.util.HttpClient$url(kotlin.String)/url">url</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Builder</span></code>
+<p>Returns a request builder containing the specified url.</p>
+</td>
+</tr>
+</tbody>
+</table>
 </BODY>
 </HTML>
